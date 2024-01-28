@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using ABC.Client.Data;
+using ABC.Shared.Models;
 
 namespace ABC.Client.Components.Account;
 

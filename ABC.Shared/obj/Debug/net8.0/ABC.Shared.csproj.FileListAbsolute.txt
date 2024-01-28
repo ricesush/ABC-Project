@@ -23,3 +23,4 @@ C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Shared\obj\Debug\net8.0\refint\AB
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Shared\obj\Debug\net8.0\ABC.Shared.pdb
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Shared\obj\Debug\net8.0\ABC.Shared.genruntimeconfig.cache
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Shared\obj\Debug\net8.0\ref\ABC.Shared.dll
+C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Shared\obj\Debug\net8.0\ABC.Shared.sourcelink.json

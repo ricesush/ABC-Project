@@ -6,6 +6,8 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using ABC.Client.Data
+@using ABC.Shared.Models
+@using ABC.Shared.Utility
 
 @inject UserManager<ApplicationUser> UserManager
 @inject IUserStore<ApplicationUser> UserStore
@@ -13,7 +15,7 @@
 @inject IEmailSender<ApplicationUser> EmailSender
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
-@inject IdentityRedirectManager RedirectManager
+@inject IdentityRedirectManager RedirectManager 
 
 <PageTitle>Register</PageTitle>
 
@@ -33,15 +35,58 @@
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
             <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
                 <label for="password">Password</label>
                 <ValidationMessage For="() => Input.Password" class="text-danger" />
             </div>
             <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
                 <label for="confirm-password">Confirm Password</label>
                 <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
             </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.Name" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Full Name" />
+                <label for="confirm-password">Full Name</label>
+                <ValidationMessage For="() => Input.Name" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.PhoneNumber" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="Contact Number" />
+                <label for="confirm-password">Contact Number</label>
+                <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.StreetName" class="form-control" autocomplete="street-name" aria-required="true" placeholder="Street Name" />
+                <label for="confirm-password">Street Name</label>
+                <ValidationMessage For="() => Input.StreetName" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.Barangay" class="form-control" autocomplete="barangay" aria-required="true" placeholder="Barangay" />
+                <label for="confirm-password">Barangay</label>
+                <ValidationMessage For="() => Input.Barangay" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.City" class="form-control" autocomplete="city" aria-required="true" placeholder="City" />
+                <label for="confirm-password">City</label>
+                <ValidationMessage For="() => Input.City" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.Province" class="form-control" autocomplete="province" aria-required="true" placeholder="Province" />
+                <label for="confirm-password">Province</label>
+                <ValidationMessage For="() => Input.Province" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.PostalCode" class="form-control" autocomplete="postal-code" aria-required="true" placeholder="Postal Code" />
+                <label for="confirm-password">Postal Code</label>
+                <ValidationMessage For="() => Input.PostalCode" class="text-danger" />
+            </div>
+
             <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </EditForm>
     </div>
@@ -69,7 +114,10 @@
     {
         var user = CreateUser();
 
-        @* ALLOCATING DATA TO USER *@
+        await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+        var emailStore = GetEmailStore();
+        await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+        
         user.Name = Input.Name;
         user.StreetName = Input.StreetName;
         user.City = Input.City;
@@ -77,13 +125,6 @@
         user.Barangay = Input.Barangay;
         user.PostalCode = Input.PostalCode;
         user.PhoneNumber = Input.PhoneNumber;
-        user.Discriminator = "ApplicationUser";
-
-        await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-        var emailStore = GetEmailStore();
-        await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-
-        
 
         var result = await UserManager.CreateAsync(user, Input.Password);
 
@@ -91,6 +132,14 @@
         {
             identityErrors = result.Errors;
             return;
+        }
+
+        if (!String.IsNullOrEmpty(Input.Role)) {
+            await UserManager.AddToRoleAsync(user, Input.Role);
+        }
+        else
+        {
+            await UserManager.AddToRoleAsync(user, SD.Role_Customer);
         }
 
         Logger.LogInformation("User created a new account with password.");
@@ -123,8 +172,8 @@
         }
         catch
         {
-            throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor.");
+            throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor.");
         }
     }
 
@@ -155,10 +204,6 @@
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = "";
 
-
-        public string? Role { get; set; }
-
-        //Additional Column To User DB
         [Required]
         public string Name { get; set; }
         public string? StreetName {  get; set; }
@@ -167,14 +212,12 @@
         public string? Barangay { get; set; }
         public string? PostalCode { get; set; }
         public string? Branch { get; set; }
-
-
         [Required]
         [Phone(ErrorMessage = "Please enter a valid phone number")]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "Phone number must be between in this format 9XX XXX YYYY")]
         public string PhoneNumber { get; set; }
-
+        public string? Role { get; set; }
     }
 }

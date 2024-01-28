@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ABC.Client.Data;
+using ABC.Shared.Models;
 
 namespace ABC.Client.Components.Account;
 

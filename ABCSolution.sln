@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Client", "ABC.Client\ABC.Client.csproj", "{66D96EBF-4896-4C85-8CA7-BAAB2182E0AA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Shared", "ABC.Shared\ABC.Shared.csproj", "{CFFC0BE6-36D8-40AA-825A-2E5BFEE2182E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCClient", "ABCClient\ABCClient.csproj", "{77F9EAA4-1348-4C62-9725-A99C3BA91B90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Client", "ABC.Client\ABC.Client.csproj", "{77F9EAA4-1348-4C62-9725-A99C3BA91B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +16,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{66D96EBF-4896-4C85-8CA7-BAAB2182E0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66D96EBF-4896-4C85-8CA7-BAAB2182E0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66D96EBF-4896-4C85-8CA7-BAAB2182E0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66D96EBF-4896-4C85-8CA7-BAAB2182E0AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CFFC0BE6-36D8-40AA-825A-2E5BFEE2182E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFFC0BE6-36D8-40AA-825A-2E5BFEE2182E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFFC0BE6-36D8-40AA-825A-2E5BFEE2182E}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ABC.Client.Components;
 using ABC.Client.Components.Account;
 using ABC.Client.Data;
+using ABC.Shared.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,12 +30,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
-
-  
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 

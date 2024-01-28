@@ -10,6 +10,7 @@
 @using ABC.Shared.Utility
 
 @inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 @inject IUserStore<ApplicationUser> UserStore
 @inject SignInManager<ApplicationUser> SignInManager
 @inject IEmailSender<ApplicationUser> EmailSender
@@ -132,6 +133,13 @@
         {
             identityErrors = result.Errors;
             return;
+        }
+
+        if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+        {
+            RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
+            RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
+            RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
         }
 
         if (!String.IsNullOrEmpty(Input.Role)) {

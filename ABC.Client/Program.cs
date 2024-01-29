@@ -5,6 +5,7 @@ using ABC.Client.Components;
 using ABC.Client.Components.Account;
 using ABC.Client.Data;
 using ABC.Shared.Models;
+using ABC.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
+builder.Services.AddScoped<POSService_SQL>();
 
 builder.Services.AddAuthentication(options =>
     {
@@ -36,6 +38,9 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+
+AppSettingsHelper.SetConfig(builder.Configuration);
+AppSettingsHelper.EnableLogger();
 
 var app = builder.Build();
 

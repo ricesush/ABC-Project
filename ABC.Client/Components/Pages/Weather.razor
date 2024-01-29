@@ -1,4 +1,5 @@
 ﻿@page "/weather"
+@using ABC.Shared.Services
 @attribute [StreamRendering]
 
 <PageTitle>Weather</PageTitle>
@@ -37,10 +38,13 @@ else
 }
 
 @code {
+    [Inject] POSService_SQL pOSService_SQL { get; set; }
     private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
+        await pOSService_SQL.GetCustomerInfo();
+        
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(500);
 

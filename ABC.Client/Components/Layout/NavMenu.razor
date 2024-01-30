@@ -1,45 +1,45 @@
 ﻿@implements IDisposable
+@using ABC.Client.Components.SharedComponents;
 
 @inject NavigationManager NavigationManager
 
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">ABC.Client</a>
-    </div>
-</div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+    <div class="container">
+      <a class="navbar-brand" href="#"><BrandLogo/></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
+          </li>
+          <li class="nav-item">
             <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> About
             </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
+          </li>
+          <li class="nav-item">
             <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Policies
             </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="auth">
-                <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
+          </li>
+          <li class="nav-item">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Shop
             </NavLink>
-        </div>
-
+          </li>
+        </ul>
+        <form role="search">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        </form>
         <AuthorizeView>
             <Authorized>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Manage">
+                    <NavLink class="nav-link text-white" href="Account/Manage">
                         <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
                     </NavLink>
                 </div>
@@ -47,7 +47,7 @@
                     <form action="Account/Logout" method="post">
                         <AntiforgeryToken />
                         <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                        <button type="submit" class="nav-link">
+                        <button type="submit" class="nav-link text-white">
                             <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
                         </button>
                     </form>
@@ -55,20 +55,20 @@
             </Authorized>
             <NotAuthorized>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Register">
+                    <NavLink class="nav-link text-white" href="Account/Register">
                         <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="Account/Login">
+                    <NavLink class="nav-link text-white" href="Account/Login">
                         <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
                     </NavLink>
                 </div>
             </NotAuthorized>
         </AuthorizeView>
-    </nav>
-</div>
-
+      </div>
+    </div>
+  </nav>
 @code {
     private string? currentUrl;
 

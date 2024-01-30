@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj": {}
+    "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj": {
+    "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
+        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj",
         "projectName": "ABC.Client",
-        "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
+        "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\",
+        "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -108,12 +110,14 @@
         "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -43,6 +43,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
         await pOSService_SQL.GetCustomerInfo();
         
         // Simulate asynchronous loading to demonstrate streaming rendering

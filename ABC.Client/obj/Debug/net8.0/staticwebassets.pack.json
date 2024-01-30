@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
       "PackagePath": "staticwebassets\\ABC.Client.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\app.css",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

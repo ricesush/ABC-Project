@@ -1,0 +1,107 @@
+@using ABC.Shared.Models
+@page "/StockIndex"
+
+<div class="container pt-2 pb-5">
+    <div class="row pb-4">
+        <!-- Title -->
+        <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
+			<h1 style="color: #223442;"><b>Stock Transfer</b></h1>
+        </div>
+
+        <!-- Create Button -->
+        <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
+            <a asp-area="Admin" asp-controller="StockTransfer" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Stock Transfer
+            </a>
+        </div>
+
+        <!-- Export Button -->
+        <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
+            <a href="#" class="btn btn-success">
+                <i class="bi bi-box-arrow-up"></i> Export
+            </a>
+        </div>
+    </div>
+
+
+    <table id="tblstocktransferData" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Number of Transferred Products</th>
+                <th>Transferred Quantity</th>
+                <th>Source </th>
+                <th>Destination </th>
+                <th>Transfer Date</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script src="~/js/stocktransfer.js"></script>
+
+@code{
+    @*
+    [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+    public class StockTransferController : Controller
+    {
+
+        private readonly AppDBContext _db;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public StockTransferController(AppDBContext db, IUnitOfWork unitOfWork)
+        {
+            _db = db;
+            _unitOfWork = unitOfWork;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        //ADD
+        public IActionResult Create()
+        {
+            return View();
+
+        }
+
+        // Add a new action to fetch product data as JSON for Select2
+        [HttpGet]
+        public IActionResult GetProducts(string term)
+        {
+            var products = _db.Products
+                .Where(p => p.productName.Contains(term))
+                .Select(p => new { id = p.Id, text = p.productName, img = p.ImageUrl })
+                .ToList();
+
+
+            return Json(products);
+        }
+
+        [HttpGet]
+        public IActionResult GetProductDetails(string productName)
+        {
+            var productDetails = _db.Products
+                .Where(p => p.productName == productName)
+                .Select(p => new { CostPrice = p.CostPrice, StockQuantity = p.StockQuantity })
+                .FirstOrDefault();
+
+            // Return the result as JSON
+            return Json(productDetails);
+        }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<StockTransfer> objStockTransfer = _unitOfWork.StockTransfer.GetAll().ToList();
+            return Json(new { data = objStockTransfer });
+        }
+        #endregion
+    }
+    *@
+}

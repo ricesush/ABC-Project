@@ -39,6 +39,14 @@ namespace ABC.Shared.Models
 
 
         public string Brand { get; set; }
+
+	//foreign key store
+[DisplayName("Store")]
+public int StoreId { get; set; }
+[ForeignKey("StoreId")]
+[ValidateNever]
+public Store Store { get; set; }
+	
         public string Warehouse { get; set; }
         public string Description { get; set; }
 

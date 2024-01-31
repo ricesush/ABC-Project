@@ -1,0 +1,60 @@
+@using ABC.Shared.Models
+@page "/AuditIndex"
+
+<div class="pt-2 pb-5">
+    <h1 class="pb-3" style="color: #223442;"><b>Audit Log</b></h1>
+
+    <table id="tblData" class="table table-bordered table-striped table-hover " action="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>User Role</th>
+                <th>Changes</th>
+                <th>Action</th>
+                <th>Time Stamp</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script src="~/js/audit.js"></script>
+
+@code{
+    @*
+    [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
+    public class AuditLogController : Controller
+    {
+        private readonly IUnitOfWork _unitOfWork;
+        public AuditLogController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+        public IActionResult Index()
+        {
+            List<AuditLog> auditLogs = _unitOfWork.AuditLog.GetAll().ToList();
+            return View(auditLogs);
+        }
+
+
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<AuditLog> auditLogs = _unitOfWork.AuditLog.GetAll().ToList();
+            return Json(new { data = auditLogs });
+        }
+
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+
+            return Json(new { success = true, message = "Delete Successful" });
+        }
+        #endregion
+    }
+    *@
+}

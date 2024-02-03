@@ -11,7 +11,7 @@
         <!-- New Supplier Button -->
         <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
             <div class="dropdown d-flex justify-content-center">
-                <a class="btn btn-primary" role="button" asp-area="Admin" asp-controller="Supplier" asp-action="Create">
+                <a class="btn btn-primary" role="button" href="SuppCreate">
                     <i class="bi bi-plus-lg"></i> New Supplier
                 </a>
             </div>
@@ -29,7 +29,7 @@
     <table id="tblsupplierData" class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
-                <th>Company Name</th>
+                <th>Company</th>
                 <th>Email Address</th>
                 <th>Contact Number</th>
                 <th>Address</th>
@@ -41,7 +41,7 @@
 
 </div>
 
-<script src="~/js/supplier.js"></script>
+<script src="/js/supplier.js"></script>
 
 @code{
     

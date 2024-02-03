@@ -1,4 +1,4 @@
-@using ABC.Shared.Models
+@using ABC.Shared.Models.ViewModels
 @page "/Order"
 
 @{
@@ -81,9 +81,12 @@
     </table>
 </div>
 
-<script src="~/js/order.js"></script>
+<script src="/js/order.js"></script>
 
 @code {
+    private List<OrderVM> OrderVMs { get; set; }
+
+
     /* OrderController.cs
     [Area("Admin")]
     [Authorize]

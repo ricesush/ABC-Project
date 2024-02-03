@@ -3,21 +3,20 @@
 
 <form method="post" id="myForm">
 	<div class="border p-3 mt-4 container">
-
 		<!--Title-->
 		<div class="row pb-2">
-			<h2 class="text-primary">Create Category</h2>
+			<h2 style="color: #223442;">Create Category</h2>
+			
+			<!--Breadcrumb-->
+			<div class="row pb-3">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="CategoryIndex">Category List</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Add Category</li>
+					</ol>
+				</nav>
+			</div>
 			<hr />
-		</div>
-
-		<!--Breadcrumb-->
-		<div class="row pb-3">
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Category" asp-action="Index">Category List</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Create Category</li>
-				</ol>
-			</nav>
 		</div>
 
 		<!--Displays the list of mistakes-->

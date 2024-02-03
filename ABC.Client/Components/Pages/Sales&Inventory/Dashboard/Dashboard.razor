@@ -1,10 +1,11 @@
 ﻿@using ABC.Shared.Models
 @page "/Dashboard"
 
-<link rel="stylesheet" href="~/css/dashboard.css" />
+@* <link href="/dashboard.css" rel="stylesheet" /> *@
+<link href="Dashboard.razor.css" rel="stylesheet" />
 
-<div class="container-fluid pt-2 pb-5">
-    <div class="row pt-2 pb-3">
+<div class="container-fluid pt-1 pb-5">
+    <div class="row pt-1 pb-4">
         <div class="col-lg-6 col-sm-12 text-start mb-3 mb-sm-0">
             <h1 style="color: #223442;"><b>Dashboard</b></h1>
         </div>
@@ -13,69 +14,70 @@
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
-                <div class="inner">
+                <div class="inner px-3">
                     <h1>
-                        <!--<b>@ViewBag.totalcustomers</b>-->
+                        <b>@totalcustomers</b>
                     </h1>
 
                     <p>No. of Customers</p>
                 </div>
-                <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="small-box-footer">More info <i class="bi bi-arrow-right-circle"></i></a>
+
+                <a class="small-box-footer" href="CustomerIndex">More info</a>
             </div>
         </div>
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
-                <div class="inner">
+                <div class="inner px-3">
                     <h1>
-						<!--<b>@ViewBag.unprocessedOrders</b>-->
+                        <b>@unprocessedOrders</b>
                     </h1>
-
                     <p>Orders to Process</p>
                 </div>
-                <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="small-box-footer">More info <i class="bi bi-arrow-right-circle"></i></a>
+
+                <a class="small-box-footer"  href="Order">More info <i class="bi bi-arrow-right-circle"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
-                <div class="inner">
+                <div class="inner px-3">
                     <h1>
-						<!--<b>@ViewBag.ordersoutfordelivery</b>-->
+						<b>@ordersoutfordelivery</b>
                     </h1>
 
-                    <p>Orders to Deliver</p>  <!-- connect mo dito yung method para sa orders bale dapat TotalOrders or kung anong naming ang gusto mo -->
-                    <!-- Ang bibilangin neto eh yung mga order na nasa "To deliver" stat palang -->
+                    <p>Orders to Deliver</p>
                 </div>
-                <a asp-area="Admin" asp-controller="" asp-action="" class="small-box-footer">More info <i class="bi bi-arrow-right-circle"></i></a>
+
+                <a class="small-box-footer" href="Order">More info <i class="bi bi-arrow-right-circle"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-                <div class="inner">
+                <div class="inner px-3">
                     <h1>
-                        <!--<b>@ViewBag.cancelledOrders</b>-->
+                        <b>@cancelledOrders</b>
                     </h1>
 
                     <p>Cancelled Orders</p>
-                    <!-- Ang bibilangin neto eh yung mga nacancel sa loob ng isang buwan, kahit anong sales channel pa yan kasama sa bilang neto-->
                 </div>
-                <a asp-area="Admin" asp-controller="" asp-action="" class="small-box-footer">More info <i class="bi bi-arrow-right-circle"></i></a>
+
+                <a class="small-box-footer" href="Order">More info <i class="bi bi-arrow-right-circle"></i></a>
             </div>
         </div>
     </div>
 
     <div class="row pt-2 pb-2">
         <div class="col-8">
-            <div class="border p-3 container shadow">
+            <div class="border p-3 pb-5 container shadow">
                 <!--Title-->
                 <div class="pb-2">
                     <h4 style="color: #223442;"><b>Sales Overview</b></h4>
                     <hr />
                 </div>
-                <div class="pt-1 pb-2">
-                    <canvas id="myChart" <!--salesrevenue="@ViewBag.SalesRevenue" costpricetotal="@ViewBag.totalCost"-->></canvas>
+                <div class=" pb-3">
+                    <canvas id="myChart" salesrevenue="@salesRevenue" costpricetotal="@totalCost" ></canvas>
                 </div>
 
                 <div class="row pt-2 px-3">
@@ -108,70 +110,67 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 d-flex align-items-lg-stretch">
-            <div class="border p-3 container shadow">
+        <div class="col-4">
+            <div class="border p-3 pb-5 container shadow">
                 <!--Title-->
                 <div class="pb-2">
-                    <h4 style="color: #223442;"><b>Inventory</b></h4>
+                    <h4 class="col-3" style="color: #223442;"><b>Inventory </b> </h4>
                     <hr />
                 </div>
                 <div class="row col-10 mx-auto py-2">
                     <div class="small-box bg-info">
-                        <div class="inner text-center">
+                        <div class="inner px-3">
                             <h2>
-                                <!--@ViewBag.totalProducts-->
+                                @totalProducts
                             </h2>
                             <p>Product Count</p>
                         </div>
-                        <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="small-box-footer text-center">More info <i class="bi bi-arrow-right-circle"></i></a>
                     </div>
                 </div>
+
                 <div class="row col-10 mx-auto py-2">
                     <div class="small-box bg-success">
-                        <div class="inner text-center">
+                        <div class="inner px-3">
                             <h2>
-                                <!--@ViewBag.totalProductsInstock-->
+                                @instock
                             </h2>
                             <p>In Stock Products</p>
                         </div>
-                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="small-box-footer text-center">More info <i class="bi bi-arrow-right-circle"></i></a>
                     </div>
                 </div>
+
                 <div class="row col-10 mx-auto py-2">
                     <div class="small-box bg-warning ">
-                        <div class="inner">
+                        <div class="inner px-3">
                             <h2>
-                                <!--@ViewBag.lowstockproducts-->
+                                @lowstock
                             </h2>
 
                             <p>Low Stock Products</p>
                         </div>
-
-                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="small-box-footer">More info <i class="bi bi-arrow-right-circle"></i></a>
                     </div>
                 </div>
+
                 <div class="row col-10 mx-auto py-2">
                     <div class="small-box bg-danger">
-                        <div class="inner">
+                        <div class="inner px-3">
                             <h2>
-                                <!--@ViewBag.outofstockproducts-->
+                                @outofstock
                             </h2>
 
                             <p>Out of Stock Products</p>
                         </div>
-
-                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="small-box-footer">More info <i class="bi bi-arrow-right-circle"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row pt-4 pb-4">
-        <div class="col-12">
+    <div class="row py-4">
+        <div>
             <div class="border p-3 container shadow">
                 <!-- Title -->
-                <div class="row">
+                <div class="pb-2">
                     <h4 style="color: #223442;"><b>Best Selling Items</b></h4>
                     <hr/>
                 </div>
@@ -185,10 +184,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @*@foreach (var product in Products)
+                        @*foreach (var product in Products)
                         {
-                            var totalSold = (int)orderDetails.Where(detail => detail.ProductId == product.Id).Sum(detail => detail.Count);
-                            var totalPrice = orderDetails
+                            var totalSold = (int)OrderDetails.Where(detail => detail.ProductId == product.Id).Sum(detail => detail.Count);
+                            var totalPrice = OrderDetails
                             .Where(detail => detail.ProductId == product.Id)
                             .Sum(detail => detail.Product != null ? (detail.Product.RetailPrice * detail.Count) : 0);
 
@@ -198,7 +197,7 @@
                                 <td>@totalSold</td>
                                 <td>@String.Format("{0:C}", totalPrice)</td>
                             </tr>
-                        }*@
+                        } *@
                     </tbody>
                 </table>
             </div>
@@ -206,53 +205,54 @@
     </div>
 </div>
 
+
 <script src="//cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script src="~/js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>
 
 @code {
-    /*#region
+    private List<Customer> Customers { get; set; } = new();
+    private List<OrderHeader> OrderHeaders { get; set; } = new();
     private List<Product> Products { get; set; } = new();
-    #endRegion
-    Controller ng dashboard
-    [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
-    public class AdPageController : Controller
+    private List<OrderDetail> OrderDetails { get; set; } = new();
+
+    int totalcustomers;
+    int unprocessedOrders;
+    int ordersoutfordelivery;
+    int cancelledOrders;
+
+    int totalProducts;
+    int instock;
+    int lowstock;
+    int outofstock;
+
+    double salesRevenue;
+    double totalCost;
+
+    
+
+    protected override void OnInitialized()
     {
-        private readonly AppDBContext _db;
+        totalcustomers = Customers.Count;
+        unprocessedOrders = OrderHeaders.Count(o => o.OrderStatus == "To Process");
+        ordersoutfordelivery = OrderHeaders.Count(o => o.OrderStatus == "Deliver Order");
+        cancelledOrders = OrderHeaders.Count(o => o.OrderStatus == "Cancelled");
 
-        public AdPageController(AppDBContext db)
-        {
-            _db = db;
-        }
+        totalProducts = Products.Count;
+        instock = Products.Count(p => p.StockQuantity > 0);
+        lowstock = Products.Count(p => p.StockQuantity <= 3); //hardcoded pa yung min stock qty 
+        outofstock = Products.Count(p => p.StockQuantity == 0);
 
+        salesRevenue = OrderHeaders.Count(o => o.PaymentStatus == "Paid");
+        totalCost = Products.Sum(p => p.CostPrice);
+    }
+
+    /*
         public IActionResult Index()
         {
-            int totalcustomers = _db.Customers.Count();
-            int unprocessedOrders = _db.OrderHeaders.Count(o => o.OrderStatus == "To Process");
-            int ordersoutfordelivery = _db.OrderHeaders.Count(o => o.OrderStatus == "Deliver Order");
-            int cancelledOrders = _db.OrderHeaders.Count(o => o.OrderStatus == "Cancelled");
-            int totalProductsInstock = _db.Products.Count(p => p.StockQuantity > 0);
-            int lowstockproducts = _db.Products.Count(p => p.StockQuantity <= 4);
-            int outofstockproducts = _db.Products.Count(p => p.StockQuantity == 0);
-            int totalProducts = _db.Products.Count();
-            double salesRevenue = _db.OrderHeaders.Count(o => o.PaymentStatus == "Paid");
-            double totalCost = _db.Products.Sum(p => p.CostPrice);
 
 
-            ViewBag.TotalCustomers = totalcustomers;
-            ViewBag.unprocessedOrders = unprocessedOrders;
-            ViewBag.ordersoutfordelivery = ordersoutfordelivery;
-            ViewBag.cancelledOrders = cancelledOrders;
-            ViewBag.totalProductsInstock = totalProductsInstock;
-            ViewBag.lowstockproducts = lowstockproducts;
-            ViewBag.outofstockproducts = outofstockproducts;
-            ViewBag.totalProducts = totalProducts;
-            ViewBag.SalesRevenue = salesRevenue;
-            ViewBag.TotalCost = totalCost;
-
-
-            var bestSellingProducts = _db.OrderDetails
+        var bestSellingProducts = _db.OrderDetails
         .Include(detail => detail.Product)
         .GroupBy(detail => detail.Product)
         .OrderByDescending(group => group.Sum(detail => detail.Count))

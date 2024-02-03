@@ -38,7 +38,7 @@
         <div class="row pb-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Product" asp-action="Index">Product List</a></li>
+                    <li class="breadcrumb-item"><a href="ProductList">Product List</a></li>
                     <li class="breadcrumb-item active" aria-current="page">@*@(Model.Product.Id != 0 ? "Update" : "Create")*@ List</li>
                 </ol>
             </nav>
@@ -338,7 +338,7 @@
     </div>
 </div>
 
-<script src="~/js/descriptionbox.js"></script>
+<script src="/js/descriptionbox.js"></script>
 <partial name="_ConfirmationModalScript" />
 <partial name="_BarcodeScript" />
 

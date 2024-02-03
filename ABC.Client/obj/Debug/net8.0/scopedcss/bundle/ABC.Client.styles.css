@@ -221,3 +221,238 @@ main[b-zzg621eskd] {
         overflow-y: auto;
     }
 }
+/* _content/ABC.Client/Components/Pages/POS/POS.razor.rz.scp.css */
+/* _content/ABC.Client/Components/Pages/Sales&Inventory/CustomerList/pdf/CustPDF.razor.rz.scp.css */
+.contenedor[b-0qugyolu5f] {
+    width: 900px !important;
+    height: 842px !important;
+    margin: auto;
+}
+
+body[b-0qugyolu5f] {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+p.title[b-0qugyolu5f] {
+    font-weight: bold;
+}
+
+p.title2[b-0qugyolu5f] {
+    font-weight: bold;
+    color: #03A99F;
+    font-size: 20px;
+}
+
+p.text[b-0qugyolu5f] {
+    font-size: 15px;
+    font-weight: 100;
+    color: #858585;
+}
+
+p[b-0qugyolu5f] {
+    margin: 0px
+}
+
+.tbth[b-0qugyolu5f] {
+    text-align: left;
+}
+
+table.tbproductos[b-0qugyolu5f] {
+    border-collapse: separate;
+    border-spacing: 4px;
+}
+
+    table.tbproductos thead tr th[b-0qugyolu5f] {
+        background-color: #03A99F;
+        padding: 10px;
+        font-size: 15px;
+        color: white;
+    }
+
+    table.tbproductos tbody tr td[b-0qugyolu5f] {
+        padding: 10px;
+    }
+
+.item[b-0qugyolu5f] {
+    font-size: 15px;
+    font-weight: 100;
+    color: #757575;
+}
+
+.item-2[b-0qugyolu5f] {
+    font-size: 15px;
+    font-weight: bold;
+    color: #757575;
+}
+
+.item-3[b-0qugyolu5f] {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #03A99F;
+    color: white;
+}
+
+.td-item[b-0qugyolu5f] {
+    border-bottom: 2px solid #E8E8E8 !important;
+}
+/* _content/ABC.Client/Components/Pages/Sales&Inventory/Dashboard/Dashboard.razor.rz.scp.css */
+/* Styles for the small box */
+.small-box[b-cyg9f01yjn] {
+    border-radius: 5px;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    display: block;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+    .small-box .inner[b-cyg9f01yjn] {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 10px;
+        padding-left: 1rem;
+        font-size: 15px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .small-box .small-box-footer[b-cyg9f01yjn] {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: white;
+        display: block;
+        padding: 3px 0;
+        position: relative;
+        text-align: center;
+    }
+
+.small-text[b-cyg9f01yjn] {
+    font-size: 15px;
+    font-style: normal;
+}
+
+.chart1[b-cyg9f01yjn] {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.salesbox[b-cyg9f01yjn] {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid #E6E6E6;
+}
+
+    .salesbox p[b-cyg9f01yjn] {
+        font-size: 15px;
+        color: grey;
+    }
+/* _content/ABC.Client/Components/Pages/Sales&Inventory/InventoryReport/InventoryReport.razor.rz.scp.css */
+.smallbox[b-6yalk5n7tc] {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid #E6E6E6;
+}
+
+    .smallbox p[b-6yalk5n7tc] {
+        font-size: 15px;
+        color: grey;
+    }
+
+.minHeight[b-6yalk5n7tc] {
+    min-height: calc(100vh - 395px);
+}
+/* _content/ABC.Client/Components/Pages/Sales&Inventory/Product/pdf/ProductPDF.razor.rz.scp.css */
+.contenedor[b-q9768mqb81] {
+    width: 900px !important;
+    height: 842px !important;
+    margin: auto;
+}
+
+body[b-q9768mqb81] {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+p.title[b-q9768mqb81] {
+    font-weight: bold;
+}
+
+p.title2[b-q9768mqb81] {
+    font-weight: bold;
+    color: #03A99F;
+    font-size: 20px;
+}
+
+p.text[b-q9768mqb81] {
+    font-size: 15px;
+    font-weight: 100;
+    color: #858585;
+}
+
+p[b-q9768mqb81] {
+    margin: 0px
+}
+
+.tbth[b-q9768mqb81] {
+    text-align: left;
+}
+
+table.tbproductos[b-q9768mqb81] {
+    border-collapse: separate;
+    border-spacing: 4px;
+}
+
+    table.tbproductos thead tr th[b-q9768mqb81] {
+        background-color: #03A99F;
+        padding: 10px;
+        font-size: 15px;
+        color: white;
+    }
+
+    table.tbproductos tbody tr td[b-q9768mqb81] {
+        padding: 10px;
+    }
+
+.item[b-q9768mqb81] {
+    font-size: 15px;
+    font-weight: 100;
+    color: #757575;
+}
+
+.item-2[b-q9768mqb81] {
+    font-size: 15px;
+    font-weight: bold;
+    color: #757575;
+}
+
+.item-3[b-q9768mqb81] {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #03A99F;
+    color: white;
+}
+
+.td-item[b-q9768mqb81] {
+    border-bottom: 2px solid #E8E8E8 !important;
+}
+/* _content/ABC.Client/Components/Pages/Sales&Inventory/SalesReport/SalesReport.razor.rz.scp.css */
+.smallbox[b-6z2o6bgc3o] {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid #E6E6E6;
+}
+
+    .smallbox p[b-6z2o6bgc3o] {
+        font-size: 15px;
+        color: grey;
+    }
+
+.minHeight[b-6z2o6bgc3o] {
+    min-height: calc(100vh - 395px);
+}

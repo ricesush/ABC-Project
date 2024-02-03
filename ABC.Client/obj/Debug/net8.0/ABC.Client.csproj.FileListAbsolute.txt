@@ -187,3 +187,9 @@ C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\bin\Debug\net8.0\runtimes\
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\bin\Debug\net8.0\runtimes\win-x64\native\k5sprt64.dll
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Pages\POS\POS.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\CustomerList\pdf\CustPDF.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\Dashboard\Dashboard.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\InventoryReport\InventoryReport.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\Product\pdf\ProductPDF.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\SalesReport\SalesReport.razor.rz.scp.css

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nHCYqzDex1jzYN++bl18QUcF5YJmCfqZDZR5tz/lACbIWEavb8FUujb1nAWutpYngMzRQBAQJjJQqvZwZZHneg==",
+  "dgSpecHash": "sVHXDjNkuItt7PpTyH0eDVQgZS1Pittsi7W8Agouz4/+IprizvLMU+V1LDBm4ondlt82aU8nIXjtoZ6HVEOzig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj",
+  "projectFilePath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

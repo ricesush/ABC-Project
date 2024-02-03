@@ -190,6 +190,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/OneDrive/Desktop/ABC Project/abc.client/Components/Pages/POS/Components/BankModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcQ29tcG9uZW50c1xCYW5rTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Desktop/ABC Project/abc.client/Components/Pages/POS/Components/CashModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcQ29tcG9uZW50c1xDYXNoTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Desktop/ABC Project/abc.client/Components/Pages/POS/Components/DiscountModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcQ29tcG9uZW50c1xEaXNjb3VudE1vZGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/OneDrive/Desktop/ABC Project/abc.client/Components/Pages/POS/Components/FeesModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcQ29tcG9uZW50c1xGZWVzTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/OneDrive/Desktop/ABC Project/abc.client/Components/Pages/Sales&Inventory/Archive/ArchiveIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlcyZJbnZlbnRvcnlcQXJjaGl2ZVxBcmNoaXZlSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,4 @@
+*:focus{
+    box-shadow: none !important;
+    transition: all 1s ease-in-out !important;
+}

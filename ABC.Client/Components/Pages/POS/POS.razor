@@ -1,0 +1,232 @@
+@page "/POS"
+@using System.Globalization;
+@using ABC.Client.Components.Pages.POS.Components;
+
+<section class="container my-3">
+    @* CUSTOMER INFORMATION *@
+    <section>
+        <section class="row pb-3">
+            <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
+                <h1 style="color: #223442;"><b>Point of Sales</b></h1>
+            </div>
+            <div class="col-lg-4 col-sm-4 mb-3 mb-sm-0 text-end">
+                <button id="newSaleButton" class="btn btn-success">New Sale</button>
+            </div>
+        </section>
+        <section class="accordion accordion-flush border shadow" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-primary bg-opacity-25 fs-5 fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
+                        Customer Information
+                    </button>
+                </h2>
+                <section id="flush-collapseOne" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <section class="row row-cols-lg-2 g-2">
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingFirstName" placeholder="First Name">
+                                <label for="floatingFirstName" class="bg-transparent">First Name</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingSurName" placeholder="Sur Name">
+                                <label for="floatingSurName">Sur Name</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="email" class="form-control" id="floatingEmail"
+                                    placeholder="name@example.com">
+                                <label for="floatingEmail">Email address</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingNumber" placeholder="09991234567">
+                                <label for="floatingNumber">Contact Number</label>
+                            </div>
+                        </section>
+                        <section class="py-2 mt-4 border-top border-dark px-0 m-x0 fw-bold">
+                            Billing Address
+                        </section>
+                        <section class="row row-cols-lg-3 g-2">
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingUnitNumber"
+                                    placeholder="Apt./Suite/Unit/House #">
+                                <label for="floatingUnitNumber" class="bg-transparent">Apt./Suite/Unit/House #</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingStreet"
+                                    placeholder="Street or Subdiv.">
+                                <label for="floatingStreet">Street or Subdiv.</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingBarangay" placeholder="Barangay">
+                                <label for="floatingBarangay">Barangay</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingCity" placeholder="City">
+                                <label for="floatingCity">City</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingProvince" placeholder="Province">
+                                <label for="floatingProvince">Province</label>
+                            </div>
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" id="floatingZipCode" placeholder="Zip Code">
+                                <label for="floatingZipCode">Zip Code</label>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </section>
+
+    @* PRODUCT INFORMATION *@
+    <section class="row g-2 pt-3">
+        <section class="col-8">
+            <div class="border p-3 container shadow">
+                <div class="row border-bottom mb-3">
+                    <p class="fs-5 fw-bold">Product Details</p>
+                </div>
+
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search me-2"></i> Search
+                        Product</span>
+                    <input type="text" class="form-control" aria-label="Search Product"
+                        aria-describedby="addon-wrapping">
+                </div>
+
+                <!--DISPLAY SELECTED ITEMS-->
+                <table class="table table-striped table-hover table-sm mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(var i = 0 ; i < 10 ; i++){
+                            <tr>
+                                <th scope="row"> - </th>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td> - </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        @* Transactin Details *@
+        <section class="col-4">
+            <div class="border p-3 container shadow justify-content-center">
+                <div class="row border-bottom mb-3">
+                    <p class="fs-5 fw-bold">Transaction Details</p>
+                </div>
+
+                @* <!--Order Summary-->
+                <div class="col-12 pb-2">
+                <h5 class="text-primary text-start">Order Summary:</h5>
+                </div>*@
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Store</span>
+                    <input type="text" class="form-control" value="ABC123" aria-label="Store"
+                        aria-describedby="addon-wrapping" disabled>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text border border-end" id="addon-wrapping">Sales</span>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected disabled>- Choose Sales Channel -</option>
+                        <option value="Walk In">Walk In</option>
+                        <option value="Online">On Call</option>
+                        <option value="Online">Chat Base</option>
+                    </select>
+                </div>
+
+                <div class="btn-group btn-group-sm col-12 mt-3 " role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-outline-primary" id="addDiscount" data-bs-toggle="modal" data-bs-target="#discountModal"><i
+                            class="bi bi-pencil-square me-2"></i> Discount</button>
+                    <button type="button" class="btn btn-outline-primary" id="openChargeModalButton" data-bs-toggle="modal" data-bs-target="#feesModal"><i
+                            class="bi bi-pencil-square me-2"></i> Fees</button>
+                </div>
+
+                <div class="row border-top mb-3 m-1 mt-3">
+                    <table class="table table-sm table-hover">
+                        <tbody>
+                            <tr>
+                                <td>Discount/s:</td>
+                                <td class="text-end">0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Fees:</td>
+                                <td class="text-end">0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td class="text-end">1,000.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="btn-group btn-group-sm col-12 mt-3 " role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-outline-success col-6" id="addDiscount" data-bs-toggle="modal" data-bs-target="#cashModal">
+                        <i class="bi bi-cash-coin me-2"></i> Cash Payment</button>
+                    <button type="button" class="btn btn-outline-success col-6" id="openChargeModalButton" data-bs-toggle="modal" data-bs-target="#bankModal">
+                        <i class="bi bi-bank me-2"></i> Bank Transfer</button>
+                </div>
+                <div class="btn-group btn-group-sm col-12 mt-3" role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-warning col-6" id="addDiscount">
+                         Hold Transaction</button>
+                    <button type="button" class="btn btn-danger col-6" id="openChargeModalButton">
+                         Cancel</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+</section>
+
+<!--========================
+       START MODALS
+========================-->
+<!-- QUANTITY  -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Add Quantity</h5>
+                <button type="button" class="close" id="qtyclose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center justify-content-center">
+
+                <!--SELECTED PRODUCT-->
+                <p>Selected Product:</p>
+                <h6><span id="selectedProductName"></span></h6>
+
+                <div class="form-group" id="quantityInputDiv" style="display: none;">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" class="form-control pt-3" id="quantity" placeholder="Enter quantity"
+                        aria-label="Quantity" aria-describedby="quan">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="addProductButton">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* MODALS *@
+<DiscountModal />
+<FeesModal />
+<CashModal />
+<BankModal />

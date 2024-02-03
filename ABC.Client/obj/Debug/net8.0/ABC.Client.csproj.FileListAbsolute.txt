@@ -193,3 +193,5 @@ C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\InventoryReport\InventoryReport.razor.rz.scp.css
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\Product\pdf\ProductPDF.razor.rz.scp.css
 C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\obj\Debug\net8.0\scopedcss\Components\Pages\Sales&Inventory\SalesReport\SalesReport.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Pages\Home\Home.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\bin\Debug\net8.0\BootstrapIcons.AspNetCore.dll

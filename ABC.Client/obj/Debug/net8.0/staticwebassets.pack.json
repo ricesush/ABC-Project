@@ -1,91 +1,91 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
       "PackagePath": "staticwebassets\\ABC.Client.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.png",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\ABCLogo.png",
       "PackagePath": "staticwebassets\\Image\\ABCLogo.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.webp",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\ABCLogo.webp",
       "PackagePath": "staticwebassets\\Image\\ABCLogo.webp"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\app.css",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\audit.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\audit.js",
       "PackagePath": "staticwebassets\\js\\audit.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\dashboard.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\dashboard.js",
       "PackagePath": "staticwebassets\\js\\dashboard.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\descriptionbox.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\descriptionbox.js",
       "PackagePath": "staticwebassets\\js\\descriptionbox.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\inventoryreport.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\inventoryreport.js",
       "PackagePath": "staticwebassets\\js\\inventoryreport.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\order.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\order.js",
       "PackagePath": "staticwebassets\\js\\order.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\ordercustomer.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\ordercustomer.js",
       "PackagePath": "staticwebassets\\js\\ordercustomer.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\product.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\product.js",
       "PackagePath": "staticwebassets\\js\\product.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchaseorder.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\purchaseorder.js",
       "PackagePath": "staticwebassets\\js\\purchaseorder.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchsearch.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\purchsearch.js",
       "PackagePath": "staticwebassets\\js\\purchsearch.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\salesreport.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\salesreport.js",
       "PackagePath": "staticwebassets\\js\\salesreport.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\searchshop.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\searchshop.js",
       "PackagePath": "staticwebassets\\js\\searchshop.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\stocktransfer.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\stocktransfer.js",
       "PackagePath": "staticwebassets\\js\\stocktransfer.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\supplier.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\supplier.js",
       "PackagePath": "staticwebassets\\js\\supplier.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\user.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\user.js",
       "PackagePath": "staticwebassets\\js\\user.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\usermanagement.js",
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\usermanagement.js",
       "PackagePath": "staticwebassets\\js\\usermanagement.js"
     },
     {

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "sVHXDjNkuItt7PpTyH0eDVQgZS1Pittsi7W8Agouz4/+IprizvLMU+V1LDBm4ondlt82aU8nIXjtoZ6HVEOzig==",
+  "dgSpecHash": "nh35/LLgsxhoVKHdXR/7muDfwFogmK98TbDJcw0mIJs4b1KTT1f1deYIPM/1EfPayfg41FMu2Bwd1vG+uhxZoQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
+  "projectFilePath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\bootstrapicons.aspnetcore\\1.11.0\\bootstrapicons.aspnetcore.1.11.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\dapper\\2.1.28\\dapper.2.1.28.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

@@ -221,6 +221,14 @@ main[b-zzg621eskd] {
         overflow-y: auto;
     }
 }
+/* _content/ABC.Client/Components/Pages/Home/Home.razor.rz.scp.css */
+.min-height[b-sykuksvrf0]{
+    min-height: 300px;
+}
+
+.btn-bg-darkblue[b-sykuksvrf0]{
+    background-color: red;
+}
 /* _content/ABC.Client/Components/Pages/POS/POS.razor.rz.scp.css */
 /* _content/ABC.Client/Components/Pages/Sales&Inventory/CustomerList/pdf/CustPDF.razor.rz.scp.css */
 .contenedor[b-0qugyolu5f] {

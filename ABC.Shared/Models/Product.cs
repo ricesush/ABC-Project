@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
@@ -35,7 +35,7 @@ namespace ABC.Shared.Models
         [ForeignKey("StoreId")]
         [ValidateNever]
         public Store Store { get; set; }
-       
+    
         public string Description { get; set; }
 		//Pricing
 		[DisplayName("Cost Price")]

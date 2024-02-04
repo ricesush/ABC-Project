@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ABC.Client.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240131122226_NewMigrations")]
-    partial class NewMigrations
+    [Migration("20240204075843_NewNewMigrrations")]
+    partial class NewNewMigrrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

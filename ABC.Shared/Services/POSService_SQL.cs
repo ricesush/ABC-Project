@@ -2,13 +2,30 @@ using Serilog;
 using Dapper;
 using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
+using System.Net.Sockets;
 
 namespace ABC.Shared.Services;
 
 public partial class POSService_SQL
 { 
     #region BATCH FETCH OF MARKET DATA: SECURITY INFORMATION AND SECURITY QUOTATION
-    private async Task<string> GetAllCustomerInformation(string AuthToken, string status)
+    private async Task<bool> GetCustomerListData(dynamic DBContext, Customer customer)
+    {
+        try
+        {
+            using var context = DBContext;
+            context.Customers.Add(customer);
+            var result = context.SaveChanges();
+            return result > 0 ? true: false;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return false;          
+        }
+    }
+
+    private async Task<string> Sample(string AuthToken, string status)
     {
         // string queryTrade = $"SELECT cs.client_id, c.first_name, ca.status FROM {dbName}.client_session AS cs INNER JOIN {dbName}.client AS c ON cs.client_id = c.id INNER JOIN {dbName}.client_account AS ca ON c.id = ca.client_id WHERE cs.token = @token AND ca.status = 1";
         // string queryTrade = $"SELECT ca.status FROM {dbName}.client_session AS cs INNER JOIN {dbName}.client AS c ON cs.client_id = c.id INNER JOIN {dbName}.client_account AS ca ON c.id = ca.client_id WHERE cs.token = @token AND ca.status = 1";

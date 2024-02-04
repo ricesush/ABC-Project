@@ -12,10 +12,7 @@ public partial class POSService_SQL : ComponentBase, IDisposable
     #region FIELDS
     public String AbcDbConnection { get; set; } = String.Empty;
 
-    public void Dispose()
-    {
-        throw new NotImplementedException();
-    }
+    
     #endregion
 
     #region QUERY RUNNERS/CALLERS
@@ -23,12 +20,34 @@ public partial class POSService_SQL : ComponentBase, IDisposable
     {
         try
         {
-            await GetAllCustomerInformation("authToken", "status");
+            // await GetAllCustomerInformation();
         }
         catch(Exception ex)
         {
             Log.Error(ex.ToString());
         }
+    }
+
+
+    public async Task<bool> GetCustomerList(dynamic DBContext, Customer customer)
+    {
+        bool HasAdded = false;
+        try
+        {
+            bool customerList = await GetCustomerListData(DBContext, customer);
+            return HasAdded;
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return HasAdded;
+        }
+    }
+
+
+    public void Dispose()
+    {
+        
     }
     #endregion
 }

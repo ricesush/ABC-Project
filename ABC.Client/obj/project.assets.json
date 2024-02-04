@@ -5431,11 +5431,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
       "projectName": "ABC.Client",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\ABC.Client.csproj",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

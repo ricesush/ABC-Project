@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ABC.Shared.Models;
 using Microsoft.AspNetCore.Identity;
+using ABC.Shared.Utility;
 
 namespace ABC.Client.Data;
 
@@ -30,11 +31,10 @@ public DbSet<Store> Stores { get; set; }
 //     base.OnModelCreating(modelBuilder);
 
 //     ////Pushed Data into Category Database
-//     modelBuilder.Entity<Category>().HasData(
-//         new Category { Id = 1, Name = "CCTV", DisplayOrder = 1 },
-//         new Category { Id = 2, Name = "Printers", DisplayOrder = 2 },
-//         new Category { Id = 3, Name = "Computer Accesories", DisplayOrder = 3 },
-//         new Category { Id = 4, Name = "Cables & Tools", DisplayOrder = 4 }
+//     modelBuilder.Entity<IdentityRole>().HasData(
+//         new IdentityRole(SD.Role_Customer),
+//         new IdentityRole(SD.Role_Employee),
+//         new IdentityRole(SD.Role_Admin)
 //         );
 
 //     //Pushed Data into UserMAnagement Database

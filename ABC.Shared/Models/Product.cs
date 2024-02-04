@@ -35,7 +35,7 @@ namespace ABC.Shared.Models
         [ForeignKey("StoreId")]
         [ValidateNever]
         public Store Store { get; set; }
-        public string Warehouse { get; set; }
+       
         public string Description { get; set; }
 		//Pricing
 		[DisplayName("Cost Price")]

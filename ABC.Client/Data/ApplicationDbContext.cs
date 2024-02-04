@@ -71,7 +71,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         {
             Id = adminId,
             UserName = "admin@example.com",
-            Name = "Admin User",
+            FirstName = "Admin",
+            LastName = "User",
             NormalizedUserName = "ADMIN@EXAMPLE.COM",
             Email = "admin@example.com",
             EmailConfirmed = true,
@@ -83,7 +84,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         {
             Id = empId,
             UserName = "emp@example.com",
-            Name = "Employee User",
+            FirstName = "Employee",
+            LastName = "User",
             NormalizedUserName = "EMP@EXAMPLE.COM",
             Email = "emp@example.com",
             EmailConfirmed = true,
@@ -95,7 +97,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         {
             Id = custId,
             UserName = "cust@example.com",
-            Name = "Customer User",
+            FirstName = "Customer",
+            LastName = "User",
             NormalizedUserName = "CUST@EXAMPLE.COM",
             Email = "cust@example.com",
             EmailConfirmed = true,
@@ -128,10 +131,29 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             new PurchaseOrder { Id = 1, SupplierName = "Kurt", LocationDelivery = "Pasig", PaymentTerm = "Cash", ExpectedDeliveryDate = new DateTime(2023, 10, 21), EmployeeName = "Neil", ContactNumber = 09568271611, ShipmentPreference = "Cash On Delivery", AdditionalNote = "additional note goes in here" }
             );
 
-        //Pushed Data into Customer Database
-        modelBuilder.Entity<Customer>().HasData(
-            new Customer { Id = 1, FirstName = "Kurt", LastName = "Betonio", EmailAddress = "neiljejomar@gmail.com", ContactNumber = 09568271611, Type = "Walk in", ApSuUn = "Unit 1234", StreetorSubd = "Jasmine St.", Barangay = "Batman", City = "Antipolo", Province = "Rizal", ZipCode = 1870 }
-            );
+
+        // Create GUID for customer
+        Guid customerGuid = Guid.NewGuid();
+
+        // Create Customer instance
+        Customer customer = new Customer
+        {
+            Id = customerGuid,
+            FirstName = "Kurt",
+            LastName = "Betonio",
+            EmailAddress = "neiljejomar@gmail.com",
+            ContactNumber = 09568271611,
+            Type = "Walk in",
+            ApSuUn = "Unit 1234",
+            StreetorSubd = "Jasmine St.",
+            Barangay = "Batman",
+            City = "Antipolo",
+            Province = "Rizal",
+            ZipCode = 1870
+        };
+
+        // Add to modelBuilder
+        modelBuilder.Entity<Customer>().HasData(customer);
 
         //Pushed Data into Product Database
         modelBuilder.Entity<Product>().HasData(
@@ -313,14 +335,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
               PaymentStatus = "Paid",
               TrackingNumber = "123123123",
               Carrier = "Neil",
-              PhoneNumber = "09550446123",
-              StreetName = "1300 Picones",
-              City = "Binangonan",
-              Province = "Rizal",
-              Barangay = "pagasa",
-              PostalCode = "1598",
-              Name = "Customer"
+              
           });
+
 
         modelBuilder.Entity<OrderDetail>().HasData(
           new OrderDetail

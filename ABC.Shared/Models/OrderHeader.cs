@@ -37,9 +37,8 @@ namespace ABC.Shared.Models
 
         //foreign key Customer
         [DisplayName("Customer")]
-        public int CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
-        [ValidateNever]
         public Customer Customer { get; set; }
 
         // Will be from Customers table thus deleted/ commented 

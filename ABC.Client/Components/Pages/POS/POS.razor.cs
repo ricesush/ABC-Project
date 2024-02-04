@@ -36,7 +36,27 @@ public partial class POS
         }
     }
 
-    private async Task InsertCustomer(){
+    private async Task GetCustomerList(){
+        var result = await pOSService_SQL.GetCustomerList(applicationDbContext);
+        if(result is not null && result.Count > 0){
+            foreach(var item in result ){
+                CustomerBasicInfo customerBasicInfo = new(){
+                    Id = item.Id.ToString(),
+                    FirstName =  item.FirstName,
+                    LastName = item.LastName,
+                    ContactNumber = Convert.ToInt32(item.ContactNumber)
+                };
+                CustomerList.Add(customerBasicInfo);
+            }
+        }
+    }
+
+    private async Task GetCustomerInfo(string id){
+        var result = await pOSService_SQL.GetCustomerInfo(applicationDbContext, id);
+            
+    }
+
+    private async Task AddCustomer(){
         try
         {
             Customer customer = new()

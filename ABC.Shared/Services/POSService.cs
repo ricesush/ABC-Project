@@ -16,20 +16,37 @@ public partial class POSService_SQL : ComponentBase, IDisposable
     #endregion
 
     #region QUERY RUNNERS/CALLERS
-    public async Task GetCustomerInfo()
-    {
+
+    public async Task<List<Customer>> GetCustomerList(dynamic DBContext){
+        List<Customer> CustomerList = [];
         try
         {
-            // await GetAllCustomerInformation();
+            CustomerList = await GetCustomerListData(DBContext);
+            return CustomerList;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex.ToString());
+            return CustomerList;
+        }
+    }
+
+    public async Task<Customer> GetCustomerInfo(dynamic DBContext, string Id){
+        Customer CustomerInfo = new();
+        try
+        {
+            CustomerInfo = await GetCustomerData(DBContext, Id);
+            return CustomerInfo;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return CustomerInfo;
         }
     }
 
 
-    public async Task<bool> GetCustomerList(dynamic DBContext, Customer customer)
+    public async Task<bool> AddCustomer(dynamic DBContext, Customer customer)
     {
         bool HasAdded = false;
         try

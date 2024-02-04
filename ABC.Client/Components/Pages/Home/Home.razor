@@ -3,152 +3,138 @@
 
 <PageTitle>Home</PageTitle>
 
-@* <h1>Hello, world!</h1>
-Welcome to your new app. *@
+<link href="Home.razor.css" rel="stylesheet" />
 
-
-<section class="container my-3">
+<section class="container my-lg-5">
     <section class="bg-secondary rounded text-center p-5 min-height">
         <h1 class="col-auto text-white">Elevate Your Tech Experience</h1>
         <p class="col-auto text-white">Discover. Upgrade. Secure.</p>
-        <NavLink href="shop" class="btn rounded p-2 fw-bold text-white">Shop Now</NavLink>
+        <a href="shop" class="btn rounded p-2">Shop Now</a>
     </section>
-    <section>
-        <div>
-            Star Here
-            <i class="bi bi-star-fill text-warning"></i>
-        </div>
+    <section class="row mt-5 mb-5">
+        <h2>
+            Shop by Category
+        </h2>
+
         <div class="card-group">
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">CCTV</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <img src="/image/Cctv.png" class="card-img-top" alt="CCTV">
+                <div class="card-body text-center">
+                    <h3 class="card-title">CCTV</h3>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">CCTV</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <img src="/image/Computer.png" class="card-img-top" alt="Computer accessories">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Computer Accessories</h3>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <img src="/image/wires_cables.png" class="card-img-top" alt="Wires & Cables">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Wires & Cables</h3>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <div>
+                        <button class="btn text-black" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <h4>See More...</h4>
+                        </button>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title fs-5" id="staticBackdropLabel">Other Categories</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @* <ul>
+                                    <li>category 1</li>
+                                    <li>category 2</li>
+                                    </ul> *@
+                                    @if (Categories != null)
+                                    {
+                                        <ul>
+                                            @foreach (var category in Categories)
+                                            {
+                                                <li>@category</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <p>No other categories were found</p>
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section>
+    <section class="row mt-5 mb-5 align-items-center text-center">
+        <div>
+            <h2>Best Selling Items</h2>
+            <p>Elevate your experience!</p>
+        </div>
 
+        <div class="row mx-auto">
+            <div class="col-md-3 mb-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="/Image/sample.png" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="/Image/sample.png" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="/Image/sample.png" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="/Image/sample.png" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Card title</h3>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <a role="button" class="btn btn-lg" href="Shop">Shop now <i class="bi bi-arrow-right"></i></a>
+        </div>
     </section>
+
 </section>
 
-
-
-@* <div class="container-fluid my-3">
-    <div class="container rounded-3 text-center p-4" style="background-color:#808080; background-position:bottom; background-size: cover; height: 300px; position: relative;">
-        <div class="overlay"></div>
-        <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%; position: relative; z-index: 1;">
-            <h1 class="text-light"><b>Elevate Your Tech Experience</b></h1>
-            <p class="text-light">Discover. Upgrade. Secure.</p>
-            <a role="button" class="btn btn-lg" style="background-color:#223442; color:#ffff;" href="Shop">Shop Now</a>
-        </div>
-    </div>
-</div> *@
-
-<!--Categories-->
-<div class="container" style="border-radius: 10px; background-color: #e3f2fd;">
-    <div class="text-start p-4 mt-5">
-        <h4 style="color: #223442;"><b>Shop by Category</b></h4>
-
-        <!--Start of Cards-->
-        <div class="container pt-2">
-            <div class="row">
-                @*
-                @foreach (var category in Model.Categories)
-                {
-                <div class="col-sm-3">
-                <a href="@Url.Action("Shop", "Home", new { categoryFilter = category.Id })">
-                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none rounded-3" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-                <rect width="100%" height="100%" fill="#868e96"></rect>
-                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">@category.Name</text>
-                </svg>
-                </a>
-                </div>
-                } *@
-            </div>
-            <!--End of Cards-->
-        </div>
-    </div>
-</div>
-
-<div class="container my-4">
-    <div class="text-start p-4 mt-5">
-        <!-- Start of Best Seller Cards -->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <h3><b>Best Selling Items</b></h3>
-                    <p>Easiest way to a secured home</p>
-                    <a role="button" class="btn" style="background-color:#223442;  color:#ffff;" href="Shop">Shop now <i class="bi bi-arrow-right"></i></a>
-                </div>
-
-                <!-- Iterate over the best-selling products and display them in cards -->
-                @*
-                @foreach (var product in Model.BestSellingProducts.Take(3))
-                {
-                <div class="col-3">
-                <div class="row p-2">
-                <div class="col-12">
-
-                <!--Card-->
-                <div class="card border-0 mb-3 p-3 border-top border-5 shadow rounded" width="25%">
-                <div class="d-flex justify-content-center">
-                <img src="@product.ImageUrl" class="card-img-top rounded" style="max-width: 200px; max-height: 200px;" />
-                </div>
-
-                <div class="card-body pb-0" style="height: 150px;">
-                <h6 class="card-title text-dark opacity-75 text-uppercase text-center">@product.productName</h6>
-                <!-- Add other details as needed -->
-                </div>
-
-                <div class="pl-1">
-                <p class="text-dark text-opacity-75 text-center">
-                Price: <span>@product.RetailPrice.ToString("c", new CultureInfo("en-PH"))</span>
-                </p>
-                </div>
-                <div>
-                <a asp-action="Details" asp-route-productId="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">
-                Details
-                </a>
-                </div>
-                </div>
-
-                </div>
-                </div>
-                </div>
-                } *@
-            </div>
-        </div>
-        <!-- End of Best Seller Cards -->
-    </div>
-</div>
-
-@code{
-
+@code {
+    private List<Category> Categories { get; set; }
 }

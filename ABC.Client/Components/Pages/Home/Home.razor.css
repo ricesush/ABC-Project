@@ -1,7 +1,23 @@
-.min-height{
+.min-height {
     min-height: 300px;
 }
 
-.btn-bg-darkblue{
-    background-color: red;
+a {
+    background-color: #223442;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+h2 {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card-title {
+    color: #223442;
+    font-weight: 700;
+}
+
+.card-img-overlay {
+    background-color: #D3D3D3;
 }

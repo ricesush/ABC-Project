@@ -300,5 +300,38 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 storeProvince = "Rizal",
                 storeZipCode = 1870
             });
+
+        modelBuilder.Entity<OrderHeader>().HasData(
+          new OrderHeader
+          {
+              Id = 1,
+              ApplicationUserId = custUser.Id,
+              OrderDate = DateTime.Parse("2023-12-23 19:03:02.3832563"),
+              ShippingDate = DateTime.Parse("2023-12-23 19:04:08.7255290"),
+              OrderTotal = 10366,
+              OrderStatus = "Completed",
+              PaymentStatus = "Paid",
+              TrackingNumber = "123123123",
+              Carrier = "Neil",
+              PhoneNumber = "09550446123",
+              StreetName = "1300 Picones",
+              City = "Binangonan",
+              Province = "Rizal",
+              Barangay = "pagasa",
+              PostalCode = "1598",
+              Name = "Customer"
+          });
+
+        modelBuilder.Entity<OrderDetail>().HasData(
+          new OrderDetail
+          {
+              Id = 1,
+              OrderHeaderId = 1,
+              ProductId = 1,
+              Charge = null,
+              Discount = null,
+              Count = 1,
+              Price = 899
+          });
     }
 }

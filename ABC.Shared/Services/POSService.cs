@@ -28,13 +28,27 @@ public partial class POSService_SQL : ComponentBase, IDisposable
         }
     }
 
+    public async Task<List<Customer>> GetCustomerList(dynamic DBContext){
+        List<Customer> CustomerList = [];
+        try
+        {
+            CustomerList = await GetCustomerListData(DBContext);
+            return CustomerList;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return CustomerList;
+        }
+    }
 
-    public async Task<bool> GetCustomerList(dynamic DBContext, Customer customer)
+
+    public async Task<bool> AddCustomer(dynamic DBContext, Customer customer)
     {
         bool HasAdded = false;
         try
         {
-            bool customerList = await GetCustomerListData(DBContext, customer);
+            bool customerList = await AddCustomerData(DBContext, customer);
             return HasAdded;
         }
         catch(Exception ex)

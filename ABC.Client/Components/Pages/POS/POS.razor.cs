@@ -25,39 +25,39 @@ public partial class POS
     protected override async Task OnInitializedAsync()
     {
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
-
+        await pOSService_SQL.GetCustomerList(applicationDbContext);
     }
 
     private async Task ProcessPurchase(){
         if(!String.IsNullOrEmpty(Customer.FirstName)){
-            await InsertCustomer();
+            await AddCustomer();
         }else{
             // await Process
         }
     }
 
-    private async Task InsertCustomer(){
+    private async Task GetCustomerList(){
+
+    }
+
+    private async Task AddCustomer(){
         try
         {
             Customer customer = new()
             {
-                FirstName = "",
-                LastName = "Esan",
-                EmailAddress = "admintest@test.com",
-                ContactNumber = 09995514412,
-                ApSuUn = "IDK",
-                Type = "User",
-                StreetorSubd = "Tokyo St.",
-                Barangay = "Tokyo",
-                City = "Tokyo",
-                Province = "Tokyo",
-                ZipCode = 1114
+                FirstName = Customer.FirstName,
+                LastName = Customer.LastName,
+                EmailAddress = Customer.EmailAddress,
+                ContactNumber = Customer.ContactNumber,
+                ApSuUn = Customer.ApSuUn,
+                Type = Customer.Type,
+                StreetorSubd = Customer.StreetorSubd,
+                Barangay = Customer.Barangay,
+                City = Customer.City,
+                Province = Customer.Province,
+                ZipCode = Customer.ZipCode
             };
-            
-            var result = await pOSService_SQL.GetCustomerList(applicationDbContext, customer);
-            // if(result is not null){
-            //     CustomerList = result;
-            // }
+            var result = await pOSService_SQL.AddCustomer(applicationDbContext, customer);
         }
         catch (Exception ex)
         {

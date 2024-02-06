@@ -47,28 +47,29 @@
                 <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
             </div>
 
+            <br />
             <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.Name" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Full Name" />
-                <label for="confirm-password">Full Name</label>
-                <ValidationMessage For="() => Input.Name" class="text-danger" />
+                <InputText type="text" @bind-Value="Input.FirstName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="First Name" />
+                <label for="confirm-password">First Name</label>
+                <ValidationMessage For="() => Input.FirstName" class="text-danger" />
             </div>
 
+            <div class="form-floating mb-3">
+                <InputText type="text" @bind-Value="Input.LastName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Last Name" />
+                <label for="confirm-password">Last Name</label>
+                <ValidationMessage For="() => Input.LastName" class="text-danger" />
+            </div>
             <div class="form-floating mb-3">
                 <InputText type="text" @bind-Value="Input.PhoneNumber" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="Contact Number" />
                 <label for="confirm-password">Contact Number</label>
                 <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
             </div>
 
+            <br />
             <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.StreetName" class="form-control" autocomplete="street-name" aria-required="true" placeholder="Street Name" />
-                <label for="confirm-password">Street Name</label>
-                <ValidationMessage For="() => Input.StreetName" class="text-danger" />
-            </div>
-
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.Barangay" class="form-control" autocomplete="barangay" aria-required="true" placeholder="Barangay" />
-                <label for="confirm-password">Barangay</label>
-                <ValidationMessage For="() => Input.Barangay" class="text-danger" />
+                <InputText type="text" @bind-Value="Input.AddressLine" class="form-control" autocomplete="address-line" aria-required="true" placeholder="Address Line" />
+                <label for="confirm-password">Address Line</label>
+                <ValidationMessage For="() => Input.AddressLine" class="text-danger" />
             </div>
 
             <div class="form-floating mb-3">
@@ -124,11 +125,11 @@
         var emailStore = GetEmailStore();
         await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
         
-        user.Name = Input.Name;
-        user.StreetName = Input.StreetName;
+        user.FirstName = Input.FirstName;
+        user.LastName = Input.LastName;
+        user.Address = Input.AddressLine;
         user.City = Input.City;
         user.Province = Input.Province;
-        user.Barangay = Input.Barangay;
         user.PostalCode = Input.PostalCode;
         user.PhoneNumber = Input.PhoneNumber;
 
@@ -217,11 +218,11 @@
         public string ConfirmPassword { get; set; } = "";
 
         [Required]
-        public string Name { get; set; }
-        public string? StreetName {  get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string? AddressLine {  get; set; }
         public string? City {  get; set; }
         public string? Province { get; set; }
-        public string? Barangay { get; set; }
         public string? PostalCode { get; set; }
         public string? Branch { get; set; }
         [Required]

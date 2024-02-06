@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -34,27 +35,33 @@ namespace ABC.Shared.Models
         public string? TrackingNumber { get; set; } 
         public string? Carrier { get; set; }
 
+        //foreign key Customer
+        [DisplayName("Customer")]
+        public Guid? CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        public Customer Customer { get; set; }
 
-        [Required]
-        public string? PhoneNumber {  get; set; }
+        // Will be from Customers table thus deleted/ commented 
+        //      [Required]
+        //      public string? PhoneNumber {  get; set; }
 
-        [Required]
-        public string? StreetName { get; set; }
+        //      [Required]
+        //      public string? StreetName { get; set; }
 
-        [Required]
-        public string? City { get; set; }
+        //      [Required]
+        //      public string? City { get; set; }
 
-        [Required]
-        public string? Province { get; set; }
+        //      [Required]
+        //      public string? Province { get; set; }
 
-		[Required]
-		public string? Barangay { get; set; }
+        //[Required]
+        //public string? Barangay { get; set; }
 
-		[Required]
-        public string? PostalCode { get; set; }
+        //[Required]
+        //      public string? PostalCode { get; set; }
 
-        [Required]
-        public string? Name { get; set; }
+        //      [Required]
+        //      public string? Name { get; set; }
 
 
     }

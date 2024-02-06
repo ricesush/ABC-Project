@@ -1,0 +1,25 @@
+﻿.FooterminHeight {
+    min-height: calc(100vh - 395px);
+}
+
+h1 {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card {
+    min-height: 500px;
+    margin-bottom: 4rem;
+}
+
+.btn {
+    background-color: #249e49;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+    .btn:hover {
+        background-color: #249e49;
+        font-size: 25px;
+        font-weight: bold;
+    }

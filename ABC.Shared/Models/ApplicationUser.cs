@@ -14,10 +14,9 @@ namespace ABC.Shared.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
 
-        public string? StreetName {  get; set; }
+        public string? Address { get; set; }
         public string? City { get; set; }
         public string? Province { get; set; }
-        public string? Barangay { get; set; }
         public string? PostalCode { get; set; }
 
         [NotMapped]

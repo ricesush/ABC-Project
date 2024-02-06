@@ -51,7 +51,7 @@ public partial class POSService_SQL : ComponentBase, IDisposable
         bool HasAdded = false;
         try
         {
-            bool customerList = await GetCustomerListData(DBContext, customer);
+            bool customerList = await AddCustomerData(DBContext, customer);
             return HasAdded;
         }
         catch(Exception ex)

@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\Image\\ABCLogo.webp"
     },
     {
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\Cctv.png",
+      "PackagePath": "staticwebassets\\Image\\Cctv.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\Computer.png",
+      "PackagePath": "staticwebassets\\Image\\Computer.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\Wires_Cables.png",
+      "PackagePath": "staticwebassets\\Image\\Wires_Cables.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\footer.png",
+      "PackagePath": "staticwebassets\\Image\\footer.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\sample.png",
+      "PackagePath": "staticwebassets\\Image\\sample.png"
+    },
+    {
       "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },

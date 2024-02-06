@@ -1,0 +1,22 @@
+.FooterminHeight[b-5f6cfgyiqx] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-5f6cfgyiqx], h3[b-5f6cfgyiqx] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card[b-5f6cfgyiqx] {
+    min-height: 500px;
+    margin-bottom: 4rem;
+}
+
+.Placebtn[b-5f6cfgyiqx] {
+    background-color: green;
+    color: #ffff;
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

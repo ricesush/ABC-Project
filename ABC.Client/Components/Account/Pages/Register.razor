@@ -8,6 +8,7 @@
 @using ABC.Client.Data
 @using ABC.Shared.Models
 @using ABC.Shared.Utility
+@using ABC.Client.Components.SharedComponents;
 
 @inject UserManager<ApplicationUser> UserManager
 @inject RoleManager<IdentityRole> RoleManager
@@ -18,16 +19,19 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager 
 
+@using ABC.Client.Components.Layout
+@layout NoLayout
+
 <link href="Register.razor.css" rel="stylesheet" />
 
-<PageTitle>Register</PageTitle>
+<PageTitle>ABC - Register</PageTitle>
 
-<section class="card shadow border-2 col-md-5 mx-auto minHeight">
+<section class="card shadow col-md-5 mx-auto minHeight">
     <div class="row text-center p-5">
         <StatusMessage Message="@Message" />
         <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
             <DataAnnotationsValidator />
-            <h1>REGISTER</h1>
+            <BrandLogo />
             <p>Create a new account</p>
             <hr />
             <ValidationSummary class="text-danger" role="alert" />
@@ -36,15 +40,17 @@
                 <label for="email">Email</label>
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
-                <label for="password">Password</label>
-                <ValidationMessage For="() => Input.Password" class="text-danger" />
-            </div>
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
-                <label for="confirm-password">Confirm Password</label>
-                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+            <div class="row row-cols-lg-2 row-cols-1 g-2">
+                <div class="form-floating mb-3">
+                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                    <label for="password">Password</label>
+                    <ValidationMessage For="() => Input.Password" class="text-danger" />
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                    <label for="confirm-password">Confirm Password</label>
+                    <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+                </div>
             </div>
 
             <br />
@@ -72,23 +78,26 @@
                 <ValidationMessage For="() => Input.AddressLine" class="text-danger" />
             </div>
 
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.City" class="form-control" autocomplete="city" aria-required="true" placeholder="City" />
-                <label for="confirm-password">City</label>
-                <ValidationMessage For="() => Input.City" class="text-danger" />
-            </div>
+            <section class="row row-cols-lg-3 row-cols-1 g-2">
+                <div class="form-floating mb-3">
+                    <InputText type="text" @bind-Value="Input.City" class="form-control" autocomplete="city" aria-required="true" placeholder="City" />
+                    <label for="confirm-password">City</label>
+                    <ValidationMessage For="() => Input.City" class="text-danger" />
+                </div>
 
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.Province" class="form-control" autocomplete="province" aria-required="true" placeholder="Province" />
-                <label for="confirm-password">Province</label>
-                <ValidationMessage For="() => Input.Province" class="text-danger" />
-            </div>
+                <div class="form-floating mb-3">
+                    <InputText type="text" @bind-Value="Input.Province" class="form-control" autocomplete="province" aria-required="true" placeholder="Province" />
+                    <label for="confirm-password">Province</label>
+                    <ValidationMessage For="() => Input.Province" class="text-danger" />
+                </div>
 
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.PostalCode" class="form-control" autocomplete="postal-code" aria-required="true" placeholder="Postal Code" />
-                <label for="confirm-password">Postal Code</label>
-                <ValidationMessage For="() => Input.PostalCode" class="text-danger" />
-            </div>
+                <div class="form-floating mb-3">
+                    <InputText type="text" @bind-Value="Input.PostalCode" class="form-control" autocomplete="postal-code" aria-required="true" placeholder="Postal Code" />
+                    <label for="confirm-password">Postal Code</label>
+                    <ValidationMessage For="() => Input.PostalCode" class="text-danger" />
+                </div>
+            </section>
+            
 
             <button type="submit" class="w-100 btn btn-lg">Register</button>
         </EditForm>

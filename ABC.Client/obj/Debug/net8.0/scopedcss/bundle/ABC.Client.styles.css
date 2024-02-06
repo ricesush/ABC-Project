@@ -1,3 +1,103 @@
+/* _content/ABC.Client/Components/Account/Pages/ForgotPassword.razor.rz.scp.css */
+.FooterminHeight[b-uw7yupx7rn] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-uw7yupx7rn] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.btn[b-uw7yupx7rn] {
+    background-color: #223442;
+    color: white;
+}
+
+    .btn:hover[b-uw7yupx7rn] {
+        background-color: #223442;
+        color: white;
+    }
+/* _content/ABC.Client/Components/Account/Pages/Login.razor.rz.scp.css */
+.card[b-ybemycwels] {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+h1[b-ybemycwels] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.btn[b-ybemycwels] {
+    border-radius: 30px;
+    background-color: #223442;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2rem; 
+}
+
+    .btn:hover[b-ybemycwels] {
+        border-radius: 30px;
+        background-color: white;
+        color: #223442;
+        border-color: #223442;
+        font-weight: bold;
+    }
+/* _content/ABC.Client/Components/Account/Pages/Register.razor.rz.scp.css */
+.card[b-vl6o3q8rpk] {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+h1[b-vl6o3q8rpk] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.btn[b-vl6o3q8rpk] {
+    border-radius: 30px;
+    background-color: #223442;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    margin-top:1rem;
+}
+
+    .btn:hover[b-vl6o3q8rpk] {
+        border-radius: 30px;
+        background-color: white;
+        color: #223442;
+        border-color: #223442;
+        font-weight: bold;
+    }
+/* _content/ABC.Client/Components/Account/Pages/ResendEmailConfirmation.razor.rz.scp.css */
+.FooterminHeight[b-bpdz4fwxlk] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-bpdz4fwxlk] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.btn[b-bpdz4fwxlk] {
+    background-color: #223442;
+    color: white;
+}
+
+    .btn:hover[b-bpdz4fwxlk] {
+        background-color: #223442;
+        color: white;
+    }
+/* _content/ABC.Client/Components/Layout/Footer.razor.rz.scp.css */
+.logo-image[b-f6umzgygo0] {
+    width: 300px;
+    height: 160px;
+}
+
+.stacked-spans[b-f6umzgygo0] {
+    display: block;
+}
 /* _content/ABC.Client/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-zzg621eskd] {
     position: relative;
@@ -222,12 +322,28 @@ main[b-zzg621eskd] {
     }
 }
 /* _content/ABC.Client/Components/Pages/Home/Home.razor.rz.scp.css */
-.min-height[b-sykuksvrf0]{
+.min-height[b-sykuksvrf0] {
     min-height: 300px;
 }
 
-.btn-bg-darkblue[b-sykuksvrf0]{
-    background-color: red;
+a[b-sykuksvrf0] {
+    background-color: #223442;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+h2[b-sykuksvrf0] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card-title[b-sykuksvrf0] {
+    color: #223442;
+    font-weight: 700;
+}
+
+.card-img-overlay[b-sykuksvrf0] {
+    background-color: #D3D3D3;
 }
 /* _content/ABC.Client/Components/Pages/POS/POS.razor.rz.scp.css */
 *:focus[b-0328rmcmfi]{
@@ -466,4 +582,108 @@ table.tbproductos[b-q9768mqb81] {
 
 .minHeight[b-6z2o6bgc3o] {
     min-height: calc(100vh - 395px);
+}
+/* _content/ABC.Client/Components/Pages/ShopWeb/Cart/CartIndex.razor.rz.scp.css */
+.FooterminHeight[b-615v452lfm] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-615v452lfm] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card[b-615v452lfm] {
+    min-height: 500px;
+    margin-bottom: 4rem;
+}
+
+.btn[b-615v452lfm] {
+    background-color: #249e49;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+    .btn:hover[b-615v452lfm] {
+        background-color: #249e49;
+        font-size: 25px;
+        font-weight: bold;
+    }
+/* _content/ABC.Client/Components/Pages/ShopWeb/Cart/Summary/Summary.razor.rz.scp.css */
+.FooterminHeight[b-5f6cfgyiqx] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-5f6cfgyiqx], h3[b-5f6cfgyiqx] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card[b-5f6cfgyiqx] {
+    min-height: 500px;
+    margin-bottom: 4rem;
+}
+
+.Placebtn[b-5f6cfgyiqx] {
+    background-color: green;
+    color: #ffff;
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* _content/ABC.Client/Components/Pages/ShopWeb/Home/About.razor.rz.scp.css */
+.FooterminHeight[b-tjnp7by05v] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-tjnp7by05v] {
+    color: #223442;
+    font-weight: bold;
+}
+/* _content/ABC.Client/Components/Pages/ShopWeb/Home/Privacy.razor.rz.scp.css */
+.FooterminHeight[b-t3ne54zv1n] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-t3ne54zv1n] {
+    color: #223442;
+    font-weight: bold;
+}
+/* _content/ABC.Client/Components/Pages/ShopWeb/Home/Shop.razor.rz.scp.css */
+.FooterminHeight[b-mzk551kdqx] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-mzk551kdqx] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card:hover[b-mzk551kdqx] {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transform: translateY(-5px);
+}
+
+.btn[b-mzk551kdqx] {
+    background-color: #223442;
+    color: #ffffff;
+    
+}
+    .btn:hover[b-mzk551kdqx] {
+        background-color: #223442;
+        color: #ffffff;
+    }
+/* _content/ABC.Client/Components/Pages/ShopWeb/Home/Vision.razor.rz.scp.css */
+.FooterminHeight[b-lfgpc7akjx] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-lfgpc7akjx] {
+    color: #223442;
+    font-weight: bold;
+}
+/* _content/ABC.Client/Components/SharedComponents/BrandLogo.razor.rz.scp.css */
+.img-css[b-2ct0qe7vr1]{
+    max-width: 8rem;
 }

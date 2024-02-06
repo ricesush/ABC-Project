@@ -1,0 +1,23 @@
+.FooterminHeight[b-mzk551kdqx] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-mzk551kdqx] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card:hover[b-mzk551kdqx] {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transform: translateY(-5px);
+}
+
+.btn[b-mzk551kdqx] {
+    background-color: #223442;
+    color: #ffffff;
+    
+}
+    .btn:hover[b-mzk551kdqx] {
+        background-color: #223442;
+        color: #ffffff;
+    }

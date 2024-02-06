@@ -29,11 +29,7 @@ public partial class POS
     }
 
     private async Task ProcessPurchase(){
-        if(!String.IsNullOrEmpty(Customer.FirstName)){
-            await InsertCustomer();
-        }else{
-            // await Process
-        }
+        
     }
 
     private async Task GetCustomerList(){
@@ -74,7 +70,7 @@ public partial class POS
                 ZipCode = 1114
             };
             
-            var result = await pOSService_SQL.GetCustomerList(applicationDbContext, customer);
+            var result = await pOSService_SQL.AddCustomer(applicationDbContext, customer);
             // if(result is not null){
             //     CustomerList = result;
             // }

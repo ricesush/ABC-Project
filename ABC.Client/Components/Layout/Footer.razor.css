@@ -6,3 +6,26 @@
 .stacked-spans {
     display: block;
 }
+
+.bi-facebook {
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo-image {
+        width: 200px;
+        height: 120px;
+    }
+
+    .sitemap {
+        margin-top: 2rem;
+    }
+}

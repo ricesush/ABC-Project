@@ -2,13 +2,18 @@
     min-height: 300px;
 }
 
-a {
+.bestseller .title{
+    margin-top: 2rem;
+}
+
+.button {
     background-color: #223442;
     color: #ffffff;
     font-weight: bold;
+    text-decoration: none;
 }
 
-h2 {
+h1 {
     color: #223442;
     font-weight: bold;
 }
@@ -19,5 +24,18 @@ h2 {
 }
 
 .card-img-overlay {
-    background-color: #D3D3D3;
+    background-color: #ffffff;
+    border: none;
+}
+
+.card .btn-link {
+    background-color: transparent;
+    color: #223442;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bestseller {
+    width: 100%;
 }

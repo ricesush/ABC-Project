@@ -1,25 +1,63 @@
-﻿.card {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+﻿.container {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
-    color: #223442;
-    font-weight: bold;
+.login {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+}
+
+    .login h1 {
+        color: #223442;
+        font-weight: bold;
+    }
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    color: #ffffff;
+    padding-left: 1em;
+    background-color: #223442;
+}
+
+.display a {
+    color: #ffffff;
 }
 
 .btn {
     border-radius: 30px;
-    background-color: #223442;
-    color: white;
+    background-color: white;
+    color: #223442;
+    border-color: #223442;
     font-weight: bold;
-    margin-bottom: 2rem; 
+    margin-bottom: 1rem;
 }
 
     .btn:hover {
         border-radius: 30px;
-        background-color: white;
-        color: #223442;
-        border-color: #223442;
+        background-color: #223442;
+        color: white;
         font-weight: bold;
     }
+
+@media only screen and (max-width: 768px) {
+    .login {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    .display {
+        padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+    }
+}

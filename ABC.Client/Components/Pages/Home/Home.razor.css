@@ -2,22 +2,40 @@
     min-height: 300px;
 }
 
-a {
-    background-color: #223442;
-    color: #ffffff;
-    font-weight: bold;
+.bestseller .title{
+    margin-top: 2rem;
 }
 
-h2 {
-    color: #223442;
+.button {
+    background-color: var(--maincolor-darkblue--);
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h1 {
+    color: var(--maincolor-darkblue--);
     font-weight: bold;
 }
 
 .card-title {
-    color: #223442;
+    color: var(--maincolor-darkblue--);
     font-weight: 700;
 }
 
 .card-img-overlay {
-    background-color: #D3D3D3;
+    background-color: #ffffff;
+    border: none;
+}
+
+.card .btn-link {
+    background-color: transparent;
+    color: var(--maincolor-darkblue--);
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bestseller {
+    width: 100%;
 }

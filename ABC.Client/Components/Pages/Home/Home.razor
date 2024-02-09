@@ -1,50 +1,49 @@
 ﻿@using ABC.Shared.Models
 @page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>ABC - Home</PageTitle>
 
 <link href="Home.razor.css" rel="stylesheet" />
 
 <section class="container my-lg-5">
-    <section class="bg-secondary rounded text-center p-5 min-height">
+    <section class="bg-secondary rounded text-center my-5 p-5 min-height">
         <h1 class="col-auto text-white">Elevate Your Tech Experience</h1>
         <p class="col-auto text-white">Discover. Upgrade. Secure.</p>
-        <a href="shop" class="btn rounded p-2">Shop Now</a>
+        <a href="shop" class="button btn-lg rounded p-2">Shop Now</a>
     </section>
     <section class="row mt-5 mb-5">
-        <h2>
-            Shop by Category
-        </h2>
-
+        <div class="text-center">
+            <h1>
+                Shop by Category
+            </h1>
+        </div>
         <div class="card-group">
-            <div class="card">
+            <div class="category card">
                 <img src="/image/Cctv.png" class="card-img-top" alt="CCTV">
                 <div class="card-body text-center">
                     <h3 class="card-title">CCTV</h3>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">Short description</p>
                 </div>
             </div>
             <div class="card">
                 <img src="/image/Computer.png" class="card-img-top" alt="Computer accessories">
                 <div class="card-body text-center">
                     <h3 class="card-title">Computer Accessories</h3>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">Short description</p>
                 </div>
             </div>
             <div class="card">
                 <img src="/image/wires_cables.png" class="card-img-top" alt="Wires & Cables">
                 <div class="card-body text-center">
                     <h3 class="card-title">Wires & Cables</h3>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">Short description</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                    <div>
-                        <button class="btn text-black" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <h4>See More...</h4>
-                        </button>
-                    </div>
+                    <a class="stretched-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <h4 class="btn btn-link">See More</h4>
+                    </a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -83,15 +82,16 @@
             </div>
         </div>
     </section>
-    <section class="row mt-5 mb-5 align-items-center text-center">
-        <div>
-            <h2>Best Selling Items</h2>
+
+    <section class="bestseller row my-lg-5 align-items-center text-center">
+        <div class="title">
+            <h1>Best Selling Items</h1>
             <p>Elevate your experience!</p>
         </div>
 
         <div class="row mx-auto">
             <div class="col-md-3 mb-3">
-                <div class="card mx-auto" style="width: 100%;">
+                <div class="card bestseller mx-auto">
                     <img src="/Image/sample.png" class="card-img-top" alt="...">
                     <div class="card-body text-center">
                         <h3 class="card-title">Card title</h3>
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <div class="card mx-auto" style="width: 100%;">
+                <div class="card bestseller mx-auto">
                     <img src="/Image/sample.png" class="card-img-top" alt="...">
                     <div class="card-body text-center">
                         <h3 class="card-title">Card title</h3>
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <div class="card mx-auto" style="width: 100%;">
+                <div class="card bestseller mx-auto">
                     <img src="/Image/sample.png" class="card-img-top" alt="...">
                     <div class="card-body text-center">
                         <h3 class="card-title">Card title</h3>
@@ -118,7 +118,7 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <div class="card mx-auto" style="width: 100%;">
+                <div class="card bestseller mx-auto">
                     <img src="/Image/sample.png" class="card-img-top" alt="...">
                     <div class="card-body text-center">
                         <h3 class="card-title">Card title</h3>
@@ -129,12 +129,13 @@
         </div>
 
         <div class="my-4">
-            <a role="button" class="btn btn-lg" href="Shop">Shop now <i class="bi bi-arrow-right"></i></a>
+            <a role="button" class="button btn-lg" href="Shop">Shop now <i class="bi bi-arrow-right"></i></a>
         </div>
     </section>
 
+    <br />
 </section>
 
 @code {
-    private List<Category> Categories { get; set; }
+    private List<Category> Categories { get; set; } = new();
 }

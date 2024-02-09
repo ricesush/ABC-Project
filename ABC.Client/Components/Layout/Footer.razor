@@ -1,15 +1,14 @@
-<footer class="my-auto" style="background-color: #223442;">
+<link href="Footer.razor.css" rel="stylesheet" />
+
+<footer class="footer my-auto">
 	<section class="container p-4">
 		<div class="row">
 			<div class="col-lg-4 col-lg-offset-2">
 				<img src="/image/footer.png" alt="ABC Logo" class="logo-image" />
-				@* <div class="text-white text-center mb-3">
-				<span class="stacked-spans">Addsome Business Corporation</span>
-				<span class="stacked-spans">Ahead Biz Computers</span>
-				</div> *@
+				
 			</div>
 			<div class="col-lg-2 mb-3">
-				<h5 class="mb-3" style="letter-spacing: 2px; color: #968C37;"><b>Sitemap</b></h5>
+				<h5 class="title mb-3">Sitemap</h5>
 				<ul class="list-unstyled mb-0 text-white text-left">
 					<li class="nav-item">
 						<NavLink class="nav-link" href="Home">
@@ -39,20 +38,23 @@
 				</ul>
 			</div>
 			<div class="col-lg-4 mb-4">
-				<h5 class="mb-3" style="letter-spacing: 2px; color: #968C37; font-weight:bold;">Store Details:</h5>
+				<h5 class="title mb-3">Store Details:</h5>
 				<ul class="list-unstyled mb-0 text-white text-left">
 					<li>
-						<p><b>Location:</b> 3F, Virramall Greenhills Shopping Center, Ortigas Avenue, San Juan, Manila</p>
+						<p>
+							<b>
+								<i class="bi bi-geo-alt-fill"></i> : 
+							</b> 3F, Virramall Greenhills Shopping Center, Ortigas Avenue, San Juan, Manila
+						</p>
 					</li>
 					<li>
-						<p><b>Contact #: </b>(+63)917-309-8855</p>
+						<p><b><i class="bi bi-telephone-fill"></i> : </b> (+63)917-309-8855</p>
 					</li>
 					<li>
-						<p><b>Email Address: </b>abcshopgreenhills@gmail.com</p>
+						<p><b><i class="bi bi-envelope-fill"></i> : </b> abcshopgreenhills@gmail.com</p>
 					</li>
 					<li>
 						<p>
-							<b>Social Media: </b>
 							<a href="https://www.facebook.com/abcshopgreenhills" target="_blank">
 								<i class="bi bi-facebook"></i>
 							</a>
@@ -61,7 +63,7 @@
 				</ul>
 			</div>
 			<div class="col-lg-2 mb-4 px-3">
-				<h5 class="mb-3" style="letter-spacing: 2px; color:#968C37; font-weight:bold;">Store hours</h5>
+				<h5 class="title mb-3" >Store hours</h5>
 				<ul class="list-unstyled mb-0 text-white text-left">
 					<li>
 						<p>Mon - Fri: 10am - 9pm</p>
@@ -73,7 +75,7 @@
 			</div>
 		</div>
 	</section>
-	<div class="text-center p-3" style="background-color:#1E2E3B; color:#968C37;">
+	<div class="copyright text-center p-3">
 		© 2024 Copyright:
 		<a style="color:#968C37;" href="#">Addsome Business Corporation</a>
 	</div>

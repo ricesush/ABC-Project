@@ -1,8 +1,65 @@
-﻿.logo-image {
-    width: 300px;
+﻿.footer {
+    background-color: var(--maincolor-darkblue--);
+}
+
+.container {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+}
+
+.title {
+    letter-spacing: 2px;
+    color: #968C37;
+    font-weight: bold;
+    text-align: left;
+}
+
+.list-unstyled {
+    text-align: left;
+}
+
+.copyright {
+    background-color: #1E2E3B;
+    color: #968C37;
+}
+
+.logo-image {
+    width: 280px;
     height: 160px;
 }
 
 .stacked-spans {
     display: block;
+}
+
+.bi-facebook {
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo-image {
+        width: 200px;
+        height: 120px;
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        letter-spacing: 2px;
+        color: #968C37;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .list-unstyled {
+        text-align: center;
+    }
 }

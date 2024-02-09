@@ -1,15 +1,16 @@
 @using ABC.Shared.Models
 @page "/OrderConfirmation"
 
-<div class="container row pt-4">
-	<div class="col-12 text-center">
-		<h1 class="text-primary text-center">Order Placed Successfully!</h1>
-		Your Order Number is: @*@Model*@ <br /><br/>
-		<img src="~/image/lawn_leaf.jpg" style="max-width: 200px;" />
-	</div>
+<PageTitle>ABC - Order Confirmation</PageTitle>
 
-	<div class="col-12 text-center text-success">
-		<br/>
-		Your Order has been sent successfully! <br/>
+<section class="container mt-3 mb-5 d-flex flex-column align-items-center justify-content-center text-center FooterminHeight">
+	<div class="title mb-5">
+		<h1>Order Placed Successfully!</h1>
+		<p>Thank you for shopping with us!</p>
+
 	</div>
-</div>
+	<div class="row">
+		<span>Your Order Number is:</span>
+		<h2 class="text-success">@*@Model*@ try</h2>
+	</div>
+</section>

@@ -329,6 +329,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
               ApplicationUserId = custUser.Id,
               OrderDate = DateTime.Parse("2023-12-23 19:03:02.3832563"),
               ShippingDate = DateTime.Parse("2023-12-23 19:04:08.7255290"),
+              Charge = null,
+              Discount = null,
               OrderTotal = 10366,
               OrderStatus = "Completed",
               PaymentStatus = "Paid",
@@ -344,8 +346,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
               Id = 1,
               OrderHeaderId = 1,
               ProductId = 1,
-              Charge = null,
-              Discount = null,
               Count = 1,
               Price = 899
           });

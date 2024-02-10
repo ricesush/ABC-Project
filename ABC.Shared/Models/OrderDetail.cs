@@ -32,6 +32,7 @@ namespace ABC.Shared.Models
         public int Count {  get; set; }
         public double Price {  get; set; }
 
-
+        [NotMapped]
+        public double TotalPrice { get; set; }
     }
 }

@@ -69,11 +69,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         var adminUser = new ApplicationUser
         {
             Id = adminId,
-            UserName = "admin@example.com",
-            FirstName = "Admin",
-            LastName = "User",
-            NormalizedUserName = "ADMIN@EXAMPLE.COM",
-            Email = "admin@example.com",
+            UserName = "admin@abc.com",
+            FirstName = "Ej Admin",
+            LastName = "Esan",
+            NormalizedUserName = "ADMIN@ABC.COM",
+            Email = "admin@abc.com",
             EmailConfirmed = true,
             PasswordHash = passwordHasher.HashPassword(null, "Admin123!")
         };
@@ -82,11 +82,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         var empUser = new ApplicationUser
         {
             Id = empId,
-            UserName = "emp@example.com",
-            FirstName = "Employee",
-            LastName = "User",
-            NormalizedUserName = "EMP@EXAMPLE.COM",
-            Email = "emp@example.com",
+            UserName = "emp@abc.com",
+            FirstName = "Ej Employee",
+            LastName = "Esan",
+            NormalizedUserName = "EMP@ABC.COM",
+            Email = "emp@abc.com",
             EmailConfirmed = true,
             PasswordHash = passwordHasher.HashPassword(null, "Emp123!")
         };
@@ -95,11 +95,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         var custUser = new ApplicationUser
         {
             Id = custId,
-            UserName = "cust@example.com",
-            FirstName = "Customer",
-            LastName = "User",
-            NormalizedUserName = "CUST@EXAMPLE.COM",
-            Email = "cust@example.com",
+            UserName = "cust@abc.com",
+            FirstName = "Ej Customer",
+            LastName = "Esan",
+            NormalizedUserName = "CUST@ABC.COM",
+            Email = "cust@abc.com",
             EmailConfirmed = true,
             PasswordHash = passwordHasher.HashPassword(null, "Cust123!")
         };

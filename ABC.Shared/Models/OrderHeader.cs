@@ -34,6 +34,9 @@ namespace ABC.Shared.Models
         public string? PaymentStatus {  get; set; }
         public string? TrackingNumber { get; set; } 
         public string? Carrier { get; set; }
+        public decimal Discount { get; set; } = 0;
+        public decimal ServiceFee { get; set; } = 0;
+        public decimal DeliveryFee { get; set; } = 0;
 
         //foreign key Customer
         [DisplayName("Customer")]
@@ -64,5 +67,19 @@ namespace ABC.Shared.Models
         //      public string? Name { get; set; }
 
 
+    }
+
+    public class Discount
+    {
+        public string DiscountType { get; set; } = string.Empty;
+        public double DiscountAmount { get; set; } = 0;
+        public double TotalDiscount { get; set; } = 0;
+        public double DiscountedPrice { get; set; } = 0;
+    }
+
+    public class DiscountModel
+    {
+        public string Percent { get; set; } = "percent";
+        public string Amount { get; set; } = "amount"; 
     }
 }

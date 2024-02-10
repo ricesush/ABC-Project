@@ -4,7 +4,7 @@ using ABC.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace ABC.Shared.Services;
-public partial class POSService_SQL : ComponentBase, IDisposable
+public partial class POSService_SQL : ComponentBase
 {
     #region DICTIONARIES 
     #endregion
@@ -45,6 +45,35 @@ public partial class POSService_SQL : ComponentBase, IDisposable
         }
     }
 
+    public async Task<Product> GetProductInfo(dynamic DBContext, int Id){
+        Product ProductInfo = new();
+        try
+        {
+            ProductInfo = await GetProductData(DBContext, Id);
+            return ProductInfo;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return ProductInfo;
+        }
+    }
+
+
+    public async Task<List<Product>> GetProductList(dynamic DBContext){
+        List<Product> ProductList = [];
+        try
+        {
+            ProductList = await GetProductsListData(DBContext);
+            return ProductList;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return ProductList;
+        }
+    }
+
 
     public async Task<bool> AddCustomer(dynamic DBContext, Customer customer)
     {
@@ -59,12 +88,6 @@ public partial class POSService_SQL : ComponentBase, IDisposable
             Log.Error(ex.ToString());
             return HasAdded;
         }
-    }
-
-
-    public void Dispose()
-    {
-        
     }
     #endregion
 }

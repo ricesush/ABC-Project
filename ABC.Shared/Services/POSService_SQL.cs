@@ -15,7 +15,7 @@ public partial class POSService_SQL
         List<Customer> _customer = [];
         try
         {
-            using var context = DBContext;
+            var context = DBContext;
             var customerList = context.Customers;
             foreach(var item in customerList){
                 _customer.Add(item);
@@ -34,8 +34,8 @@ public partial class POSService_SQL
         Customer _customer = new();
         try
         {
-            using var context = DBContext;
-            var result = context.Customers.Find(Convert.ToInt32(id));
+            var context = DBContext;
+            var result = context.Customers.Find(Guid.Parse(id));
             if(result is not null){
                 _customer = result;
             }
@@ -48,12 +48,50 @@ public partial class POSService_SQL
         }
     }
 
+    private async Task<List<Product>> GetProductsListData(dynamic DBContext)
+    {
+        List<Product> _product = [];
+        try
+        {
+            var context = DBContext;
+            var productsList = context.Products;
+            foreach(var item in productsList){
+                _product.Add(item);
+            }
+            return _product;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return _product;          
+        }
+    }
+
+    private async Task<Product> GetProductData(dynamic DBContext, int id)
+    {
+        Product _product = new();
+        try
+        {
+            var context = DBContext;
+            var result = context.Products.Find(id);
+            if(result is not null){
+                _product = result;
+            }
+            return _product;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return _product;          
+        }
+    }
+
 
     private async Task<bool> AddCustomerData(dynamic DBContext, Customer customer)
     {
         try
         {
-            using var context = DBContext;
+            var context = DBContext;
             context.Customers.Add(customer);
             var result = context.SaveChanges();
             return result > 0 ? true: false;

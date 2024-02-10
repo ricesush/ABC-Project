@@ -66,6 +66,9 @@ namespace ABC.Shared.Models
         [ForeignKey("SupplierId")]
         [ValidateNever]
         public Supplier Supplier { get; set; }
+
+        [NotMapped]
+        public int Quantity { get; set; }
     }
 }
 

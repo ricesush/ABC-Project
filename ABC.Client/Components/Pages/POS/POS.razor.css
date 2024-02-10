@@ -1,3 +1,4 @@
-*:focus{
+*:focus-visible, .btn-group > .btn:focus-visible{
+    outline: none !important;
     box-shadow: none !important;
 }

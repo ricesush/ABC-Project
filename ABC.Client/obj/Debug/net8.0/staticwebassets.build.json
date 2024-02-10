@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kPTOxpVfr1F6NSCJ1BXXjAyHhgXgOBpPkH0omQYohhc=",
+  "Hash": "Wdu+0IDQHVDPltPUy6PGPHBPxItlhwJx8SniiJt6Rus=",
   "Source": "ABC.Client",
   "BasePath": "_content/ABC.Client",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "ABC.Shared",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],
@@ -22,17 +22,17 @@
     {
       "Name": "ABC.Client\\wwwroot",
       "Source": "ABC.Client",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ABC.Client.styles.css",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ABC.Client.styles.css",
       "SourceId": "ABC.Client",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "ABC.Client.styles.css",
       "AssetKind": "All",
@@ -45,13 +45,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ABC.Client.styles.css"
+      "OriginalItemSpec": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ABC.Client.styles.css"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
       "SourceId": "ABC.Client",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "ABC.Client.bundle.scp.css",
       "AssetKind": "All",
@@ -64,13 +64,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\app.css",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -86,10 +86,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -105,10 +105,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -124,10 +124,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\favicon.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -143,10 +143,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\ABCLogo.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/ABCLogo.png",
       "AssetKind": "All",
@@ -162,10 +162,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\ABCLogo.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\ABCLogo.webp",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.webp",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/ABCLogo.webp",
       "AssetKind": "All",
@@ -181,10 +181,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\ABCLogo.webp"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\Cctv.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Cctv.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/Cctv.png",
       "AssetKind": "All",
@@ -200,10 +200,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\Cctv.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\Computer.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Computer.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/Computer.png",
       "AssetKind": "All",
@@ -219,10 +219,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\Computer.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\footer.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\footer.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/footer.png",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\footer.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\sample.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\sample.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/sample.png",
       "AssetKind": "All",
@@ -257,10 +257,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\sample.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\Image\\Wires_Cables.png",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Wires_Cables.png",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "Image/Wires_Cables.png",
       "AssetKind": "All",
@@ -276,10 +276,10 @@
       "OriginalItemSpec": "wwwroot\\Image\\Wires_Cables.png"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\audit.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\audit.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/audit.js",
       "AssetKind": "All",
@@ -295,10 +295,10 @@
       "OriginalItemSpec": "wwwroot\\js\\audit.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\dashboard.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\dashboard.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/dashboard.js",
       "AssetKind": "All",
@@ -314,10 +314,10 @@
       "OriginalItemSpec": "wwwroot\\js\\dashboard.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\descriptionbox.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\descriptionbox.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/descriptionbox.js",
       "AssetKind": "All",
@@ -333,10 +333,10 @@
       "OriginalItemSpec": "wwwroot\\js\\descriptionbox.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\inventoryreport.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\inventoryreport.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/inventoryreport.js",
       "AssetKind": "All",
@@ -352,10 +352,10 @@
       "OriginalItemSpec": "wwwroot\\js\\inventoryreport.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\order.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\order.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/order.js",
       "AssetKind": "All",
@@ -371,10 +371,10 @@
       "OriginalItemSpec": "wwwroot\\js\\order.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\ordercustomer.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\ordercustomer.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/ordercustomer.js",
       "AssetKind": "All",
@@ -390,10 +390,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ordercustomer.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\product.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\product.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/product.js",
       "AssetKind": "All",
@@ -409,10 +409,10 @@
       "OriginalItemSpec": "wwwroot\\js\\product.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\purchaseorder.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchaseorder.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/purchaseorder.js",
       "AssetKind": "All",
@@ -428,10 +428,10 @@
       "OriginalItemSpec": "wwwroot\\js\\purchaseorder.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\purchsearch.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchsearch.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/purchsearch.js",
       "AssetKind": "All",
@@ -447,10 +447,10 @@
       "OriginalItemSpec": "wwwroot\\js\\purchsearch.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\salesreport.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\salesreport.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/salesreport.js",
       "AssetKind": "All",
@@ -466,10 +466,10 @@
       "OriginalItemSpec": "wwwroot\\js\\salesreport.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\searchshop.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\searchshop.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/searchshop.js",
       "AssetKind": "All",
@@ -485,10 +485,10 @@
       "OriginalItemSpec": "wwwroot\\js\\searchshop.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\stocktransfer.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\stocktransfer.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/stocktransfer.js",
       "AssetKind": "All",
@@ -504,10 +504,10 @@
       "OriginalItemSpec": "wwwroot\\js\\stocktransfer.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\supplier.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\supplier.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/supplier.js",
       "AssetKind": "All",
@@ -523,10 +523,10 @@
       "OriginalItemSpec": "wwwroot\\js\\supplier.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\user.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\user.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/user.js",
       "AssetKind": "All",
@@ -542,10 +542,10 @@
       "OriginalItemSpec": "wwwroot\\js\\user.js"
     },
     {
-      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\js\\usermanagement.js",
+      "Identity": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\usermanagement.js",
       "SourceId": "ABC.Client",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\abc.client\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
       "BasePath": "_content/ABC.Client",
       "RelativePath": "js/usermanagement.js",
       "AssetKind": "All",

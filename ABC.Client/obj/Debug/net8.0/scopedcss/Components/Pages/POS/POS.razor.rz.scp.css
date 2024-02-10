@@ -1,3 +1,4 @@
-*:focus[b-0328rmcmfi]{
+*:focus-visible[b-0328rmcmfi], .btn-group > .btn:focus-visible[b-0328rmcmfi]{
+    outline: none !important;
     box-shadow: none !important;
 }

@@ -37,6 +37,8 @@ namespace ABC.Shared.Models
         public decimal Discount { get; set; } = 0;
         public decimal ServiceFee { get; set; } = 0;
         public decimal DeliveryFee { get; set; } = 0;
+        public string? PaymentMode { get; set; }
+        public string? OfficialReceipt { get; set; }
 
         //foreign key Customer
         [DisplayName("Customer")]

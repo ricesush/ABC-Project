@@ -334,9 +334,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
               PaymentStatus = "Paid",
               TrackingNumber = "123123123",
               Carrier = "Neil",
-              
-          });
+              Discount = 50,
+              ServiceFee = 50,
+              DeliveryFee = 250,
+              PaymentMode = "Cash",
+              OfficialReceipt = "ABC0001",
+              CustomerId = customerGuid
 
+		  });
 
         modelBuilder.Entity<OrderDetail>().HasData(
           new OrderDetail
@@ -349,5 +354,17 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
               Count = 1,
               Price = 899
           });
-    }
+
+		modelBuilder.Entity<ShoppingCart>().HasData(
+	        new ShoppingCart
+	        {
+		        Id = 1,
+		        ProductId = 1,
+		        ProductName = "XYZ222 Wireless Headphones",
+		        Quantity = 1,
+		        Price = 249,
+                ApplicationUserId = custUser.Id
+	        });
+
+	}
 }

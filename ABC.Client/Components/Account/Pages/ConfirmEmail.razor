@@ -9,10 +9,14 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Confirm email</PageTitle>
+<PageTitle>ABC - Confirm email</PageTitle>
 
-<h1>Confirm email</h1>
-<StatusMessage Message="@statusMessage" />
+<section class="card shadow border-2 col-md-5 my-lg-5 mx-auto p-5 text-center FooterminHeight">
+    <h1>Confirm email</h1>
+    <StatusMessage Message="@statusMessage" />
+</section>
+
+
 
 @code {
     private string? statusMessage;

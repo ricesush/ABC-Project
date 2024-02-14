@@ -1,23 +1,46 @@
 .min-height {
-    min-height: 300px;
+    min-height: 33rem;
 }
 
-a {
-    background-color: #223442;
+.banner {
+    background-image: url(/image/temporary-banner.jpg);
+    background-position: bottom;
+    background-size: cover;
+    position: relative;
+}
+
+
+.title {
+    margin-top: 2rem;
+}
+
+.button {
+    background-color: var(--maincolor-darkblue--);
     color: #ffffff;
     font-weight: bold;
+    text-decoration: none;
 }
 
 h2 {
-    color: #223442;
+    color: var(--maincolor-darkblue--);
     font-weight: bold;
 }
 
 .card-title {
-    color: #223442;
+    color: var(--maincolor-darkblue--);
     font-weight: 700;
 }
 
 .card-img-overlay {
-    background-color: #D3D3D3;
+    background-color: #ffffff;
+    border: none;
 }
+
+.card .btn-link {
+    background-color: transparent;
+    color: var(--maincolor-darkblue--);
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+

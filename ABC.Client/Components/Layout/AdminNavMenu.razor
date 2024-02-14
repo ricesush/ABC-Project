@@ -1,0 +1,39 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #223442;">
+	<div class="container-fluid mx-3">
+		<div class="row align-items-center">
+			<!--Toggle Button-->
+			<!--pangit-->
+			<div class="col-auto">
+				<button type="button" class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+					<i class="bi bi-list-nested"></i>
+				</button>
+			</div>
+
+			<!--LOGO-->
+			<div class="col-auto">
+				<a class="navbar-brand" asp-area="CustomerArea" asp-controller="Home" asp-action="Index">
+					<img src="~/image/logoabc.png" alt="Logo" height="50px" width="90px" class="img-fluid img-thumbnail" />
+				</a>
+			</div>
+		</div>
+
+		<div class="row align-items-center">
+			<!--Notification Bell-->
+			<div class="col-auto">
+				<button type="button" class="btn btn-outline-light" data-bs-toggle="popover" data-bs-placement="bottom" title="Notification" data-bs-content="And here's some amazing content. It's very engaging. Right?">
+					<i class="bi bi-bell-fill"></i>
+				</button>
+			</div>
+
+			<!--Profile-->
+			<div class="col-auto">
+				<a role="button">
+					<img src="~/image/gray.jpg" height="32" width="32" class="rounded-circle" />
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>
+@code {
+
+}

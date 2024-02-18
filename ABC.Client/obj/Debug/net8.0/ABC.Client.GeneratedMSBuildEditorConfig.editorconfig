@@ -262,10 +262,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXENhcnRcT3JkZXJDb25yZmlybVxPcmRlckNvbmZpcm1hdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Details.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcRGV0YWlscy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/HomeIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcSG9tZUluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -393,6 +389,10 @@ build_metadata.AdditionalFiles.CssScope = b-5f6cfgyiqx
 [C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/About.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcQWJvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-tjnp7by05v
+
+[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-8h215m78rq
 
 [C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Privacy.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcUHJpdmFjeS5yYXpvcg==

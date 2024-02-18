@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ABC.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c677cb68c36580e6440be2a2d834d153efaba702")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7950048c2e04b18135c476fabb4c6a2bb4223637")]
 [assembly: System.Reflection.AssemblyProductAttribute("ABC.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ABC.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -42,12 +42,6 @@ public partial class POS
     protected override async Task OnInitializedAsync()
     {
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
-        await TestCrud();
-    }
-
-    private async Task TestCrud(){
-        // await ProductService_SQL.AddProduct(applicationDbContext, ProductInModal);
-        await ProductService_SQL.UpdateProduct(applicationDbContext, ProductInModal);
     }
 
     private async Task ProcessPurchase()

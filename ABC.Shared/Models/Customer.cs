@@ -25,7 +25,7 @@ namespace ABC.Shared.Models
         public string EmailAddress { get; set; }
 
         [DisplayName("Contact Number")]
-        public string ContactNumber { get; set; } 
+        public long ContactNumber { get; set; } 
 
         [DisplayName("Type")]
         public string Type { get; set; }

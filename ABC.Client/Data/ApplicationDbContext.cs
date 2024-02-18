@@ -24,6 +24,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     public DbSet<Store> Stores { get; set; }
 
+    public DbSet<Warranty> Warranties { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
@@ -119,10 +121,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         ////Pushed Data into Category Database
         modelBuilder.Entity<Category>().HasData(
-            new Category { Id = 1, Name = "CCTV", DisplayOrder = 1 },
-            new Category { Id = 2, Name = "Printers", DisplayOrder = 2 },
-            new Category { Id = 3, Name = "Computer Accesories", DisplayOrder = 3 },
-            new Category { Id = 4, Name = "Cables & Tools", DisplayOrder = 4 }
+            new Category { Id = 1, Name = "CCTV"},
+            new Category { Id = 2, Name = "Printers"},
+            new Category { Id = 3, Name = "Computer Accesories"},
+            new Category { Id = 4, Name = "Cables & Tools"}
             );
 
         //Pushed Data into PurchaseOrder Database
@@ -170,9 +172,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 RetailPrice = 1299,
                 StockQuantity = 20,
                 MinimumStockQuantity = 5,
-                Type = "Extended Warranty",
-                Duration = "12 months from date of purchase",
-                Provider = "Third-Party Warranty Company",
+                WarrantyId = 1,
                 addNotes = "Additional Notes is here color touchscreen interface ",
                 SupplierId = 2,
                 ImageUrl = ""
@@ -192,10 +192,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 RetailPrice = 1999,
                 StockQuantity = 15,
                 MinimumStockQuantity = 4,
-                Type = "Manufacturers Warranty",
-                Duration = "7 days from date of purchase",
-                Provider = "Manufacturer",
-                SupplierId = 1,
+				WarrantyId = 1,
+
+				SupplierId = 1,
                 ImageUrl = ""
             },
             new Product
@@ -213,11 +212,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 RetailPrice = 899,
                 StockQuantity = 8,
                 MinimumStockQuantity = 3,
-                Type = "Extended Warranty",
-                Duration = "12 months from date of purchase",
+				WarrantyId = 1,
 
-                Provider = "Third-Party Warranty Company",
-                addNotes = "Backlit keyboard, Windows 10",
+				addNotes = "Backlit keyboard, Windows 10",
                 SupplierId = 2,
                 ImageUrl = ""
             },
@@ -237,10 +234,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 RetailPrice = 999,
                 StockQuantity = 12,
                 MinimumStockQuantity = 5,
-                Type = "Extended Warranty",
-                Duration = "24 months from date of purchase",
-                Provider = "Manufacturer Warranty",
-                addNotes = "Facial recognition, water resistant",
+				WarrantyId = 1,
+
+				addNotes = "Facial recognition, water resistant",
 
                 SupplierId = 1,
                 ImageUrl = ""
@@ -261,9 +257,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 RetailPrice = 249,
                 StockQuantity = 20,
                 MinimumStockQuantity = 5,
-                Type = "Extended Warranty",
-                Duration = "12 months from date of purchase",
-                Provider = "Third-Party Warranty Company",
+                WarrantyId = 1,
                 addNotes = "Bluetooth, 30+ hour battery life",
                 SupplierId = 2,
                 ImageUrl = ""
@@ -274,35 +268,31 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             new Supplier
             {
                 Id = 1,
-                supplierCompanyName = "Addvert",
-                supplierContactNumber = 09651232235,
-                supplierEmail = "addvert214@gmail.com",
-                supplierStatus = "Active",
-                supplierDescription = "N/A",
-                supplierLotBlk = "c4 l5",
-                supplierStreetSubdv = "E. Corazon",
-                supplierBarangay = "Maybancal",
-                supplierCity = "Tanay",
-                supplierProvince = "Rizal",
-                supplierZipCode = 1870,
-                supplierNote = "My supplier"
+                companyName = "Addvert",
+                contactNumber = 09651232235,
+                Email = "addvert214@gmail.com",
+                Status = "Active",
+                Description = "N/A",
+				line_Address = "c4 l5",
+                City = "Tanay",
+                Province = "Rizal",
+                ZipCode = 1870,
+                remarks = "My supplier"
             },
 
             new Supplier
             {
                 Id = 2,
-                supplierCompanyName = "Addvert",
-                supplierContactNumber = 09651232235,
-                supplierEmail = "addvert214@gmail.com",
-                supplierStatus = "Active",
-                supplierDescription = "N/A",
-                supplierLotBlk = "c4 l5",
-                supplierStreetSubdv = "E. Corazon",
-                supplierBarangay = "Maybancal",
-                supplierCity = "Tanay",
-                supplierProvince = "Rizal",
-                supplierZipCode = 1870,
-                supplierNote = "My supplier"
+                companyName = "Addvert",
+                contactNumber = 09651232235,
+                Email = "addvert214@gmail.com",
+                Status = "Active",
+                Description = "N/A",
+                line_Address = "c4 l5",
+                City = "Tanay",
+                Province = "Rizal",
+                ZipCode = 1870,
+                remarks = "My supplier"
             });
 
         //Pushed Data into Store Database
@@ -314,9 +304,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 storeContactNumber = 09651232235,
                 storeEmail = "abiz214@gmail.com",
                 storeStatus = "Active",
-                storeLotBlk = "c4 l5",
-                storeStreetSubdv = "E. Corazon",
-                storeBarangay = "Maybancal",
+                addressLine = "c4 l5",
                 storeCity = "Tanay",
                 storeProvince = "Rizal",
                 storeZipCode = 1870
@@ -366,5 +354,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 ApplicationUserId = custUser.Id
 	        });
 
+		modelBuilder.Entity<Warranty>().HasData(
+			new Warranty
+			{
+				Id = 1,
+				Type = "month",
+				Duration = "30 days",
+				Provider = "Samsung"
+			});
 	}
 }

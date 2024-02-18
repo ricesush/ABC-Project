@@ -19,7 +19,7 @@ namespace ABC.Shared.Models
         [ValidateNever]
         public ApplicationUser? ApplicationUser { get; set; }
 
-        public string? CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         [ValidateNever]
         public Customer? Customer { get; set; }

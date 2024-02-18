@@ -75,5 +75,21 @@ public partial class ProductService_SQL : ComponentBase
 			return CategoryInfo;
 		}
 	}
+
+    public async Task<List<Product>> GetSortedProductsList(dynamic DBContext, int categoryId)
+    {
+        List<Product> sortedproductsList = [];
+        try
+        {
+            sortedproductsList = await GetSortedProductsListData(DBContext, categoryId);
+            return sortedproductsList;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return sortedproductsList;
+        }
+
+    }
     #endregion
 }

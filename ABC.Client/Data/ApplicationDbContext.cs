@@ -141,7 +141,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             FirstName = "Kurt",
             LastName = "Betonio",
             EmailAddress = "neiljejomar@gmail.com",
-            ContactNumber = 09568271611,
+            ContactNumber = "09568271611",
             Type = "Walk in",
             ApSuUn = "Unit 1234",
             StreetorSubd = "Jasmine St.",

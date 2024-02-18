@@ -19,52 +19,43 @@ namespace ABC.Shared.Models
         //Supplier Information
         [Required]
         [DisplayName("Company Name")]
-        public string supplierCompanyName { get; set; }
+        public string companyName { get; set; }
 
         [Required]
       
         [DisplayName("Contact Number")]
-        public long supplierContactNumber { get; set; }
+        public long contactNumber { get; set; }
 
         [Required]
         [DisplayName("Email Address")]
-        public string supplierEmail { get; set; }
+        public string Email { get; set; }
 
         [Required]
      
         [DisplayName("Status")]
-        public string supplierStatus { get; set; }
+        public string Status { get; set; }
 
         [Required]
         [DisplayName("Description")]
-        public string supplierDescription { get; set; }
+        public string Description { get; set; }
 
-        [DisplayName("Lot & Blk no.")]
-        public string supplierLotBlk { get; set; }
-
-        [Required]
-        [DisplayName("Street/Subdivision")]
-        public string supplierStreetSubdv { get; set; }
-
-        [Required]
-        [MaxLength(30)]
-        [DisplayName("Barangay")]
-        public string supplierBarangay { get; set; }
+        [DisplayName("Line Address")]
+        public string line_Address { get; set; }
 
    
         [DisplayName("City")]
-        public string supplierCity { get; set; }
+        public string City { get; set; }
 
         [Required]
         [MaxLength(30)]
         [DisplayName("Province")]
-        public string supplierProvince { get; set; }
+        public string Province { get; set; }
 
         [Required]
         [DisplayName("Zip Code")]
-        public int supplierZipCode { get; set; }
+        public int ZipCode { get; set; }
 
         [DisplayName("Additional Note")]
-        public string supplierNote { get; set; }
+        public string remarks { get; set; }
     }
 }

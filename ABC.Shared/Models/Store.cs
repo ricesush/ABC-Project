@@ -32,17 +32,10 @@ namespace ABC.Shared.Models
         [DisplayName("Status")]
         public string storeStatus { get; set; }
 
-        [DisplayName("Lot & Blk no.")]
-        public string storeLotBlk { get; set; }
+        [DisplayName("Address Line")]
+        public string addressLine { get; set; }
 
-        [Required]
-        [DisplayName("Street/Subdivision")]
-        public string storeStreetSubdv { get; set; }
 
-        [Required]
-        [MaxLength(30)]
-        [DisplayName("Barangay")]
-        public string storeBarangay { get; set; }
 
 
         [DisplayName("City")]

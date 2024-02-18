@@ -25,7 +25,7 @@ namespace ABC.Shared.Models
         public string EmailAddress { get; set; }
 
         [DisplayName("Contact Number")]
-        public long ContactNumber { get; set; }
+        public string ContactNumber { get; set; } 
 
         [DisplayName("Type")]
         public string Type { get; set; }
@@ -51,46 +51,46 @@ namespace ABC.Shared.Models
 
     }
 
-    public class CustomerData
-    {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+    //public class CustomerData
+    //{
+    //    [Key]
+    //    public Guid Id { get; set; } = Guid.NewGuid();
 
-        [Required]
-        [MaxLength(30)]
-        [DisplayName("First Name")]
-        public string FirstName { get; set; }
+    //    [Required]
+    //    [MaxLength(30)]
+    //    [DisplayName("First Name")]
+    //    public string FirstName { get; set; }
 
-        [DisplayName("Last Name")]
-        public string LastName { get; set; }
+    //    [DisplayName("Last Name")]
+    //    public string LastName { get; set; }
 
-        [DisplayName("Email Address")]
-        public string EmailAddress { get; set; }
+    //    [DisplayName("Email Address")]
+    //    public string EmailAddress { get; set; }
 
-        [DisplayName("Contact Number")]
-        public string ContactNumber { get; set; }
+    //    [DisplayName("Contact Number")]
+    //    public string ContactNumber { get; set; }
 
-        [DisplayName("Type")]
-        public string Type { get; set; }
+    //    [DisplayName("Type")]
+    //    public string Type { get; set; }
 
-        [DisplayName("Apt./Suite/Unit No.")]
-        public string ApSuUn { get; set; }
+    //    [DisplayName("Apt./Suite/Unit No.")]
+    //    public string ApSuUn { get; set; }
 
-        [DisplayName("Street/Subdivision")]
-        public string StreetorSubd { get; set; }
+    //    [DisplayName("Street/Subdivision")]
+    //    public string StreetorSubd { get; set; }
 
-        [DisplayName("Barangay")]
-        public string Barangay { get; set; }
+    //    [DisplayName("Barangay")]
+    //    public string Barangay { get; set; }
 
-        [DisplayName("City")]
-        public string City { get; set; }
+    //    [DisplayName("City")]
+    //    public string City { get; set; }
 
-        [DisplayName("Province")]
-        public string Province { get; set; }
+    //    [DisplayName("Province")]
+    //    public string Province { get; set; }
 
-        [DisplayName("Zip Code")]
-        public int ZipCode { get; set; }
+    //    [DisplayName("Zip Code")]
+    //    public int ZipCode { get; set; }
 
 
-    }
+    //}
 }

@@ -19,10 +19,10 @@ namespace ABC.Shared.Models
         [ValidateNever]
         public ApplicationUser? ApplicationUser { get; set; }
 
-        //public SalesChannel salesChannel { get; set; } 
-        //branch name 
-        //discount 
-        //charge 
+        public string? CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        [ValidateNever]
+        public Customer? Customer { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
 
@@ -39,12 +39,6 @@ namespace ABC.Shared.Models
         public decimal DeliveryFee { get; set; } = 0;
         public string? PaymentMode { get; set; }
         public string? OfficialReceipt { get; set; }
-
-        //foreign key Customer
-        [DisplayName("Customer")]
-        public Guid? CustomerId { get; set; }
-        [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
 
         // Will be from Customers table thus deleted/ commented 
         //      [Required]

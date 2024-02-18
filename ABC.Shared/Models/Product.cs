@@ -50,15 +50,17 @@ namespace ABC.Shared.Models
         [Required]
         [DisplayName("Min. Stock Quantity")]
 		public int MinimumStockQuantity { get; set; }
-        //Warranty
-        [Required]
-        public string Type { get; set; }
-        [Required]
-        public string Duration { get; set; }
-        [Required]
-        public string Provider { get; set; }
-        //Additional Notes
-        [DisplayName("Additional Notes")]
+
+
+		//Warranty
+		public int WarrantyId { get; set; }
+		[ForeignKey("WarrantyId")]
+		[ValidateNever]
+		public Warranty Warranty { get; set; }
+
+
+		//Additional Notes
+		[DisplayName("Additional Notes")]
         public string? addNotes { get; set; }
 		//Foreign Key Relation of Supplier
 		[DisplayName("Supplier")]

@@ -9,13 +9,17 @@ using Serilog;
 using Microsoft.AspNetCore.Components;
 using ABC.Client.Data;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace ABC.Client.Components.Pages.POS;
 public partial class POS
 {
     #region DEPENDENCY INJECTIOn
     [Inject] POSService_SQL pOSService_SQL { get; set; }
+    [Inject] ProductService_SQL ProductService_SQL { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
+    [Inject] UserManager<ApplicationUser> UserManager { get; set; }
+    private ApplicationUser applicatioUser { get; set; } = new();
     
     #endregion
 
@@ -38,11 +42,16 @@ public partial class POS
     protected override async Task OnInitializedAsync()
     {
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+        await TestCrud();
+    }
+
+    private async Task TestCrud(){
+        // await ProductService_SQL.AddProduct(applicationDbContext, ProductInModal);
+        await ProductService_SQL.UpdateProduct(applicationDbContext, ProductInModal);
     }
 
     private async Task ProcessPurchase()
     {
-
     }
     private async Task ShowDropdownHandler(bool show)
     {
@@ -229,5 +238,4 @@ public partial class POS
         orderTotal += (OrderSummary.ServiceFee + OrderSummary.DeliveryFee) - OrderSummary.Discount;
         OrderSummary.OrderTotal = Convert.ToDouble(orderTotal);
     }
-
 }

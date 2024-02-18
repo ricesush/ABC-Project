@@ -1,0 +1,23 @@
+.FooterminHeight[b-omyqmj5joh] {
+    min-height: calc(100vh - 395px);
+}
+
+h2[b-omyqmj5joh] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.btn[b-omyqmj5joh] {
+    border-radius: 30px;
+    background-color: white;
+    color: var(--maincolor-darkblue--);
+    border-color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+    .btn:hover[b-omyqmj5joh] {
+        border-radius: 30px;
+        background-color: var(--maincolor-darkblue--);
+        color: white;
+        font-weight: bold;
+    }

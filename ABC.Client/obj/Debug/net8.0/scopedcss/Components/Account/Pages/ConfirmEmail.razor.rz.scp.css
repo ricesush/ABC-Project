@@ -1,0 +1,19 @@
+.FooterminHeight[b-1uoin2vwpe] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-1uoin2vwpe] {
+    color: #223442;
+    font-weight: bold;
+    padding-bottom: 1em;
+}
+
+.btn[b-1uoin2vwpe] {
+    background-color: #223442;
+    color: white;
+}
+
+    .btn:hover[b-1uoin2vwpe] {
+        background-color: #223442;
+        color: white;
+    }

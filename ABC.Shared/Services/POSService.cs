@@ -17,6 +17,7 @@ public partial class POSService_SQL : ComponentBase
 
     #region QUERY RUNNERS/CALLERS
 
+    // GETS ALL CUSTOMERS
     public async Task<List<Customer>> GetCustomerList(dynamic DBContext){
         List<Customer> CustomerList = [];
         try
@@ -31,6 +32,7 @@ public partial class POSService_SQL : ComponentBase
         }
     }
 
+    // GETS SINGLE CUSTOMER
     public async Task<Customer> GetCustomerInfo(dynamic DBContext, string Id){
         Customer CustomerInfo = new();
         try
@@ -45,6 +47,7 @@ public partial class POSService_SQL : ComponentBase
         }
     }
 
+    // GETS SINGLE PRODUCT
     public async Task<Product> GetProductInfo(dynamic DBContext, int Id){
         Product ProductInfo = new();
         try
@@ -59,7 +62,7 @@ public partial class POSService_SQL : ComponentBase
         }
     }
 
-
+    // GETS ALL
     public async Task<List<Product>> GetProductList(dynamic DBContext){
         List<Product> ProductList = [];
         try

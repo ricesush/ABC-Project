@@ -1,0 +1,8 @@
+.FooterminHeight[b-xmidenax0r] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-xmidenax0r] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}

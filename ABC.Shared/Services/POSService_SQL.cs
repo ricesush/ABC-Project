@@ -3,6 +3,10 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace ABC.Shared.Services;
 
@@ -10,6 +14,7 @@ public partial class POSService_SQL
 { 
     
     #region BATCH FETCH OF MARKET DATA: SECURITY INFORMATION AND SECURITY QUOTATION
+    
     private async Task<List<Customer>> GetCustomerListData(dynamic DBContext)
     {
         List<Customer> _customer = [];
@@ -85,7 +90,6 @@ public partial class POSService_SQL
             return _product;          
         }
     }
-
 
     private async Task<bool> AddCustomerData(dynamic DBContext, Customer customer)
     {

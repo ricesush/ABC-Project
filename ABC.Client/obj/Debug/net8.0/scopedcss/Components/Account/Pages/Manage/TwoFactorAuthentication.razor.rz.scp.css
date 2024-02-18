@@ -1,0 +1,34 @@
+h2[b-cz95ova2m6] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.btn[b-cz95ova2m6] {
+    border-radius: 30px;
+    background-color: white;
+    color: var(--maincolor-darkblue--);
+    border-color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+    .btn:hover[b-cz95ova2m6] {
+        border-radius: 30px;
+        background-color: var(--maincolor-darkblue--);
+        color: white;
+        font-weight: bold;
+    }
+
+.btn2[b-cz95ova2m6] {
+    border-radius: 30px;
+    background-color: white;
+    color: #ff0000;
+    border-color: #ff0000;
+    font-weight: bold;
+}
+
+    .btn2:hover[b-cz95ova2m6] {
+        border-radius: 30px;
+        background-color: #ff0000;
+        color: white;
+        font-weight: bold;
+    }

@@ -1,23 +1,46 @@
 .min-height[b-sykuksvrf0] {
-    min-height: 300px;
+    min-height: 33rem;
 }
 
-a[b-sykuksvrf0] {
-    background-color: #223442;
+.banner[b-sykuksvrf0] {
+    background-image: url(/image/temporary-banner.jpg);
+    background-position: bottom;
+    background-size: cover;
+    position: relative;
+}
+
+
+.title[b-sykuksvrf0] {
+    margin-top: 2rem;
+}
+
+.button[b-sykuksvrf0] {
+    background-color: var(--maincolor-darkblue--);
     color: #ffffff;
     font-weight: bold;
+    text-decoration: none;
 }
 
 h2[b-sykuksvrf0] {
-    color: #223442;
+    color: var(--maincolor-darkblue--);
     font-weight: bold;
 }
 
 .card-title[b-sykuksvrf0] {
-    color: #223442;
+    color: var(--maincolor-darkblue--);
     font-weight: 700;
 }
 
 .card-img-overlay[b-sykuksvrf0] {
-    background-color: #D3D3D3;
+    background-color: #ffffff;
+    border: none;
 }
+
+.card .btn-link[b-sykuksvrf0] {
+    background-color: transparent;
+    color: var(--maincolor-darkblue--);
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+

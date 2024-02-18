@@ -1,0 +1,19 @@
+h2[b-n9bzzmnkku] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.btn[b-n9bzzmnkku] {
+    border-radius: 30px;
+    background-color: white;
+    color: #ff0000;
+    border-color: #ff0000;
+    font-weight: bold;
+}
+
+    .btn:hover[b-n9bzzmnkku] {
+        border-radius: 30px;
+        background-color: #ff0000;
+        color: white;
+        font-weight: bold;
+    }

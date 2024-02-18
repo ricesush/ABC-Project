@@ -207,3 +207,13 @@ C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss
 C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Pages\ShopWeb\Cart\CartIndex.razor.rz.scp.css
 C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Pages\ShopWeb\Cart\Summary\Summary.razor.rz.scp.css
 C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\SharedComponents\BrandLogo.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\ConfirmEmail.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\ChangePassword.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\Email.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\EnableAuthenticator.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\Index.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\PersonalData.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\ResetAuthenticator.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\TwoFactorAuthentication.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\RegisterConfirmation.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Shared\ManageLayout.razor.rz.scp.css

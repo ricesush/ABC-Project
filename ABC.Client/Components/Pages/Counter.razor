@@ -1,19 +1,12 @@
-﻿@page "/counter"
-@rendermode InteractiveServer
+﻿@page "/starship-3"
+@* @inject ILogger<Starship3> Logger *@
 
-<PageTitle>Counter</PageTitle>
+<h1>Starfleet Starship Database</h1>
 
-<h1>Counter</h1>
+<h2>New Ship Entry Form</h2>
 
-<p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+    
 }

@@ -217,3 +217,4 @@ C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss
 C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\Manage\TwoFactorAuthentication.razor.rz.scp.css
 C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Pages\RegisterConfirmation.razor.rz.scp.css
 C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Account\Shared\ManageLayout.razor.rz.scp.css
+C:\Users\user\OneDrive\Desktop\ABC Project\abc.client\obj\Debug\net8.0\scopedcss\Components\Pages\ShopWeb\Home\Details.razor.rz.scp.css

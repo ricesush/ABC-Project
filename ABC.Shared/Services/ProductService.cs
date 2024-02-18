@@ -49,48 +49,48 @@ public partial class ProductService_SQL : ComponentBase
     // ADD PRODUCT
     public async Task<bool> AddProduct(dynamic DBContext, Product product)
     {
-        bool HasAdded = false;
+        bool added = false;
         try
         {
-            HasAdded = await AddProductData(DBContext, product);
-            return HasAdded;
+            added = await AddProductData(DBContext, product);
+            return added;
         }
         catch(Exception ex)
         {
             Log.Error(ex.ToString());
-            return HasAdded;
+            return added;
         }
     }
 
     // UPDATE PRODUCT
     public async Task<bool> UpdateProduct(dynamic DBContext, Product product)
     {
-        bool HasAdded = false;
+        bool updated = false;
         try
         {
-            HasAdded = await UpdateProductData(DBContext, product);
-            return HasAdded;
+            updated = await UpdateProductData(DBContext, product);
+            return updated;
         }
         catch(Exception ex)
         {
             Log.Error(ex.ToString());
-            return HasAdded;
+            return updated;
         }
     }
 
     // REMOVE PRODUCT
     public async Task<bool> RemoveProduct(dynamic DBContext, Product product)
     {
-        bool HasAdded = false;
+        bool removed = false;
         try
         {
-            HasAdded = await RemoveProductData(DBContext, product);
-            return HasAdded;
+            removed = await RemoveProductData(DBContext, product);
+            return removed;
         }
         catch(Exception ex)
         {
             Log.Error(ex.ToString());
-            return HasAdded;
+            return removed;
         }
     }
 

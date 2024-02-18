@@ -1,0 +1,8 @@
+.FooterminHeight[b-8h215m78rq] {
+    min-height: calc(100vh - 395px);
+}
+
+h2[b-8h215m78rq], h6[b-8h215m78rq], span[b-8h215m78rq] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}

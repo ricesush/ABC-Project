@@ -915,6 +915,15 @@ h1[b-tjnp7by05v] {
     color: #223442;
     font-weight: bold;
 }
+/* _content/ABC.Client/Components/Pages/ShopWeb/Home/Details.razor.rz.scp.css */
+.FooterminHeight[b-8h215m78rq] {
+    min-height: calc(100vh - 395px);
+}
+
+h2[b-8h215m78rq], h6[b-8h215m78rq], span[b-8h215m78rq] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
 /* _content/ABC.Client/Components/Pages/ShopWeb/Home/Privacy.razor.rz.scp.css */
 .FooterminHeight[b-t3ne54zv1n] {
     min-height: calc(100vh - 395px);
@@ -929,23 +938,27 @@ h1[b-t3ne54zv1n] {
     min-height: calc(100vh - 395px);
 }
 
-h1[b-mzk551kdqx] {
-    color: #223442;
-    font-weight: bold;
+h3[b-mzk551kdqx], p[b-mzk551kdqx] {
+    color: var(--maincolor-darkblue--);
+    text-align: center;
 }
 
-.card:hover[b-mzk551kdqx] {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    transform: translateY(-5px);
+.card[b-mzk551kdqx] {
+    width: 100%;
 }
+
+    .card:hover[b-mzk551kdqx] {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
 
 .btn[b-mzk551kdqx] {
-    background-color: #223442;
+    background-color: var(--maincolor-darkblue--);
     color: #ffffff;
-    
 }
+
     .btn:hover[b-mzk551kdqx] {
-        background-color: #223442;
+        background-color: var(--maincolor-darkblue--);
         color: #ffffff;
     }
 /* _content/ABC.Client/Components/Pages/ShopWeb/Home/Vision.razor.rz.scp.css */

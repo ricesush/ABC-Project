@@ -61,7 +61,7 @@ namespace ABC.Shared.Models
 
 		//Additional Notes
 		[DisplayName("Additional Notes")]
-        public string? addNotes { get; set; }
+        public string? remarks { get; set; }
 		//Foreign Key Relation of Supplier
 		[DisplayName("Supplier")]
         public int SupplierId { get; set; }

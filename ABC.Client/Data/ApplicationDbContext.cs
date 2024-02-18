@@ -173,7 +173,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 StockQuantity = 20,
                 MinimumStockQuantity = 5,
                 WarrantyId = 1,
-                addNotes = "Additional Notes is here color touchscreen interface ",
+				remarks = "Additional Notes is here color touchscreen interface ",
                 SupplierId = 2,
                 ImageUrl = ""
 
@@ -214,7 +214,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 MinimumStockQuantity = 3,
 				WarrantyId = 1,
 
-				addNotes = "Backlit keyboard, Windows 10",
+				remarks = "Backlit keyboard, Windows 10",
                 SupplierId = 2,
                 ImageUrl = ""
             },
@@ -236,7 +236,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 MinimumStockQuantity = 5,
 				WarrantyId = 1,
 
-				addNotes = "Facial recognition, water resistant",
+				remarks = "Facial recognition, water resistant",
 
                 SupplierId = 1,
                 ImageUrl = ""
@@ -258,7 +258,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 StockQuantity = 20,
                 MinimumStockQuantity = 5,
                 WarrantyId = 1,
-                addNotes = "Bluetooth, 30+ hour battery life",
+                remarks = "Bluetooth, 30+ hour battery life",
                 SupplierId = 2,
                 ImageUrl = ""
             });

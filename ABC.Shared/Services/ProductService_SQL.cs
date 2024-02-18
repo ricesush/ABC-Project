@@ -12,78 +12,100 @@ public partial class ProductService_SQL
     #region
     private async Task<List<Product>> GetProductsListData(dynamic DBContext)
     {
-        List<Product> _product = [];
+        List<Product> product = [];
         try
         {
             var context = DBContext;
             var productList = context.Products;
             foreach(var item in productList){
-                _product.Add(item);
+                product.Add(item);
             }
-            return _product;
+            return product;
         }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
-            return _product;          
+            return product;          
         }
     }
 
     private async Task<Product> GetProductData(dynamic DBContext, int id)
     {
-		Product _product = new();
+		Product product = new();
         try
         {
             var context = DBContext;
             var result = context.Products.Find(id);
             if(result is not null){
-                _product = result;
+                product = result;
             }
-            return _product;
+            return product;
         }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
-            return _product;          
+            return product;          
         }
     }
 
-    public async Task<List<Category>> GetCategoriesListData(dynamic DBContext)
+	private async Task<List<Product>> GetSortedProductsListData(dynamic DBContext, int categoryId)
+	{
+		List<Product> sortedproducts = [];
+		try
+		{
+			var context = DBContext;
+			var result = context.Product.Find(categoryId);
+			if (result is not null)
+			{
+				sortedproducts = result;
+			}
+			return sortedproducts;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return sortedproducts;
+		}
+
+	}
+
+	public async Task<List<Category>> GetCategoriesListData(dynamic DBContext)
     {
-        List<Category> _category = [];
+        List<Category> category = [];
         try
         {
             var context = DBContext;
             var categoriesList = context.Categories;
             foreach(var item in categoriesList){
-				_category.Add(item);
+				category.Add(item);
             }
-            return _category;
+            return category;
         }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
-            return _category;          
+            return category;          
         }
     }
 
     private async Task<Category> GetCategoryData(dynamic DBContext, int id)
     {
-		Category _category = new();
+		Category category = new();
         try
         {
             var context = DBContext;
             var result = context.Categories.Find(id);
             if(result is not null){
-				_category = result;
+				category = result;
             }
-            return _category;
+            return category;
         }
         catch (Exception ex)
         {
             Log.Error(ex.ToString());
-            return _category;          
+            return category;          
         }
     }
+    
     #endregion
 }

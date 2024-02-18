@@ -2,22 +2,26 @@
     min-height: calc(100vh - 395px);
 }
 
-h1 {
-    color: #223442;
-    font-weight: bold;
+h3, p {
+    color: var(--maincolor-darkblue--);
+    text-align: center;
 }
 
-.card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    transform: translateY(-5px);
+.card {
+    width: 100%;
 }
+
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
 
 .btn {
-    background-color: #223442;
+    background-color: var(--maincolor-darkblue--);
     color: #ffffff;
-    
 }
+
     .btn:hover {
-        background-color: #223442;
+        background-color: var(--maincolor-darkblue--);
         color: #ffffff;
     }

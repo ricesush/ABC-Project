@@ -17,7 +17,7 @@ namespace ABC.Shared.Models
         //Product Image
         [DisplayName("For Inventory")]
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; } = "";
         public long Barcode { get; set; }
 		public string SKU { get; set; }
         [Required]
@@ -66,6 +66,8 @@ namespace ABC.Shared.Models
         [ForeignKey("SupplierId")]
         [ValidateNever]
         public Supplier Supplier { get; set; }
+
+        public bool? status {  get; set; }
 
         [NotMapped]
         public int Quantity { get; set; }

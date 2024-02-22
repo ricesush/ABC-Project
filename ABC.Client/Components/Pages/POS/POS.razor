@@ -1,6 +1,8 @@
 @page "/POS"
 @using System.Globalization;
 @using ABC.Client.Components.Pages.POS.Components;
+@using Layout
+@layout AdminLayout
 
 @rendermode InteractiveServer
 
@@ -119,14 +121,13 @@
                 </div>
 
                 <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search me-2"></i> Search
-                        Product</span>
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search me-2"></i> Search Product</span>
                     <input type="text" class="form-control" @bind-value="ProductSearchInput" @oninput="GetProductList"
                         @onfocusin="() => ShowProductDropdownHandler(true)"
                         @onfocusout="() => ShowProductDropdownHandler(false)" aria-label="Search Product"
                         aria-describedby="addon-wrapping" />
-
                 </div>
+
                 <div class="dropdown">
                     <ul class='dropdown-menu col-12 mt-3 @(ProductList.Count > 0 && ShowProductDropdown ? "show" : "")'>
                         @foreach (var product in ProductList)

@@ -119,10 +119,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         ////Pushed Data into Category Database
         modelBuilder.Entity<Category>().HasData(
-            new Category { Id = 1, Name = "CCTV", DisplayOrder = 1 },
-            new Category { Id = 2, Name = "Printers", DisplayOrder = 2 },
-            new Category { Id = 3, Name = "Computer Accesories", DisplayOrder = 3 },
-            new Category { Id = 4, Name = "Cables & Tools", DisplayOrder = 4 }
+            new Category { Id = 1, Name = "CCTV" },
+            new Category { Id = 2, Name = "Printers"},
+            new Category { Id = 3, Name = "Computer Accesories"},
+            new Category { Id = 4, Name = "Cables & Tools"}
             );
 
         //Pushed Data into PurchaseOrder Database

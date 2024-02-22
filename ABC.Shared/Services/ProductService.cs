@@ -96,35 +96,5 @@ public partial class ProductService_SQL : ComponentBase
 
     #endregion
 
-    #region CATEGORIES CRUD
-    public async Task<List<Category>> GetCategoryList(dynamic DBContext)
-    {
-        List<Category> CategoryList = [];
-        try
-        {
-            CategoryList = await GetCategoriesListData(DBContext);
-            return CategoryList;
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return CategoryList;
-        }
-    }
 
-    public async Task<Category> GetCategoryInfo(dynamic DBContext, int Id)
-    {
-        Category CategoryInfo = new();
-        try
-        {
-            CategoryInfo = await GetCategoryData(DBContext, Id);
-            return CategoryInfo;
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return CategoryInfo;
-        }
-    }
-    #endregion
 }

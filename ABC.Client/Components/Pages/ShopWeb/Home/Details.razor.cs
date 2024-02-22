@@ -26,6 +26,11 @@ public partial class Details
         {
             Product = _products;
         }
+
         await InvokeAsync(StateHasChanged);
     }
+
+
+
+
 }

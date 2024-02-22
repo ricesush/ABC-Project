@@ -3,8 +3,6 @@
 
 <PageTitle>ABC - Home</PageTitle>
 
-<link href="Home.razor.css" rel="stylesheet" />
-
 <section class="container my-lg-5">
     <section class="banner rounded text-center my-5 p-5 d-flex align-items-center min-height">
         <div class="position-relative text-center mx-auto">
@@ -51,6 +49,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Category Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-md modal-dialog-centered">
@@ -65,7 +64,7 @@
                             <div class="list-group">
                                 @foreach (var category in Categories.OrderBy(c => c.Name))
                                 {
-                                    <a href="#" class="list-group-item list-group-item-action">
+                                    <a href="Shop/@category.Id" class="list-group-item list-group-item-action" @onclick="() => FilterProducts(category)">
                                         @category.Name
                                     </a>
                                 }

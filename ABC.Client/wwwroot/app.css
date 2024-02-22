@@ -14,11 +14,20 @@ html, body {
     box-sizing: content-box;
 }
 
+.a-style-none {
+    text-decoration: none !important;
+}
+
 .cursor-pointer{
     cursor: pointer;
 }
 
 .text-14px{
     font-size: 0.875rem;
+}
+
+*:focus-visible, .btn-group > .btn:focus-visible, .btn, NavLink, a:focus, .btn-check:focus + .btn-outline-secondary {
+    outline: none !important;
+    box-shadow: none !important;
 }
 

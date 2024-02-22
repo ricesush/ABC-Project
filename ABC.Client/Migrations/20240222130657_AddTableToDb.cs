@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ABC.Client.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangedAccountsName : Migration
+    public partial class AddTableToDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -85,7 +85,7 @@ namespace ABC.Client.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
+                    status = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -315,6 +315,11 @@ namespace ABC.Client.Migrations
                     PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrackingNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Carrier = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ServiceFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DeliveryFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentMode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OfficialReceipt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -359,7 +364,7 @@ namespace ABC.Client.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Barcode = table.Column<long>(type: "bigint", nullable: false),
                     SKU = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     productName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -375,7 +380,8 @@ namespace ABC.Client.Migrations
                     Duration = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Provider = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     addNotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SupplierId = table.Column<int>(type: "int", nullable: false)
+                    SupplierId = table.Column<int>(type: "int", nullable: false),
+                    status = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -437,10 +443,9 @@ namespace ABC.Client.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    Count = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Charge = table.Column<double>(type: "float", nullable: true),
-                    Discount = table.Column<double>(type: "float", nullable: true)
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -463,9 +468,9 @@ namespace ABC.Client.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4072f1f7-56d7-4a1a-85fb-d4f0605a6e1b", null, "Customer", "CUSTOMER" },
-                    { "95f10a3d-95eb-45c0-a2d4-fc8a51db9558", null, "Employee", "EMPLOYEE" },
-                    { "d24a01dc-cf65-4c87-91e7-c15366240c54", null, "Admin", "ADMIN" }
+                    { "2a43c95e-382d-4387-9520-e9c02b54e790", null, "Employee", "EMPLOYEE" },
+                    { "6007d5d1-9149-446b-9893-dc389f30186d", null, "Customer", "CUSTOMER" },
+                    { "ac849ef0-b513-45f4-93ad-9a0c105eb1c4", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -473,26 +478,26 @@ namespace ABC.Client.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "Province", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "c27932c3-af53-4352-ac7a-0b164582cba9", 0, null, null, "0f38fcff-dd7e-4950-984b-6be7387f3377", "admin@abc.com", true, "Ej Admin", "Esan", false, null, null, "ADMIN@ABC.COM", "AQAAAAIAAYagAAAAENmT2l+OYIBvploT7QrWVIzamBXT1KX1CDXLj9yrL33R6VhgdocxjKZQaZGGBQ4Xkg==", null, false, null, null, "ac6dd017-11e3-4809-a0ac-1d4ae165ffb2", false, "admin@abc.com" },
-                    { "e85d4602-3544-47bb-a3f2-4e763ae67dcd", 0, null, null, "a8088232-fdf2-4bb2-8c9f-97c3e166a97e", "cust@abc.com", true, "Ej Customer", "Esan", false, null, null, "CUST@ABC.COM", "AQAAAAIAAYagAAAAEGcNmf2k8hvYf5GecRla64FAnHPQIptNnQmIwcqX2/XW8qpJzBuKSJQeaXW4NGKShQ==", null, false, null, null, "ab7fd76f-f298-4d8c-8999-2108dd40a7b9", false, "cust@abc.com" },
-                    { "f6d8938f-2fc9-4093-b512-8be5defcc09d", 0, null, null, "f8a7ae25-1b0d-47e9-8bf9-161710681a6c", "emp@abc.com", true, "Ej Employee", "Esan", false, null, null, "EMP@ABC.COM", "AQAAAAIAAYagAAAAEJDIVOpAdZ9slAnY2s51CmlxHMFGmZqjDwA7xHTjwZPhJrbSzUqBIrHQrqiMvBI13Q==", null, false, null, null, "b5c4ebfa-a4ea-44cb-909f-b1112254a764", false, "emp@abc.com" }
+                    { "077d1a66-1fc9-4a0c-bec2-34ca3b28764a", 0, null, null, "369e1d07-42f3-4e59-8a20-e5d5424fd4f5", "emp@abc.com", true, "Ej Employee", "Esan", false, null, null, "EMP@ABC.COM", "AQAAAAIAAYagAAAAEHg5d9DOwvNW0A5jLOU469gcQYZcGvgFcxVrJcEDatBMyKEThdruKZRkuLkffaNAbg==", null, false, null, null, "d6be8b96-7c62-4f8d-afd8-bca036193dac", false, "emp@abc.com" },
+                    { "4878680d-3ebe-4fe6-8f34-7bdd9837b019", 0, null, null, "872e31a3-98fa-4166-bed0-ffc9244637a2", "admin@abc.com", true, "Ej Admin", "Esan", false, null, null, "ADMIN@ABC.COM", "AQAAAAIAAYagAAAAENYzzqXQ9NV+FxjjhYmNxLbhzok/sGtXQJ7aILb9QqvzpNA6QASst1rQrGVuJGfoxA==", null, false, null, null, "af6e5af5-1c22-4c21-b860-db3ab6e0c5f4", false, "admin@abc.com" },
+                    { "b5eb978f-f907-495a-8ebe-23a21f7b8f54", 0, null, null, "b86abb3d-60f9-4bc4-8c00-439899571b2c", "cust@abc.com", true, "Ej Customer", "Esan", false, null, null, "CUST@ABC.COM", "AQAAAAIAAYagAAAAEAcLhwHUmWgyBmypL1xktxRmIn19SI+BtWw8ZDKb183mgQ0KNrKnnTm4FifdkKakbg==", null, false, null, null, "7f4d9e03-31ea-42ce-be00-1296dbfc8949", false, "cust@abc.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "DisplayOrder", "Name" },
+                columns: new[] { "Id", "Name", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, "CCTV" },
-                    { 2, 2, "Printers" },
-                    { 3, 3, "Computer Accesories" },
-                    { 4, 4, "Cables & Tools" }
+                    { 1, "CCTV", null },
+                    { 2, "Printers", null },
+                    { 3, "Computer Accesories", null },
+                    { 4, "Cables & Tools", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "ApSuUn", "Barangay", "City", "ContactNumber", "EmailAddress", "FirstName", "LastName", "Province", "StreetorSubd", "Type", "ZipCode" },
-                values: new object[] { new Guid("075f7a50-adb4-4238-b013-647bfa3501c6"), "Unit 1234", "Batman", "Antipolo", 9568271611L, "neiljejomar@gmail.com", "Kurt", "Betonio", "Rizal", "Jasmine St.", "Walk in", 1870 });
+                values: new object[] { new Guid("e494bee7-c2c3-4642-82a7-25c15a02970d"), "Unit 1234", "Batman", "Antipolo", 9568271611L, "neiljejomar@gmail.com", "Kurt", "Betonio", "Rizal", "Jasmine St.", "Walk in", 1870 });
 
             migrationBuilder.InsertData(
                 table: "PurchaseOrders",
@@ -518,32 +523,37 @@ namespace ABC.Client.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "d24a01dc-cf65-4c87-91e7-c15366240c54", "c27932c3-af53-4352-ac7a-0b164582cba9" },
-                    { "4072f1f7-56d7-4a1a-85fb-d4f0605a6e1b", "e85d4602-3544-47bb-a3f2-4e763ae67dcd" },
-                    { "95f10a3d-95eb-45c0-a2d4-fc8a51db9558", "f6d8938f-2fc9-4093-b512-8be5defcc09d" }
+                    { "2a43c95e-382d-4387-9520-e9c02b54e790", "077d1a66-1fc9-4a0c-bec2-34ca3b28764a" },
+                    { "ac849ef0-b513-45f4-93ad-9a0c105eb1c4", "4878680d-3ebe-4fe6-8f34-7bdd9837b019" },
+                    { "6007d5d1-9149-446b-9893-dc389f30186d", "b5eb978f-f907-495a-8ebe-23a21f7b8f54" }
                 });
 
             migrationBuilder.InsertData(
                 table: "OrderHeaders",
-                columns: new[] { "Id", "ApplicationUserId", "Carrier", "CustomerId", "OrderDate", "OrderStatus", "OrderTotal", "PaymentStatus", "ShippingDate", "TrackingNumber" },
-                values: new object[] { 1, "e85d4602-3544-47bb-a3f2-4e763ae67dcd", "Neil", null, new DateTime(2023, 12, 23, 19, 3, 2, 383, DateTimeKind.Unspecified).AddTicks(2563), "Completed", 10366.0, "Paid", new DateTime(2023, 12, 23, 19, 4, 8, 725, DateTimeKind.Unspecified).AddTicks(5290), "123123123" });
+                columns: new[] { "Id", "ApplicationUserId", "Carrier", "CustomerId", "DeliveryFee", "Discount", "OfficialReceipt", "OrderDate", "OrderStatus", "OrderTotal", "PaymentMode", "PaymentStatus", "ServiceFee", "ShippingDate", "TrackingNumber" },
+                values: new object[] { 1, "b5eb978f-f907-495a-8ebe-23a21f7b8f54", "Neil", new Guid("e494bee7-c2c3-4642-82a7-25c15a02970d"), 250m, 50m, "ABC0001", new DateTime(2023, 12, 23, 19, 3, 2, 383, DateTimeKind.Unspecified).AddTicks(2563), "Completed", 10366.0, "Cash", "Paid", 50m, new DateTime(2023, 12, 23, 19, 4, 8, 725, DateTimeKind.Unspecified).AddTicks(5290), "123123123" });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Barcode", "Brand", "CategoryId", "CostPrice", "Description", "Duration", "ImageUrl", "MinimumStockQuantity", "Provider", "RetailPrice", "SKU", "StockQuantity", "StoreId", "SupplierId", "Type", "addNotes", "productName" },
+                columns: new[] { "Id", "Barcode", "Brand", "CategoryId", "CostPrice", "Description", "Duration", "ImageUrl", "MinimumStockQuantity", "Provider", "RetailPrice", "SKU", "StockQuantity", "StoreId", "SupplierId", "Type", "addNotes", "productName", "status" },
                 values: new object[,]
                 {
-                    { 1, 832175698L, "HP", 1, 800f, "Versatile all-in-one printer for printing, copying, and scanning", "12 months from date of purchase", "", 5, "Third-Party Warranty Company", 1299f, "printer-AllInOne-XYZ123", 20, 1, 2, "Extended Warranty", "Additional Notes is here color touchscreen interface ", "XYZ123 All-in-One Printer" },
-                    { 2, 954532414L, "Samsung", 2, 1200f, "Panoramic view with motion detection", "7 days from date of purchase", "", 4, "Manufacturer", 1999f, "cctv-SmartCam-360", 15, 1, 1, "Manufacturers Warranty", null, "SmartCam 360 Security Camera" },
-                    { 3, 123456789013L, "Dell", 4, 600f, "Lightweight 13-inch laptop with SSD and 8GB RAM", "12 months from date of purchase", "", 3, "Third-Party Warranty Company", 899f, "laptop-ultrabook-ABC789", 8, 1, 2, "Extended Warranty", "Backlit keyboard, Windows 10", "ABC789 13-inch Laptop" },
-                    { 4, 123456789014L, "Apple", 4, 500f, "5.8-inch OLED smartphone with dual camera", "24 months from date of purchase", "", 5, "Manufacturer Warranty", 999f, "phone-smartphone-XYZ101", 12, 1, 1, "Extended Warranty", "Facial recognition, water resistant", "XYZ101 Smartphone" },
-                    { 5, 123456789015L, "Bose", 4, 150f, "Noise cancelling wireless over-ear headphones", "12 months from date of purchase", "", 5, "Third-Party Warranty Company", 249f, "headphones-wireless-XYZ222", 20, 1, 2, "Extended Warranty", "Bluetooth, 30+ hour battery life", "XYZ222 Wireless Headphones" }
+                    { 1, 832175698L, "HP", 1, 800f, "Versatile all-in-one printer for printing, copying, and scanning", "12 months from date of purchase", "", 5, "Third-Party Warranty Company", 1299f, "printer-AllInOne-XYZ123", 20, 1, 2, "Extended Warranty", "Additional Notes is here color touchscreen interface ", "XYZ123 All-in-One Printer", null },
+                    { 2, 954532414L, "Samsung", 2, 1200f, "Panoramic view with motion detection", "7 days from date of purchase", "", 4, "Manufacturer", 1999f, "cctv-SmartCam-360", 15, 1, 1, "Manufacturers Warranty", null, "SmartCam 360 Security Camera", null },
+                    { 3, 123456789013L, "Dell", 4, 600f, "Lightweight 13-inch laptop with SSD and 8GB RAM", "12 months from date of purchase", "", 3, "Third-Party Warranty Company", 899f, "laptop-ultrabook-ABC789", 8, 1, 2, "Extended Warranty", "Backlit keyboard, Windows 10", "ABC789 13-inch Laptop", null },
+                    { 4, 123456789014L, "Apple", 4, 500f, "5.8-inch OLED smartphone with dual camera", "24 months from date of purchase", "", 5, "Manufacturer Warranty", 999f, "phone-smartphone-XYZ101", 12, 1, 1, "Extended Warranty", "Facial recognition, water resistant", "XYZ101 Smartphone", null },
+                    { 5, 123456789015L, "Bose", 4, 150f, "Noise cancelling wireless over-ear headphones", "12 months from date of purchase", "", 5, "Third-Party Warranty Company", 249f, "headphones-wireless-XYZ222", 20, 1, 2, "Extended Warranty", "Bluetooth, 30+ hour battery life", "XYZ222 Wireless Headphones", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "OrderDetails",
                 columns: new[] { "Id", "Charge", "Count", "Discount", "OrderHeaderId", "Price", "ProductId" },
                 values: new object[] { 1, null, 1, null, 1, 899.0, 1 });
+
+            migrationBuilder.InsertData(
+                table: "ShoppingCarts",
+                columns: new[] { "Id", "ApplicationUserId", "ProductId", "ProductName", "Quantity" },
+                values: new object[] { 1, "b5eb978f-f907-495a-8ebe-23a21f7b8f54", 1, "XYZ222 Wireless Headphones", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

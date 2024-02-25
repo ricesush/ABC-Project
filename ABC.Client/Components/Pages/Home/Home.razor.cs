@@ -7,9 +7,10 @@ namespace ABC.Client.Components.Pages.Home;
 public partial class Home
 {
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
-    [Inject] ProductService_SQL categoryService_SQL { get; set; }
+    [Inject] CategoryService_SQL categoryService_SQL { get; set; }
 
     private List<Category> Categories { get; set; } = new List<Category>();
+    private Category categoryData { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

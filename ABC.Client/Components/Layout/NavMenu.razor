@@ -33,40 +33,39 @@
             </NavLink>
           </li>
         </ul>
-        <div class="px-3">
-            <form role="search">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            </form>
-        </div>
         <AuthorizeView>
             <Authorized>
-                <div class="nav-item px-3 w-10 h-10">
-                    <NavLink class="nav-link text-white" href="CartIndex">
-                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> <i class="bi bi-cart2"></i>
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link    text-white" href="Account/Manage">
-                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <form action="Account/Logout" method="post">
-                        <AntiforgeryToken />
-                        <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                        <button type="submit" class="nav-link text-white">
-                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
-                        </button>
-                    </form>
-                </div>
-
                 <AuthorizeView Roles="Admin" Context="innerContext">
                     <div class="nav-item px-3 w-10 h-10">
                         <NavLink class="nav-link text-white" href="Dashboard">
-                            <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> Dashboard
+                            <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span>
+                                <i class="bi bi-person-fill-gear fs-6"></i>
                         </NavLink>
                     </div>
                 </AuthorizeView>
+
+                <div class="nav-item px-3">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-person-circle fs-5"></i>&nbsp;
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="Account/Manage">My Account</a>
+                            <AuthorizeView Roles="Customer" Context="Context">
+                                <a class="dropdown-item" href="CartIndex">My Cart</a>
+                                <a class="dropdown-item" href="ManageOrder">My Orders</a>
+                            </AuthorizeView>
+                            <div class="dropdown-divider"></div>
+                                <form action="Account/Logout" method="post">
+                                    <AntiforgeryToken />
+                                    <input type="hidden" name="ReturnUrl" value="@Logout" />
+                                    <button type="submit" class="dropdown-item">
+                                        Logout
+                                    </button>
+                                </form>
+                        </div>
+                    </div>
+                </div>
             </Authorized>
             <NotAuthorized>
                 <div class="nav-item px-3">
@@ -102,6 +101,11 @@
     public void Dispose()
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+    public void Logout()
+    {
+        NavigationManager.NavigateTo("/");
     }
 }
 

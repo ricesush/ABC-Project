@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
-@page "/Upsert"
+@using Layout
+@page "/ProductUpsert"
+@layout AdminLayout
 
-<div class="container">
+<PageTitle>ABC - Add Product</PageTitle>
+
+<section class="container mb-5">
     <form method="post" id="myForm" enctype="multipart/form-data">
         <input asp-for="Product.Id" hidden/>
         <input asp-for="Product.ImageUrl" hidden/>
@@ -45,58 +49,32 @@
         </div>
 
         <!--Product Images-->
-        <div class="row pb-4">
+        <section class="row pb-4">
             <div class="col-12">
                 <div class="border p-3 container shadow">
                     <!--Title-->
                     <div class="row pb-2">
-                        <h4 style="color: #223442;"><b>Product Images</b></h4>
+                        <h4 style="color: #223442;"><b>Product Image</b></h4>
                         <hr />
                     </div>
 
                     <!--Product Images-->
                     <div class="row">
                         <div class="col-4">
-                            <label id="formFileone" class="form-label mt-2"><strong>For Inventory </strong> <br/> <span class="text-muted">Upload new image to remove the current image</span> </label>
+                            <label id="formFileone" class="form-label"><span class="text-muted">Upload new image to remove the current image</span> </label>
                             <input type="file" name="file" class="form-control" aria-describedby="formFileone">
                         </div>
 
                         <div class="col-8">
                             @*<img src="@Model.Product.ImageUrl" alt="Image" class="rounded" width="30%" style="border-radius: 5px; border: 1px solid #bbb9b9;">*@
                         </div>
-
-                    </div>
-
-                    <!--Product Images-->
-                    <div class="row">
-                        <div class="col-4">
-                            <label for="formFiletwo" class="form-label mt-2"><strong>For Website</strong> </label>
-                            <input class="form-control" type="file" id="formFiletwo">
-                        </div>
-
-                        <div class="col-2">
-                            <div class="mb-2 rounded-3 d-flex align-items-center justify-content-center" style="font-size: 5em">
-                                <i class="bi bi-image"></i>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="mb-2 rounded-3 d-flex align-items-center justify-content-center" style="font-size: 5em">
-                                <i class="bi bi-image"></i>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="mb-2 rounded-3 d-flex align-items-center justify-content-center" style="font-size: 5em">
-                                <i class="bi bi-image"></i>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!--Product Information-->
-        <div class="row pb-3">
+        <section class="row pb-3">
             <div class="col-12">
                 <div class="border p-3 container shadow">
                     <!--Title-->
@@ -105,159 +83,130 @@
                         <hr />
                     </div>
 
-                    <!--Barcode-->
+                    <!--Barcode & SKU-->
                     <div class="row">
-                        <div class="col-10">
-                                <span asp-validation-for="Product.Barcode" class="text-danger"></span>
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
                             <div class="input-group mb-3">
-                                <label asp-for="Product.Barcode" class="input-group-text" id="BarcodeLabel"></label>
-                                <input asp-for="Product.Barcode" type="text" class="form-control" id="BarcodeInput" aria-describedby="BarcodeLabel">
+                                <label class="input-group-text" for="BarcodeInput" id="BarcodeLabel">Barcode</label>
+                                <input @* @bind="product.Barcode" *@ type="text" class="form-control" id="BarcodeInput" aria-describedby="BarcodeLabel">
                             </div>
                         </div>
-                    </div>
-
-                    <!--Product SKU-->
-                    <div class="row">
-                            <span asp-validation-for="Product.SKU" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.SKU" class="input-group-text" id="SKU"></label>
-                            <input asp-for="Product.SKU" type="text" class="form-control" aria-describedby="SKU">
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="SKU-Input" id="SKULabel">SKU</label>
+                                <input @* @bind="product.SKU" *@ type="text" class="form-control" id="SKU-Input" aria-describedby="SKULabel">
+                            </div>
                         </div>
                     </div>
 
                     <!--Product Name-->
                     <div class="row">
-                            <span asp-validation-for="Product.productName" class="text-danger"></span>
+                        <span class="text-danger">@*@validationMessage*@</span>
                         <div class="input-group mb-3">
-                            <label asp-for="Product.productName" class="input-group-text" id="productName"></label>
-                            <input asp-for="Product.productName" type="text" class="form-control" aria-describedby="productName">
+                            <label class="input-group-text" for="ProductName" id="NameLabel">Product Name</label>
+                            <input @* @bind="product.productName" *@ type="text" class="form-control" id="ProductName" aria-describedby="NameLabel">
                         </div>
                     </div>
 
-                    <!--Category-->
+                    <!--Cost and retail price-->
                     <div class="row">
+                        <!--Cost Price-->
                         <div class="col-6">
-                            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                            <span class="text-danger">@*@validationMessage*@</span>
                             <div class="input-group mb-3">
-                                <label class="input-group-text" id="Category">Category </label>
-                                @*<select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" type="text" class="form-select" aria-describedby="Category">
-                                    <option disabled selected>--Select Category--</option>
-                                </select>*@
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Supplier & Brand-->
-                    <div class="row">
-                        <div class="col-6">
-                                <span asp-validation-for="Product.SupplierId" class="text-danger"></span>
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" id="Supplier">Supplier </label>
-                                @*<select asp-for="Product.SupplierId" asp-items="@Model.SuppllierList" type="text" class="form-select" aria-describedby="Supplier">
-                                    <option disabled selected>--Select Supplier--</option>
-                                </select>*@
+                                <label class="input-group-text" for="CostPrice" id="CostPriceLabel">Cost Price</label>
+                                <input @* @bind="product.CostPrice" *@ type="text" class="form-control" id="CostPrice" aria-describedby="CostPriceLabel">
                             </div>
                         </div>
 
+                        <!--Retail Price-->
                         <div class="col-6">
-                            <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                            <span class="text-danger">@*@validationMessage*@</span>
                             <div class="input-group mb-3">
-                                <label asp-for="Product.Brand" class="input-group-text" id="Brand"></label>
-                                <input asp-for="Product.Brand" type="text" class="form-control" aria-describedby="Brand">
+                                <label class="input-group-text" for="RetailPrice" id="RetialPriceLabel">Retail Price</label>
+                                <input @* @bind="product.RetailtPrice" *@ type="text" class="form-control" id="RetailPrice" aria-describedby="RetialPriceLabel">
                             </div>
                         </div>
                     </div>
-
-                    <!--Warehouse-->
-                    <div class="row">
-                            <span asp-validation-for="Product.Warehouse" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.Warehouse" class="input-group-text" id="Warehouse"></label>
-                            <input asp-for="Product.Warehouse" type="text" class="form-control" aria-describedby="Warehouse">
-                        </div>
-                    </div>
-
                     <!--Description-->
+                    <div class="row mb-4">
+                        <span class="text-danger">@*@validationMessage*@</span
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Description</span>
+                            <textarea @* @bind="product.Description" *@ type="text" class="form-control" aria-label="Description"></textarea>
+                        </div>
+                    </div>
+
+                    <!--Category & brand-->
                     <div class="row">
-                            <span asp-validation-for="Product.Description" class="text-danger"></span>
-                        <div class="mb-3">
-                            <label asp-for="Product.Description" class="input-group-text"></label>
-                            <textarea asp-for="Product.Description" class="descriptionBox" id="YourTextareaId"></textarea>
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="Category" id="CategoryLabel">Category</label>
+                                <select @* @bind="product.CategoryId" *@ class="form-select" aria-describedby="Category">
+                                    <option value="" disabled selected>Select Category</option>
+                                        @* @foreach (var category in Categories)
+                                        {
+                                            <option value="@category.Value">@category.Name</option>
+                                        } *@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="Brand" id="BrandLabel">Brand</label>
+                                <input @* @bind="product.Brand" *@ type="text" class="form-control" id="Brand" aria-describedby="BrandLabel">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Supplier & Location of the Product-->
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="Supplier" id="SupplierLabel">Supplier</label>
+                                <select @* @bind="product.SupplierId" *@ type="text" class="form-select" aria-describedby="Supplier">
+                                    <option disabled selected>Select Supplier</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="Location" id="LocationLabel">Location</label>
+                                <input @* @bind="product.Location" *@ type="text" class="form-control" aria-describedby="Warehouse">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Warranty-->
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="Warranty" id="WarrantyName">Warranty Name</label>
+                                <input @* @bind="product.WarrantyName" *@ type="text" class="form-control" aria-describedby="WarrantyName">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-danger">@*@validationMessage*@</span>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="Warranty" id="WarrantyDuration">Duration</label>
+                                <input @* @bind="product.WarrantyDuration" *@ type="text" class="form-control" aria-describedby="WarrantyDuration">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!--Pricing & Waranty-->
-        <div class="row pt-2 pb-3">
+        <!--Inventory & Remarks-->
+        <section class="row pt-2 pb-3">
             <div class="col-6">
-                <!--Pricing-->
-                <div class="border p-3 container shadow">
-                    <!--Title-->
-                    <div class="row pb-2">
-						<h4 style="color: #223442;"><b>Pricing</b></h4>
-                        <hr />
-                    </div>
-
-                    <!--Cost Price-->
-                    <div class="row">
-                            <span asp-validation-for="Product.CostPrice" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.CostPrice" class="input-group-text" id="CostPrice"></label>
-                            <input asp-for="Product.CostPrice" class="form-control" aria-describedby="CostPrice">
-
-                        </div>
-                    </div>
-
-                    <!--Retail Price-->
-                    <div class="row">
-                            <span asp-validation-for="Product.RetailPrice" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.RetailPrice" class="input-group-text" id="RetailPrice"></label>
-                            <input asp-for="Product.RetailPrice" class="form-control" aria-describedby="RetailPrice">
-                        </div>
-                    </div>
-                </div>
-
-
-                <!--Warranty-->
-                <div class="border p-3 container mt-3 shadow">
-                    <div class="row pb-2">
-						<h4 style="color: #223442;"><b>Warranty</b></h4>
-                        <hr />
-                    </div>
-
-                    <!--Type-->
-                    <div class="row">
-                            <span asp-validation-for="Product.Type" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.Type" class="input-group-text" id="Type"></label>
-                            <input asp-for="Product.Type" class="form-control" aria-describedby="Type">
-                        </div>
-                    </div>
-
-                    <!--Duration-->
-                    <div class="row">
-                            <span asp-validation-for="Product.Duration" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.Duration" class="input-group-text" id="Duration"></label>
-                            <input asp-for="Product.Duration" class="form-control" aria-describedby="Duration">
-                        </div>
-                    </div>
-
-                    <!--Provider-->
-                    <div class="row">
-                            <span asp-validation-for="Product.Provider" class="text-danger"></span>
-                        <div class="input-group mb-3">
-                            <label asp-for="Product.Provider" class="input-group-text" id="Provider"></label>
-                            <input asp-for="Product.Provider" class="form-control" aria-describedby="Provider">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6 my-auto">
                 <div class="border p-3 container shadow">
                     <!--Title-->
                     <div class="row pb-2">
@@ -267,45 +216,35 @@
 
                     <!--Stock Quantity-->
                     <div class="row">
-                            <span asp-validation-for="Product.StockQuantity" class="text-danger"></span>
+                        <span class="text-danger">@*@validationMessage*@</span>
                         <div class="input-group mb-3">
-                            <label asp-for="Product.StockQuantity" class="input-group-text" id="StockQuantity"></label>
-                            <input asp-for="Product.StockQuantity" class="form-control" aria-describedby="StockQuantity">
+                            <label class="input-group-text" for="StockQuantity" id="StockQtyLabel">Stock Quantity</label>
+                            <input @* @bind="product.StockQuantity" *@ type="number" class="form-control" aria-describedby="StockQtyLabel">
                         </div>
                     </div>
-
                     <!--Min. Stock Quantity-->
                     <div class="row">
-                            <span asp-validation-for="Product.MinimumStockQuantity" class="text-danger"></span>
+                        <span class="text-danger">@*@validationMessage*@</span>
                         <div class="input-group mb-3">
-                            <label asp-for="Product.MinimumStockQuantity" class="input-group-text" id="inputMinimumStockQuantity"></label>
-                            <input asp-for="Product.MinimumStockQuantity" class="form-control" aria-describedby="inputMinimumStockQuantity">
+                            <label class="input-group-text" for="MinQty" id="MinQtyLabel">Minimum Stock Level</label>
+                            <input @* @bind="product.MinimumStockQuantity" *@ type="number" class="form-control" aria-describedby="MinQtyLabel">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <!--Additional Notes-->
-        <div class="row pt-3 pb-5">
-            <div class="col-12">
+            <div class="col-6">
                 <div class="border p-3 container shadow">
                     <!--Title-->
                     <div class="row pb-2">
-                        <h4 style="color: #223442;"><b>Additional Notes</b></h4>
+						<h4 style="color: #223442;"><b>Remarks</b></h4>
                         <hr />
                     </div>
-
-                    <!--Description-->
-                    <div class="row">
-                        <div class="input-group mb-3">
-                            <textarea asp-for="Product.addNotes" class="form-control" style="height: 100px"></textarea>
-                        </div>
+                    <div class="input-group mb-3">
+                        <textarea @* @bind="product.addNotes" *@ type="text" class="form-control" aria-label="Remarks"></textarea>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Back on top Button -->
         <div class="col-lg-2 col-sm-6 text-center mb-3 mb-sm-0 position-fixed" style="bottom: 20px; right: 20px;">
@@ -336,7 +275,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <script src="/js/descriptionbox.js"></script>
 <partial name="_ConfirmationModalScript" />

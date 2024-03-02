@@ -1,8 +1,10 @@
 ﻿@using ABC.Shared.Models
+@using Layout
 @page "/Category"
 @page "/CategoryCreate"
 @page "/CategoryDelete"
 @page "/CategoryEdit"
+@layout AdminLayout
 
 
 @if(NavManager.Uri.ToLower().Contains("categorycreate")){
@@ -41,10 +43,10 @@
 			<thead>
 				<tr>
 					<th>
-						Category Name
+						Id
 					</th>
 					<th>
-						Display Order
+						Category Name
 					</th>
 					<th>
 

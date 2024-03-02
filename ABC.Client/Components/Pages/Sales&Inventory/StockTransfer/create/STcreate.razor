@@ -1,7 +1,9 @@
 @using ABC.Shared.Models
-@page "/STcreate"
+@using Layout
+@page "/CreateStockTransfer"
+@layout AdminLayout
 
-<div class="container">
+<section class="container">
 	<form method="post" id="transferForm">
         <!--stock transfer-->
         <div class="row pt-4 pb-3" id="topbar">
@@ -27,7 +29,7 @@
         <div class="row pb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="StockTransfer" asp-action="Index">Stock Transfer</a></li>
+                    <li class="breadcrumb-item"><a href="StockTransfer">Stock Transfers</a></li>
                     <li class="breadcrumb-item active" aria-current="page">New Stock Transfer</li>
                 </ol>
             </nav>
@@ -115,6 +117,6 @@
         </div>
         
 	</form>
-</div>
+</section>
 
 <script src="~/js/stocktransfer.js"></script>

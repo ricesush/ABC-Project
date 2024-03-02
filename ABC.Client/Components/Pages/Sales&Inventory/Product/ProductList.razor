@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
+@using Layout
 @page "/ProductList"
+@layout AdminLayout
 
-<div class="container pt-2 pb-5">
+<PageTitle>ABC - Product List</PageTitle>
+
+<section class="container pt-2 pb-5">
     <div class="row pb-4">
         <!-- Title -->
         <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
@@ -16,9 +20,9 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="Upsert">Product</a></li>
+                    <li><a class="dropdown-item" href="ProductUpsert">Product</a></li>
                     <li>
-                        <a class="dropdown-item" href="CategoryIndex">Category</a>
+                        <a class="dropdown-item" href="Category">Category</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +51,7 @@
             </tr>
         </thead>
     </table>
-</div>
+</section>
 
 <script src="/js/product.js"></script>
 

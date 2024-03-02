@@ -1,7 +1,10 @@
 @using ABC.Shared.Models
-@page "/SuppDelete"
+@using Layout
+@page "/DeleteSupplier"
+@layout AdminLayout
 
-<div class="container">
+
+<section class="container">
     <form method="post">
 
         <!--New Supplier-->
@@ -23,7 +26,7 @@
         <div class="row pb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="People" asp-action="SupplierIndex">Supplier List</a></li>
+                    <li class="breadcrumb-item"><a href="SupplierList">Supplier List</a></li>
                     <li class="breadcrumb-item active" aria-current="page">New Supplier</li>
                 </ol>
             </nav>
@@ -178,7 +181,7 @@
             </a>
         </div>
     </form>
-</div>
+</section>
 
 <partial name="_ConfirmationModalScript" />
 <partial name="_BarcodeScript" />

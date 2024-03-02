@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
-@page "/AuditIndex"
+@using Layout
+@page "/AuditTrail"
+@layout AdminLayout
 
-<div class="container pt-2 pb-5">
+<PageTitle>ABC - Audit Trail</PageTitle>
+
+<section class="container pt-2 pb-5">
     <div class="row pb-4">
         <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
             <h1 class="pb-3" style="color: #223442;"><b>Audit Trail</b></h1>
@@ -27,7 +31,7 @@
             </tr>
         </thead>
     </table>
-</div>
+</section>
 
 <script src="/js/audit.js"></script>
 

@@ -1,7 +1,9 @@
 @using ABC.Shared.Models
-@page "/POcreate"
+@using Layout
+@layout AdminLayout
+@page "/CreatePO"
 
-<div class="container pt-2 pb-5">
+<section class="container pt-2 pb-5">
     <form method="post" id="myForm">
         <!--New Product-->
         <div class="row pb-2" id="topbar">
@@ -27,7 +29,7 @@
         <div class="row pb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="PurchaseOrder" asp-action="Index">Purchase Order</a></li>
+                    <li class="breadcrumb-item"><a href="PurchaseOrders">Purchase Orders</a></li>
                     <li class="breadcrumb-item active" aria-current="page">New Purchase Order</li>
                 </ol>
             </nav>
@@ -212,7 +214,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <script src="/js/purchsearch.js"></script>
 

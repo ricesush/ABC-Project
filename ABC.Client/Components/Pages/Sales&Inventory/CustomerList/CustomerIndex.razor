@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
-@page "/CustomerIndex"
+@using Layout
+@page "/CustomerList"
+@layout AdminLayout
 
-<div class="container-fluid pt-2 pb-5">
+<PageTitle>ABC - Customer List</PageTitle>
+
+<section class="container pt-2 pb-5">
     <div class="row pb-3">
         <!-- Title -->
         <div class="col-8 text-start mb-3 mb-sm-0">
@@ -11,7 +15,7 @@
 		<!-- New Customer Button-->
         <div class="col-2 text-center mb-3 mb-sm-0">
             <div class="d-flex justify-content-end">
-                <a class="btn btn-primary" asp-area="Admin" asp-controller="Customer" asp-action="Create" role="button">
+                <a class="btn btn-primary" href="AddCustomer" role="button">
                     <i class="bi bi-plus-lg"></i> New Customer
                 </a>
             </div>
@@ -29,7 +33,7 @@
 
     <div class="row pt-2 pb-4">
         <!-- Search Bar -->
-        <div class="col-12">
+        <div class="col-4 justify-content-lg-start">
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
@@ -83,7 +87,7 @@
         </tbody>
     </table>
 
-</div>
+</section>
 
 <script>
     $("#btngenerate").attr("href", `/Admin/Customer/GeneratePdf`);

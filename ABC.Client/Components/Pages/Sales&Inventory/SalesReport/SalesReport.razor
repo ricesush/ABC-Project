@@ -1,9 +1,13 @@
 @using ABC.Shared.Models
+@using Layout
 @page "/SalesReport"
+@layout AdminLayout
 
 <link href="SalesReport.razor.css" rel="stylesheet" />
 
-<div class="container-fluid pt-2 pb-5">
+<PageTitle>ABC - Sales Report</PageTitle>
+
+<section class="container pt-2 pb-5">
     <!--TITLE-->
     <div class="row pb-1">
         <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
@@ -131,7 +135,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <script src="//cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>

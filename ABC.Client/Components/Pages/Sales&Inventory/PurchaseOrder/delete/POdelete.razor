@@ -1,7 +1,9 @@
 @using ABC.Shared.Models
-@page "/POdelete"
+@using Layout
+@layout AdminLayout
+@page "/DeletePO"
 
-<div class="container">
+<section class="container">
     <form method="post">
         <input asp-for="Id" hidden />
         <!--New Product-->
@@ -22,7 +24,7 @@
         <div class="row pb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="PurchaseOrder" asp-action="Index">Purchase Order</a></li>
+                    <li class="breadcrumb-item"><a href="PurchaseOrders">Purchase Orders</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Delete</li>
                 </ol>
             </nav>
@@ -169,4 +171,4 @@
             </a>
         </div>
     </form>
-</div>
+</section>

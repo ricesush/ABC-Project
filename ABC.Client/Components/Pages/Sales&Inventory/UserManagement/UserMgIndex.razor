@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
-@page "/UserMgIndex"
+@using Layout
+@page "/UserManagement"
+@layout AdminLayout
 
-<div class="container pt-2 pb-5">
+<PageTitle>ABC - User Management</PageTitle>
+
+<section class="container pt-2 pb-5">
     <div class="row pb-3">
         <!-- Title -->
         <div class="col-8 text-start mb-3 mb-sm-0">
@@ -36,7 +40,7 @@
             </tr>
         </thead>
     </table>
-</div>
+</section>
 
 <script src="~/js/user.js"></script>
 

@@ -1,10 +1,12 @@
 ﻿@using ABC.Shared.Models
 @page "/Dashboard"
 
-@* <link href="/dashboard.css" rel="stylesheet" /> *@
-<link href="Dashboard.razor.css" rel="stylesheet" />
+@using Layout
+@layout AdminLayout
 
-<div class="container-fluid pt-1 pb-5">
+<PageTitle>ABC - Dashboard</PageTitle>
+
+<div class="container pt-1 pb-5 min-height">
     <div class="row pt-1 pb-4">
         <div class="col-lg-6 col-sm-12 text-start mb-3 mb-sm-0">
             <h1 style="color: #223442;"><b>Dashboard</b></h1>

@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
-@page "/StockIndex"
+@using Layout
+@layout AdminLayout
+@page "/StockTransfer"
 
-<div class="container pt-2 pb-5">
+<PageTitle>ABC - Stock Trasnfer</PageTitle>
+
+<section class="container pt-2 pb-5">
     <div class="row pb-4">
         <!-- Title -->
         <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
@@ -10,7 +14,7 @@
 
         <!-- Create Button -->
         <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
-            <a href="STcreate" class="btn btn-primary">
+            <a href="CreateStockTransfer" class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Stock Transfer
             </a>
         </div>
@@ -38,7 +42,7 @@
             </tr>
         </thead>
     </table>
-</div>
+</section>
 
 <script src="/js/stocktransfer.js"></script>
 

@@ -1,7 +1,11 @@
 @using ABC.Shared.Models
-@page "/PurchaseIndex"
+@using Layout
+@layout AdminLayout
+@page "/PurchaseOrders"
 
-<div class="container pt-2 pb-5">
+<PageTitle>ABC - Purchase Orders</PageTitle>
+
+<section class="container pt-2 pb-5">
     <div class="row pb-4">
         <!-- Title -->
         <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
@@ -10,7 +14,7 @@
 
         <!-- Create Button -->
         <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
-            <a asp-area="Admin" asp-controller="PurchaseOrder" asp-action="Create" class="btn btn-primary">
+            <a href="CreatePO" class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Purchase Order
             </a>
         </div>
@@ -35,7 +39,7 @@
             </tr>
         </thead>
     </table>
-</div>
+</section>
 
 <script src="/js/purchaseorder.js"></script>
 

@@ -20,6 +20,10 @@ builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuth
 builder.Services.AddScoped<POSService_SQL>();
 builder.Services.AddScoped<ProductService_SQL>();
 builder.Services.AddScoped<CategoryService_SQL>();
+builder.Services.AddScoped<ShoppingCartService_SQL>();
+builder.Services.AddScoped<OrderHeaderService_SQL>();
+builder.Services.AddHttpContextAccessor();
+
 
 builder.Services.AddAuthentication(options =>
     {

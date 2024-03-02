@@ -1,8 +1,6 @@
 @using ABC.Shared.Models
 @page "/ProductDetails"
 
-<link href="Details.razor.css" rel="stylesheet" />
-
 <PageTitle>ABC - @ProductName </PageTitle>
 
 <section class="container FooterminHeight mt-3 mb-5">
@@ -10,50 +8,50 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/Shop">Shop</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@ProductName</li>
+            <li class="breadcrumb-item active" aria-current="page">@ShoppingCartFormModel.Product.productName</li>
         </ol>
     </nav>
 
-    <form method="post" id="your-form-id">
-        <input hidden asp-for="ProductId" />
+    <EditForm method="post" OnValidSubmit="AddShoppingCart" FormName="shoppingCartForm" id="shoppingCartForm" Model="ShoppingCartFormModel">
+        <DataAnnotationsValidator />
+        <InputNumber @bind-Value="ShoppingCartFormModel.Product.Id" hidden />
         <section class="container shadow col-12 my-3 pb-3">
             <div class="card-body">
                 <div class="row p-3">
                     <!-- Product Image (on top for tablets) -->
                     <div class="col-md-12 col-lg-5 text-center order-md-last order-lg-first p-2">
-                        <img src="@Product.ImageUrl" class="img-fluid" />
+                        <img src="@ShoppingCartFormModel.Product.ImageUrl" class="img-fluid" />
                     </div>
 
                     <!-- Product Information (on bottom for tablets) -->
                     <div class="col-md-12 col-lg-7 text-start order-md-first order-lg-last">
-                        <h2>@ProductName</h2>
+                        <h2>@ShoppingCartFormModel.Product.productName</h2>
                         <hidden @ProductId />
 
                         <div class="row mt-2 mb-5">
                             <h4>
                                 Php
                                 <span>
-                                    @Product.RetailPrice
+                                    @ShoppingCartFormModel.Product.RetailPrice
                                 </span>
                             </h4>
                         </div>
+
                         <div class="row col-12 col-md-4 mt-5 mb-2">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">
                                     Quantity
                                 </span>
-                                <input for="Quantity" type="number" value="1" class="form-control text-end" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <InputNumber @bind-Value="ShoppingCartFormModel.Quantity" class="quantity"></InputNumber>
+                                <ValidationMessage For="() => ShoppingCartFormModel.Quantity" />
+                                @* <input for="Quantity" type="number" value="1" class="form-control text-end" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" /> *@
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-12 col-md-4 pb-1 mr-md-2">
                                 <button type="submit" class="btn btn-warning bg-gradient w-100 py-2 text-uppercase fw-semibold">
                                     Add to Cart
-                                </button>
-                            </div>
-                            <div class="col-12 col-md-4 pb-1 ml-md-2">
-                                <button type="submit" class="btn btn-success bg-gradient w-100 py-2 text-uppercase fw-semibold">
-                                    Buy
                                 </button>
                             </div>
                         </div>
@@ -64,12 +62,14 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                    <strong>Product's Description</strong>
+                                    <strong>About the product</strong>
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                                 <div class="accordion-body">
-                                    It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    <p><strong>Brand:</strong> &nbsp; @ShoppingCartFormModel.Product.Brand</p>
+                                    <p><strong>Warranty:</strong> &nbsp; @ShoppingCartFormModel.Product.Type, @ShoppingCartFormModel.Product.Duration, will be provided by the @ShoppingCartFormModel.Product.Provider</p>
+                                    <p><strong>Description:</strong> &nbsp; @ShoppingCartFormModel.Product.Description</p>
                                 </div>
                             </div>
                         </div>
@@ -77,5 +77,5 @@
                 </div>
             </div>
         </section>
-    </form>
+    </EditForm>
 </section>

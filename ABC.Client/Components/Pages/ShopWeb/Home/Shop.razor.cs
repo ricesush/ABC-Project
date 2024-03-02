@@ -18,6 +18,10 @@ public partial class Shop
 	private List<Product> ProductList { get; set; } = [];
 
 	private String ProductSearchInput { get; set; } = String.Empty;
+
+	[SupplyParameterFromQuery(Name = "category")]
+	public string Category { get; set; }
+
 	#endregion
 
 	#region
@@ -26,6 +30,7 @@ public partial class Shop
 		productService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
 		ProductList = await productService_SQL.GetProductList(applicationDbContext);
 	}
+
 	private async Task GetProductList(ChangeEventArgs e)
 	{
 		ProductSearchInput = e?.Value?.ToString();
@@ -35,13 +40,13 @@ public partial class Shop
 		{
 			ProductList = result.Where(x => x.productName.ToString().Contains(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
 		}
-		else 
-		{ 
+		else
+		{
 			ProductList = result.ToList();
 		}
 		await InvokeAsync(StateHasChanged);
 	}
 
-	#endregion
 
+	#endregion
 }

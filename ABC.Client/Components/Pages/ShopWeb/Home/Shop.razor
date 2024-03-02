@@ -1,13 +1,12 @@
 @page "/Shop"
-
 @rendermode InteractiveServer
 @using ABC.Shared.Models
 
 <PageTitle>ABC - Shop</PageTitle>
 
 <section class="container mt-4 mb-5 FooterminHeight">
-	<div class="input-group flex-nowrap my-5">
-		<input type="text" class="form-control" @bind-value="ProductSearchInput" @oninput="GetProductList" aria-label="Search Product" placeholder="Search..."/>
+	<div class="input-group-lg flex-nowrap my-5">
+		<input type="text" class="form-control rounded-pill" @bind-value="ProductSearchInput" @oninput="GetProductList" aria-label="Search Product" placeholder="Search..." />
 	</div>
 	<div class="row my-4">
 		@if (ProductList != null && ProductList.Any())

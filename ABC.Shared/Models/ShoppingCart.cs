@@ -18,9 +18,9 @@ namespace ABC.Shared.Models
 
 		// Navigation property for Product
 		[ForeignKey("ProductId")]
-		public Product Product { get; set; }
+		public Product Product { get; set; } = new();
 
-		[Range(1, 100, ErrorMessage = "Please Enter a value between 1 and 20")]
+		[Range(1, 100, ErrorMessage = "Please check your entered quantity")]
 		public int Quantity { get; set; }
 
 		public string? ApplicationUserId { get; set; }

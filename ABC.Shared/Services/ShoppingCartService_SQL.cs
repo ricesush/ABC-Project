@@ -9,8 +9,8 @@ namespace ABC.Shared.Services;
 public partial class ShoppingCartService_SQL
 {
 
-	#region CATEGORIES CRUD
-	//* GETS ALL CATEGORIES
+	#region SHOPPING CRUD
+	//* GETS ALL SHOPPING CART LIST
 	public async Task<List<ShoppingCart>> GetShoppingCartListData(dynamic DBContext, string userId)
 	{
 		List<ShoppingCart> _shoppingcart = [];
@@ -39,7 +39,7 @@ public partial class ShoppingCartService_SQL
 		}
 	}
 
-	//* GETS SINGLE CATEGORY BASE ON ID 
+	//* GETS SINGLE CART ITEM BASE ON ID 
 	private async Task<ShoppingCart> GetShoppingCartData(dynamic DBContext, int id)
 	{
 		ShoppingCart _shoppingcart = new();

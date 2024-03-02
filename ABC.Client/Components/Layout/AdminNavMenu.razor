@@ -1,39 +1,168 @@
 ﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #223442;">
-	<div class="container-fluid mx-3">
+	<div class="container">
 		<div class="row align-items-center">
 			<!--Toggle Button-->
-			<!--pangit-->
 			<div class="col-auto">
 				<button type="button" class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
 					<i class="bi bi-list-nested"></i>
 				</button>
 			</div>
 
-			<!--LOGO-->
+			@* <!--LOGO-->
 			<div class="col-auto">
-				<a class="navbar-brand" asp-area="CustomerArea" asp-controller="Home" asp-action="Index">
-					<img src="~/image/logoabc.png" alt="Logo" height="50px" width="90px" class="img-fluid img-thumbnail" />
-				</a>
-			</div>
+			<a class="navbar-brand" href="/">
+			<img src="/image/ABCLogo.png" alt="Logo" height="50px" width="90px" class="img-fluid img-thumbnail" />
+			</a>
+			</div> *@
 		</div>
 
 		<div class="row align-items-center">
+			<!--Shop back-->
+			<div class="col-auto mx-2">
+				<NavLink class="nav-link text-white" data-bs-toggle="popover" title="Back to Shop" href="/">
+					<i class="bi bi-shop"></i>
+				</NavLink>
+			</div>
 			<!--Notification Bell-->
 			<div class="col-auto">
-				<button type="button" class="btn btn-outline-light" data-bs-toggle="popover" data-bs-placement="bottom" title="Notification" data-bs-content="And here's some amazing content. It's very engaging. Right?">
+				<button type="button" class="btn btn-outline-light" data-bs-toggle="popover" title="Notification">
 					<i class="bi bi-bell-fill"></i>
 				</button>
 			</div>
-
 			<!--Profile-->
 			<div class="col-auto">
 				<a role="button">
-					<img src="~/image/gray.jpg" height="32" width="32" class="rounded-circle" />
+					<img src="/image/sample.png" height="32" width="32" class="rounded-circle" />
 				</a>
 			</div>
 		</div>
 	</div>
 </nav>
-@code {
 
-}
+
+<!--Off Canvas-->
+<div class="offcanvas offcanvas-start bg-light" data-bs-scroll="true" tabindex="-1" data-bs-backdrop="true" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="width:250px;">
+
+	<!--Off Header-->
+	<div class="offcanvas-header mx-3 mb-2 mt-2">
+		<a class="navbar-brand">
+			<img src="/image/ABCLogo.png" alt="Logo" class="img-fluid w-50 h-50" />
+		</a>
+	</div>
+
+	<!--Off Body-->
+	<div class="offcanvas-body bd-links">
+		<ul class="list-unstyled mb-0 py-3 pt-md-1">
+			<li class="mb-1">
+				<div class="d-grid gap-2">
+					<!--Dashboard-->
+					<NavLink class="nav-link px-3" href="Dashboard">
+						<span class="align-lefty fw-bold"><i class="bi bi-speedometer2 pe-2"></i>Dashboard</span>
+					</NavLink>
+
+					<!--Sales-->
+					<NavLink class="nav-link px-3" data-bs-toggle="collapse" href="#sales-collapse" aria-expanded="false">
+						<span class="align-lefty fw-bold"><i class="bi bi-cash pe-2"></i>Sales</span>
+						<div class="collapse" id="sales-collapse">
+							<ul class="list-unstyled pb-1">
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="POS">Point of Sales</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="ManageOrderABC">Manage Orders</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="#">Sales Record</NavLink>
+								</li>
+							</ul>
+						</div>
+					</NavLink>
+
+					<!--Inventory-->
+					<NavLink class="nav-link px-3" data-bs-toggle="collapse" href="#inventory-collapse" aria-expanded="false">
+						<span class="align-lefty fw-bold"><i class="bi bi-box pe-2"></i>Inventory</span>
+						<div class="collapse" id="inventory-collapse">
+							<ul class="list-unstyled pb-1">
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="ProductList">Product list</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="PurchaseOrders">Purchase Order</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="StockTransfer">Stock Transfer</NavLink>
+								</li>
+							</ul>
+						</div>
+					</NavLink>
+
+					<!--People-->
+					<NavLink class="nav-link px-3" data-bs-toggle="collapse" href="#people-collapse" aria-expanded="false">
+						<span class="align-lefty fw-bold"><i class="bi bi-people pe-2"></i>People</span>
+						<div class="collapse" id="people-collapse">
+							<ul class="list-unstyled pb-1">
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="CustomerList">Customers</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="SupplierList">Suppliers</NavLink>
+								</li>
+							</ul>
+						</div>
+					</NavLink>
+
+					<!--Report & Analytics-->
+					<NavLink class="nav-link px-3" data-bs-toggle="collapse" href="#report-collapse" aria-expanded="false">
+						<span class="align-lefty fw-bold"><i class="bi bi-clipboard-data pe-2"></i>Reports</span>
+						<div class="collapse" id="report-collapse">
+							<ul class="list-unstyled pb-1">
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="SalesReport">Sales Report</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="InventoryReport">Inventory Report</NavLink>
+								</li>
+							</ul>
+						</div>
+					</NavLink>
+
+					<!--Security-->
+					<NavLink class="nav-link px-3" data-bs-toggle="collapse" href="#security-collapse" aria-expanded="false">
+						<span class="align-lefty fw-bold"><i class="bi bi-shield pe-2"></i>Security</span>
+						<div class="collapse" id="security-collapse">
+							<ul class="list-unstyled pb-1">
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="UserManagement">User Management</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="AuditTrail">Audit Trail</NavLink>
+								</li>
+								<li class="ms-4">
+									<NavLink class="align-lefty text-decoration-none" href="Archives">Archives</NavLink>
+								</li>
+							</ul>
+						</div>
+					</NavLink>
+
+
+					<!--Settings-->
+					<NavLink class="nav-link px-3" data-bs-toggle="collapse" href="#settings-collapse" aria-expanded="false">
+						<span class="align-lefty fw-bold"><i class="bi bi-gear pe-2"></i>Settings</span>
+					</NavLink>
+					<div class="collapse" id="settings-collapse">
+						<ul class="list-unstyled pb-1">
+							<li class="ms-4">
+								<NavLink class="align-lefty text-decoration-none" href="">General</NavLink>
+							</li>
+							<li class="ms-4">
+								<NavLink class="align-lefty text-decoration-none" href="">Website</NavLink>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+

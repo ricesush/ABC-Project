@@ -2,6 +2,8 @@
 @using ABC.Shared.Models.ViewModels
 @page "/CartIndex"
 
+@rendermode InteractiveServer
+
 <PageTitle>ABC - Shopping Cart</PageTitle>
 
 <section class="container mt-3 mb-3 FooterminHeight">
@@ -12,48 +14,129 @@
 		</div>
 	</div>
 
-	<form>
+	<div>
 		@if (shoppingCartList != null && shoppingCartList.Any())
 		{
 			@foreach (var item in shoppingCartList)
 			{
-				<div class="row border-bottom pb-3">
-					<div class="d-none d-lg-block col-lg-1 text-center py-2">
-						<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
-					</div>
+				var updateFormId = $"updateForm{item.Id}";
+				var updateModalId = $"updateItem{item.Id}";
 
-					<div class="col-12 col-lg-6 pt-md-3">
-						<h3 class="text-uppercase"><strong>@item.Product.productName</strong></h3>
-						<p><b>Php @item.Product.RetailPrice</b></p>
-					</div>
-
-					<div class="col-12  col-lg-5 text-center row">
-						<div class="col-3 text-md-right pt-2 pt-md-4">
-							<h5 class="fw-semibold">
-								Qty: @item.Quantity
-							</h5>
+				var removeFormId = $"removeForm{item.Id}";
+				var removeModalId = $"removeItem{item.Id}";
+				
+					@* <InputNumber @bind-Value="ProductIdToRemove.Id" id="inputNumberId" hidden /> *@
+					<div class="row border-bottom pb-3">
+						<div class="d-none d-lg-block col-lg-1 text-center py-2">
+							<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
 						</div>
 
-						<div class="col-3 col-sm-4 col-lg-6 pt-2">
+						<div class="col-12 col-lg-6 pt-md-3">
+							<h3 class="text-uppercase"><strong>@item.Product.productName</strong></h3>
+							<p><b>Php @item.Product.RetailPrice</b></p>
+						</div>
 
-							<button class="btn btn-warning me-md-2" type="edit" id="@item.Id">
-								<i class="bi bi-pencil-square"></i>
-							</button>
+						<div class="col-12  col-lg-5 text-center row">
+							<div class="col-3 text-md-right pt-2 pt-md-4">
+								<h5 class="fw-semibold">
+									Qty: @item.Quantity
+								</h5>
+							</div>
 
-							<button class="btn btn-danger" type="remove" id="@item.Id">
-								<i class="bi bi-x-square"></i>
-							</button>
+							<div class="col-3 col-sm-4 col-lg-6 pt-2">
+								<EditForm method="post" FormName="@updateFormId" id="@updateFormId" Model="ShoppingCartToUpdate" OnValidSubmit="() => UpdateShoppingCart(item)">
+									<button class="btn btn-primary" type="button" title="Update Item" id="@item.Id" data-bs-toggle="modal" data-bs-target="#@updateModalId">
+										<i class="bi bi-pencil-square"></i>
+									</button>	
 
+									<!-- Update cartItem Modal -->
+									<div class="modal fade" id="@updateModalId" tabindex="-1" aria-labelledby="removeItemLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body p-0">
+													<div class="modal-body">
+														<div>
+															@item.ProductName
+														
+														</div>
+
+														<div class="form-group" id="quantityInputDiv">
+															<label for="quantity">Quantity:</label>
+															<InputNumber @bind-Value="NewQuantity" id="quantity" class="form-control pt-3">@item.Quantity</InputNumber>
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer d-flex justify-content-center border p-0">
+													<button type="button" class="btn text-center col border-end" data-bs-dismiss="modal">Cancel</button>
+													<button type="submit" class="btn text-center col" data-bs-dismiss="modal">Confirm</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</EditForm>
+
+								<EditForm Enhance="false" method="post" FormName="@removeFormId" id="@removeFormId" Model="ProductIdToRemove" OnValidSubmit="() => RemoveShoppingCart(item.Id)">
+									<button class="btn btn-danger" type="button" title="Remove Item" id="@item.Id" data-bs-toggle="modal" data-bs-target="#@removeModalId">
+										<i class="bi bi-x-square"></i>
+									</button>
+
+									<!-- Remove cartItem Modal -->
+									<div class="modal fade" id="@removeModalId" tabindex="-1" aria-labelledby="removeItemLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body p-0">
+													<div class="modal-body">
+														<div class="text-center">
+															Remove the item?
+														</div>
+													</div>
+												</div>
+												<div class="modal-footer d-flex justify-content-center border p-0">
+												<button type="button" class="btn text-center col border-end" data-bs-dismiss="modal">Cancel</button>
+												<button type="submit" class="btn text-center col" data-bs-dismiss="modal">Confirm</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</EditForm>
+							</div>
 						</div>
 					</div>
-				</div>
+				
 			}
+		} else
+		{
+			<div class="fs-3 fw-bold text-center"><i class="bi bi-cart2"></i> Empty cart.</div>
 		}
 
-		<div class="col-12 col-md-4 pb-1 mr-md-2 my-4 mx-auto">
-			<button type="submit" class="btn btn-success bg-gradient w-100 py-2 text-uppercase fw-semibold">
-				Checkout
-			</button>
-		</div>
-	</form>
+		@if (shoppingCartList.Count > 0)
+		{
+			<div class="col-12 col-md-4 pb-1 mr-md-2 my-4 mx-auto">
+				<button type="submit" class="btn btn-success bg-gradient w-100 py-2 text-uppercase fw-semibold">
+					Checkout
+				</button>
+			</div>
+		} else
+		{
+			<div class="col-12 col-md-4 pb-1 mr-md-2 my-4 mx-auto">
+				<button type="submit" class="btn btn-secondary bg-gradient w-100 py-2 text-uppercase fw-semibold" disabled>
+					Checkout
+				</button>
+			</div>
+		}
+
+	</div>
 </section>
+
+<script>
+	@* PREVENTS FORM RESUBMISSION ON REFRESH *@
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+	}
+</script>

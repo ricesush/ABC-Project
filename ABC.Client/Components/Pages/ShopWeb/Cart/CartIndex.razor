@@ -2,9 +2,7 @@
 @using ABC.Shared.Models.ViewModels
 @page "/CartIndex"
 
-<link href="Cartindex.razor.css" rel="stylesheet" />
-
-<PageTitle>Shopping Cart</PageTitle>
+<PageTitle>ABC - Shopping Cart</PageTitle>
 
 <section class="container mt-3 mb-3 FooterminHeight">
 	<div class="row pt-2 pb-4" id="topbar">
@@ -13,94 +11,49 @@
 			<h1 class="text">Shopping Cart</h1>
 		</div>
 	</div>
-	<form method="post">
-		<div class="card shadow border-1">
-			<div class="card-body my-4">
-				<div class="row">
-					<div class="col-md-10 offset-md-1">
 
-						<h1 class="text-center text-secondary">Cart Empty!</h1>
-						@*
-						@if (OrderHeader.OrderTotal == null)
-						{
-						<h1 class="text-center text-secondary">Cart Empty!</h1>
-						}
-
-
-						@foreach (var item in Model.ShoppingCartList)
-						{
-						<div class="row border-bottom pb-3">
-						<div class="d-none d-lg-block col-lg-1 text-center py-2">
+	<form>
+		@if (shoppingCartList != null && shoppingCartList.Any())
+		{
+			@foreach (var item in shoppingCartList)
+			{
+				<div class="row border-bottom pb-3">
+					<div class="d-none d-lg-block col-lg-1 text-center py-2">
 						<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
-						</div>
+					</div>
 
-						<div class="col-12 col-lg-6 pt-md-3">
-						<h5 class="text-uppercase text-secondary"><strong>@item.Product.productName</strong></h5>
-						<p><small>@item.Product.RetailPrice.ToString("C", CultureInfo.CreateSpecificCulture("es-MX"))</small></p>
-						</div>
-						<div class="col-12  col-lg-5 text-center row">
+					<div class="col-12 col-lg-6 pt-md-3">
+						<h3 class="text-uppercase"><strong>@item.Product.productName</strong></h3>
+						<p><b>Php @item.Product.RetailPrice</b></p>
+					</div>
+
+					<div class="col-12  col-lg-5 text-center row">
 						<div class="col-3 text-md-right pt-2 pt-md-4">
-						<h6 class="fw-semibold">
-						<small class="text-muted">Quantity:</small>
-						<small>@item.Count</small>
-						</h6>
-						</div>
-						<div class="col-6 col-sm-4 col-lg-6 pt-2">
-						<div class="w-75 btn-group" role="group">
-						<a asp-action="Plus" asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient py-2">
-						<i class="bi bi-plus-square"></i>
-						</a> &nbsp;
-						<a asp-action="Minus" asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient py-2">
-						<i class="bi bi-dash-square"></i>
-						</a>
+							<h5 class="fw-semibold">
+								Qty: @item.Quantity
+							</h5>
 						</div>
 
-						</div>
-						<div class="col-3 col-sm-4 col-lg-2 offset-lg-1 text-right pt-2">
-						<a asp-action="Remove" asp-route-cartId="@item.Id" class="btn btn-danger bg-gradient py-2 ">
-						<i class="bi bi-trash-fill"></i>
-						</a>
-						</div>
-						</div>
+						<div class="col-3 col-sm-4 col-lg-6 pt-2">
+
+							<button class="btn btn-warning me-md-2" type="edit" id="@item.Id">
+								<i class="bi bi-pencil-square"></i>
+							</button>
+
+							<button class="btn btn-danger" type="remove" id="@item.Id">
+								<i class="bi bi-x-square"></i>
+							</button>
 
 						</div>
-						}*@
-
 					</div>
 				</div>
+			}
+		}
 
-				@*
-				@if (Model.OrderHeader.OrderTotal > 0)
-				{
-				<div class="card-footer bg-white border-0">
-				<div class="row">
-				<div class="col-md-4 offset-md-4">
-				<ul class="list-group mb-4">
-				<li class="d-flex justify-content-between align-items-center">
-				<h5 class="text-dark fw-semibold text-uppercase"> Total (PHP)</h5>
-				<h4 class="text-dark fw-bolder">@Model.OrderHeader.OrderTotal.ToString("c")</h4>
-				</li>
-				</ul>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-md-2 offset-md-5">
-				<a asp-action="Summary" class="btn btn-primary border-0 bg-gradient w-100 py-2">Summary</a>
-				</div>
-				</div>
-				</div>
-				}*@
-			</div>
-
-			<div class="card-footer my-2">
-				<a class="btn border-0 bg-gradient w-100 py-2" href="Summary">Checkout</a>
-			</div>
+		<div class="col-12 col-md-4 pb-1 mr-md-2 my-4 mx-auto">
+			<button type="submit" class="btn btn-success bg-gradient w-100 py-2 text-uppercase fw-semibold">
+				Checkout
+			</button>
 		</div>
 	</form>
 </section>
-
-@code {
-	private List<OrderHeader> OrderHeaders { get; set; }
-	private List<ShoppingCartVM> ShoppingCartVMs { get; set; }
-	private List<ShoppingCart> ShoppingCarts { get; set; }
-}

@@ -1,9 +1,10 @@
 @using ABC.Shared.Models.ViewModels
 @page "/Summary"
+@rendermode InteractiveServer
 
 <PageTitle>ABC - Order Summary</PageTitle>
 
-<section class="container mt-3 mb-3 FooterminHeight">
+<section class="container mt-3 mb-5 FooterminHeight">
 	<div class="row pt-2 pb-4" id="topbar">
 		<!-- Title -->
 		<div class="col-lg-8 col-md-6 text-start mb-3 mb-sm-0">
@@ -13,106 +14,111 @@
 			<a class="btn btn-danger btn-md" href="CartIndex">Back to Cart</a>
 		</div>
 	</div>
-	<form method="post">
+	<EditForm method="post" OnValidSubmit="AddOrderHeader" FormName="checkoutFormModel" id="checkoutFormModel" Model="checkoutFormModel">
+		<DataAnnotationsValidator />
 		<div class="card shadow border-1 mb-4">
 			<div class="card-body">
 				<div class="container rounded">
 					<div class="row">
 						<div class="col-12 col-lg-6 pb-4">
 							<div class="row">
-								<h3 class="d-flex justify-content-between align-items-center mb-3">
-									<span class="text">Shipping Details:</span>
-								</h3>
-								<hr />
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>First Name</label>
+								<div class="row">
+									<h3 class="d-flex justify-content-between align-items-center mb-3">
+										<span class="text">Shipping Details:</span>
+									</h3>
+									<hr />
 								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.FirstName" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
+
+								<div class="row my-1">
+									<div class="col-3">
+										<label>First Name</label>
+									</div>
+									<div class="col-9">
+
+										@* <input @bind-value="user.FirstName" class="form-control" />
+										<span class="text-danger">@* @validationMessage </span> *@
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Last Name</label>
+								<div class="row my-1">
+									<div class="col-3">
+										<label>Last Name</label>
+									</div>
+									<div class="col-9">
+										<input @* @bind="orderHeader.LastName" *@ class="form-control" />
+										<span class="text-danger">@* @validationMessage *@</span>
+									</div>
 								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.LastName" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
+								<div class="row my-1">
+									<div class="col-3">
+										<label>Contact No.</label>
+									</div>
+									<div class="col-9">
+										<input @* @bind="orderHeader.PhoneNumber" *@ class="form-control" />
+										<span class="text-danger">@* @validationMessage *@</span>
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Contact No.</label>
+								<div class="row my-1">
+									<div class="col-3">
+										<label>Address Line</label>
+									</div>
+									<div class="col-9">
+										<input @* @bind="orderHeader.Address" *@ class="form-control" />
+										<span class="text-danger">@* @validationMessage *@</span>
+									</div>
 								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.PhoneNumber" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
+								<div class="row my-1">
+									<div class="col-3">
+										<label>City</label>
+									</div>
+									<div class="col-9">
+										<input @* @bind="orderHeader.City" *@ class="form-control" />
+										<span class="text-danger">@* @validationMessage *@</span>
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Address Line</label>
+								<div class="row my-1">
+									<div class="col-3">
+										<label>Province</label>
+									</div>
+									<div class="col-9">
+										<input @* @bind="orderHeader.Province" *@ class="form-control" />
+										<span class="text-danger">@* @validationMessage *@</span>
+									</div>
 								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.Address" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>City</label>
-								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.City" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Province</label>
-								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.Province" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Postal Code</label>
-								</div>
-								<div class="col-9">
-									<input @* @bind="orderHeader.PostalCode" *@ class="form-control" />
-									<span class="text-danger">@* @validationMessage *@</span>
+								<div class="row my-1">
+									<div class="col-3">
+										<label>Postal Code</label>
+									</div>
+									<div class="col-9">
+										<input @* @bind="orderHeader.PostalCode" *@ class="form-control" />
+										<span class="text-danger">@* @validationMessage *@</span>
+									</div>
 								</div>
 							</div>
 						</div>
 
 						<!--Order Summary-->
-						<div class="col-12 col-lg-5 offset-lg-1">
+						<div class="col-12 col-lg-6 pb-4">
 							<h3 class="d-flex justify-content-between align-items-center mb-3">
 								<span class="text">Order Summary:</span>
 							</h3>
 							<hr />
-							@* <ul class="list-group mb-3">
-							@foreach (var details in ShoppingCartList)
-							{
-							<li class="list-group-item d-flex justify-content-between">
-							<div>
-							<h6 class="my-0">@details.Product.productName</h6>
-							<small class="text-muted">Quantity: @details.Count</small>
-							</div>
-							<span class="text-muted">@((details.Price * details.Count).ToString("c", new CultureInfo("en-PH")))</span>
-							</li>
-							}
+							<ul class="list-group mb-3">
+								@foreach (var cartItem in shoppingCartList)
+								{
+									<li class="list-group-item d-flex justify-content-between">
+										<div>
+											<h6 class="my-0">@cartItem.Product.productName</h6>
+											<small class="text-muted">Quantity: @cartItem.Quantity</small>
+										</div>
+										<span class="text-muted"><b>@((cartItem.Product.RetailPrice * cartItem.Quantity).ToString("#, ###.00"))</b></span>
+									</li>
+								}
 
-							<li class="list-group-item d-flex justify-content-between bg-light">
-							<small class="text-black">Total (Php)</small>
-							@* <strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c", new CultureInfo("en-PH"))</strong>
-							</li>
-							</ul> *@
+								@* <li class="list-group-item d-flex justify-content-between bg-light">
+								<small class="text-black">Total (Php)</small>
+								<strong class="text-info">@orderHeader.OrderTotal</strong>
+								</li> *@
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -126,10 +132,10 @@
 						</p>
 					</div>
 					<div class="col-12 col-md-4">
-						<a type="submit" class="Placebtn form-control" href="OrderConfirmation">Place Order</a>
+						<button type="submit" class="Placebtn form-control" >Place Order</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</EditForm>
 </section>

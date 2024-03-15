@@ -1,11 +1,16 @@
 @using ABC.Shared.Models
-@page "/ProductDetails"
+@using ABC.Client.Components
 
-<link href="Details.razor.css" rel="stylesheet" />
+@page "/ProductDetails"
+@inject AuthenticationStateProvider AuthStateProvider
+@rendermode InteractiveServer
+
+<Toast @ref="toastRef" />
+
 
 <PageTitle>ABC - @ProductName </PageTitle>
 
-<section class="container FooterminHeight mt-3 mb-5">
+<section class="main container FooterminHeight">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -14,9 +19,9 @@
         </ol>
     </nav>
 
-    <form method="post" id="your-form-id">
-        <input hidden asp-for="ProductId" />
-        <section class="container shadow col-12 my-3 pb-3">
+    <EditForm Model="ShoppingCart" OnValidSubmit="SaveShoppingCart" FormName="ShoppingCartForm">
+        <InputNumber hidden @bind-Value="ShoppingCart.Product.Id" />
+        <section class="product container shadow col-12">
             <div class="card-body">
                 <div class="row p-3">
                     <!-- Product Image (on top for tablets) -->
@@ -26,34 +31,59 @@
 
                     <!-- Product Information (on bottom for tablets) -->
                     <div class="col-md-12 col-lg-7 text-start order-md-first order-lg-last">
-                        <h2>@ProductName</h2>
+                        <h2>@ShoppingCart.Product.productName</h2>
                         <hidden @ProductId />
 
                         <div class="row mt-2 mb-5">
                             <h4>
                                 Php
                                 <span>
-                                    @Product.RetailPrice
+                                    @ShoppingCart.Product.RetailPrice
                                 </span>
                             </h4>
                         </div>
-                        <div class="row col-12 col-md-4 mt-5 mb-2">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">
-                                    Quantity
+
+                        <div class="row mt-2 mb-5">
+                            <h4>
+                                Available Stock:
+                                <span>
+                                    @Product.StockQuantity
                                 </span>
-                                <input for="Quantity" type="number" value="1" class="form-control text-end" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-                            </div>
+                            </h4>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 pb-1 mr-md-2">
+
+                        @* <div class="row mt-2 mb-5">
+                            <h4>
+                                Application User
+                                <span>
+                                    @ApplicationUser.FirstName
+                                </span>
+                            </h4>
+                        </div> *@
+
+                        <div class="row mt-5 mb-2">
+                            <div class="col-8 col-md-4 pb-1 mr-md-2">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">
+                                        Quantity
+                                    </span>
+                                    <input @bind-value="@ShoppingCart.Quantity" type="number" class="form-control text-end" />
+
+                                    @if (ShoppingCart.Quantity <= 0)
+                                    {
+                                        <p class="text-danger">* Quantity cannot be negative or zero</p>
+                                    }
+                                    else if (ShoppingCart.Quantity > Product.StockQuantity)
+                                    {
+                                        <p class="text-danger">* Input quantity exceeds available stock.</p>
+                                    }
+
+                                </div>
+                            </div>
+                            
+                            <div class="col-4 col-md-4 pb-1 mr-md-2">
                                 <button type="submit" class="btn btn-warning bg-gradient w-100 py-2 text-uppercase fw-semibold">
                                     Add to Cart
-                                </button>
-                            </div>
-                            <div class="col-12 col-md-4 pb-1 ml-md-2">
-                                <button type="submit" class="btn btn-success bg-gradient w-100 py-2 text-uppercase fw-semibold">
-                                    Buy
                                 </button>
                             </div>
                         </div>
@@ -69,7 +99,7 @@
                             </h2>
                             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                                 <div class="accordion-body">
-                                    It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    @Product.Description
                                 </div>
                             </div>
                         </div>
@@ -77,5 +107,6 @@
                 </div>
             </div>
         </section>
-    </form>
+    </EditForm>
 </section>
+

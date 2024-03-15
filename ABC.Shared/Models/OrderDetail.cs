@@ -30,7 +30,7 @@ namespace ABC.Shared.Models
         public double? Discount { get; set; }
 
         public int Count {  get; set; }
-        public double Price {  get; set; }
+        public double Price {  get; set; } //alisin
 
         [NotMapped]
         public double TotalPrice { get; set; }

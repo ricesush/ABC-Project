@@ -15,7 +15,7 @@ namespace ABC.Shared.Models
         public int Id { get; set; }
 
         public string? ApplicationUserId { get; set; }
-        [ForeignKey("ApplicationUserId")]
+        [ForeignKey("ApplicationUserId")]//alisin
         [ValidateNever]
         public ApplicationUser? ApplicationUser { get; set; }
 
@@ -24,7 +24,7 @@ namespace ABC.Shared.Models
         //discount 
         //charge 
 
-        public List<OrderDetail> OrderDetails { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; } = new();
 
         public DateTime OrderDate { get; set; }
         public DateTime ShippingDate { get; set; }
@@ -32,7 +32,7 @@ namespace ABC.Shared.Models
 
         public string? OrderStatus { get; set; }
         public string? PaymentStatus {  get; set; }
-        public string? TrackingNumber { get; set; } 
+        public string? TrackingNumber { get; set; }
         public string? Carrier { get; set; }
         public decimal Discount { get; set; } = 0;
         public decimal ServiceFee { get; set; } = 0;

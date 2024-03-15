@@ -22,8 +22,6 @@
 @using ABC.Client.Components.Layout
 @layout NoLayout
 
-<link href="Register.razor.css" rel="stylesheet" />
-
 <PageTitle>ABC - Register</PageTitle>
 
 <section class="card shadow col-lg-8 mx-auto minHeight">
@@ -34,39 +32,42 @@
             <BrandLogo />
             <p>Create a new account</p>
             <hr />
-            <ValidationSummary class="text-danger" role="alert" />
+
             <div class="form-floating mb-3">
+                <ValidationMessage For="() => Input.Email" class="text-danger" />
                 <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label for="email">Email</label>
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
             <div class="row row-cols-lg-2 row-cols-1 g-2">
                 <div class="form-floating mb-3">
-                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                     <label for="password">Password</label>
                     <ValidationMessage For="() => Input.Password" class="text-danger" />
                 </div>
                 <div class="form-floating mb-3">
-                    <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                    <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
                     <label for="confirm-password">Confirm Password</label>
                     <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
                 </div>
             </div>
 
             <br />
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.FirstName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="First Name" />
-                <label for="confirm-password">First Name</label>
-                <ValidationMessage For="() => Input.FirstName" class="text-danger" />
-            </div>
 
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.LastName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Last Name" />
-                <label for="confirm-password">Last Name</label>
-                <ValidationMessage For="() => Input.LastName" class="text-danger" />
+            <div class="row row-cols-lg-2 row-cols-1 g-2">
+                <div class="form-floating mb-3">
+                    <InputText type="text" @bind-Value="Input.FirstName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="First Name" />
+                    <label for="confirm-password">First Name</label>
+                    <ValidationMessage For="() => Input.FirstName" class="text-danger" />
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText type="text" @bind-Value="Input.LastName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Last Name" />
+                    <label for="confirm-password">Last Name</label>
+                    <ValidationMessage For="() => Input.LastName" class="text-danger" />
+                </div>
             </div>
+            
             <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.PhoneNumber" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="Contact Number" />
+                <InputText type="text" @bind-Value="Input.PhoneNumber" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="Ex," />
                 <label for="confirm-password">Contact Number</label>
                 <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
             </div>
@@ -99,21 +100,16 @@
             </section>
             
 
+            <section>
+                <div class="agreementText my-4">
+                    <p>By clicking the <b>"Register"</b> button, you agree to <a href="/Privacy">Terms of Use and Privacy Policy</a> of ABC Shopping website</p>
+                </div>
+            </section>
+
             <button type="submit" class="w-100 btn btn-lg">Register</button>
         </EditForm>
     </div>
 </section>
-
-@* <div class="row">
-    
-    @* <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            <ExternalLoginPicker />
-        </section>
-    </div>
-</div> *@
 
 @code {
     private IEnumerable<IdentityError>? identityErrors;
@@ -208,17 +204,17 @@
         return (IUserEmailStore<ApplicationUser>)UserStore;
     }
 
-    private sealed class InputModel
+    private class InputModel
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "email address")]
         public string Email { get; set; } = "";
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "password")]
         public string Password { get; set; } = "";
 
         [DataType(DataType.Password)]
@@ -227,17 +223,36 @@
         public string ConfirmPassword { get; set; } = "";
 
         [Required]
+        [Display(Name = "first name")]
         public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "last name")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "address line")]
         public string? AddressLine {  get; set; }
+
+        [Required]
+        [Display(Name = "city")]
         public string? City {  get; set; }
+
+        [Required]
+        [Display(Name = "province")]
         public string? Province { get; set; }
+
+        [Required]
+        [Display(Name = "postal code")]
         public string? PostalCode { get; set; }
+
+
         public string? Branch { get; set; }
+        
         [Required]
         [Phone(ErrorMessage = "Please enter a valid phone number")]
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Phone Number")]
+        [Display(Name = "contact number")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "Phone number must be between in this format 9XX XXX YYYY")]
         public string PhoneNumber { get; set; }
         public string? Role { get; set; }

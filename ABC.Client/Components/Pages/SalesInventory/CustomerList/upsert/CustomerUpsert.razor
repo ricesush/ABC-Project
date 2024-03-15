@@ -1,0 +1,30 @@
+﻿@using ABC.Shared.Models
+@using Layout
+@page "/CustomerUpsert"
+@layout AdminLayout
+
+@rendermode InteractiveServer
+
+<PageTitle>ABC - Customer Details</PageTitle>
+
+<section class="container">
+    <EditForm Model="SelectedCustomer" OnValidSubmit="UpdateCustomer" enctype="form-data" >
+        <DataAnnotationsValidator />
+        <ValidationSummary class="text-danger" role="alert" />
+        <InputNumber @bind-Value="SelectedCustomer.Id" hidden></InputNumber>
+
+        <!--Header-->
+        <div class="row pt-2 pb-1" id="topbar">
+            <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
+                <h1>Update Customer</h1>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
+            <button class="btn btn-success" data-bs-toggle="modal" type="button" data-bs-target="#UpsertItem">
+                <i class="bi bi-floppy"></i> Update
+            </button>
+        </div>
+
+    </EditForm>
+</section>

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components;
 using ABC.Client.Components.Account.Pages.Manage;
 using System.Reflection.Emit;
+using ABC.Shared.Utility;
 
 namespace ABC.Client.Components.Pages.ShopWeb.ManageOrderPage.Components;
 
@@ -56,6 +57,21 @@ public partial class Details
 	private async Task SaveOrder()
 	{
 
+	}
+
+	private async Task CancelOrder()
+	{
+		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
+		orderHeader.OrderStatus = SD.StatusCancelled;
+
+		// Call service to update OrderHeader
+		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
+
+		if (updated)
+		{
+			//refresh the list
+			StateHasChanged();
+		}
 	}
 }
 

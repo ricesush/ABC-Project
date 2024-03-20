@@ -1,4 +1,4 @@
-﻿using ABC.Client.Components.Pages.Sales_Inventory.Product;
+﻿using ABC.Client.Components.Pages.SalesInventory.ProductPage;
 using ABC.Client.Data;
 using ABC.Shared.Models;
 using ABC.Shared.Services;
@@ -35,8 +35,8 @@ public partial class Shop
 		{
 			ProductList = result.Where(x => x.productName.ToString().Contains(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
 		}
-		else 
-		{ 
+		else
+		{
 			ProductList = result.ToList();
 		}
 		await InvokeAsync(StateHasChanged);

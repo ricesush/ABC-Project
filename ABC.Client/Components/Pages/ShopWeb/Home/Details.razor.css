@@ -2,6 +2,16 @@
     min-height: calc(100vh - 395px);
 }
 
+.main {
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+}
+
+.product {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
 h2, h6, span {
     color: var(--maincolor-darkblue--);
     font-weight: bold;

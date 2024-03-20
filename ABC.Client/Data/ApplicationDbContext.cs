@@ -322,38 +322,38 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				storeZipCode = 1870
 			});
 
-		modelBuilder.Entity<OrderHeader>().HasData(
-		  new OrderHeader
-		  {
-			  Id = 1,
-			  ApplicationUserId = custUser.Id,
-			  OrderDate = DateTime.Parse("2023-12-23 19:03:02.3832563"),
-			  ShippingDate = DateTime.Parse("2023-12-23 19:04:08.7255290"),
-			  OrderTotal = 10366,
-			  OrderStatus = "Completed",
-			  PaymentStatus = "Paid",
-			  TrackingNumber = "123123123",
-			  Carrier = "Neil",
-			  Discount = 50,
-			  ServiceFee = 50,
-			  DeliveryFee = 250,
-			  PaymentMode = "Cash",
-			  OfficialReceipt = "ABC0001",
-			  CustomerId = customerGuid
+		//modelBuilder.Entity<OrderHeader>().HasData(
+		//  new OrderHeader
+		//  {
+		//	  Id = 1,
+		//	  ApplicationUserId = custUser.Id,
+		//	  OrderDate = DateTime.Parse("2023-12-23 19:03:02.3832563"),
+		//	  ShippingDate = DateTime.Parse("2023-12-23 19:04:08.7255290"),
+		//	  OrderTotal = 10366,
+		//	  OrderStatus = "Completed",
+		//	  PaymentStatus = "Paid",
+		//	  TrackingNumber = "123123123",
+		//	  Carrier = "Neil",
+		//	  Discount = 50,
+		//	  ServiceFee = 50,
+		//	  DeliveryFee = 250,
+		//	  PaymentMode = "Cash",
+		//	  OfficialReceipt = "ABC0001",
+		//	  CustomerId = customerGuid
 
-		  });
+		//  });
 
-		modelBuilder.Entity<OrderDetail>().HasData(
-		  new OrderDetail
-		  {
-			  Id = 1,
-			  OrderHeaderId = 1,
-			  ProductId = 1,
-			  Charge = null,
-			  Discount = null,
-			  Count = 1,
-			  Price = 899
-		  });
+		//modelBuilder.Entity<OrderDetail>().HasData(
+		//  new OrderDetail
+		//  {
+		//	  Id = 1,
+		//	  OrderHeaderId = 1,
+		//	  ProductId = 1,
+		//	  Charge = null,
+		//	  Discount = null,
+		//	  Count = 1,
+		//	  Price = 899
+		//  });
 
 		//modelBuilder.Entity<ShoppingCart>().HasData(
 		//       new ShoppingCart

@@ -24,10 +24,12 @@ public partial class CustomerUpsert
     private Customer SelectedCustomer { get; set; } = new();
 
     [SupplyParameterFromQuery(Name = "id")]
-    public string CustomerId { get; set; }
-    #endregion
+    public Guid CustomerId { get; set; }
 
-    protected override async Task OnInitializedAsync()
+	string customerId;
+	#endregion
+
+	protected override async Task OnInitializedAsync()
     {
         customerService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
         await LoadCustomer();
@@ -35,13 +37,17 @@ public partial class CustomerUpsert
 
     private async Task LoadCustomer()
     {
-        var customerTask = customerService_SQL.GetCustomerInfo(applicationDbContext, CustomerId);
+		if (Guid.TryParse(customerId, out Guid guidValue))
+		{
+			// Assign the parsed Guid value to your actual Guid property
+			CustomerId = guidValue;
+		}
+		else
+		{
+			// Handle invalid input (e.g., display error message)
+		}
+		var customerTask = customerService_SQL.GetCustomerInfo(applicationDbContext, CustomerId);
 
         SelectedCustomer = await customerTask;
-    }
-
-    private async Task UpdateCustomer()
-    {
-
     }
 }

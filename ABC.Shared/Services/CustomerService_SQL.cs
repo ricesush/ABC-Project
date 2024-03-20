@@ -31,7 +31,7 @@ public partial class CustomerService_SQL
 	}
 
     //* GETS SINGLE Customer BASE ON customer ID
-    private async Task<Customer> GetCustomerData(dynamic DBContext, string id)
+    private async Task<Customer> GetCustomerData(dynamic DBContext, Guid id)
     {
         Customer _customer = new();
         try

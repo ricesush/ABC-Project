@@ -29,7 +29,7 @@ public partial class CustomerService_SQL : ComponentBase
         }
     }
 
-    public async Task<Customer> GetCustomerInfo(dynamic DBContext, string Id)
+    public async Task<Customer> GetCustomerInfo(dynamic DBContext, Guid Id)
     {
         Customer CustomerInfo = new();
         try

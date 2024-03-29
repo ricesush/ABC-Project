@@ -17,244 +17,373 @@
 @inject IEmailSender<ApplicationUser> EmailSender
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
-@inject IdentityRedirectManager RedirectManager 
+@inject IdentityRedirectManager RedirectManager
+@rendermode InteractiveServer
 
 @using ABC.Client.Components.Layout
+@using System.Text.RegularExpressions
 @layout NoLayout
 
 <PageTitle>ABC - Register</PageTitle>
 
 <section class="card shadow col-lg-8 mx-auto minHeight">
-    <div class="row text-center p-5">
-        <StatusMessage Message="@Message" />
-        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
-            <DataAnnotationsValidator />
-            <BrandLogo />
-            <p>Create a new account</p>
-            <hr />
+	<div class="row text-center p-5">
+		@* <StatusMessage Message="@Message" /> *@
+		<EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
+			<DataAnnotationsValidator />
+			<BrandLogo />
+			<p>Create a new account</p>
+			<hr />
 
-            <div class="form-floating mb-3">
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label for="email">Email</label>
-            </div>
-            <div class="row row-cols-lg-2 row-cols-1 g-2">
-                <div class="form-floating mb-3">
-                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                    <label for="password">Password</label>
-                    <ValidationMessage For="() => Input.Password" class="text-danger" />
-                </div>
-                <div class="form-floating mb-3">
-                    <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
-                    <label for="confirm-password">Confirm Password</label>
-                    <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
-                </div>
-            </div>
+			<div class="form-floating mb-3">
+				<ValidationMessage For="() => Input.Email" class="text-danger" />
+				<InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+				<label for="email">Email</label>
+			</div>
 
-            <br />
+			<div class="row row-cols-lg-2 row-cols-1 g-2">
+				<div class="form-floating mb-3">
+					<InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" @oninput="CheckPasswordStrength" />
+					<label for="password">Password</label>
+					<ValidationMessage For="() => Input.Password" class="text-danger" />
+				</div>
 
-            <div class="row row-cols-lg-2 row-cols-1 g-2">
-                <div class="form-floating mb-3">
-                    <InputText type="text" @bind-Value="Input.FirstName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="First Name" />
-                    <label for="confirm-password">First Name</label>
-                    <ValidationMessage For="() => Input.FirstName" class="text-danger" />
-                </div>
-                <div class="form-floating mb-3">
-                    <InputText type="text" @bind-Value="Input.LastName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Last Name" />
-                    <label for="confirm-password">Last Name</label>
-                    <ValidationMessage For="() => Input.LastName" class="text-danger" />
-                </div>
-            </div>
-            
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.PhoneNumber" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="Ex," />
-                <label for="confirm-password">Contact Number</label>
-                <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
-            </div>
+				<div class="form-floating mb-3">
+					<InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
+					<label for="confirm-password">Confirm Password</label>
+					<ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+				</div>
 
-            <br />
-            <div class="form-floating mb-3">
-                <InputText type="text" @bind-Value="Input.AddressLine" class="form-control" autocomplete="address-line" aria-required="true" placeholder="Address Line" />
-                <label for="confirm-password">Address Line</label>
-                <ValidationMessage For="() => Input.AddressLine" class="text-danger" />
-            </div>
+				<div class="form-text text-muted col-12">
+					<div class="progress">
+						<div class="progress-bar @ProgressBarColor" role="progressbar" style="width: @PasswordStrengthPercentage%" aria-valuenow="@PasswordStrengthPercentage" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<span>Password strength: @PasswordStrengthMessage</span>
+				</div>
+			</div>
 
-            <section class="row row-cols-lg-3 row-cols-1 g-2">
-                <div class="form-floating mb-3">
-                    <InputText type="text" @bind-Value="Input.City" class="form-control" autocomplete="city" aria-required="true" placeholder="City" />
-                    <label for="confirm-password">City</label>
-                    <ValidationMessage For="() => Input.City" class="text-danger" />
-                </div>
 
-                <div class="form-floating mb-3">
-                    <InputText type="text" @bind-Value="Input.Province" class="form-control" autocomplete="province" aria-required="true" placeholder="Province" />
-                    <label for="confirm-password">Province</label>
-                    <ValidationMessage For="() => Input.Province" class="text-danger" />
-                </div>
 
-                <div class="form-floating mb-3">
-                    <InputText type="text" @bind-Value="Input.PostalCode" class="form-control" autocomplete="postal-code" aria-required="true" placeholder="Postal Code" />
-                    <label for="confirm-password">Postal Code</label>
-                    <ValidationMessage For="() => Input.PostalCode" class="text-danger" />
-                </div>
-            </section>
-            
+			<br />
 
-            <section>
-                <div class="agreementText my-4">
-                    <p>By clicking the <b>"Register"</b> button, you agree to <a href="/Privacy">Terms of Use and Privacy Policy</a> of ABC Shopping website</p>
-                </div>
-            </section>
+			<div class="row row-cols-lg-2 row-cols-1 g-2">
+				<div class="form-floating mb-3">
+					<InputText type="text" @bind-Value="Input.FirstName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="First Name" />
+					<label for="confirm-password">First Name</label>
+					<ValidationMessage For="() => Input.FirstName" class="text-danger" />
+				</div>
+				<div class="form-floating mb-3">
+					<InputText type="text" @bind-Value="Input.LastName" class="form-control" autocomplete="full-name" aria-required="true" placeholder="Last Name" />
+					<label for="confirm-password">Last Name</label>
+					<ValidationMessage For="() => Input.LastName" class="text-danger" />
+				</div>
+			</div>
 
-            <button type="submit" class="w-100 btn btn-lg">Register</button>
-        </EditForm>
-    </div>
+
+
+
+			<div class="input-group input-group-lg">
+				<span class="input-group-text" id="basic-addon1">+63 </span>
+
+				<div class="form-floating">
+					<InputText type="text" @bind-Value="Input.PhoneNumber" id="Cnum" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="9XX XXX YYYY" aria-describedby="basic-addon1" @oninput="ValidatePhoneNumber" />
+					<label for="Cnum">Contact Number</label>
+				</div>
+			</div>
+
+			<span class="text-danger">@PhoneNumberMessage</span>
+			<ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
+
+
+
+			<br />
+			<div class="form-floating mb-3">
+				<InputText type="text" @bind-Value="Input.AddressLine" class="form-control" autocomplete="address-line" aria-required="true" placeholder="Address Line" />
+				<label for="confirm-password">Address Line</label>
+				<ValidationMessage For="() => Input.AddressLine" class="text-danger" />
+			</div>
+
+			<section class="row row-cols-lg-3 row-cols-1 g-2">
+				<div class="form-floating mb-3">
+					<select class="form-select" @bind="Input.Province">
+						<option value="">Select Province</option>
+						@foreach (var province in LocationData.Provinces)
+						{
+							<option value="@province">@province</option>
+						}
+					</select>
+					<label for="province">Province</label>
+					<ValidationMessage For="() => Input.Province" class="text-danger" />
+				</div>
+
+				<div class="form-floating mb-3">
+					<select class="form-select" @bind="Input.City">
+						<option value="">Select City</option>
+						@if (!string.IsNullOrWhiteSpace(Input.Province) && LocationData.Cities.ContainsKey(Input.Province))
+						{
+							foreach (var city in LocationData.Cities[Input.Province])
+							{
+								<option value="@city">@city</option>
+							}
+						}
+					</select>
+					<label for="city">City</label>
+					<ValidationMessage For="() => Input.City" class="text-danger" />
+				</div>
+
+				<div class="form-floating mb-3">
+					<InputText type="text" @bind-Value="Input.PostalCode" class="form-control" autocomplete="postal-code" aria-required="true" placeholder="Postal Code" />
+					<label for="confirm-password">Postal Code</label>
+					<ValidationMessage For="() => Input.PostalCode" class="text-danger" />
+				</div>
+			</section>
+
+
+
+			<section>
+				<div class="agreementText my-4">
+					<p>By clicking the <b>"Register"</b> button, you agree to <a href="/Privacy">Terms of Use and Privacy Policy</a> of ABC Shopping website</p>
+				</div>
+			</section>
+
+			<button type="submit" class="w-100 btn btn-lg">Register</button>
+		</EditForm>
+	</div>
 </section>
 
 @code {
-    private IEnumerable<IdentityError>? identityErrors;
+	private IEnumerable<IdentityError>? identityErrors;
 
-    [SupplyParameterFromForm]
-    private InputModel Input { get; set; } = new();
+	private string PasswordStrengthMessage { get; set; } = "";
+	private string ProgressBarColor { get; set; } = "";
+	private string PhoneNumberMessage { get; set; } = "";
+	private int PasswordStrengthPercentage { get; set; } = 0;
+	private List<string> Provinces = LocationData.Provinces;
+	private Dictionary<string, List<string>> Cities = LocationData.Cities;
 
-    [SupplyParameterFromQuery]
-    private string? ReturnUrl { get; set; }
+	[SupplyParameterFromForm]
+	private InputModel Input { get; set; } = new();
 
-    private string? Message => identityErrors is null ? null : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
+	[SupplyParameterFromQuery]
+	private string? ReturnUrl { get; set; }
 
-    public async Task RegisterUser(EditContext editContext)
-    {
-        var user = CreateUser();
+	private string? Message => identityErrors is null ? null : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
 
-        await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-        var emailStore = GetEmailStore();
-        await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-        
-        user.FirstName = Input.FirstName;
-        user.LastName = Input.LastName;
-        user.Address = Input.AddressLine;
-        user.City = Input.City;
-        user.Province = Input.Province;
-        user.PostalCode = Input.PostalCode;
-        user.PhoneNumber = Input.PhoneNumber;
+	public async Task RegisterUser(EditContext editContext)
+	{
+		var user = CreateUser();
 
-        var result = await UserManager.CreateAsync(user, Input.Password);
-        if (!result.Succeeded)
-        {
-            identityErrors = result.Errors;
-            return;
-        }
+		await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+		var emailStore = GetEmailStore();
+		await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
-        if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
-        {
-            RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
-            RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-            RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-        }
+		user.FirstName = Input.FirstName;
+		user.LastName = Input.LastName;
+		user.Address = Input.AddressLine;
+		user.City = Input.City;
+		user.Province = Input.Province;
+		user.PostalCode = Input.PostalCode;
+		user.PhoneNumber = Input.PhoneNumber;
 
-        if (!String.IsNullOrEmpty(Input.Role)) {
-            await UserManager.AddToRoleAsync(user, Input.Role);
-        }
-        else
-        {
-            await UserManager.AddToRoleAsync(user, SD.Role_Customer);
-        }
+		var result = await UserManager.CreateAsync(user, Input.Password);
+		if (!result.Succeeded)
+		{
+			identityErrors = result.Errors;
+			return;
+		}
 
-        Logger.LogInformation("User created a new account with password.");
+		if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+		{
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
+		}
 
-        var userId = await UserManager.GetUserIdAsync(user);
-        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
-        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-        var callbackUrl = NavigationManager.GetUriWithQueryParameters(
-            NavigationManager.ToAbsoluteUri("Account/ConfirmEmail").AbsoluteUri,
-            new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code, ["returnUrl"] = ReturnUrl });
+		if (!String.IsNullOrEmpty(Input.Role))
+		{
+			await UserManager.AddToRoleAsync(user, Input.Role);
+		}
+		else
+		{
+			await UserManager.AddToRoleAsync(user, SD.Role_Customer);
+		}
 
-        await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
+		Logger.LogInformation("User created a new account with password.");
 
-        if (UserManager.Options.SignIn.RequireConfirmedAccount)
-        {
-            RedirectManager.RedirectTo(
-                "Account/RegisterConfirmation",
-                new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
-        }
+		var userId = await UserManager.GetUserIdAsync(user);
+		var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+		code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+		var callbackUrl = NavigationManager.GetUriWithQueryParameters(
+			NavigationManager.ToAbsoluteUri("Account/ConfirmEmail").AbsoluteUri,
+			new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code, ["returnUrl"] = ReturnUrl });
 
-        await SignInManager.SignInAsync(user, isPersistent: false);
-        RedirectManager.RedirectTo(ReturnUrl);
-    }
+		await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-    private ApplicationUser CreateUser()
-    {
-        try
-        {
-            return Activator.CreateInstance<ApplicationUser>();
-        }
-        catch
-        {
-            throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor.");
-        }
-    }
+		if (UserManager.Options.SignIn.RequireConfirmedAccount)
+		{
+			RedirectManager.RedirectTo(
+				"Account/RegisterConfirmation",
+				new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
+		}
 
-    private IUserEmailStore<ApplicationUser> GetEmailStore()
-    {
-        if (!UserManager.SupportsUserEmail)
-        {
-            throw new NotSupportedException("The default UI requires a user store with email support.");
-        }
-        return (IUserEmailStore<ApplicationUser>)UserStore;
-    }
+		await SignInManager.SignInAsync(user, isPersistent: false);
+		RedirectManager.RedirectTo(ReturnUrl);
+	}
 
-    private class InputModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "email address")]
-        public string Email { get; set; } = "";
+	private void CheckPasswordStrength(ChangeEventArgs e)
+	{
+		string password = e?.Value?.ToString();
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "password")]
-        public string Password { get; set; } = "";
+		// Implement your password strength logic here
+		if (string.IsNullOrWhiteSpace(password))
+		{
+			PasswordStrengthMessage = "";
+			PasswordStrengthPercentage = 0;
+			ProgressBarColor = "bg-danger"; // Default color for empty password
+			return;
+		}
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; } = "";
-
-        [Required]
-        [Display(Name = "first name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "last name")]
-        public string LastName { get; set; }
-
-        [Required]
-        [Display(Name = "address line")]
-        public string? AddressLine {  get; set; }
-
-        [Required]
-        [Display(Name = "city")]
-        public string? City {  get; set; }
-
-        [Required]
-        [Display(Name = "province")]
-        public string? Province { get; set; }
-
-        [Required]
-        [Display(Name = "postal code")]
-        public string? PostalCode { get; set; }
+		// Calculate the password strength percentage and message
+		if (password.Length < 6)
+		{
+			PasswordStrengthMessage = "Weak";
+			PasswordStrengthPercentage = 25;
+			ProgressBarColor = "bg-danger";
+		}
+		else if (password.Length < 10)
+		{
+			PasswordStrengthMessage = "Moderate";
+			PasswordStrengthPercentage = 50;
+			ProgressBarColor = "bg-warning";
+		}
+		else
+		{
+			PasswordStrengthMessage = "Strong";
+			PasswordStrengthPercentage = 100;
+			ProgressBarColor = "bg-success";
+		}
+	}
 
 
-        public string? Branch { get; set; }
-        
-        [Required]
-        [Phone(ErrorMessage = "Please enter a valid phone number")]
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "contact number")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "Phone number must be between in this format 9XX XXX YYYY")]
-        public string PhoneNumber { get; set; }
-        public string? Role { get; set; }
-    }
+
+	private async Task ValidatePhoneNumber(ChangeEventArgs e)
+	{
+		string phoneNumber = e?.Value?.ToString();
+
+		// Allow only numeric characters
+		phoneNumber = new string(phoneNumber.Where(char.IsDigit).ToArray());
+
+		// Limit the length to 10 digits
+		if (phoneNumber.Length >= 10)
+		{
+			// Ensure the phone number starts with "9"
+			if (!phoneNumber.StartsWith("9"))
+			{
+				phoneNumber = "";
+			}
+
+			// Update the Input.PhoneNumber property with the formatted phone number
+			Input.PhoneNumber = phoneNumber;
+
+			// Regular expression for a Philippine phone number format
+			string pattern = @"^9\d{9}$";
+
+			// Validate the phone number format
+			if (!Regex.IsMatch(phoneNumber, pattern))
+			{
+				PhoneNumberMessage = "Please enter a valid Philippine phone number starting with 9.";
+			}
+			else
+			{
+				PhoneNumberMessage = ""; // Clear the error message if the input is valid
+			}
+		}
+		else
+		{
+			// Clear the error message if the input is not yet 10 digits
+			PhoneNumberMessage = "";
+		}
+	}
+
+
+
+
+
+
+
+	private ApplicationUser CreateUser()
+	{
+		try
+		{
+			return Activator.CreateInstance<ApplicationUser>();
+		}
+		catch
+		{
+			throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+				$"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor.");
+		}
+	}
+
+	private IUserEmailStore<ApplicationUser> GetEmailStore()
+	{
+		if (!UserManager.SupportsUserEmail)
+		{
+			throw new NotSupportedException("The default UI requires a user store with email support.");
+		}
+		return (IUserEmailStore<ApplicationUser>)UserStore;
+	}
+
+	private class InputModel
+	{
+		[Required]
+		[EmailAddress]
+		[Display(Name = "email address")]
+		public string Email { get; set; } = "";
+
+		[Required]
+		[StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+		[DataType(DataType.Password)]
+		[Display(Name = "password")]
+		public string Password { get; set; } = "";
+
+		[DataType(DataType.Password)]
+		[Display(Name = "Confirm password")]
+		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		public string ConfirmPassword { get; set; } = "";
+
+		[Required]
+		[Display(Name = "first name")]
+		public string FirstName { get; set; }
+
+		[Required]
+		[Display(Name = "last name")]
+		public string LastName { get; set; }
+
+		[Required]
+		[Display(Name = "address line")]
+		public string? AddressLine { get; set; }
+
+		[Required]
+		[Display(Name = "city")]
+		public string? City { get; set; }
+
+		[Required]
+		[Display(Name = "province")]
+		public string? Province { get; set; }
+
+		[Required]
+		[Display(Name = "postal code")]
+		public string? PostalCode { get; set; }
+
+
+		public string? Branch { get; set; }
+
+		[Required]
+		[Phone(ErrorMessage = "Please enter a valid phone number")]
+		[DataType(DataType.PhoneNumber)]
+		[Display(Name = "contact number")]
+		[StringLength(10, MinimumLength = 10, ErrorMessage = "Phone number must be between in this format 9XX XXX YYYY")]
+		public string PhoneNumber { get; set; }
+		public string? Role { get; set; }
+	}
 }

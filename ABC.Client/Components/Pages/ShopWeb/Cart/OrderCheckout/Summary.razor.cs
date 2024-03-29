@@ -16,38 +16,38 @@ using Microsoft.EntityFrameworkCore;
 namespace ABC.Client.Components.Pages.ShopWeb.Cart.OrderCheckout;
 public partial class Summary
 {
-	#region Injections
-	[Inject] IHttpContextAccessor httpContextAccessor { get; set; }
-	[Inject] ApplicationDbContext applicationDbContext { get; set; }
-	[Inject] ShoppingCartService_SQL shoppingCartService_SQL { get; set; } 
-	[Inject] ProductService_SQL productService_SQL { get; set; }
+    #region Injections
+    [Inject] IHttpContextAccessor httpContextAccessor { get; set; }
+    [Inject] ApplicationDbContext applicationDbContext { get; set; }
+    [Inject] ShoppingCartService_SQL shoppingCartService_SQL { get; set; }
+    [Inject] ProductService_SQL productService_SQL { get; set; }
     [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     [Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
-	[Inject] OrderHeaderService_SQL orderHeaderService_SQL { get; set; }
+    [Inject] OrderHeaderService_SQL orderHeaderService_SQL { get; set; }
     [Inject] NavigationManager NavigationManager { get; set; }
 
     #endregion
 
     #region Fields
     [CascadingParameter]
-	public HttpContext? HttpContext { get; set; }
-	private List<ShoppingCart> shoppingCartList { get; set; } = [];
+    public HttpContext? HttpContext { get; set; }
+    private List<ShoppingCart> shoppingCartList { get; set; } = [];
     public ShoppingCart cart { get; set; }
     public ShoppingCartVM shoppingCart { get; set; }
-	public ApplicationUser UserInfo { get; set; }
+    public ApplicationUser UserInfo { get; set; }
     public Product product { get; set; }
 
 
     [SupplyParameterFromForm]
-	public ShoppingCartVM checkoutFormModel { get; set; }
+    public ShoppingCartVM checkoutFormModel { get; set; }
 
     private string userId;
     private Toast toastRef;
     #endregion
 
     protected override async Task OnInitializedAsync()
-	{
-		checkoutFormModel ??= new();
+    {
+        checkoutFormModel ??= new();
 
         // Get current authenticated user
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -59,12 +59,12 @@ public partial class Summary
             userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
 
-		// Get user by id
-		UserInfo = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
-		shoppingCartList = await shoppingCartService_SQL.GetShoppingCartList(applicationDbContext, userId);
+        // Get user by id
+        UserInfo = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
+        shoppingCartList = await shoppingCartService_SQL.GetShoppingCartList(applicationDbContext, userId);
 
 
-	}
+    }
 
     private async Task PlaceOrderHandler()
     {
@@ -118,10 +118,10 @@ public partial class Summary
 
         foreach (var cartItem in shoppingCartList)
         {
-		    bool removed = await shoppingCartService_SQL.RemoveShoppingCart(applicationDbContext, cartItem);
+            bool removed = await shoppingCartService_SQL.RemoveShoppingCart(applicationDbContext, cartItem);
         }
 
-		NavigationManager.NavigateTo("/OrderConfirmation", true);
+        NavigationManager.NavigateTo("/OrderConfirmation", true);
     }
 
     private double GetPrice(ShoppingCart shoppingCart)

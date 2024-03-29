@@ -1,15 +1,15 @@
 ﻿using ABC.Client.Data;
 using ABC.Shared.Models;
+using ABC.Shared.Models.ViewModels;
 using ABC.Shared.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components;
-using ABC.Client.Components.Account.Pages.Manage;
 using System.Reflection.Emit;
 using ABC.Shared.Utility;
 
-namespace ABC.Client.Components.Pages.ShopWeb.ManageOrderPage.Components;
+namespace ABC.Client.Components.Pages.SalesInventory.SalesRecord.component;
 
-public partial class Details
+public partial class SalesDetails
 {
 	#region DEPENDENCY INJECTIOn
 	[Inject] ApplicationDbContext applicationDbContext { get; set; }
@@ -17,6 +17,7 @@ public partial class Details
 	#endregion
 
 	#region fields
+	private Toast toastRef;
 	private List<OrderDetail> orderDetailsList { get; set; } = [];
 	private OrderHeader orderHeader { get; set; } = new();
 
@@ -35,6 +36,7 @@ public partial class Details
 	private string? email;
 
 	#endregion
+
 	protected override async Task OnInitializedAsync()
 	{
 		orderHeaderService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
@@ -42,7 +44,6 @@ public partial class Details
 		orderDetailsList = await orderHeaderService_SQL.GetOrderDetailsList(applicationDbContext, OrderId);
 		await LoadProducts();
 	}
-
 	private async Task LoadProducts()
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
@@ -57,6 +58,22 @@ public partial class Details
 	private async Task SaveOrder()
 	{
 
+	}
+
+	private async Task OrderPaid()
+	{
+		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
+		orderHeader.OrderStatus = SD.StatusCompleted;
+		orderHeader.PaymentStatus = SD.StatusCompleted;
+
+		// Call service to update OrderHeader
+		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
+
+		if (updated)
+		{
+			//refresh the list
+			StateHasChanged();
+		}
 	}
 
 	private async Task CancelOrder()
@@ -74,4 +91,3 @@ public partial class Details
 		}
 	}
 }
-

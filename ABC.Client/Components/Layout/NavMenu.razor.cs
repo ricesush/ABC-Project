@@ -25,8 +25,8 @@ public partial class NavMenu
     private async Task CountCartItem()
     {
         // Get current authenticated user
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync())?.User;
+
 
         if (user.Identity.IsAuthenticated)
         {

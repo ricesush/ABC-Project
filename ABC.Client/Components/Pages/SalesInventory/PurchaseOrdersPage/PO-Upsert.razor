@@ -1,0 +1,161 @@
+﻿@using ABC.Shared.Models
+@using Layout
+@page "/PurchaseOrderForm"
+@layout AdminLayout
+
+@rendermode InteractiveServer
+
+<PageTitle>ABC - Purchase Order</PageTitle>
+
+<section class="container">
+	<EditForm Model="selectedPurchaseOrder" OnValidSubmit="SavePurchaseOrder" enctype="multipart/form-data">
+		<DataAnnotationsValidator />
+		<ValidationSummary class="text-danger" role="alert" />
+		<InputNumber @bind-Value="selectedPurchaseOrder.Id" hidden></InputNumber>
+
+
+		<!--New Product-->
+		<div class="row pt-2 pb-1" id="topbar">
+			<!-- Title -->
+			<div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
+				<h1 style="color: #223442;"><b>@(selectedPurchaseOrder.Id != 0 ? "Update" : "Create") Purchase Order</b></h1>
+			</div>
+
+			<!-- Save Button -->
+			<div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
+
+				@if (selectedPurchaseOrder.Id != 0)
+				{
+					<button class="btn btn-success" data-bs-toggle="modal" type="button" data-bs-target="#UpsertItem">
+						<i class="bi bi-floppy"></i> Update
+					</button>
+					<button class="btn btn-secondary" type="submit">
+						<i class="bi bi-floppy"></i> Save & Download as PDF
+					</button>
+				}
+				else
+				{
+					<button class="btn btn-success" type="submit">
+						<i class="bi bi-floppy"></i> Save
+					</button>
+					<button class="btn btn-secondary" type="submit">
+						<i class="bi bi-floppy"></i> Save & Download as PDF
+					</button>
+				}
+			</div>
+		</div>
+
+		<!--Breadcrumb-->
+		<div class="row pb-2">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="PurchaseOrdersList">Purchase Orders</a></li>
+					<li class="breadcrumb-item active" aria-current="page">@(selectedPurchaseOrder.Id != 0 ? "Update" : "Create") Purchase Order</li>
+				</ol>
+			</nav>
+		</div>
+
+		<div class="row pb-3">
+			<div class="col-12">
+				<div class="border p-3 container shadow">
+					<div class="row">
+						<div class="col-6">
+							<div class="input-group mb-3">
+								<label class="input-group-text" for="status">Status</label>
+								<select class="form-select" id="status">
+									<option disabled selected>Select Status</option>
+									<option></option>
+									<option></option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-6">
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="ContactNumber">Contact Number</span>
+								<input type="text" class="form-control" placeholder="Contact Number" aria-label="ContactNumber" aria-describedby="ContactNumber">
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="ContactPerson">Contact Person</span>
+								<input type="text" class="form-control" placeholder="Contact Person" aria-label="ContactPerson" aria-describedby="ContactPerson">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-6">
+							<div class="row">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="paymentTerm">Payment Term</span>
+									<input type="text" class="form-control" placeholder="Payment Term" aria-label="paymentTerm" aria-describedby="paymentTerm">
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="row">
+								<div class="input-group mb-3">
+									<div class="input-group mb-3">
+										<span class="input-group-text" id="deliveryDate">Delivery Date</span>
+										<input type="text" class="form-control" placeholder="Delivery Date" aria-label="deliveryDate" aria-describedby="deliveryDate">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="row">
+								<div class="input-group mb-3">
+									<label class="input-group-text" for="supplier">Vendor</label>
+									<select class="form-select" id="supplier">
+										<option disabled selected>Select supplier</option>
+										<option></option>
+										<option></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="row">
+								<div class="input-group mb-3">
+									<label class="input-group-text" for="store">Ship To</label>
+									<select class="form-select" id="store">
+										<option disabled selected>Select store for this PO</option>
+										<option></option>
+										<option></option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-group mb-3">
+									<div class="input-group">
+										<span class="input-group-text">Store Address</span>
+										<textarea class="form-control" aria-label="Store Address"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="row mb-5">
+			<div class="col-12">
+				<div class="col-12 border p-3 container shadow">
+					<div class="row pb-2">
+						<h5>Products to Purchase</h5>
+						<hr />
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</EditForm>
+
+</section>

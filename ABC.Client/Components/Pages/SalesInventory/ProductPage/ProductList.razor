@@ -17,7 +17,7 @@
 		<!-- Add Button -->
 		<div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
 			<a class="btn btn-primary" role="button" href="ProductUpsert">
-				<i class="bi bi-plus-circle"></i> Add
+				Add Product
 			</a>
 		</div>
 
@@ -37,35 +37,32 @@
 			</tr>
 		</thead>
 
-		@{var validProductCount = Products.Count(p => p.status != false);}
+		@{var validProductCount = Products.Count(p => p.status != "Inactive");}
 
 		<tbody>
 			@if (Products.Count > 0)
 			{
 				foreach (var product in Products)
 				{
-					if (product.status != false)
-					{
-						<tr>
-							<td>@product.Id</td>
-							<td>
-								<img src="@product.ImageUrl" class="rounded w-50"/>
-							</td>
-							<td class="text-start">@product.productName</td>
-							<td class="text-center">@product.StockQuantity</td>
-							<td class="text-center">@("\u20B1" + product.CostPrice.ToString("#,##0.00"))</td>
-							<td class="text-center">@("\u20B1" + product.RetailPrice.ToString("#,##0.00"))</td>
-							<td class="text-center d-flex justify-content-around">
-								<a href="ProductUpsert?id=@product.Id" class="a-style-none">
-									<i class="bi bi-pencil-square text-primary cursor-pointer" title="Edit" tabindex="0"></i>
-								</a>
-								<i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
-								   tabindex="0" data-bs-toggle="modal"
-								   data-bs-target="#removeItem" @onclick='() => PopulateProductDetails(product.Id)'>
-								</i>
-							</td>
-						</tr>
-					}
+					<tr>
+						<td>@product.Id</td>
+						<td>
+							<img src="@product.ImageUrl" class="rounded w-50" />
+						</td>
+						<td class="text-start">@product.productName</td>
+						<td class="text-center">@product.StockQuantity</td>
+						<td class="text-center">@("\u20B1" + product.CostPrice.ToString("#,##0.00"))</td>
+						<td class="text-center">@("\u20B1" + product.RetailPrice.ToString("#,##0.00"))</td>
+						<td class="text-center d-flex justify-content-around">
+							<a href="ProductUpsert?id=@product.Id" class="a-style-none">
+								<i class="bi bi-pencil-square text-primary cursor-pointer" title="Edit" tabindex="0"></i>
+							</a>
+							<i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
+							   tabindex="0" data-bs-toggle="modal"
+							   data-bs-target="#removeItem" @onclick='() => PopulateProductDetails(product.Id)'>
+							</i>
+						</td>
+					</tr>
 					
 				}
 				

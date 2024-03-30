@@ -1,4 +1,5 @@
 @using ABC.Shared.Models.ViewModels
+@using System.Globalization
 @page "/Summary"
 @rendermode InteractiveServer
 
@@ -102,26 +103,32 @@
 								<span class="text">Order Summary:</span>
 							</h3>
 							<hr />
-							<ul class="list-group mb-3">
-								@foreach (var cartItem in shoppingCartList)
-								{
-									<li class="list-group-item d-flex justify-content-between">
-										<div>
-											<h6 class="my-0">@cartItem.Product.productName</h6>
-											<small class="text-muted">Quantity: @cartItem.Quantity</small>
-										</div>
-										<span class="text-muted"><b>@((cartItem.Product.RetailPrice * cartItem.Quantity).ToString("#, ###.00"))</b></span>
-									</li>
-								}
-							</ul>
-
+							<div class="row">
+								<ul class="list-group mb-3">
+									@foreach (var cartItem in shoppingCartList)
+									{
+										<li class="list-group-item d-flex justify-content-between">
+											<div>
+												<h6 class="my-0">@cartItem.Product.productName</h6>
+												<small class="text-muted">Quantity: @cartItem.Quantity</small>
+											</div>
+											<span class="text-muted"><b>@((cartItem.Product.RetailPrice * cartItem.Quantity).ToString("#, ###.00"))</b></span>
+										</li>
+									}
+								</ul>
+							</div>
+							<div class="row"> 
+								<h3>
+									Total: @shoppingCart.OrderHeader.OrderTotal.ToString("C", new CultureInfo("en-PH"))
+								</h3>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card-footer">
 				<div class="row">
-					<div class="col-12 col-md-8 pt-2">
+					<div class="col-6 pt-2">
 						<p style="color:maroon; font-size:14px; font-weight:bold;">
 							Estimate Arrival Date:
 							@DateTime.Now.AddDays(2).ToShortDateString() - @DateTime.Now.AddDays(4).ToShortDateString()
@@ -130,7 +137,7 @@
 
 					@if (!string.IsNullOrWhiteSpace(UserInfo.Address) && !string.IsNullOrWhiteSpace(UserInfo.City) && !string.IsNullOrWhiteSpace(UserInfo.Province))
 					{
-						<div class="col-12 col-md-4">
+						<div class="col-6">
 							<div class="agreementText">
 								<p>By placing this order, you agree to our <a href="/Privacy">Return & Refund process</a></p>
 							</div>
@@ -138,7 +145,7 @@
 						</div>
 					} else
 					{
-						<div class="col-12 col-md-4">
+						<div class="col-6">
 							<div class="agreementText">
 								<p>By placing this order, you agree to our <a href="/Privacy">Return & Refund process</a></p>
 							</div>

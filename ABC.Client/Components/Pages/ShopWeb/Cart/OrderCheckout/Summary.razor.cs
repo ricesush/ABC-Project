@@ -33,7 +33,7 @@ public partial class Summary
     public HttpContext? HttpContext { get; set; }
     private List<ShoppingCart> shoppingCartList { get; set; } = [];
     public ShoppingCart cart { get; set; }
-    public ShoppingCartVM shoppingCart { get; set; }
+    public ShoppingCartVM shoppingCart { get; set; } = new();
     public ApplicationUser UserInfo { get; set; }
     public Product product { get; set; }
 
@@ -62,9 +62,18 @@ public partial class Summary
         // Get user by id
         UserInfo = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
         shoppingCartList = await shoppingCartService_SQL.GetShoppingCartList(applicationDbContext, userId);
+        DisplayOrderTotal();
+	}
 
-
-    }
+    private async Task DisplayOrderTotal()
+    {
+		foreach (var cart in shoppingCartList)
+		{
+			cart.Price = GetPrice(cart);
+            //shoppingCart = new();
+			shoppingCart.OrderHeader.OrderTotal += (cart.Price * cart.Quantity);
+		}
+	}
 
     private async Task PlaceOrderHandler()
     {
@@ -114,7 +123,10 @@ public partial class Summary
             summary.OrderDetailsList.Add(_orderDetail);
         }
 
-        bool addedOrderDetail = await orderHeaderService_SQL.AddOrderDetail(applicationDbContext, summary.OrderDetailsList);
+        shoppingCart = summary;
+
+
+		bool addedOrderDetail = await orderHeaderService_SQL.AddOrderDetail(applicationDbContext, summary.OrderDetailsList);
 
         foreach (var cartItem in shoppingCartList)
         {

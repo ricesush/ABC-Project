@@ -6,7 +6,7 @@ using ABC.Shared.Utility;
 
 namespace ABC.Client.Data;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser, IdentityRole, string>(options)
 {
 	//Create Database
 	public DbSet<Category> Categories { get; set; }
@@ -18,10 +18,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 	public DbSet<OrderHeader> OrderHeaders { get; set; }
 	public DbSet<OrderDetail> OrderDetails { get; set; }
-
 	public DbSet<AuditLog> AuditLogs { get; set; }
 	public DbSet<Content> Contents { get; set; }
-
 	public DbSet<Store> Stores { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,11 +31,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 		// ASP user IDs
 		string adminId = Guid.NewGuid().ToString();
 		string empId = Guid.NewGuid().ToString();
+		string managerId = Guid.NewGuid().ToString();
 		string custId = Guid.NewGuid().ToString();
 
 		// ASP role IDs
 		string adminRoleId = Guid.NewGuid().ToString();
 		string empRoleId = Guid.NewGuid().ToString();
+		string managerRoleId = Guid.NewGuid().ToString();
 		string custRoleId = Guid.NewGuid().ToString();
 
 		// Seed roles 
@@ -47,6 +47,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			  Id = adminRoleId,
 			  Name = "Admin",
 			  NormalizedName = "ADMIN"
+		  },
+		  new IdentityRole
+		  {
+			  Id = managerRoleId,
+			  Name = "Manager",
+			  NormalizedName = "MANAGER"
 		  },
 		  new IdentityRole
 		  {
@@ -78,6 +84,19 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			PasswordHash = passwordHasher.HashPassword(null, "Admin123!")
 		};
 
+		// Create manager user
+		var managerUser = new ApplicationUser
+		{
+			Id = managerId,
+			UserName = "manager@abc.com",
+			FirstName = "Ej Manager",
+			LastName = "Esan",
+			NormalizedUserName = "MANAGER@ABC.COM",
+			Email = "manager@abc.com",
+			EmailConfirmed = true,
+			PasswordHash = passwordHasher.HashPassword(null, "Manager123!")
+		};
+
 		// Create employee user
 		var empUser = new ApplicationUser
 		{
@@ -106,12 +125,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
 		// Seed users
 		modelBuilder.Entity<ApplicationUser>().HasData(
-		  adminUser, empUser, custUser
+		  adminUser, managerUser, empUser, custUser
 		);
 
 		// Seed user-role relations
 		modelBuilder.Entity<IdentityUserRole<string>>().HasData(
 		  new IdentityUserRole<string> { UserId = adminId, RoleId = adminRoleId },
+		  new IdentityUserRole<string> { UserId = managerId, RoleId = managerRoleId },
 		  new IdentityUserRole<string> { UserId = empId, RoleId = empRoleId },
 		  new IdentityUserRole<string> { UserId = custId, RoleId = custRoleId }
 		);
@@ -154,6 +174,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 		// Add to modelBuilder
 		modelBuilder.Entity<Customer>().HasData(customer);
 
+		////Pushed Data into Category Database
+		modelBuilder.Entity<Content>().HasData(
+			new Content { Id = 1, About = "About", Privacy = "Privacy Policy", VissionMission = "Vission And Mission" ,returnRefund = "Return and Refund", TermsPolicy="Terms and Conditions" }
+			);
+
 		//Pushed Data into Product Database
 		modelBuilder.Entity<Product>().HasData(
 			new Product
@@ -175,9 +200,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Provider = "Third-Party Warranty Company",
 				addNotes = "Additional Notes is here color touchscreen interface ",
 				SupplierId = 2,
-				ImageUrl = ""
+				ImageUrl = "",
+                status = "Active"
 
-			},
+            },
 			new Product
 			{
 				Id = 2,
@@ -196,8 +222,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Duration = "7 days from date of purchase",
 				Provider = "Manufacturer",
 				SupplierId = 1,
-				ImageUrl = ""
-			},
+				ImageUrl = "",
+                status = "Active"
+            },
 			new Product
 			{
 				Id = 3,
@@ -219,8 +246,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Provider = "Third-Party Warranty Company",
 				addNotes = "Backlit keyboard, Windows 10",
 				SupplierId = 2,
-				ImageUrl = ""
-			},
+				ImageUrl = "",
+                status = "Active"
+            },
 			new Product
 			{
 				Id = 4,
@@ -243,8 +271,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				addNotes = "Facial recognition, water resistant",
 
 				SupplierId = 1,
-				ImageUrl = ""
-			},
+				ImageUrl = "",
+                status = "Active"
+            },
 			new Product
 			{
 				Id = 5,
@@ -266,8 +295,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Provider = "Third-Party Warranty Company",
 				addNotes = "Bluetooth, 30+ hour battery life",
 				SupplierId = 2,
-				ImageUrl = ""
-			});
+				ImageUrl = "",
+                status = "Active"
+            });
 
 		//Pushed Data into Supplier Database
 		modelBuilder.Entity<Supplier>().HasData(
@@ -278,8 +308,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				supplierContactNumber = 09651232235,
 				supplierEmail = "addvert214@gmail.com",
 				supplierStatus = "Active",
-				supplierDescription = "N/A",
-				supplierLotBlk = "c4 l5",
+				supplierUnitNumber = "c4 l5",
 				supplierStreetSubdv = "E. Corazon",
 				supplierBarangay = "Maybancal",
 				supplierCity = "Tanay",
@@ -295,8 +324,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				supplierContactNumber = 09651232235,
 				supplierEmail = "addvert214@gmail.com",
 				supplierStatus = "Active",
-				supplierDescription = "N/A",
-				supplierLotBlk = "c4 l5",
+                supplierUnitNumber = "c4 l5",
 				supplierStreetSubdv = "E. Corazon",
 				supplierBarangay = "Maybancal",
 				supplierCity = "Tanay",
@@ -307,20 +335,68 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
 		//Pushed Data into Store Database
 		modelBuilder.Entity<Store>().HasData(
-			new Store
+            new Store
+            {
+                Id = 1,
+                storeName = "Addsome Business Corporation",
+                storeContactNumber = 09651232235,
+                storeEmail = "abiz214@gmail.com",
+                storeStatus = "Active",
+                storeUnitNumber = "c4 l5",
+                storeStreetSubdv = "E. Corazon",
+                storeBarangay = "Maybancal",
+                storeCity = "Tanay",
+                storeProvince = "Rizal",
+                storeZipCode = 1870
+            },
+
+            new Store
 			{
-				Id = 1,
-				storeName = "Abiz Head",
+				Id = 2,
+				storeName = "Ahead Biz Computers",
 				storeContactNumber = 09651232235,
 				storeEmail = "abiz214@gmail.com",
 				storeStatus = "Active",
-				storeLotBlk = "c4 l5",
+                storeUnitNumber = "c4 l5",
 				storeStreetSubdv = "E. Corazon",
 				storeBarangay = "Maybancal",
 				storeCity = "Tanay",
 				storeProvince = "Rizal",
 				storeZipCode = 1870
 			});
+
+		//// Seed data for PurchaseOrder
+		//modelBuilder.Entity<PurchaseOrder>().HasData(
+		//	new PurchaseOrder
+		//	{
+		//		Id = 1,
+		//		Status = "Pending",
+		//		SupplierName = "Supplier ABC",
+		//		ShipmentPreference = "Express",
+		//		LocationDelivery = "Metro Manila",
+		//		PaymentTerm = "Net 30",
+		//		ExpectedDeliveryDate = DateTime.Now.AddDays(7),
+		//		EmployeeName = "John Doe",
+		//		ContactNumber = 1234567890,
+		//		AdditionalNote = "Handle with care",
+		//		PurchasedProducts = new List<PurchaseOrderItem>
+		//		{
+		//			new PurchaseOrderItem
+		//			{
+		//				Id = 1,
+		//				ProductName = "Product 1",
+		//				Cost = 100.00,
+		//				Quantity = 5
+		//			},
+		//			new PurchaseOrderItem
+		//			{
+		//				Id = 2,
+		//				ProductName = "Product 2",
+		//				Cost = 150.00,
+		//				Quantity = 3
+		//			}
+		//		}
+		//	});
 
 		//modelBuilder.Entity<OrderHeader>().HasData(
 		//  new OrderHeader

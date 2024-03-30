@@ -12,9 +12,10 @@ namespace ABC.Shared.Utility
 		public const string Role_Customer = "Customer";
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Employee";
+        public const string Role_Manager = "Manager";
 
-		//Shipment Status
-		public const string StatusPending = "Pending";
+        //Shipment Status
+        public const string StatusPending = "Pending";
 		public const string StatusApproved = "Approved";
 		public const string StatusProcessing = "Processing";
 		public const string StatusShipped = "Out for Delivery";
@@ -23,12 +24,21 @@ namespace ABC.Shared.Utility
 		public const string StatusCancelled = "Cancelled";
         public const string StatusRefunded = "Refunded";
 
+        //Transfer status
+        public const string StatusTransferWaiting = "Waiting for Approval";
+        public const string StatusTransferApproved = "Approved";
+        public const string StatusTransferRejected = "Rejected";
+        public const string StatusTransferCompleted = "Transfer Completed";
 
         //Payment Status
         public const string PaymentStatusPending = "Pending"; //default 
 		public const string PaymentStatusApproved = "Paid";
 
+        //Payment Mode
+        public const string PaymentModeCash = "Cash";
+        public const string PaymentModeBank = "Bank Transfer";
+        public const string PaymentModeCOD = "COD";
 
-		public const string SessionCart = "SessionShoppingCart";
+        public const string SessionCart = "SessionShoppingCart";
 	}
 }

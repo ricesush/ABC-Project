@@ -1,0 +1,42 @@
+@using ABC.Shared.Models
+@using Layout
+@page "/AuditTrail"
+@layout AdminLayout
+
+<PageTitle>ABC - Audit Log</PageTitle>
+
+<AuthorizeView Roles="Admin" Context="innerContext">
+    <section class="container pt-2 pb-5">
+        <div class="row pb-4">
+            <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
+                <h1>Audit Log</h1>
+            </div>
+        </div>
+
+        <table id="tblData" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Time Stamp</th>
+                    <th scope="col">Employee</th>
+                    <th scope="col">User Role</th>
+                    <th scope="col">Changes</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Page</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var log in Audits)
+                {
+                    <tr>
+                        <td>@log.Timestamp</td>
+                        <td>@log.UserName</td>
+                        <td>@log.Role</td>
+                        <td>@log.Changes</td>
+                        <td>@log.Action</td>
+                        <td>@log.EntityName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</AuthorizeView>

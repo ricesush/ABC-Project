@@ -4,6 +4,7 @@ using ABC.Client.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ABC.Client.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240330155157_StoreinUserTable_ProductStatus_OtherChanges")]
+    partial class StoreinUserTable_ProductStatus_OtherChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,69 +117,69 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7f24ed53-fb08-4add-9d09-c8ef36747db0",
+                            Id = "d40f295f-4435-4f1d-83fe-22014741caa4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86c89c3a-b0ba-4433-bc57-5ecf6788362d",
+                            ConcurrencyStamp = "7a494a51-e020-44ae-b70e-c6e1d5287d8d",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Admin",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP43tjxLu1uHqcJDF7HCzdOmQVoQCf97LK4zneXegsVnJegIc8dhKSJYdTyLgxCVlQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAECVUveOwvQxWkGbRKghlfbd6q1fLuoufv7/N+lkIEIVN3XCIabbxqp7leyxyt7pg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "61e92534-32fb-4983-9ef6-607f76a1b770",
+                            SecurityStamp = "52d9eade-eb65-4848-9566-da5cd1e2f4ab",
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         },
                         new
                         {
-                            Id = "7bf0e188-2c97-4276-ba3d-62e9302c7da4",
+                            Id = "2d0d8b23-a7cf-4dd6-9a8e-88d18f3a7f7f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1be0a2e2-759c-4aa2-9b0d-a943df772ed2",
+                            ConcurrencyStamp = "1ffd56e5-d848-4670-8791-0cdd0016bbcf",
                             Email = "manager@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Manager",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJjUa0w7nTKbM4Sfuq7757WidVrLG3SYnmwBqat49/LFRc7l+RwbJvosFXZL6+f16g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHAvzdIqbpjEyv4hYOz3dqlj0A3I6GTyg1Hz5Rb2b3lXTa+sluOJHfyS+qlW/h1yig==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2e0a0202-3e11-46e4-9b76-2cf7af75102e",
+                            SecurityStamp = "f14cb160-6588-4448-886a-3bf340a74fe2",
                             TwoFactorEnabled = false,
                             UserName = "manager@abc.com"
                         },
                         new
                         {
-                            Id = "bd4f17de-d00c-497b-ba91-3568334e9d13",
+                            Id = "11f56711-e9e8-4859-a4d5-521f95cf8f0a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2d137727-9c75-4c81-925b-8b65c4bfe94a",
+                            ConcurrencyStamp = "51190ac5-5b05-47b2-bc4e-986cb266f4cf",
                             Email = "emp@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Employee",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "EMP@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMwXJHeSx7I0b7f1cNS9n7gr1uac3A1nsX9VQ5LZX/AidKZ979BmpMsI3RjseMxmEg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGZ9CiYLh+dQmmmRWBVLmtWdxcqzwBm15bXEEXCZqHTCjRNdKqCPc6bYOLqQghv9mg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7bf076a3-356b-4ac1-a74f-74569fa6e9ea",
+                            SecurityStamp = "ac57c541-9ff9-4a0a-bc8e-cdf8000be5ce",
                             TwoFactorEnabled = false,
                             UserName = "emp@abc.com"
                         },
                         new
                         {
-                            Id = "68e95a5e-b855-4b34-81fe-68532c11543d",
+                            Id = "1d1d6d57-99b4-4bae-9df9-517a07a1a810",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ea55a40b-fcd5-49ba-8868-ebadfb31b4e6",
+                            ConcurrencyStamp = "7fc213ad-494b-4202-a3b8-a3cb02494772",
                             Email = "cust@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Customer",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "CUST@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAH0/XYcHDMkslaV5/2S+IF0BFG/ewG8xUYL4auPDqPkVQntNfOcG6MD6WbqOdniyw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC5sRmqpwJfG7WVIUcuSpPEk4owiPDBQ79mFqCz2KceESeG/z4bnea9lPWqc26rGkw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9ba467d0-c875-43f2-b3ea-1e3786f02be5",
+                            SecurityStamp = "0c182087-5d2b-4105-8f44-23142fbab38f",
                             TwoFactorEnabled = false,
                             UserName = "cust@abc.com"
                         });
@@ -364,7 +367,7 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2b115604-8538-4080-acca-9bb6b3aea9e1"),
+                            Id = new Guid("79d4853e-5463-49b0-8922-fd09c52c57f2"),
                             ApSuUn = "Unit 1234",
                             Barangay = "Batman",
                             City = "Antipolo",
@@ -494,6 +497,9 @@ namespace ABC.Client.Migrations
                     b.Property<float>("CostPrice")
                         .HasColumnType("real");
 
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -501,6 +507,9 @@ namespace ABC.Client.Migrations
                     b.Property<string>("Duration")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndSaleDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -540,9 +549,8 @@ namespace ABC.Client.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("status")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -562,8 +570,10 @@ namespace ABC.Client.Migrations
                             Brand = "HP",
                             CategoryId = 1,
                             CostPrice = 800f,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Versatile all-in-one printer for printing, copying, and scanning",
                             Duration = "12 months from date of purchase",
+                            EndSaleDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
                             MinimumStockQuantity = 5,
                             Provider = "Third-Party Warranty Company",
@@ -574,8 +584,7 @@ namespace ABC.Client.Migrations
                             SupplierId = 2,
                             Type = "Extended Warranty",
                             addNotes = "Additional Notes is here color touchscreen interface ",
-                            productName = "XYZ123 All-in-One Printer",
-                            status = "Active"
+                            productName = "XYZ123 All-in-One Printer"
                         },
                         new
                         {
@@ -584,8 +593,10 @@ namespace ABC.Client.Migrations
                             Brand = "Samsung",
                             CategoryId = 2,
                             CostPrice = 1200f,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Panoramic view with motion detection",
                             Duration = "7 days from date of purchase",
+                            EndSaleDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
                             MinimumStockQuantity = 4,
                             Provider = "Manufacturer",
@@ -595,8 +606,7 @@ namespace ABC.Client.Migrations
                             StoreId = 1,
                             SupplierId = 1,
                             Type = "Manufacturers Warranty",
-                            productName = "SmartCam 360 Security Camera",
-                            status = "Active"
+                            productName = "SmartCam 360 Security Camera"
                         },
                         new
                         {
@@ -605,8 +615,10 @@ namespace ABC.Client.Migrations
                             Brand = "Dell",
                             CategoryId = 4,
                             CostPrice = 600f,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lightweight 13-inch laptop with SSD and 8GB RAM",
                             Duration = "12 months from date of purchase",
+                            EndSaleDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
                             MinimumStockQuantity = 3,
                             Provider = "Third-Party Warranty Company",
@@ -617,8 +629,7 @@ namespace ABC.Client.Migrations
                             SupplierId = 2,
                             Type = "Extended Warranty",
                             addNotes = "Backlit keyboard, Windows 10",
-                            productName = "ABC789 13-inch Laptop",
-                            status = "Active"
+                            productName = "ABC789 13-inch Laptop"
                         },
                         new
                         {
@@ -627,8 +638,10 @@ namespace ABC.Client.Migrations
                             Brand = "Apple",
                             CategoryId = 4,
                             CostPrice = 500f,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "5.8-inch OLED smartphone with dual camera",
                             Duration = "24 months from date of purchase",
+                            EndSaleDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
                             MinimumStockQuantity = 5,
                             Provider = "Manufacturer Warranty",
@@ -639,8 +652,7 @@ namespace ABC.Client.Migrations
                             SupplierId = 1,
                             Type = "Extended Warranty",
                             addNotes = "Facial recognition, water resistant",
-                            productName = "XYZ101 Smartphone",
-                            status = "Active"
+                            productName = "XYZ101 Smartphone"
                         },
                         new
                         {
@@ -649,8 +661,10 @@ namespace ABC.Client.Migrations
                             Brand = "Bose",
                             CategoryId = 4,
                             CostPrice = 150f,
+                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Noise cancelling wireless over-ear headphones",
                             Duration = "12 months from date of purchase",
+                            EndSaleDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
                             MinimumStockQuantity = 5,
                             Provider = "Third-Party Warranty Company",
@@ -661,8 +675,7 @@ namespace ABC.Client.Migrations
                             SupplierId = 2,
                             Type = "Extended Warranty",
                             addNotes = "Bluetooth, 30+ hour battery life",
-                            productName = "XYZ222 Wireless Headphones",
-                            status = "Active"
+                            productName = "XYZ222 Wireless Headphones"
                         });
                 });
 
@@ -984,25 +997,25 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "17c1bed5-0b14-482e-b260-878dc8d65d10",
+                            Id = "c7016ec8-9293-421e-af6a-8ed6406ab0a6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "dea49970-ba2e-4189-b00b-9413375878a0",
+                            Id = "75358206-2d78-4dd7-8dd4-e784623f864c",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "63a131ae-07bc-42ae-a0e3-f2aa69d593b1",
+                            Id = "396561dc-3ada-4d94-80bb-d3743795ef3a",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "ad9a7c0a-58d6-4f70-adcc-a691bfea4716",
+                            Id = "8e7e6469-30b3-42eb-8504-4508b8a71dc1",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -1097,23 +1110,23 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "7f24ed53-fb08-4add-9d09-c8ef36747db0",
-                            RoleId = "17c1bed5-0b14-482e-b260-878dc8d65d10"
+                            UserId = "d40f295f-4435-4f1d-83fe-22014741caa4",
+                            RoleId = "c7016ec8-9293-421e-af6a-8ed6406ab0a6"
                         },
                         new
                         {
-                            UserId = "7bf0e188-2c97-4276-ba3d-62e9302c7da4",
-                            RoleId = "dea49970-ba2e-4189-b00b-9413375878a0"
+                            UserId = "2d0d8b23-a7cf-4dd6-9a8e-88d18f3a7f7f",
+                            RoleId = "75358206-2d78-4dd7-8dd4-e784623f864c"
                         },
                         new
                         {
-                            UserId = "bd4f17de-d00c-497b-ba91-3568334e9d13",
-                            RoleId = "63a131ae-07bc-42ae-a0e3-f2aa69d593b1"
+                            UserId = "11f56711-e9e8-4859-a4d5-521f95cf8f0a",
+                            RoleId = "396561dc-3ada-4d94-80bb-d3743795ef3a"
                         },
                         new
                         {
-                            UserId = "68e95a5e-b855-4b34-81fe-68532c11543d",
-                            RoleId = "ad9a7c0a-58d6-4f70-adcc-a691bfea4716"
+                            UserId = "1d1d6d57-99b4-4bae-9df9-517a07a1a810",
+                            RoleId = "8e7e6469-30b3-42eb-8504-4508b8a71dc1"
                         });
                 });
 

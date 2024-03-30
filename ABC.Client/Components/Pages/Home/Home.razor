@@ -20,19 +20,19 @@
             <p>Elevate your experience!</p>
         </div>
         <div class="row my-3 mx-auto">
-            @if (topSellingItems != null && topSellingItems.Any())
+            @if (BestSellingProducts != null && BestSellingProducts.Any())
             {
-                foreach (var orderDetail in topSellingItems)
+                foreach (var orderDetail in BestSellingProducts.Take(3))
                 {
                     <div class="col-md-4 my-3">
                         <div class="card productcard h-100 mx-auto">
-                            <a href="ProductDetails?product=@orderDetail.Product.productName&id=@orderDetail.Product.Id" class="text-decoration-none">
-                                <img src="@orderDetail.Product.ImageUrl" class="card-img-top">
+                            <a href="ProductDetails?product=@orderDetail.productName&id=@orderDetail.Id" class="text-decoration-none">
+                                <img src="@orderDetail.ImageUrl" class="card-img-top">
                                 <div class="card-body d-flex flex-column">
-                                    <h3 class="card-title mb-5 h-50 fw-bold">@orderDetail.Product.productName</h3>
+                                    <h3 class="card-title mb-5 h-50 fw-bold">@orderDetail.productName</h3>
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-text mb-0 fw-bold">Php @orderDetail.Product.RetailPrice</p>
-                                        <p class="card-text mb-0">@orderDetail.Product.StockQuantity left</p>
+                                        <p class="card-text mb-0 fw-bold">Php @orderDetail.RetailPrice</p>
+                                        <p class="card-text mb-0">@orderDetail.StockQuantity left</p>
                                     </div>
                                 </div>
                             </a>

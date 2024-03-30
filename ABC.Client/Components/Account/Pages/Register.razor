@@ -138,15 +138,38 @@
 				</div>
 			</section>
 
-
-
 			<section>
-				<div class="agreementText my-4">
+				<AuthorizeView Roles="Admin" Context="innerContext">
+					<div class="row my-2">
+						<div class="col-6">
+							<div class="input-group mb-3">
+								<span class="input-group-text">User Role</span>
+								<select class="form-select" aria-label="EmployeeRole" @bind="Input.Role">
+									<option selected disabled>Select a role for the employee</option>
+									<option value="role1">Regular Employee</option>
+									<option value="role2">Manager</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="input-group mb-3">
+								<span class="input-group-text">Store</span>
+								<select class="form-select" aria-label="EmployeeRole" @bind="Input.Role">
+									<option selected disabled>Select a store for the employee</option>
+									<option value="store1">Addsome Business Corporation</option>
+									<option value="store2">Ahead Biz Computers</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</AuthorizeView>
+			</section>
+			<button type="submit" class="w-100 btn btn-lg">Register</button>
+			<section>
+				<div class="agreementText">
 					<p>By clicking the <b>"Register"</b> button, you agree to <a href="/Privacy">Terms of Use and Privacy Policy</a> of ABC Shopping website</p>
 				</div>
 			</section>
-
-			<button type="submit" class="w-100 btn btn-lg">Register</button>
 		</EditForm>
 	</div>
 </section>
@@ -192,12 +215,12 @@
 			return;
 		}
 
-		if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
-		{
-			RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
-			RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-			RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-		}
+		// if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+		// {
+		// 	RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
+		// 	RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
+		// 	RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
+		// }
 
 		if (!String.IsNullOrEmpty(Input.Role))
 		{
@@ -264,8 +287,6 @@
 		}
 	}
 
-
-
 	private async Task ValidatePhoneNumber(ChangeEventArgs e)
 	{
 		string phoneNumber = e?.Value?.ToString();
@@ -274,12 +295,17 @@
 		phoneNumber = new string(phoneNumber.Where(char.IsDigit).ToArray());
 
 		// Limit the length to 10 digits
-		if (phoneNumber.Length >= 10)
+		if (phoneNumber.Length == 10 )
 		{
 			// Ensure the phone number starts with "9"
 			if (!phoneNumber.StartsWith("9"))
 			{
 				phoneNumber = "";
+			}
+
+			if (phoneNumber.Length < 10 && phoneNumber.Length == 11)
+			{
+				PhoneNumberMessage = "Please input the exactly 10 digits of your contact number, excluding the 0";
 			}
 
 			// Update the Input.PhoneNumber property with the formatted phone number
@@ -301,15 +327,9 @@
 		else
 		{
 			// Clear the error message if the input is not yet 10 digits
-			PhoneNumberMessage = "";
+			PhoneNumberMessage = "Contact number should not be lower or exceeds 10 digits";
 		}
 	}
-
-
-
-
-
-
 
 	private ApplicationUser CreateUser()
 	{

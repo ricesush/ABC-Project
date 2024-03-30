@@ -9,9 +9,9 @@ namespace ABC.Shared.Models.ViewModels
     public class ShoppingCartVM
     {
         public IEnumerable<ShoppingCart> ShoppingCartList { get; set; }
-        public OrderHeader OrderHeader { get; set; }
-        public List<OrderDetail> OrderDetailsList { get; set; }
-        public Product Product {  get; set; }
+		public OrderHeader OrderHeader { get; set; } = new();
+        public List<OrderDetail> OrderDetailsList { get; set; } = new();
+		public Product Product {  get; set; } = new();
 
 	}
 }

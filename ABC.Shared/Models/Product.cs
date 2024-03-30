@@ -14,8 +14,6 @@ namespace ABC.Shared.Models
 	{
 		[Key]
 		public int Id { get; set; }
-		public DateTime DateAdded { get; set; }
-		public DateTime EndSaleDate { get; set; }
 
 		//Product Image
 		[DisplayName("For Inventory")]
@@ -23,6 +21,7 @@ namespace ABC.Shared.Models
 		public string ImageUrl { get; set; }
 		public long Barcode { get; set; }
 		public string SKU { get; set; }
+
 		[Required]
 		[DisplayName("Product Name")]
 		public string productName { get; set; }
@@ -70,7 +69,7 @@ namespace ABC.Shared.Models
 		[ForeignKey("SupplierId")]
 		[ValidateNever]
 		public Supplier Supplier { get; set; }
-		public bool? status { get; set; }
+		public string status { get; set; }
 
 
 		[NotMapped]

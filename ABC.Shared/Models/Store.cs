@@ -9,52 +9,53 @@ using System.Numerics;
 
 namespace ABC.Shared.Models
 {
-    public class Store
-    {
-        [Key]
-        public int Id { get; set; }
+	public class Store
+	{
+		[Key]
+		public int Id { get; set; }
 
-        [Required]
-        [DisplayName("Store Name")]
-        public string storeName { get; set; }
+		[Required]
+		[DisplayName("Store Name")]
+		public string storeName { get; set; }
 
-        [Required]
+		[Required]
 
-        [DisplayName("Contact Number")]
-        public long storeContactNumber { get; set; }
+		[DisplayName("Contact Number")]
+		public long storeContactNumber { get; set; }
 
-        [Required]
-        [DisplayName("Email Address")]
-        public string storeEmail { get; set; }
+		[Required]
+		[DisplayName("Email Address")]
+		public string storeEmail { get; set; }
 
-        [Required]
+		[Required]
 
-        [DisplayName("Status")]
-        public string storeStatus { get; set; }
+		[DisplayName("Status")]
+		public string storeStatus { get; set; }
 
-        [DisplayName("Lot & Blk no.")]
-        public string storeLotBlk { get; set; }
+		[DisplayName("Unit Number")]
+		public string storeUnitNumber { get; set; }
 
-        [Required]
-        [DisplayName("Street/Subdivision")]
-        public string storeStreetSubdv { get; set; }
+		[Required]
+		[DisplayName("Street/Subdivision")]
+		public string storeStreetSubdv { get; set; }
 
-        [Required]
-        [MaxLength(30)]
-        [DisplayName("Barangay")]
-        public string storeBarangay { get; set; }
+		[Required]
+		[MaxLength(30)]
+		[DisplayName("Barangay")]
+		public string storeBarangay { get; set; }
 
 
-        [DisplayName("City")]
-        public string storeCity { get; set; }
+		[DisplayName("City")]
+		public string storeCity { get; set; }
 
-        [Required]
-        [MaxLength(30)]
-        [DisplayName("Province")]
-        public string storeProvince { get; set; }
+		[Required]
+		[MaxLength(30)]
+		[DisplayName("Province")]
+		public string storeProvince { get; set; }
 
-        [Required]
-        [DisplayName("Zip Code")]
-        public int storeZipCode { get; set; }
-    }
+		[Required]
+		[DisplayName("Zip Code")]
+		[MaxLength(5)]
+		public int storeZipCode { get; set; }
+	}
 }

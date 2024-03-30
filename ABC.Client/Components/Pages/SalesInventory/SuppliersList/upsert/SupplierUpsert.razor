@@ -68,7 +68,7 @@
 							<div class="input-group mb-3">
 								<label class="input-group-text" for="supplierStatus">Status</label>
 								<select class="form-select" id="supplierStatus" @bind="SelectedSupplier.supplierStatus">
-									<option disabled>Select supplier's status</option>
+									<option disabled selected>Select supplier's status</option>
 									<option>Active</option>
 									<option>Inactive</option>
 								</select>
@@ -91,13 +91,6 @@
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="form-floating">
-							<textarea @bind="SelectedSupplier.supplierDescription" class="form-control h-100" placeholder="Write a short description about the supplier" id="description" ></textarea>
-							<label for="floatingTextarea2">Short Description</label>
-						</div>
-					</div>
-
 					<!--Address-->
 					<div class="row pt-4 pb-3">
 						<div class="col-12">
@@ -110,8 +103,8 @@
 								<div class="row">
 									<div class="col-4">
 										<div class="input-group mb-3">
-											<label class="input-group-text" id="lotAndBlock">Lot & Block #</label>
-											<input @bind-value="SelectedSupplier.supplierLotBlk" type="text" class="form-control" id="lotAndBlock" aria-describedby="Lot and Block Number">
+											<label class="input-group-text" id="UnitNumber">Lot & Block #</label>
+											<input @bind-value="SelectedSupplier.supplierUnitNumber" type="text" class="form-control" id="UnitNumber" aria-describedby="Unit Number">
 										</div>
 									</div>
 									<div class="col-4">

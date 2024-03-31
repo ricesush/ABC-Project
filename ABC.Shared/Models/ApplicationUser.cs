@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,7 +20,12 @@ namespace ABC.Shared.Models
         public string? Province { get; set; }
         public string? PostalCode { get; set; }
 
-        [NotMapped]
+		public int? StoreId { get; set; }
+		[ForeignKey("StoreId")]
+		[ValidateNever]
+		public Store? Store { get; set; }
+
+		[NotMapped]
         public string Role { get; set; }
     }
 }

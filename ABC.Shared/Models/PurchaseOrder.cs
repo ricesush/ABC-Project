@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace ABC.Shared.Models
 {
@@ -12,12 +14,11 @@ namespace ABC.Shared.Models
     {
         [Key]
         public int Id { get; set; }
-
+        
         [Required]
         [MaxLength(30)]
         [DisplayName("Supplier Name")]
         public string SupplierName { get; set; }
-
         [DisplayName("Shipment Preference")]
         public string ShipmentPreference { get; set; }
 
@@ -40,8 +41,7 @@ namespace ABC.Shared.Models
         [DisplayName("Additional Note")]
         public string AdditionalNote { get; set; }
         [DisplayName("Purchased Products")]
-
-        public List<PurchaseOrderItem> PurchasedProducts { get; set; }
+		public List<PurchaseOrderItem> PurchasedProducts { get; set; }
     }
 
     public class PurchaseOrderItem

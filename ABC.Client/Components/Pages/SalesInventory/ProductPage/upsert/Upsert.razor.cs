@@ -3,8 +3,10 @@ using ABC.Shared.Models;
 using ABC.Shared.Models.ViewModels;
 using ABC.Shared.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
+using System.Security.Claims;
 
 
 namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
@@ -18,10 +20,13 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
     [Inject] CategoryService_SQL categoryService_SQL { get; set; }
     [Inject] SupplierService_SQL supplierService_SQL { get; set; }
     [Inject] StoreService_SQL storeService_SQL { get; set; }
-
+    
     [Inject] IWebHostEnvironment _webHostEnvironment { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     [Inject] NavigationManager NavigationManager { get; set; }
+    [Inject] AuditService_SQL auditService_SQL { get; set; }
+    [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
     #endregion
 
     #region fields
@@ -29,11 +34,13 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
     private List<Category> CategoryList { get; set; } = [];
     private List<Supplier> SupplierList { get; set; } = [];
     private List<Store> StoreList { get; set; } = [];
+
+    public ApplicationUser UserInfo { get; set; }
     private Product SelectedProduct { get; set; } = new();
 
+    private string userId;
     private IBrowserFile selectedFile;
     private string previewImageData = null;
-
 
     [SupplyParameterFromQuery(Name = "id")]
 	public int ProductId { get; set; }
@@ -64,6 +71,15 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
 
     private async Task SaveProduct()
     {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        var userName = user.FindFirst(ClaimTypes.Name)?.Value;
+        var userRole = user.FindFirst(ClaimTypes.Role)?.Value;
+
+        DateTime utcTime = DateTime.UtcNow;
+        TimeZoneInfo dtzi = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+        DateTime pstTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, dtzi);
+
         if (SelectedProduct.Id == 0)
         {
             // If the Id is 0, it's a new product
@@ -84,6 +100,18 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
 
             bool added = await productService_SQL.AddProduct(applicationDbContext, SelectedProduct);
             NavigationManager.NavigateTo("/ProductList", true);
+            AuditLog auditLog = new AuditLog
+            {
+                UserName = userName,
+                Action = "Added Product",
+                EntityName = "Product",
+                EntityKey = SelectedProduct.Id.ToString(),
+                Changes = $"{SelectedProduct.productName} is added.",
+                Timestamp = pstTime,
+                FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                Role = userRole
+            };
+            await auditService_SQL.AddAudit(applicationDbContext, auditLog);
         }
         else
         {
@@ -116,6 +144,18 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
             if (updated)
             {
                 NavigationManager.NavigateTo("/ProductList", true);
+                AuditLog auditLog = new AuditLog
+                {
+                    UserName = userName,
+                    Action = "Update",
+                    EntityName = "Product",
+                    EntityKey = SelectedProduct.Id.ToString(),
+                    Changes = $"{SelectedProduct.productName} is updated.",
+                    Timestamp = pstTime,
+                    FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                    Role = userRole
+                };
+                await auditService_SQL.AddAudit(applicationDbContext, auditLog);
             }
             else
             {

@@ -14,19 +14,10 @@
             <h1>Suppliers List</h1>
         </div>
 
-        <!-- New Supplier Button -->
-        <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
-            <div class="dropdown d-flex justify-content-center">
-                <a class="btn btn-primary" role="button" href="SupplierUpsert">
-                    <i class="bi bi-plus-lg"></i> New Supplier
-                </a>
-            </div>
-        </div>
-
         <!-- Export Button -->
-        <div class="col-lg-2 col-sm-4 text-end mb-3 mb-sm-0">
-            <a href="#" class="btn btn-success">
-                <i class="bi bi-box-arrow-up"></i> Export
+        <div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
+            <a class="btn btn-primary" role="button" href="SupplierUpsert">
+                Add Supplier
             </a>
         </div>
     </div>
@@ -57,7 +48,7 @@
                             <td>@supplier.supplierCompanyName</td>
                             <td>@supplier.supplierContactNumber</td>
                             <td>@supplier.supplierEmail</td>
-                            <td>@($"{supplier.supplierLotBlk ?? ""}, {supplier.supplierStreetSubdv ?? ""}, {supplier.supplierBarangay ?? ""}, {supplier.supplierCity}, {supplier.supplierProvince}, {supplier.supplierZipCode}")</td>
+                            <td>@($"{supplier.supplierUnitNumber ?? ""}, {supplier.supplierStreetSubdv ?? ""}, {supplier.supplierBarangay ?? ""}, {supplier.supplierCity}, {supplier.supplierProvince}, {supplier.supplierZipCode}")</td>
                             <td class="text-center d-flex justify-content-around">
                                 <a href="SupplierUpsert?id=@supplier.Id" class="a-style-none">
                                     <i class="bi bi-pencil-square text-primary cursor-pointer" title="Edit" tabindex="0"></i>

@@ -22,12 +22,6 @@
 					<i class="bi bi-shop"></i>
 				</a>
 			</div>
-			<!--Notification Bell-->
-			<div class="col-auto">
-				<div class="btn btn-outline-light disabled" title="Notification">
-					<i class="bi bi-bell"></i>
-				</div>
-			</div>
 			<!--Profile-->
 			<div class="col-auto">
 				<a role="button">
@@ -104,110 +98,106 @@
 					<ul class="list-unstyled">
 						<li>
 							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="ProductList">Product list</NavLink>
-
 							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="Category">Category list</NavLink>
-			
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1 disabled" href="#">Purchase Order</NavLink>
-					
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1 disabled" href="#">Stock Transfer</NavLink>
+							<AuthorizeView Roles="Admin" Context="innerContext">
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/PurchaseOrdersList">Purchase Orders</NavLink>
+							</AuthorizeView>
 						</li>
 					</ul>
 				</div>
 			</li>
 			
 
-			<li>	
-				<!--People-->
-				<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#people-collapse" aria-expanded="false" >
-					<span class="d-flex align-items-center">
-						<i class="bi bi-people pe-2"></i>
-						<b>People</b>
-						<span class="ms-auto">
-							<i class="bi bi-chevron-down"></i>
+			<AuthorizeView Roles="Admin" Context="innerContext">
+				<li>
+					<!--People-->
+					<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#people-collapse" aria-expanded="false">
+						<span class="d-flex align-items-center">
+							<i class="bi bi-people pe-2"></i>
+							<b>People</b>
+							<span class="ms-auto">
+								<i class="bi bi-chevron-down"></i>
+							</span>
 						</span>
-					</span>
-				</NavLink>
+					</NavLink>
 
-				<div class="collapse" id="people-collapse">
-					<ul class="list-unstyled">
-						<li>
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="CustomerList">Customers</NavLink>
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="SupplierList">Suppliers</NavLink>
-						</li>
-					</ul>
-				</div>
-			</li>
+					<div class="collapse" id="people-collapse">
+						<ul class="list-unstyled">
+							<li>
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="CustomerList">Customers</NavLink>
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="SupplierList">Suppliers</NavLink>
+							</li>
+						</ul>
+					</div>
+				</li>
 
-			<li>
-				<!--Report & Analytics-->
-				<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#report-collapse" aria-expanded="false">
-					<span class="d-flex align-items-center">
-						<i class="bi bi-clipboard-data pe-2"></i>
-						<b>Reports</b>
-						<span class="ms-auto">
-							<i class="bi bi-chevron-down"></i>
+				<li>
+					<!--Report & Analytics-->
+					<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#report-collapse" aria-expanded="false">
+						<span class="d-flex align-items-center">
+							<i class="bi bi-clipboard-data pe-2"></i>
+							<b>Reports</b>
+							<span class="ms-auto">
+								<i class="bi bi-chevron-down"></i>
+							</span>
 						</span>
-					</span>
-				</NavLink>
+					</NavLink>
 
-				<div class="collapse" id="report-collapse">
-					<ul class="list-unstyled">
-						<li>
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/SalesReport">Sales Report</NavLink>
-						
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/InventoryReport">Inventory Report</NavLink>
-						</li>
-					</ul>
-				</div>
-			</li>
+					<div class="collapse" id="report-collapse">
+						<ul class="list-unstyled">
+							<li>
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/SalesReport">Sales Report</NavLink>
+
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/InventoryReport">Inventory Report</NavLink>
+							</li>
+						</ul>
+					</div>
+				</li>
 
 
-			<li>
-				<!--Security-->
-				<NavLink class="btn btn-outline-secondary w-100 text-start disabled" data-bs-toggle="collapse" href="#security-collapse" aria-expanded="false">
-					<span class="d-flex align-items-center">
-						<i class="bi bi-shield pe-2"></i>
-						<b>Security</b>
-						<span class="ms-auto">
-							<i class="bi bi-chevron-down"></i>
+				<li>
+					<!--Security-->
+					<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#security-collapse" aria-expanded="false">
+						<span class="d-flex align-items-center">
+							<i class="bi bi-shield pe-2"></i>
+							<b>Security</b>
+							<span class="ms-auto">
+								<i class="bi bi-chevron-down"></i>
+							</span>
 						</span>
-					</span>
-				</NavLink>
+					</NavLink>
 
-				<div class="collapse" id="security-collapse">
-					<ul class="list-unstyled">
-						<li>
-							<a class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="#">User Management</a>
-						
-							<a class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="#">Audit Trail</a>
-						</li>
-					</ul>
-				</div>
-			</li>
+					<div class="collapse" id="security-collapse">
+						<ul class="list-unstyled">
+							<li>
+								<a class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/EmployeesList">Employees List</a>
 
-			<li>
-				<!--Settings-->
-				<NavLink class="btn btn-outline-secondary w-100 text-start disabled" data-bs-toggle="collapse" href="#settings-collapse" aria-expanded="false">
-					<span class="d-flex align-items-center">
-						<i class="bi bi-gear pe-2"></i>
-						<b>Settings</b>
-						<span class="ms-auto">
-							<i class="bi bi-chevron-down"></i>
+								<a class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/AuditTrail">Audit Log</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li>
+					<!--Settings-->
+					<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#settings-collapse" aria-expanded="false">
+						<span class="d-flex align-items-center">
+							<i class="bi bi-gear pe-2"></i>
+							<b>Settings</b>
+							<span class="ms-auto">
+								<i class="bi bi-chevron-down"></i>
+							</span>
 						</span>
-					</span>
-				</NavLink>
-				<div class="collapse" id="settings-collapse">
-					<ul class="list-unstyled">
-						<li>
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="#">Company Settings</NavLink>
-						
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="#">System Settings</NavLink>
-						
-							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="#">Website Settings</NavLink>
-						</li>
-					</ul>
-				</div>
-			</li>
+					</NavLink>
+					<div class="collapse" id="settings-collapse">
+						<ul class="list-unstyled">
+							<li>
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/WebSettings">Website Settings</NavLink>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</AuthorizeView>
 		</ul>
 	</div>
 </div>

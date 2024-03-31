@@ -19,8 +19,14 @@ public partial class ApplicationUserService_SQL
 		{
 			var context = DBContext;
 			var applicationUserList = context.ApplicationUsers;
+			IEnumerable<dynamic> userRoles = context.UserRoles;
+			IEnumerable<dynamic> roles = context.Roles;
+			//var role = userRoles.FirstOrDefault(x => x.UserId == item.Id);
 			foreach (var item in applicationUserList)
 			{
+				var userRoleIds = userRoles.FirstOrDefault(x => x.UserId == item.Id);
+				var userRole = roles.FirstOrDefault(x => x.Id == userRoleIds.RoleId);
+				item.Role = userRole.Name;
 				_applicationUser.Add(item);
 			}
 			return _applicationUser;

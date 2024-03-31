@@ -3,6 +3,6 @@
 }
 
 h1 {
-    color: #223442;
+    color: var(--maincolor-darkblue--);
     font-weight: bold;
 }

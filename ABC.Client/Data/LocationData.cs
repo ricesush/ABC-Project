@@ -1,13 +1,71 @@
 ﻿namespace ABC.Client.Data;
 public partial class LocationData
 {
-    public static List<string> Provinces = new List<string> { "Province 1", "Province 2", "Province 3" };
+	public static List<string> Provinces = new List<string> { "Rizal", "Metro Manila", "Manila" };
 
-    public static Dictionary<string, List<string>> Cities = new Dictionary<string, List<string>>
-        {
-            { "Province 1", new List<string> { "City 1-1", "City 1-2", "City 1-3" } },
-            { "Province 2", new List<string> { "City 2-1", "City 2-2", "City 2-3" } },
-            { "Province 3", new List<string> { "City 3-1", "City 3-2", "City 3-3" } }
-        };
+	public static Dictionary<string, List<string>> Cities = new Dictionary<string, List<string>>
+		{
+			{ "Rizal", new List<string>
+				{
+					"Angono",
+					"Antipolo",
+					"Baras",
+					"Binangonan",
+					"Cainta",
+					"Cardona",
+					"Jalajala",
+					"Morong",
+					"Pililla",
+					"Rodriguez",
+					"San Mateo",
+					"Tanay",
+					"Taytay",
+					"Teresa"
+				}
+			},
+
+			{ "Metro Manila", new List<string>
+				{
+					"City of Manila",
+					"Caloocan",
+					"Las Piñas",
+					"Makati",
+					"Malabon",
+					"Mandaluyong",
+					"Marikina",
+					"Muntinlupa",
+					"Navotas",
+					"Parañaque",
+					"Pasay",
+					"Pasig",
+					"Quezon City",
+					"San Juan",
+					"Taguig",
+					"Valenzuela"
+				}
+			},
+
+			{ "Manila", new List<string>
+				{
+					"Binondo",
+					"Ermita",
+					"Intramuros",
+					"Malate",
+					"Paco",
+					"Pandacan",
+					"Port Area",
+					"Quiapo",
+					"Sampaloc",
+					"San Andres",
+					"San Miguel",
+					"San Nicolas",
+					"Santa Ana",
+					"Santa Cruz",
+					"Santa Mesa",
+					"Tondo"
+				}
+			}
+
+		};
 }
 

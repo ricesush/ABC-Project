@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Components;
 using ABC.Client.Data;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using ABC.Shared.Utility;
+using ABC.Client.Components.Pages.ShopWeb.Cart.OrderCheckout;
 
 namespace ABC.Client.Components.Pages.POS;
 public partial class POS
@@ -17,10 +19,12 @@ public partial class POS
     #region DEPENDENCY INJECTIOn
     [Inject] POSService_SQL pOSService_SQL { get; set; }
     [Inject] ProductService_SQL ProductService_SQL { get; set; }
+    [Inject] OrderHeaderService_SQL OrderHeaderService_SQL { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     [Inject] UserManager<ApplicationUser> UserManager { get; set; }
+    [Inject] CustomerService_SQL CustomerService_SQL { get; set; }
     private ApplicationUser applicatioUser { get; set; } = new();
-    
+
     #endregion
 
     #region FIELDS
@@ -54,7 +58,8 @@ public partial class POS
         StateHasChanged();
     }
 
-    private async Task ShowProductDropdownHandler(bool show){
+    private async Task ShowProductDropdownHandler(bool show)
+    {
         await Task.Delay(1000);
         ShowProductDropdown = show;
         StateHasChanged();
@@ -119,7 +124,8 @@ public partial class POS
         };
     }
 
-    private async Task PopulateProductDetails(int productId){
+    private async Task PopulateProductDetails(int productId)
+    {
         ProductInModal = new();
         // Find the Item
         var result = await pOSService_SQL.GetProductInfo(applicationDbContext, productId);
@@ -129,23 +135,28 @@ public partial class POS
         }
     }
 
-    private async Task AddToCart(int productId, int quantity){
+    private async Task AddToCart(int productId, int quantity)
+    {
         // Find the Item
-        if(quantity == 0){
+        if (quantity == 0)
+        {
             return;
         };
         var result = await pOSService_SQL.GetProductInfo(applicationDbContext, productId);
         if (result is not null)
         {
-            OrderDetail NewItem = new(){
-                ProductId = result.Id,
+            OrderDetail NewItem = new()
+            {
+                Id = result.Id,
+                Product = result,
                 Count = quantity,
                 Price = result.RetailPrice,
                 TotalPrice = quantity * result.RetailPrice
             };
 
             var item = ShoppingCart.FirstOrDefault(x => x.ProductId == NewItem.ProductId);
-            if(item is not null && item.Count > 0){
+            if (item is not null && item.Count > 0)
+            {
                 var removed = ShoppingCart.Remove(item);
             }
             ShoppingCart.Add(NewItem);
@@ -154,14 +165,26 @@ public partial class POS
         await UpdateOrderSummary();
         await InvokeAsync(StateHasChanged);
     }
+    public void CancelFees()
+    {
+        // Reset the service fee and delivery fee to zero
+        OrderSummary.ServiceFee = 0;
+        OrderSummary.DeliveryFee = 0;
 
-    private async Task ItemPostRemoval(int productId){
+        // Recalculate total fees
+        UpdateTotalFees();
+    }
+
+    private async Task ItemPostRemoval(int productId)
+    {
         ItemPostRemovalId = productId;
     }
 
-    private async Task RemoveFromCart(){
+    private async Task RemoveFromCart()
+    {
         var item = ShoppingCart.FirstOrDefault(x => x.ProductId == ItemPostRemovalId);
-        if(item is not null && item.Count > 0){
+        if (item is not null && item.Count > 0)
+        {
             var removed = ShoppingCart.Remove(item);
         }
         await InvokeAsync(StateHasChanged);
@@ -186,7 +209,7 @@ public partial class POS
             };
 
             var result = await pOSService_SQL.AddCustomer(applicationDbContext, customer);
-            
+
         }
         catch (Exception ex)
         {
@@ -194,42 +217,108 @@ public partial class POS
         }
     }
 
-    private async Task UpdateTotalFees(){
+    private async Task UpdateTotalFees()
+    {
         TotalFees = OrderSummary.ServiceFee + OrderSummary.DeliveryFee;
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task UpdatePostTotalDiscount(string discountType = "percent"){
+    private async Task UpdatePostTotalDiscount(string discountType = "percent")
+    {
         decimal orderTotal = 0;
-        foreach(var product in ShoppingCart){
+        foreach (var product in ShoppingCart)
+        {
             orderTotal += Convert.ToDecimal(product.TotalPrice);
         }
 
-        if(String.IsNullOrEmpty(discountType)){
+        if (String.IsNullOrEmpty(discountType))
+        {
             discountType = "percent";
         }
         discount.DiscountType = discountType;
-        if(discountType == "percent"){
+        if (discountType == "percent")
+        {
             discount.TotalDiscount = Convert.ToDouble(orderTotal) * (discount.DiscountAmount / 100);
-        }else{
+        }
+        else
+        {
             discount.TotalDiscount = discount.DiscountAmount;
         }
         discount.DiscountedPrice = Convert.ToDouble(orderTotal) - discount.TotalDiscount;
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task UpdateTotalDiscount(){
-        OrderSummary.Discount = Convert.ToDecimal(discount.TotalDiscount); 
+    private async Task UpdateTotalDiscount()
+    {
+        OrderSummary.Discount = Convert.ToDecimal(discount.TotalDiscount);
         await UpdateOrderSummary();
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task UpdateOrderSummary(){
+    private async Task UpdateOrderSummary()
+    {
         decimal orderTotal = 0;
-        foreach(var product in ShoppingCart){
+        foreach (var product in ShoppingCart)
+        {
             orderTotal += Convert.ToDecimal(product.TotalPrice);
         }
         orderTotal += (OrderSummary.ServiceFee + OrderSummary.DeliveryFee) - OrderSummary.Discount;
         OrderSummary.OrderTotal = Convert.ToDouble(orderTotal);
+    }
+
+    private async Task CompleteOrder()
+    {
+        Customer customer = new()
+        {
+            Id = Customer.Id,
+            FirstName = Customer.FirstName,
+            LastName = Customer.LastName,
+            EmailAddress = Customer.EmailAddress,
+            ContactNumber = Convert.ToInt64(Customer.ContactNumber),
+            ApSuUn = Customer.ApSuUn,
+            StreetorSubd = Customer.StreetorSubd,
+            Barangay = Customer.Barangay,
+            City = Customer.City,
+            Province = Customer.Province,
+            ZipCode = Customer.ZipCode
+        };
+        Customer _customer = await CustomerService_SQL.GetCustomerInfo(applicationDbContext, Customer.Id);
+
+        OrderHeader _orderHeader = new()
+        {
+            //OrderDetails = orderDetails,
+            OrderDate = DateTime.UtcNow.ToLocalTime(),
+            ShippingDate = DateTime.UtcNow.ToLocalTime().AddDays(2),
+            OrderTotal = OrderSummary.OrderTotal,
+            OrderStatus = SD.StatusPending,
+            PaymentStatus = SD.PaymentStatusPending, //nakabind yung payment mode ng POS
+            Carrier = OrderSummary.Carrier,
+            Discount = OrderSummary.Discount,
+            ServiceFee = OrderSummary.ServiceFee,
+            DeliveryFee = OrderSummary.DeliveryFee,
+            PaymentMode = SD.PaymentModeCash,
+            OfficialReceipt = OrderSummary.OfficialReceipt,
+            Customer = _customer
+        };
+
+        bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader);
+
+        List<OrderDetail> orderDetails = new();
+        foreach (var item in ShoppingCart)
+        {
+            OrderDetail orderDetail = new()
+            {
+                ProductId = item.Id,
+                //Id = item.Product.Id,
+                //Product = item.Product,
+                OrderHeaderId = _orderHeader.Id,
+                Price = item.Price,
+                Count = item.Count
+            };
+            orderDetails.Add(orderDetail);
+        }
+        bool addedOrderDetail = await OrderHeaderService_SQL.AddOrderDetail(applicationDbContext, orderDetails);
+        await InvokeAsync(StateHasChanged);
+
     }
 }

@@ -1,0 +1,40 @@
+@using ABC.Shared.Models
+@using Layout
+@page "/EmployeesList"
+@layout AdminLayout
+
+<PageTitle>ABC - User Management</PageTitle>
+
+<AuthorizeView Roles="Admin" Context="innerContext">
+    <section class="container pt-2 pb-5">
+        <div class="row pb-3">
+            <!-- Title -->
+            <div class="col-8">
+                <h1><b>Employees</b></h1>
+            </div>
+        </div>
+
+        <table id="tblData" class="table table-bordered table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in employeeUsers)
+                {
+                    <tr>
+                        <td>@($"{user.FirstName} {user.LastName}")</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.Role</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</AuthorizeView>
+

@@ -1,0 +1,52 @@
+﻿@using ABC.Shared.Models
+@using Layout
+@page "/PurchaseOrdersList"
+@layout AdminLayout
+
+@rendermode InteractiveServer
+
+<PageTitle>ABC - Purchase Orders</PageTitle>
+
+<section class="container pt-2 pb-5">
+    <div class="row pb-4">
+        <!-- Title -->
+        <div class="col-8">
+            <h1>Purchase Orders</h1>
+        </div>
+
+        <!-- Export Button -->
+        <div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
+            <a href="/PurchaseOrderForm" class="btn btn-primary">
+                Create Purchase Order
+            </a>
+        </div>
+    </div>
+
+
+    <table id="tblpurchaseOrderData" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Created On</th>
+                <th>Created By</th>
+                <th>Supplier</th>
+                <th>Payment Term</th>
+                <th>Delivery Date</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

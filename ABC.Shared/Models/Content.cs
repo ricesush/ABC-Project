@@ -11,12 +11,20 @@ namespace ABC.Shared.Models
         [DisplayName("About")]
         public string? About { get; set; }
 
+		[DisplayName("Privacy")]
+		public string? Privacy { get; set; }
 
-        [DisplayName("Privacy Policy")]
-        public string? Privacy { get; set; }
+		[DisplayName("Vission & Mission")]
+		public string? VissionMission { get; set; }
 
 
-        [DisplayName("Vision & Mission")]
-        public string? Vision { get; set; }
+		[DisplayName("Terms & Policy")]
+        public string? TermsPolicy { get; set; }
+
+
+        [DisplayName("Return & Refund Process")]
+        public string? returnRefund { get; set; }
+
+
     }
 }

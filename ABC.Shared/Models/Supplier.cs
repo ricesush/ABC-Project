@@ -22,7 +22,6 @@ namespace ABC.Shared.Models
         public string supplierCompanyName { get; set; }
 
         [Required]
-      
         [DisplayName("Contact Number")]
         public long supplierContactNumber { get; set; }
 
@@ -31,16 +30,11 @@ namespace ABC.Shared.Models
         public string supplierEmail { get; set; }
 
         [Required]
-     
         [DisplayName("Status")]
         public string supplierStatus { get; set; }
 
-        [Required]
-        [DisplayName("Description")]
-        public string supplierDescription { get; set; }
-
-        [DisplayName("Lot & Blk no.")]
-        public string supplierLotBlk { get; set; }
+        [DisplayName("Unit Number")]
+        public string supplierUnitNumber { get; set; }
 
         [Required]
         [DisplayName("Street/Subdivision")]

@@ -1,7 +1,11 @@
-﻿using ABC.Client.Data;
+﻿using ABC.Client.Components.Pages.SalesInventory.ProductPage;
+using ABC.Client.Data;
 using ABC.Shared.Models;
 using ABC.Shared.Services;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Components;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
 
 namespace ABC.Client.Components.Pages.SalesInventory.PurchaseOrdersPage;
 
@@ -13,37 +17,185 @@ public partial class PO_Upsert
 	[Inject] SupplierService_SQL supplierService_SQL { get; set; }
 	[Inject] StoreService_SQL storeService_SQL { get; set; }
 	[Inject] ProductService_SQL productService_SQL { get; set; }
+	[Inject] NavigationManager navigationManager { get; set; }
 	#endregion
 
 	#region Fields
-	private List<Product> Products { get; set; } = [];
+	private List<Product> ProductList { get; set; } = [];
 	private List<Supplier> SupplierList { get; set; } = [];
 	private List<Store> StoreList { get; set; } = [];
 
 	[SupplyParameterFromQuery(Name = "id")]
 	public int PurchaseOrderID { get; set; }
 
-	private PurchaseOrder selectedPurchaseOrder { get; set; } = new();
+	[SupplyParameterFromQuery(Name = "Store")]
+	public string StoreId { get; set; }
+
+	//[SupplyParameterFromForm]
+	//public PurchaseOrder purchaseOrder  { get; set; }
+	private List<PurchaseOrderItem> ShoppingCart { get; set; } = [];
+	[SupplyParameterFromForm]
+	public PurchaseOrder selectedPurchaseOrder { get; set; } = new();
+	private String ProductSearchInput { get; set; } = String.Empty;
+	private Product ProductInModal { get; set; } = new();
+	private Store selectedStore { get; set; } = new();
+	private bool ShowProductDropdown { get; set; } = false;
+	private int ItemPostRemovalId { get; set; } = 0;
 	#endregion
 
 	protected override async Task OnInitializedAsync()
 	{
-		productService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
-		await LoadPurchaseOrder();
+		selectedPurchaseOrder ??= new();
+		purchaseOrderService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+		await GetSuppliers();
+        await LoadPurchaseOrder();
+        await SetSupplierDetails();
+		await GetStoreDetails();
+		await InvokeAsync(StateHasChanged);
 	}
-
+	
 	private async Task LoadPurchaseOrder()
 	{
-		// Load product information, category list, store list, and supplier list concurrently
 		var purchaseTask = purchaseOrderService_SQL.GetPurchaseOrderInfo(applicationDbContext, PurchaseOrderID);
-
-		// Await all tasks simultaneously
 		selectedPurchaseOrder = await purchaseTask;
+	}
+
+	private async Task GetStoreDetails()
+	{
+		StoreList = await storeService_SQL.GetStoreList(applicationDbContext);
+	}
+
+	private async Task GetSuppliers()
+	{
+		SupplierList = await supplierService_SQL.GetSupplierList(applicationDbContext);
+	}
+	private async Task GetProductList(ChangeEventArgs e)
+	{
+		ProductSearchInput = e?.Value?.ToString();
+		ProductList.Clear();
+
+		var result = await productService_SQL.GetProductList(applicationDbContext);
+		if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(ProductSearchInput))
+		{
+			ProductList = result
+				.Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
+		}
+		await InvokeAsync(StateHasChanged);
+	}
+
+	private async Task PopulateProductDetails(int productId)
+	{
+		ProductInModal = new();
+		// Find the Item
+		var result = await productService_SQL.GetProductInfo(applicationDbContext, productId);
+		if (result is not null)
+		{
+			ProductInModal = result;
+		}
+	}
+	private async Task SelectedStoreHandler(int storeId)
+	{
+		selectedStore = StoreList.FirstOrDefault(s => s.Id == storeId);
+		if (selectedStore != null)
+		{
+			selectedPurchaseOrder.Store = selectedStore;
+		}
+		await InvokeAsync(StateHasChanged);
+	}
+	private async Task SetSupplierDetails()
+	{
+		int _Id;
+		Supplier selectedSupplier = new();
+		if (!String.IsNullOrEmpty(StoreId) && int.TryParse(StoreId, out _Id))
+		{
+			selectedSupplier = await supplierService_SQL.GetSupplierInfo(applicationDbContext, _Id);
+			selectedPurchaseOrder.Supplier = selectedSupplier;
+		}
+		await InvokeAsync(StateHasChanged);
+	}
+
+	private async Task ShowProductDropdownHandler(bool show)
+	{
+		await Task.Delay(1000);
+		ShowProductDropdown = show;
+		StateHasChanged();
+	}
+
+	private async Task ItemPostRemoval(int productId)
+	{
+		ItemPostRemovalId = productId;
+	}
+
+	private async Task RemoveFromCart()
+	{
+		var item = ShoppingCart.FirstOrDefault(x => x.Product.Id == ItemPostRemovalId);
+		if (item != null && item.Quantity > 0)
+		{
+			ShoppingCart.Remove(item);
+			//await UpdateOrderSummary();
+			await InvokeAsync(StateHasChanged);
+		}
+		await CalculateOrderTotal();
+	}
+	private async Task AddToCart(int productId, int quantity)
+	{
+		// Find the Item
+		if (quantity == 0)
+		{
+			return;
+		};
+
+		var existingItem = ShoppingCart.FirstOrDefault(x => x.Product.Id == productId);
+		if (existingItem != null)
+		{
+			// Update quantity directly to the new input value
+			existingItem.Quantity = quantity;
+			existingItem.SubTotal = existingItem.Quantity * existingItem.Cost;
+		}
+		else
+		{
+			// Add the new item to the cart
+			var result = await productService_SQL.GetProductInfo(applicationDbContext, productId);
+			if (result != null)
+			{
+				PurchaseOrderItem newItem = new()
+				{
+					Product = result,
+					Quantity = quantity,
+					Cost = result.CostPrice,
+					SubTotal = quantity * result.CostPrice
+				};
+				ShoppingCart.Add(newItem);
+			}
+		}
+		//selectedPurchaseOrder.PurchasedProducts.Clear();
+		selectedPurchaseOrder.PurchasedProducts = ShoppingCart;
+		ProductSearchInput = "";
+		await CalculateOrderTotal();
+		await InvokeAsync(StateHasChanged);
+	}
+
+	private async Task CalculateOrderTotal()
+	{
+		selectedPurchaseOrder.OrderTotal = ShoppingCart.Sum(item => item.Quantity * item.Cost);
 	}
 
 	private async Task SavePurchaseOrder()
 	{
-
+		if (selectedPurchaseOrder.Id == 0)
+		{
+			bool added = await purchaseOrderService_SQL.AddPurchaseOrder(applicationDbContext, selectedPurchaseOrder);
+			navigationManager.NavigateTo("/PurchaseOrdersList", true);
+		} else
+		{
+			bool updated = await purchaseOrderService_SQL.UpdatePurchaseOrder(applicationDbContext, selectedPurchaseOrder);
+			navigationManager.NavigateTo("/PurchaseOrdersList", true);
+		}
+		
+	}
+	private void CancelAction()
+	{
+		navigationManager.NavigateTo("/PurchaseOrdersList");
 	}
 
 }

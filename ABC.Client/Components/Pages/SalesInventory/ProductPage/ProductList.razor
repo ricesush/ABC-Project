@@ -33,6 +33,7 @@
 				<th scope="col" class="text-center">Quantity</th>
 				<th scope="col" class="text-center">Cost Price</th>
 				<th scope="col" class="text-center">Retail</th>
+				<th scope="col" class="text-center">Status</th>
 				<th scope="col" class="text-center"></th>
 			</tr>
 		</thead>
@@ -53,6 +54,7 @@
 						<td class="text-center">@product.StockQuantity</td>
 						<td class="text-center">@("\u20B1" + product.CostPrice.ToString("#,##0.00"))</td>
 						<td class="text-center">@("\u20B1" + product.RetailPrice.ToString("#,##0.00"))</td>
+						<td class="text-center">@product.status</td>
 						<td class="text-center d-flex justify-content-around">
 							<a href="ProductUpsert?id=@product.Id" class="a-style-none">
 								<i class="bi bi-pencil-square text-primary cursor-pointer" title="Edit" tabindex="0"></i>
@@ -76,6 +78,7 @@
 						<td class="text-center"> - </td>
 						<td class="text-center"> - </td>
 						<td class="text-center"> - </td>
+						<td class="text-center"> - </td>
 					</tr>
 				}
 			}
@@ -87,6 +90,7 @@
 						<th scope="row"> - </th>
 						<td> - </td>
 						<td class="text-start"> - </td>
+						<td class="text-center"> - </td>
 						<td class="text-center"> - </td>
 						<td class="text-center"> - </td>
 						<td class="text-center"> - </td>

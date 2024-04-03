@@ -18,8 +18,9 @@ namespace ABC.Shared.Models
 		[DisplayName("Store Name")]
 		public string storeName { get; set; }
 
-		[Required]
+		public HashSet<Product> Products { get; set; }
 
+		[Required]
 		[DisplayName("Contact Number")]
 		public long storeContactNumber { get; set; }
 
@@ -28,7 +29,6 @@ namespace ABC.Shared.Models
 		public string storeEmail { get; set; }
 
 		[Required]
-
 		[DisplayName("Status")]
 		public string storeStatus { get; set; }
 

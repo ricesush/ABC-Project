@@ -48,6 +48,7 @@ namespace ABC.Shared.Models
         [DisplayName("Zip Code")]
         public int ZipCode { get; set; }
 
+        public HashSet<OrderHeader> OrderHeaders { get; set; }
 
     }
 

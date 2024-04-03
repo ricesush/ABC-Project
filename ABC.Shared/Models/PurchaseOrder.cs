@@ -14,50 +14,41 @@ namespace ABC.Shared.Models
     {
         [Key]
         public int Id { get; set; }
-        
-        [Required]
-        [MaxLength(30)]
-        [DisplayName("Supplier Name")]
-        public string SupplierName { get; set; }
-        [DisplayName("Shipment Preference")]
-        public string ShipmentPreference { get; set; }
 
-        [DisplayName("Location for Delivery")]
-        public string LocationDelivery { get; set; }
-
-        [DisplayName("Payment Term")]
-        public string PaymentTerm { get; set; }
-
-        [DisplayName("Expected Delivery Date")]
-        [DataType(DataType.Date)]
-        public DateTime ExpectedDeliveryDate { get; set; }
-
-        [DisplayName("Employee Name")]
-        public string EmployeeName { get; set; }
-
-        [DisplayName("Contact Number")]
-        public long ContactNumber { get; set; }
-
-        [DisplayName("Additional Note")]
-        public string AdditionalNote { get; set; }
-        [DisplayName("Purchased Products")]
+		public int SupplierId { get; set; }
+		public Supplier Supplier { get; set; }
+		public int StoreId { get; set; }
+		public Store Store { get; set; }
+		
 		public List<PurchaseOrderItem> PurchasedProducts { get; set; }
+		[Required]
+		public string Status { get; set; }
+		[Required]
+		public long ContactNumber { get; set; }
+		[Required]
+		public string ContactPerson { get; set; }
+		[Required]
+		public string PaymentTerm { get; set; }
+		[Required]
+		public DateOnly DeliveryDate { get; set; }
+		public double OrderTotal { get; set; }
     }
 
-    public class PurchaseOrderItem
-    {
-        [Key]
-        public int Id { get; set; }
+	public class PurchaseOrderItem
+	{
+		[Key]
+		public int Id { get; set; }
 
-        [DisplayName("Product Name")]
-        public string ProductName { get; set; }
+		public int ProductId { get; set; }
+		public Product Product { get; set; }
 
-        [DisplayName("Cost")]
-        public double Cost { get; set; }
+		[DisplayName("Cost")]
+		public double Cost { get; set; }
 
-        [DisplayName("Quantity")]
-        public int Quantity { get; set; }
-    }
+		[DisplayName("Quantity")]
+		public int Quantity { get; set; }
+		public double SubTotal { get; set; }
+	}
 }
 
 

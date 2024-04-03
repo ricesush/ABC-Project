@@ -39,11 +39,12 @@ namespace ABC.Shared.Models
         public decimal DeliveryFee { get; set; } = 0;
         public string? PaymentMode { get; set; }
         public string? OfficialReceipt { get; set; }
-
-        //foreign key Customer
-        [DisplayName("Customer")]
-        public Guid? CustomerId { get; set; }
+        
+        public Guid CustomerId { get; set; }
         [ForeignKey("CustomerId")]
+        [ValidateNever]
+
+        [DisplayName("Customer")]
         public Customer Customer { get; set; }
 
         // Will be from Customers table thus deleted/ commented 

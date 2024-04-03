@@ -2,6 +2,7 @@
 @layout AdminLayout
 @using System.Globalization;
 @using ABC.Client.Components.Pages.POS.Components;
+@using ABC.Shared.Utility
 @using Layout;
 
 @rendermode InteractiveServer
@@ -14,9 +15,6 @@
         <section class="row pb-3">
             <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
                 <h1 style="color: #223442;"><b>Point of Sales</b></h1>
-            </div>
-            <div class="col-lg-4 col-sm-4 mb-3 mb-sm-0 text-end">
-                <button id="newSaleButton" class="btn btn-success">New Sale</button>
             </div>
         </section>
         <section class="accordion accordion-flush border shadow" id="accordionFlushExample">
@@ -38,9 +36,9 @@
                                 <label for="floatingFirstName" class="bg-transparent">First Name</label>
                             </div>
                             <div class="form-floating col">
-                                <input type="text" class="form-control" id="floatingSurName" placeholder="Sur Name"
+                                <input type="text" class="form-control" id="floatingLastName" placeholder="Last Name"
                                     @bind-value="Customer.LastName">
-                                <label for="floatingSurName">Sur Name</label>
+                                <label for="floatingSurName">Last Name</label>
                             </div>
                             <div class="form-floating col">
                                 <input type="email" class="form-control" id="floatingEmail"
@@ -50,8 +48,7 @@
                             <div class="form-floating col">
                                 <input type="text" class="form-control" @bind-value="Customer.ContactNumber"
                                     @oninput="GetCustomerList" @onfocusin="() => ShowDropdownHandler(true)"
-                                    @onfocusout="() => ShowDropdownHandler(false)" id="floatingNumber"
-                                    placeholder="09991234567" />
+                                    @onfocusout="() => ShowDropdownHandler(false)" id="floatingNumber" placeholder="Contact Number" maxlength="11" />
                                 <label for="floatingNumber">Contact Number</label>
                                 <div class="dropdown">
                                     <ul
@@ -165,10 +162,10 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Product</th>
-                            <th scope="col" class="text-end">Quantity</th>
-                            <th scope="col" class="text-end">Price</th>
-                            <th scope="col" class="text-end">Total</th>
-                            <th scope="col" class="text-end"></th>
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-center">Price</th>
+                            <th scope="col" class="text-center">Total</th>
+                            <th scope="col" class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -177,17 +174,15 @@
                             foreach (var product in ShoppingCart)
                             {
                                 <tr>
-                                    <th scope="row"> @product.ProductId </th>
-                                    <td> @product.ProductId </td>
-                                    <td class="text-end"> @product.Count </td>
-                                    <td class="text-end"> @product.Price.ToString("#,##0.00") </td>
-                                    <td class="text-end"> @product.TotalPrice.ToString("#,##0.00") </td>
-                                    <td class="text-end d-flex justify-content-around">
-                                        <i class="bi bi-pencil-square text-primary cursor-pointer" title="Edit Item"
-                                            tabindex="0"></i>
+                                    <th scope="row"> @product.Product.Id </th>
+                                    <td> @product.Product.productName </td>
+                                    <td class="text-center"> @product.Count </td>
+                                    <td class="text-center"> @product.Product.RetailPrice.ToString("#,##0.00") </td>
+                                    <td class="text-center"> @product.TotalPrice.ToString("#,##0.00") </td>
+                                    <td class="text-center d-flex justify-content-around">
                                         <i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
                                             tabindex="0" data-bs-toggle="modal"
-                                            data-bs-target="#removeItem" @onclick='() => ItemPostRemoval(product.ProductId)'></i>
+                                            data-bs-target="#removeItem" @onclick='() => ItemPostRemoval(product.Product.Id)'></i>
                                     </td>
                                 </tr>
                             }
@@ -196,10 +191,10 @@
                                 <tr>
                                     <th scope="row"> - </th>
                                     <td> - </td>
-                                    <td class="text-end"> - </td>
-                                    <td class="text-end"> - </td>
-                                    <td class="text-end"> - </td>
-                                    <td class="text-end"> - </td>
+                                    <td class="text-center"> - </td>
+                                    <td class="text-center"> - </td>
+                                    <td class="text-center"> - </td>
+                                    <td class="text-center"> - </td>
                                 </tr>
                             }
                         }
@@ -210,10 +205,10 @@
                                 <tr>
                                     <th scope="row"> - </th>
                                     <td> - </td>
-                                    <td class="text-end"> - </td>
-                                    <td class="text-end"> - </td>
-                                    <td class="text-end"> - </td>
-                                    <td class="text-end"> - </td>
+                                    <td class="text-center"> - </td>
+                                    <td class="text-center"> - </td>
+                                    <td class="text-center"> - </td>
+                                    <td class="text-center"> - </td>
                                 </tr>
                             }
                         }
@@ -240,11 +235,11 @@
                 </div>
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text border border-end" id="addon-wrapping">Sales</span>
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select class="form-select" id="inputGroupSelect01" @onchange="SelectedCustomerTypeChanged">
                         <option selected disabled>- Choose Sales Channel -</option>
                         <option value="Walk In">Walk In</option>
-                        <option value="Online">On Call</option>
-                        <option value="Online">Chat Base</option>
+                        <option value="On-Call">On Call</option>
+                        <option value="Chat Based">Chat Based</option>
                     </select>
                 </div>
 
@@ -261,19 +256,34 @@
                         <tbody>
                             <tr>
                                 <td>Discount/s:</td>
-                                <td class="text-end">@OrderSummary.Discount.ToString("#,##0.00")</td>
+                                <td class="text-end">@OrderSummary.Discount.ToString("C", new CultureInfo("en-PH"))</td>
                             </tr>
                             <tr>
                                 <td>Service Fee:</td>
-                                <td class="text-end">@OrderSummary.ServiceFee.ToString("#,##0.00")</td>
+                                <td class="text-end">@OrderSummary.ServiceFee.ToString("C", new CultureInfo("en-PH"))</td>
                             </tr>
                             <tr>
                                 <td>Delivery Fee:</td>
-                                <td class="text-end">@OrderSummary.DeliveryFee.ToString("#,##0.00")</td>
+                                <td class="text-end">@OrderSummary.DeliveryFee.ToString("C", new CultureInfo("en-PH"))</td>
                             </tr>
                             <tr>
                                 <td>Total:</td>
-                                <td class="text-end">@OrderSummary.OrderTotal.ToString("#,##0.00")</td>
+                                <td class="text-end">@OrderSummary.OrderTotal.ToString("C", new CultureInfo("en-PH"))</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row border-top mb-3 m-1 mt-3">
+                    <table class="table table-sm table-hover">
+                        <tbody>
+                            <tr>
+                                <td>Amount Tendered:</td>
+                                <td class="text-end">@AmountTendered.ToString("C", new CultureInfo("en-PH"))</td>
+                            </tr>
+                            <tr>
+                                <td>Change:</td>
+                                <td class="text-end">@Change.ToString("C", new CultureInfo("en-PH"))</td>
                             </tr>
                         </tbody>
                     </table>
@@ -308,11 +318,12 @@
 
 
                 <div class="btn-group btn-group-sm col-12" role="group" aria-label="Small button group">
-                    <button type="button" class="btn btn-success col-6" id="addDiscount" @onclick="CompleteOrder">
+                    <button type="button" class="btn btn-success col-6" id="complete" @onclick="CompleteOrder">
                         Complete
                     </button>
-                    <button type="button" class="btn btn-danger col-6" id="openChargeModalButton">
-                        Cancel</button>
+                    <button type="button" class="btn btn-danger col-6">
+                        Cancel
+                    </button>
                 </div>
             </div>
         </section>
@@ -479,20 +490,20 @@
                     <div class="row">
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="change">Change</span>
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" class="form-control" @bind-value="Change" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-group input-group-lg my-3">
                             <span class="input-group-text" id="amountTendered">Amount Tendered</span>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" @bind="@AmountTendered" @oninput="CalculateChange">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm Payment</button>
+                <button type="button" class="btn btn-primary" @onclick="() => PaymentMethodHandler(SD.PaymentModeCash)" data-bs-dismiss="modal">Confirm Payment</button>
             </div>
         </div>
     </div>
@@ -537,20 +548,20 @@
                     <div class="row">
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="change">Change</span>
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" class="form-control" @bind-value="Change" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-group input-group-lg my-3">
                             <span class="input-group-text" id="amountTendered">Amount Tendered</span>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" @bind="@AmountTendered" @oninput="CalculateChange">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm Payment</button>
+                <button type="button" class="btn btn-primary" @onclick="() => PaymentMethodHandler(SD.PaymentModeBank)" data-bs-dismiss="modal">Confirm Payment</button>
             </div>
         </div>
     </div>
@@ -577,7 +588,3 @@
         </div>
     </div>
 </div>
-
-@* MODALS *@
-@* <CashModal /> *@
-@* <BankModal /> *@

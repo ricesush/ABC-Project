@@ -32,7 +32,7 @@ public partial class PurchaseOrderService_SQL : ComponentBase
         List<PurchaseOrder> PurchaseOrderList = [];
         try
         {
-            PurchaseOrderList = await GetPurchaseOrderList(DBContext);
+            PurchaseOrderList = await GetPurchaseOrdersListData(DBContext);
             return PurchaseOrderList;
         }
         catch (Exception ex)
@@ -57,7 +57,6 @@ public partial class PurchaseOrderService_SQL : ComponentBase
         }
     }
 
-    // UPDATE PRODUCT
     public async Task<bool> UpdatePurchaseOrder(dynamic DBContext, PurchaseOrder purchaseOrder)
     {
         bool updated = false;
@@ -73,7 +72,6 @@ public partial class PurchaseOrderService_SQL : ComponentBase
         }
     }
 
-    // REMOVE PRODUCT
     public async Task<bool> RemovePurchaseOrder(dynamic DBContext, PurchaseOrder purchaseOrder)
     {
         bool removed = false;

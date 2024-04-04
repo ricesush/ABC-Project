@@ -12,6 +12,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using ABC.Shared.Utility;
 using ABC.Client.Components.Pages.ShopWeb.Cart.OrderCheckout;
+using Microsoft.AspNetCore.Components.Authorization;
+using System.Security.Claims;
 
 namespace ABC.Client.Components.Pages.POS;
 public partial class POS
@@ -23,12 +25,14 @@ public partial class POS
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     [Inject] UserManager<ApplicationUser> UserManager { get; set; }
     [Inject] CustomerService_SQL CustomerService_SQL { get; set; }
-    private ApplicationUser applicatioUser { get; set; } = new();
+	[Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+	[Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
 
-    #endregion
+	#endregion
 
-    #region FIELDS
-    private CancellationTokenSource _tokenSource = null;
+	#region FIELDS
+	public ApplicationUser ApplicationUser { get; set; } = new();
+	private CancellationTokenSource _tokenSource = null;
     private List<CustomerBasicInfo> CustomerList { get; set; } = [];
     private List<Product> ProductList { get; set; } = [];
     private List<OrderDetail> ShoppingCart { get; set; } = [];
@@ -42,10 +46,17 @@ public partial class POS
     private int ItemPostRemovalId { get; set; } = 0;
     private bool ShowDropdown { get; set; } = false;
     private bool ShowProductDropdown { get; set; } = false;
-    #endregion
-    protected override async Task OnInitializedAsync()
+	private string? userId;
+
+	#endregion
+	protected override async Task OnInitializedAsync()
     {
-        pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+		var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
+		var claimsIdentity = user.Identity as ClaimsIdentity;
+		userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+		ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
+
+		pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
     }
 
     private async Task ProcessPurchase()

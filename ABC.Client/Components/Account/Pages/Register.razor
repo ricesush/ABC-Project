@@ -9,6 +9,8 @@
 @using ABC.Shared.Models
 @using ABC.Shared.Utility
 @using ABC.Client.Components.SharedComponents;
+@using ABC.Shared.Services;
+
 
 @inject UserManager<ApplicationUser> UserManager
 @inject RoleManager<IdentityRole> RoleManager
@@ -18,6 +20,7 @@
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
+
 @rendermode InteractiveServer
 
 @using ABC.Client.Components.Layout
@@ -25,6 +28,7 @@
 @layout NoLayout
 
 <PageTitle>ABC - Register</PageTitle>
+<Toast @ref="toastRef" />
 
 <section class="card shadow col-lg-8 mx-auto minHeight">
 	<div class="row text-center p-5">
@@ -146,18 +150,19 @@
 								<span class="input-group-text">User Role</span>
 								<select class="form-select" aria-label="EmployeeRole" @bind="Input.Role">
 									<option selected disabled>Select a role for the employee</option>
-									<option value="role1">Regular Employee</option>
-									<option value="role2">Manager</option>
+									<option value="@SD.Role_Employee">Regular Employee</option>
+									<option value="@SD.Role_Manager">Manager</option>
+									<option value="@SD.Role_Admin">Admin</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-6">
 							<div class="input-group mb-3">
 								<span class="input-group-text">Store</span>
-								<select class="form-select" aria-label="EmployeeRole" @bind="Input.Role">
+								<select class="form-select" aria-label="EmployeeRole" @bind="Input.StoreName">
 									<option selected disabled>Select a store for the employee</option>
-									<option value="store1">Addsome Business Corporation</option>
-									<option value="store2">Ahead Biz Computers</option>
+									<option value="Addsome Business Corporation">Addsome Business Corporation</option>
+									<option value="Ahead Biz Computers">Ahead Biz Computers</option>
 								</select>
 							</div>
 						</div>
@@ -175,11 +180,20 @@
 </section>
 
 @code {
+	[Inject] StoreService_SQL storeService_SQL { get; set; }
+	[Inject] ApplicationDbContext applicationDbContext { get; set; }
+	[Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+	private List<Store> StoreList { get; set; } = [];
+	private Toast toastRef;
+
+
 	private IEnumerable<IdentityError>? identityErrors;
 
 	private string PasswordStrengthMessage { get; set; } = "";
 	private string ProgressBarColor { get; set; } = "";
 	private string PhoneNumberMessage { get; set; } = "";
+
 	private int PasswordStrengthPercentage { get; set; } = 0;
 	private List<string> Provinces = LocationData.Provinces;
 	private Dictionary<string, List<string>> Cities = LocationData.Cities;
@@ -194,11 +208,16 @@
 
 	public async Task RegisterUser(EditContext editContext)
 	{
+		ReturnUrl ??= ("~/");
+		var Userr = (await AuthenticationStateProvider.GetAuthenticationStateAsync())?.User;
+
 		var user = CreateUser();
 
 		await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
 		var emailStore = GetEmailStore();
 		await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+		StoreList = await storeService_SQL.GetStoreListData(applicationDbContext);
 
 		user.FirstName = Input.FirstName;
 		user.LastName = Input.LastName;
@@ -207,6 +226,8 @@
 		user.Province = Input.Province;
 		user.PostalCode = Input.PostalCode;
 		user.PhoneNumber = Input.PhoneNumber;
+		user.StoreName = Input.StoreName;
+		// user.Role = Input.Role;
 
 		var result = await UserManager.CreateAsync(user, Input.Password);
 		if (!result.Succeeded)
@@ -215,12 +236,13 @@
 			return;
 		}
 
-		// if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
-		// {
-		// 	RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
-		// 	RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-		// 	RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-		// }
+		if (!RoleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+		{
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
+			RoleManager.CreateAsync(new IdentityRole(SD.Role_Manager)).GetAwaiter().GetResult();
+		}
 
 		if (!String.IsNullOrEmpty(Input.Role))
 		{
@@ -247,6 +269,18 @@
 			RedirectManager.RedirectTo(
 				"Account/RegisterConfirmation",
 				new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
+			return;
+		}
+		else
+		{
+			if (Userr.IsInRole(SD.Role_Admin))
+			{
+				toastRef.ShowToast("Success", "New User Created Sucessfully");
+
+				await Task.Delay(TimeSpan.FromSeconds(1));
+				NavigationManager.NavigateTo("/EmployeesList", true);
+				return;
+			}
 		}
 
 		await SignInManager.SignInAsync(user, isPersistent: false);
@@ -295,7 +329,7 @@
 		phoneNumber = new string(phoneNumber.Where(char.IsDigit).ToArray());
 
 		// Limit the length to 10 digits
-		if (phoneNumber.Length == 10 )
+		if (phoneNumber.Length == 10)
 		{
 			// Ensure the phone number starts with "9"
 			if (!phoneNumber.StartsWith("9"))
@@ -395,8 +429,9 @@
 		[Display(Name = "postal code")]
 		public string? PostalCode { get; set; }
 
-
-		public string? Branch { get; set; }
+		[Display(Name = "Store Name")]
+		public string? StoreName { get; set; }
+		public string? Role { get; set; }
 
 		[Required]
 		[Phone(ErrorMessage = "Please enter a valid phone number")]
@@ -404,6 +439,5 @@
 		[Display(Name = "contact number")]
 		[StringLength(10, MinimumLength = 10, ErrorMessage = "Phone number must be between in this format 9XX XXX YYYY")]
 		public string PhoneNumber { get; set; }
-		public string? Role { get; set; }
 	}
 }

@@ -28,9 +28,10 @@ public partial class OrderHeaderService_SQL : ComponentBase
 			foreach (var order in OrdersList)
 			{
 				order.ApplicationUser = await DBContext.ApplicationUsers.FindAsync(order.ApplicationUserId);
-			}
+                order.Customer = await DBContext.Customers.FindAsync(order.CustomerId);
+            }
 
-			return OrdersList;
+            return OrdersList;
 		}
 		catch (Exception ex)
 		{
@@ -73,10 +74,13 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		{
 			OrderHeader = await GetOrderHeaderData(DBContext, orderId);
 
-			// Load ApplicationUser data for the OrderHeader
-			OrderHeader.ApplicationUser = await DBContext.ApplicationUsers.FindAsync(OrderHeader.ApplicationUserId);
+            // Load ApplicationUser data for the OrderHeader
+            OrderHeader.ApplicationUser = await DBContext.ApplicationUsers.FindAsync(OrderHeader.ApplicationUserId);
 
-			return OrderHeader;
+            // Load Customer data for the OrderHeader
+            OrderHeader.Customer = await DBContext.Customers.FindAsync(OrderHeader.CustomerId);
+
+            return OrderHeader;
 		}
 		catch (Exception ex)
 		{

@@ -46,13 +46,21 @@ public partial class Details
 	private async Task LoadProducts()
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
-		firstName = orderHeader.ApplicationUser?.FirstName;
-		phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
-		lineAddress = orderHeader.ApplicationUser?.Address;
-		province = orderHeader.ApplicationUser?.Province;
-		zipCode = orderHeader.ApplicationUser?.PostalCode;
-		email = orderHeader.ApplicationUser?.Email;
-	}
+
+		//firstName = orderHeader.ApplicationUser?.FirstName;
+		//phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
+		//lineAddress = orderHeader.ApplicationUser?.Address;
+		//province = orderHeader.ApplicationUser?.Province;
+		//zipCode = orderHeader.ApplicationUser?.PostalCode;
+		//email = orderHeader.ApplicationUser?.Email;
+
+		firstName = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.FirstName : orderHeader.Customer.FirstName;
+        phoneNumber = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PhoneNumber : orderHeader.Customer.ContactNumber.ToString();
+        lineAddress = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Address : orderHeader.Customer.ApSuUn;
+        province = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Province : orderHeader.Customer.Province;
+        zipCode = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PostalCode : orderHeader.Customer.ZipCode.ToString();
+        email = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Email : orderHeader.Customer.EmailAddress;
+    }
 
 	private async Task SaveOrder()
 	{

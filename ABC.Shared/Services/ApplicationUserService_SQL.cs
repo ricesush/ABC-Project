@@ -54,8 +54,10 @@ public partial class ApplicationUserService_SQL
 				Address = result.Address, 
 				City = result.City, 
 				Province = result.Province, 
-				PostalCode = result.PostalCode
-			};
+				PostalCode = result.PostalCode,
+                StoreName = result.StoreName
+
+            };
 
 			if (result is not null)
 			{

@@ -2,6 +2,7 @@
 using ABC.Shared.Models;
 using ABC.Shared.Models.ViewModels;
 using ABC.Shared.Services;
+using ABC.Shared.Utility;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
@@ -20,7 +21,6 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
     [Inject] CategoryService_SQL categoryService_SQL { get; set; }
     [Inject] SupplierService_SQL supplierService_SQL { get; set; }
     [Inject] StoreService_SQL storeService_SQL { get; set; }
-    
     [Inject] IWebHostEnvironment _webHostEnvironment { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     [Inject] NavigationManager NavigationManager { get; set; }
@@ -36,9 +36,8 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
     private List<Store> StoreList { get; set; } = [];
 
     public ApplicationUser UserInfo { get; set; }
-    private Product SelectedProduct { get; set; } = new();
-
-    private string userId;
+    private Product SelectedProduct { get; set; } 
+	private string userId;
     private IBrowserFile selectedFile;
     private string previewImageData = null;
 
@@ -80,7 +79,19 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
         TimeZoneInfo dtzi = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
         DateTime pstTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, dtzi);
 
-        if (SelectedProduct.Id == 0)
+        if (SelectedProduct.StockQuantity > SelectedProduct.MinimumStockQuantity)
+        {
+            SelectedProduct.status = "Active";
+
+		} else if (SelectedProduct.StockQuantity <= SelectedProduct.MinimumStockQuantity)
+		{
+            SelectedProduct.status = SD.LowStock;
+		} else if (SelectedProduct.StockQuantity == 0)
+        {
+			SelectedProduct.status = SD.OutOfStock;
+		}
+
+		if (SelectedProduct.Id == 0)
         {
             // If the Id is 0, it's a new product
             if (selectedFile != null)

@@ -3,13 +3,14 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
 public partial class PurchaseOrderService_SQL
 {
     #region Purchase Order CRUD
-    //* GET ALL Audit
+    //* GET ALL PO
     private async Task<List<PurchaseOrder>> GetPurchaseOrdersListData(dynamic DBContext)
     {
         List<PurchaseOrder> _purchaseOrdersList = [];
@@ -30,8 +31,8 @@ public partial class PurchaseOrderService_SQL
         }
     }
 
-    //* GETS SINGLE Audit BASE ON Audit ID
-    private async Task<PurchaseOrder> GetPurchaseOrderData(dynamic DBContext, int id)
+	//* GETS SINGLE PO BASE ON PO ID
+	private async Task<PurchaseOrder> GetPurchaseOrderData(dynamic DBContext, int id)
     {
         PurchaseOrder _purchaseOrder = new();
         try
@@ -51,13 +52,32 @@ public partial class PurchaseOrderService_SQL
         }
     }
 
-    //* ADDS Audit TO DB
-    private async Task<bool> AddPurchaseOrderData(dynamic DBContext, PurchaseOrder purchaseOrder)
+	//* ADDS PO TO DB
+	private async Task<bool> AddPurchaseOrderData(dynamic DBContext, PurchaseOrder purchaseOrder)
     {
         try
         {
             var context = DBContext;
-            context.PurchaseOrders.Add(purchaseOrder);
+            if (purchaseOrder.PurchasedProducts != null)
+            {
+                foreach (var product in purchaseOrder.PurchasedProducts)
+                {
+                    context.Entry(product.Product).State = EntityState.Unchanged;
+                }
+            }
+			if (purchaseOrder.Supplier != null)
+			{
+				context.Entry(purchaseOrder.Supplier).State = EntityState.Unchanged;
+			}
+			if (purchaseOrder.Store != null)
+			{
+				context.Entry(purchaseOrder.Store).State = EntityState.Unchanged;
+			}
+			//foreach (var product in purchaseOrder.PurchasedProducts)
+			//{
+			//    context.Attach(product);
+			//}
+			context.PurchaseOrders.Add(purchaseOrder);
             var result = context.SaveChanges();
             return result > 0 ? true : false;
         }
@@ -68,8 +88,8 @@ public partial class PurchaseOrderService_SQL
         }
     }
 
-    //* UPDATE Audit ON DB
-    private async Task<bool> UpdatePurchaseOrderData(dynamic DBContext, PurchaseOrder purchaseOrder)
+	//* UPDATE PO ON DB
+	private async Task<bool> UpdatePurchaseOrderData(dynamic DBContext, PurchaseOrder purchaseOrder)
     {
         try
         {
@@ -85,8 +105,8 @@ public partial class PurchaseOrderService_SQL
         }
     }
 
-    //* REMOVE/ARCHIVE Audit FROM DB
-    private async Task<bool> RemovePurchaseOrderData(dynamic DBContext, PurchaseOrder purchaseOrder)
+	//* REMOVE/ARCHIVE PO FROM DB
+	private async Task<bool> RemovePurchaseOrderData(dynamic DBContext, PurchaseOrder purchaseOrder)
     {
         try
         {

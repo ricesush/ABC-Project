@@ -12,8 +12,12 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using ABC.Shared.Utility;
 using ABC.Client.Components.Pages.ShopWeb.Cart.OrderCheckout;
+
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
+
+using System.Linq.Expressions;
+
 
 namespace ABC.Client.Components.Pages.POS;
 public partial class POS
@@ -46,10 +50,17 @@ public partial class POS
     private int ItemPostRemovalId { get; set; } = 0;
     private bool ShowDropdown { get; set; } = false;
     private bool ShowProductDropdown { get; set; } = false;
+
 	private string? userId;
 
 	#endregion
 	protected override async Task OnInitializedAsync()
+
+    private double AmountTendered { get; set; }
+    private double Change { get; set; }
+    #endregion
+    protected override async Task OnInitializedAsync()
+
     {
 		var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
 		var claimsIdentity = user.Identity as ClaimsIdentity;
@@ -110,7 +121,8 @@ public partial class POS
         var result = await pOSService_SQL.GetProductList(applicationDbContext);
         if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(ProductSearchInput))
         {
-            ProductList = result.Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            ProductList = result
+                .Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
         await InvokeAsync(StateHasChanged);
     }
@@ -153,25 +165,32 @@ public partial class POS
         {
             return;
         };
-        var result = await pOSService_SQL.GetProductInfo(applicationDbContext, productId);
-        if (result is not null)
-        {
-            OrderDetail NewItem = new()
-            {
-                Id = result.Id,
-                Product = result,
-                Count = quantity,
-                Price = result.RetailPrice,
-                TotalPrice = quantity * result.RetailPrice
-            };
 
-            var item = ShoppingCart.FirstOrDefault(x => x.ProductId == NewItem.ProductId);
-            if (item is not null && item.Count > 0)
-            {
-                var removed = ShoppingCart.Remove(item);
-            }
-            ShoppingCart.Add(NewItem);
+        var existingItem = ShoppingCart.FirstOrDefault(x => x.Product.Id == productId);
+        if (existingItem != null)
+        {
+            // Update quantity directly to the new input value
+            existingItem.Count = quantity;
+            existingItem.TotalPrice = existingItem.Count * existingItem.Price;
         }
+        else
+        {
+            // Add the new item to the cart
+            var result = await pOSService_SQL.GetProductInfo(applicationDbContext, productId);
+            if (result != null)
+            {
+                OrderDetail newItem = new()
+                {
+                    Id = result.Id,
+                    Product = result,
+                    Count = quantity,
+                    Price = result.RetailPrice,
+                    TotalPrice = quantity * result.RetailPrice
+                };
+                ShoppingCart.Add(newItem);
+            }
+        }
+
         ProductSearchInput = "";
         await UpdateOrderSummary();
         await InvokeAsync(StateHasChanged);
@@ -193,41 +212,15 @@ public partial class POS
 
     private async Task RemoveFromCart()
     {
-        var item = ShoppingCart.FirstOrDefault(x => x.ProductId == ItemPostRemovalId);
-        if (item is not null && item.Count > 0)
+        var item = ShoppingCart.FirstOrDefault(x => x.Product.Id == ItemPostRemovalId);
+        if (item != null && item.Count > 0)
         {
-            var removed = ShoppingCart.Remove(item);
-        }
-        await InvokeAsync(StateHasChanged);
-    }
-    private async Task AddCustomer()
-    {
-        try
-        {
-            Customer customer = new()
-            {
-                FirstName = "",
-                LastName = "Esan",
-                EmailAddress = "admintest@test.com",
-                ContactNumber = Convert.ToInt64("09995514412"),
-                ApSuUn = "IDK",
-                Type = "User",
-                StreetorSubd = "Tokyo St.",
-                Barangay = "Tokyo",
-                City = "Tokyo",
-                Province = "Tokyo",
-                ZipCode = 1114
-            };
-
-            var result = await pOSService_SQL.AddCustomer(applicationDbContext, customer);
-
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
+            ShoppingCart.Remove(item);
+            await UpdateOrderSummary(); 
+            await InvokeAsync(StateHasChanged);
         }
     }
-
+    
     private async Task UpdateTotalFees()
     {
         TotalFees = OrderSummary.ServiceFee + OrderSummary.DeliveryFee;
@@ -277,9 +270,41 @@ public partial class POS
         OrderSummary.OrderTotal = Convert.ToDouble(orderTotal);
     }
 
+    private async Task PaymentMethodHandler(string PaymentMethod)
+    {
+		switch (PaymentMethod)
+		{
+			case SD.PaymentModeBank:
+                OrderSummary.PaymentMode = SD.PaymentModeBank;
+				break;
+			default:
+				OrderSummary.PaymentMode = SD.PaymentModeCash;
+				break;
+		}
+	}
+    private void CalculateChange(ChangeEventArgs e)
+    {
+        if (double.TryParse(e.Value.ToString(), out double amountTendered))
+        {
+            AmountTendered = amountTendered;
+            Change = OrderSummary.OrderTotal - AmountTendered;
+        }
+        else
+        {
+            Change = 0; // Handle invalid input
+        }
+    }
+    private void SelectedCustomerTypeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is not null)
+        {
+            Customer.Type = (string)e.Value;
+        }
+    }
+
     private async Task CompleteOrder()
     {
-        Customer customer = new()
+		Customer customer = new()
         {
             Id = Customer.Id,
             FirstName = Customer.FirstName,
@@ -291,9 +316,16 @@ public partial class POS
             Barangay = Customer.Barangay,
             City = Customer.City,
             Province = Customer.Province,
-            ZipCode = Customer.ZipCode
+            ZipCode = Customer.ZipCode,
+            Type = Customer.Type
         };
         Customer _customer = await CustomerService_SQL.GetCustomerInfo(applicationDbContext, Customer.Id);
+        if (_customer.ContactNumber == 0)
+        {
+            bool newCustomer = await CustomerService_SQL.AddCustomer(applicationDbContext, customer);
+            _customer = await CustomerService_SQL.GetCustomerInfo(applicationDbContext, Customer.Id);
+        }
+        
 
         OrderHeader _orderHeader = new()
         {
@@ -301,13 +333,13 @@ public partial class POS
             OrderDate = DateTime.UtcNow.ToLocalTime(),
             ShippingDate = DateTime.UtcNow.ToLocalTime().AddDays(2),
             OrderTotal = OrderSummary.OrderTotal,
-            OrderStatus = SD.StatusPending,
-            PaymentStatus = SD.PaymentStatusPending, //nakabind yung payment mode ng POS
+            OrderStatus = SD.StatusCompleted,
+            PaymentStatus = SD.PaymentStatusApproved, 
             Carrier = OrderSummary.Carrier,
             Discount = OrderSummary.Discount,
             ServiceFee = OrderSummary.ServiceFee,
             DeliveryFee = OrderSummary.DeliveryFee,
-            PaymentMode = SD.PaymentModeCash,
+            PaymentMode = OrderSummary.PaymentMode,
             OfficialReceipt = OrderSummary.OfficialReceipt,
             Customer = _customer
         };

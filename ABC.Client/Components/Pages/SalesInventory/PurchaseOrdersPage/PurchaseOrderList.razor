@@ -1,5 +1,6 @@
 ﻿@using ABC.Shared.Models
 @using Layout
+@using System.Globalization
 @page "/PurchaseOrdersList"
 @layout AdminLayout
 
@@ -16,19 +17,19 @@
 
         <!-- Export Button -->
         <div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
-            <a href="/PurchaseOrderForm" class="btn btn-primary">
+            <a href="/PurchaseOrder" class="btn btn-primary">
                 Create Purchase Order
             </a>
         </div>
     </div>
 
 
-    <table id="tblpurchaseOrderData" class="table table-bordered table-striped table-hover">
+    <table id="tblpurchaseOrderData" class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Created On</th>
-                <th>Created By</th>
+                <th>ID</th>
                 <th>Supplier</th>
+                <th>Deliver to</th>
                 <th>Payment Term</th>
                 <th>Delivery Date</th>
                 <th>Total</th>
@@ -37,16 +38,26 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @if (purchaseOrders.Count > 0 && purchaseOrders.Any())
+            {
+                @foreach (var purchase in purchaseOrders)
+                {
+                    <tr>
+                        <th scope="row">@purchase.Id</th>
+                        <td>@($"{purchase.Supplier?.supplierCompanyName ?? "Error"}")</td>
+                        <td>@($"{purchase.Store?.storeName ?? "Error"}")</td>
+                        <td>@purchase.PaymentTerm</td>
+                        <td>@purchase.DeliveryDate</td>
+                        <td>@purchase.OrderTotal.ToString("C", new CultureInfo("en-PH"))</td>
+                        <td>@purchase.Status</td>
+                        <td>
+                            <a class="a-style-none">
+                                <i class="bi bi-pencil-square text-primary cursor-pointer" tabindex="0"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </section>

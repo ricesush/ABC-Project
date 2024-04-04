@@ -45,27 +45,27 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 		  new IdentityRole
 		  {
 			  Id = adminRoleId,
-			  Name = "Admin",
-			  NormalizedName = "ADMIN"
-		  },
+			  Name = SD.Role_Admin,
+			  NormalizedName = SD.Role_Admin.ToUpper()
+          },
 		  new IdentityRole
 		  {
 			  Id = managerRoleId,
-			  Name = "Manager",
-			  NormalizedName = "MANAGER"
-		  },
+			  Name = SD.Role_Manager,
+			  NormalizedName = SD.Role_Manager.ToUpper()
+          },
 		  new IdentityRole
 		  {
 			  Id = empRoleId,
-			  Name = "Employee",
-			  NormalizedName = "EMPLOYEE"
-		  },
+			  Name = SD.Role_Employee,
+			  NormalizedName = SD.Role_Employee.ToUpper()
+          },
 		  new IdentityRole
 		  {
 			  Id = custRoleId,
-			  Name = "Customer",
-			  NormalizedName = "CUSTOMER"
-		  }
+			  Name = SD.Role_Customer,
+			  NormalizedName = SD.Role_Customer.ToUpper()
+          }
 		);
 
 		//a hasher to hash the password before seeding the user to the db
@@ -144,12 +144,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			new Category { Id = 3, Name = "Computer Accesories"},
 			new Category { Id = 4, Name = "Cables & Tools"}
 			);
-
-		//Pushed Data into PurchaseOrder Database
-		modelBuilder.Entity<PurchaseOrder>().HasData(
-			new PurchaseOrder { Id = 1, SupplierName = "Kurt", LocationDelivery = "Pasig", PaymentTerm = "Cash", ExpectedDeliveryDate = new DateTime(2023, 10, 21), EmployeeName = "Neil", ContactNumber = 09568271611, ShipmentPreference = "Cash On Delivery", AdditionalNote = "additional note goes in here" }
-			);
-
 
 		// Create GUID for customer
 		Guid customerGuid = Guid.NewGuid();

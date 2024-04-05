@@ -4,29 +4,36 @@ using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
 public partial class ApplicationUserService_SQL
 {
 
-    #region ApplicationUsers CRUD
-    //* GETS ALL ApplicationUsers
-    public async Task<List<ApplicationUser>> GetApplicationUserListData(dynamic DBContext)
+	#region ApplicationUsers CRUD
+	//* GETS ALL ApplicationUsers
+	public async Task<List<ApplicationUser>> GetApplicationUserListData(DbContext context)
 	{
-		List<ApplicationUser> _applicationUser = [];
+		List<ApplicationUser> _applicationUser = new List<ApplicationUser>();
 		try
 		{
-			var context = DBContext;
-			var applicationUserList = context.ApplicationUsers;
-			IEnumerable<dynamic> userRoles = context.UserRoles;
-			IEnumerable<dynamic> roles = context.Roles;
-			//var role = userRoles.FirstOrDefault(x => x.UserId == item.Id);
+			var applicationUserList = await context.Set<ApplicationUser>().ToListAsync();
+			var userRoles = await context.Set<IdentityUserRole<string>>().ToListAsync();
+			var roles = await context.Set<IdentityRole>().ToListAsync();
+
 			foreach (var item in applicationUserList)
 			{
 				var userRoleIds = userRoles.FirstOrDefault(x => x.UserId == item.Id);
-				var userRole = roles.FirstOrDefault(x => x.Id == userRoleIds.RoleId);
-				item.Role = userRole.Name;
+				if (userRoleIds != null)
+				{
+					var userRole = roles.FirstOrDefault(x => x.Id == userRoleIds.RoleId);
+					if (userRole != null)
+					{
+						item.Role = userRole.Name;
+					}
+				}
 				_applicationUser.Add(item);
 			}
 			return _applicationUser;
@@ -38,8 +45,32 @@ public partial class ApplicationUserService_SQL
 		}
 	}
 
-    //* GETS SINGLE ApplicationUsers BASE ON ID 
-    private async Task<ApplicationUser> GetApplicationUserData(dynamic DBContext, string id)
+
+
+	//private async Task<List<ApplicationUser>> GetApplicationUserListData(dynamic DBContext)
+	//{
+	//	List<ApplicationUser> _applicationUser = [];
+	//	try
+	//	{
+	//		var context = DBContext;
+	//		var applicationUserList = context.ApplicationUsers;
+	//		foreach (var item in applicationUserList)
+	//		{
+	//			_applicationUser.Add(item);
+	//		}
+	//		return _applicationUser;
+	//	}
+	//	catch (Exception ex)
+	//	{
+	//		Log.Error(ex.ToString());
+	//		return _applicationUser;
+	//	}
+	//}
+
+
+
+	//* GETS SINGLE ApplicationUsers BASE ON ID 
+	private async Task<ApplicationUser> GetApplicationUserData(dynamic DBContext, string id)
 	{
 		ApplicationUser _applicationUser = new();
 		try
@@ -51,13 +82,12 @@ public partial class ApplicationUserService_SQL
 				FirstName = result.FirstName,
 				LastName = result.LastName,
 				PhoneNumber = result.PhoneNumber,
-				Address = result.Address, 
-				City = result.City, 
-				Province = result.Province, 
+				Address = result.Address,
+				City = result.City,
+				Province = result.Province,
 				PostalCode = result.PostalCode,
-                StoreName = result.StoreName
-
-            };
+				StoreName = result.StoreName
+			};
 
 			if (result is not null)
 			{
@@ -72,8 +102,8 @@ public partial class ApplicationUserService_SQL
 		}
 	}
 
-    //* ADDS ApplicationUsers TO DB
-    private async Task<bool> AddApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
+	//* ADDS ApplicationUsers TO DB
+	private async Task<bool> AddApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
 	{
 		try
 		{
@@ -89,8 +119,8 @@ public partial class ApplicationUserService_SQL
 		}
 	}
 
-    //* UPDATE ApplicationUsers ON DB
-    private async Task<bool> UpdateApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
+	//* UPDATE ApplicationUsers ON DB
+	private async Task<bool> UpdateApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
 	{
 		try
 		{
@@ -106,8 +136,8 @@ public partial class ApplicationUserService_SQL
 		}
 	}
 
-    //* REMOVE/ARCHIVE ApplicationUsers FROM DB
-    private async Task<bool> RemoveApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
+	//* REMOVE/ARCHIVE ApplicationUsers FROM DB
+	private async Task<bool> RemoveApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
 	{
 		try
 		{

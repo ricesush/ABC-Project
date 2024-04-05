@@ -12,7 +12,7 @@ public partial class StoreService_SQL : ComponentBase
 
 	#endregion
 
-	#region SUPPLIER CRUD
+	#region STORE CRUD
 	public async Task<List<Store>> GetStoreList(dynamic DBContext)
 	{
 		List<Store> StoreList = [];
@@ -43,13 +43,13 @@ public partial class StoreService_SQL : ComponentBase
 		}
 	}
 
-	// ADD SUPPLIER
-	public async Task<bool> AddStore(dynamic DBContext, Store supplier)
+	// ADD store
+	public async Task<bool> AddStore(dynamic DBContext, Store store)
 	{
 		bool added = false;
 		try
 		{
-			added = await AddStoreData(DBContext, supplier);
+			added = await AddStoreData(DBContext, store);
 			return added;
 		}
 		catch (Exception ex)
@@ -59,13 +59,13 @@ public partial class StoreService_SQL : ComponentBase
 		}
 	}
 
-	// UPDATE SUPPLIER
-	public async Task<bool> UpdateStore(dynamic DBContext, Store supplier)
+	// UPDATE store
+	public async Task<bool> UpdateStore(dynamic DBContext, Store store)
 	{
 		bool updated = false;
 		try
 		{
-			updated = await UpdateStoreData(DBContext, supplier);
+			updated = await UpdateStoreData(DBContext, store);
 			return updated;
 		}
 		catch (Exception ex)
@@ -75,13 +75,13 @@ public partial class StoreService_SQL : ComponentBase
 		}
 	}
 
-	// REMOVE SUPPLIER
-	public async Task<bool> RemoveStore(dynamic DBContext, Store supplier)
+	// REMOVE store
+	public async Task<bool> RemoveStore(dynamic DBContext, Store store)
 	{
 		bool removed = false;
 		try
 		{
-			removed = await RemoveStoreData(DBContext, supplier);
+			removed = await RemoveStoreData(DBContext, store);
 			return removed;
 		}
 		catch (Exception ex)

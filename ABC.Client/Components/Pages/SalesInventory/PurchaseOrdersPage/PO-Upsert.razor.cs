@@ -2,9 +2,11 @@
 using ABC.Client.Data;
 using ABC.Shared.Models;
 using ABC.Shared.Services;
+using ABC.Shared.Utility;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Components;
 using Microsoft.IdentityModel.Tokens;
+using System.Globalization;
 using System.Security.Cryptography;
 
 namespace ABC.Client.Components.Pages.SalesInventory.PurchaseOrdersPage;
@@ -41,6 +43,7 @@ public partial class PO_Upsert
 	private Store selectedStore { get; set; } = new();
 	private bool ShowProductDropdown { get; set; } = false;
 	private int ItemPostRemovalId { get; set; } = 0;
+	private bool isEditMode = false;
 	#endregion
 
 	protected override async Task OnInitializedAsync()
@@ -52,8 +55,21 @@ public partial class PO_Upsert
         await SetSupplierDetails();
 		await GetStoreDetails();
 		await InvokeAsync(StateHasChanged);
+
+		if (PurchaseOrderID > 0) {
+			await DisplaySelectedProducts();
+        }
+
+		if (selectedPurchaseOrder.Id == 0) 
+		{
+			var formattedDate = DateTime.Now.AddDays(2).ToString("MMMM dd yyyy");
+			selectedPurchaseOrder.DeliveryDate = DateOnly.ParseExact(formattedDate, "MMMM dd yyyy", CultureInfo.InvariantCulture);
+		}
+		if (selectedPurchaseOrder.Id != 0)
+		{
+			isEditMode = true;
+		}
 	}
-	
 	private async Task LoadPurchaseOrder()
 	{
 		var purchaseTask = purchaseOrderService_SQL.GetPurchaseOrderInfo(applicationDbContext, PurchaseOrderID);
@@ -82,7 +98,6 @@ public partial class PO_Upsert
 		}
 		await InvokeAsync(StateHasChanged);
 	}
-
 	private async Task PopulateProductDetails(int productId)
 	{
 		ProductInModal = new();
@@ -113,19 +128,16 @@ public partial class PO_Upsert
 		}
 		await InvokeAsync(StateHasChanged);
 	}
-
 	private async Task ShowProductDropdownHandler(bool show)
 	{
 		await Task.Delay(1000);
 		ShowProductDropdown = show;
 		StateHasChanged();
 	}
-
 	private async Task ItemPostRemoval(int productId)
 	{
 		ItemPostRemovalId = productId;
 	}
-
 	private async Task RemoveFromCart()
 	{
 		var item = ShoppingCart.FirstOrDefault(x => x.Product.Id == ItemPostRemovalId);
@@ -180,22 +192,55 @@ public partial class PO_Upsert
 		selectedPurchaseOrder.OrderTotal = ShoppingCart.Sum(item => item.Quantity * item.Cost);
 	}
 
+	private async Task DisplaySelectedProducts()
+	{
+		var purchaseOrder = await purchaseOrderService_SQL.GetPurchaseOrderList(applicationDbContext);
+		var purchaseOrderItem = purchaseOrder.FirstOrDefault(x => x.Id == PurchaseOrderID);
+		ShoppingCart = purchaseOrderItem.PurchasedProducts;
+
+    }
+
 	private async Task SavePurchaseOrder()
 	{
-		if (selectedPurchaseOrder.Id == 0)
+		if (selectedPurchaseOrder.Status == SD.PO_Rejected)
 		{
-			bool added = await purchaseOrderService_SQL.AddPurchaseOrder(applicationDbContext, selectedPurchaseOrder);
-			navigationManager.NavigateTo("/PurchaseOrdersList", true);
-		} else
-		{
+			isEditMode = false;
+			selectedPurchaseOrder.Status = SD.PO_Rejected;
+			
 			bool updated = await purchaseOrderService_SQL.UpdatePurchaseOrder(applicationDbContext, selectedPurchaseOrder);
 			navigationManager.NavigateTo("/PurchaseOrdersList", true);
 		}
-		
+		else
+		{
+			if (selectedPurchaseOrder.Id == 0)
+			{
+				bool added = await purchaseOrderService_SQL.AddPurchaseOrder(applicationDbContext, selectedPurchaseOrder);
+				navigationManager.NavigateTo("/PurchaseOrdersList", true);
+			}
+			else if (selectedPurchaseOrder.Id != 0)
+			{
+				bool updated = await purchaseOrderService_SQL.UpdatePurchaseOrder(applicationDbContext, selectedPurchaseOrder);
+				navigationManager.NavigateTo("/PurchaseOrdersList", true);
+
+				if (selectedPurchaseOrder.Status == SD.PO_Completed)
+				{
+
+				}
+			}
+		}
 	}
-	private void CancelAction()
+	private async Task CancelAction()
 	{
-		navigationManager.NavigateTo("/PurchaseOrdersList");
+		if (selectedPurchaseOrder.Id != 0)
+		{
+			selectedPurchaseOrder = await purchaseOrderService_SQL.GetPurchaseOrderInfo(applicationDbContext, selectedPurchaseOrder.Id);
+			navigationManager.NavigateTo("/PurchaseOrdersList", true);
+		}
+		else
+		{
+			selectedPurchaseOrder = new PurchaseOrder();
+			navigationManager.NavigateTo("/PurchaseOrdersList", true);
+		}
 	}
 
 }

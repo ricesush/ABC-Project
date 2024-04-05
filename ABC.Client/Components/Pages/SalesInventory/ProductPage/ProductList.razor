@@ -1,4 +1,5 @@
 @using ABC.Shared.Models
+@using ABC.Shared.Utility
 @using Layout
 @page "/ProductList"
 @layout AdminLayout
@@ -32,13 +33,14 @@
 				<th scope="col" class="text-start">Product Name</th>
 				<th scope="col" class="text-center">Quantity</th>
 				<th scope="col" class="text-center">Cost Price</th>
-				<th scope="col" class="text-center">Retail</th>
+				<th scope="col" class="text-center">Retail Price</th>
+				<th scope="col" class="text-center">Store</th>
 				<th scope="col" class="text-center">Status</th>
 				<th scope="col" class="text-center"></th>
 			</tr>
 		</thead>
 
-		@{var validProductCount = Products.Count(p => p.status != "Inactive");}
+		@{var validProductCount = Products.Count(p => p.status != SD.OutOfStock);}
 
 		<tbody>
 			@if (Products.Count > 0)
@@ -54,6 +56,7 @@
 						<td class="text-center">@product.StockQuantity</td>
 						<td class="text-center">@("\u20B1" + product.CostPrice.ToString("#,##0.00"))</td>
 						<td class="text-center">@("\u20B1" + product.RetailPrice.ToString("#,##0.00"))</td>
+						<td class="text-center"></td>
 						<td class="text-center">@product.status</td>
 						<td class="text-center d-flex justify-content-around">
 							<a href="ProductUpsert?id=@product.Id" class="a-style-none">

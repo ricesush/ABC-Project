@@ -11,7 +11,6 @@
 @using ABC.Client.Components.SharedComponents;
 @using ABC.Shared.Services;
 
-
 @inject UserManager<ApplicationUser> UserManager
 @inject RoleManager<IdentityRole> RoleManager
 @inject IUserStore<ApplicationUser> UserStore
@@ -208,10 +207,11 @@
 
 	public async Task RegisterUser(EditContext editContext)
 	{
-		ReturnUrl ??= ("~/");
 		var Userr = (await AuthenticationStateProvider.GetAuthenticationStateAsync())?.User;
 
 		var user = CreateUser();
+
+		user.TimeStamp = DateTime.Now;
 
 		await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
 		var emailStore = GetEmailStore();
@@ -271,17 +271,16 @@
 				new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
 			return;
 		}
-		else
-		{
-			if (Userr.IsInRole(SD.Role_Admin))
-			{
-				toastRef.ShowToast("Success", "New User Created Sucessfully");
 
-				await Task.Delay(TimeSpan.FromSeconds(1));
-				NavigationManager.NavigateTo("/EmployeesList", true);
-				return;
-			}
+		if (Userr.IsInRole(SD.Role_Admin))
+		{
+			toastRef.ShowToast("Success", "New User Created Sucessfully");
+
+			await Task.Delay(TimeSpan.FromSeconds(1));
+			NavigationManager.NavigateTo("/EmployeesList", true);
+			return;
 		}
+
 
 		await SignInManager.SignInAsync(user, isPersistent: false);
 		RedirectManager.RedirectTo(ReturnUrl);

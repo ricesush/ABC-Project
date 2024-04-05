@@ -91,7 +91,7 @@ public partial class Summary
                 ServiceFee = 0,
                 PaymentMode = "Cash On Delivery",
                 OfficialReceipt = "sample Receipt No",
-                ApplicationUserId = userId
+                ApplicationUserId = userId 
             }
         };
 
@@ -102,7 +102,6 @@ public partial class Summary
             summary.OrderHeader.OrderTotal += (cart.Price * cart.Quantity);
         }
 
-        bool addedOrderHeader = await orderHeaderService_SQL.AddOrderHeader(applicationDbContext, summary.OrderHeader);
 
         summary.OrderDetailsList = new();
         foreach (var item in shoppingCartList)
@@ -122,11 +121,11 @@ public partial class Summary
 
             summary.OrderDetailsList.Add(_orderDetail);
         }
-
+        summary.OrderHeader.OrderDetails = summary.OrderDetailsList;
         shoppingCart = summary;
 
-
-		bool addedOrderDetail = await orderHeaderService_SQL.AddOrderDetail(applicationDbContext, summary.OrderDetailsList);
+        bool addedOrderHeader = await orderHeaderService_SQL.AddOrderHeader(applicationDbContext, summary.OrderHeader);
+        //bool addedOrderDetail = await orderHeaderService_SQL.AddOrderDetail(applicationDbContext, summary.OrderDetailsList);
 
         foreach (var cartItem in shoppingCartList)
         {

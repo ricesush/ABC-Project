@@ -40,35 +40,12 @@ namespace ABC.Shared.Models
         public string? PaymentMode { get; set; }
         public string? OfficialReceipt { get; set; }
         
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         [ValidateNever]
 
         [DisplayName("Customer")]
-        public Customer Customer { get; set; }
-
-        // Will be from Customers table thus deleted/ commented 
-        //      [Required]
-        //      public string? PhoneNumber {  get; set; }
-
-        //      [Required]
-        //      public string? StreetName { get; set; }
-
-        //      [Required]
-        //      public string? City { get; set; }
-
-        //      [Required]
-        //      public string? Province { get; set; }
-
-        //[Required]
-        //public string? Barangay { get; set; }
-
-        //[Required]
-        //      public string? PostalCode { get; set; }
-
-        //      [Required]
-        //      public string? Name { get; set; }
-
+        public Customer? Customer { get; set; }
 
     }
 

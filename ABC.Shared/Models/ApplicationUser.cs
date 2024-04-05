@@ -8,6 +8,7 @@ namespace ABC.Shared.Models
 {
     public class ApplicationUser: IdentityUser
     {
+        public DateTime TimeStamp { get; set; }
         [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }
@@ -20,10 +21,10 @@ namespace ABC.Shared.Models
         public string? Province { get; set; }
         public string? PostalCode { get; set; }
 
-        [Display(Name = "Store Name")]
-        public string? StoreName { get; set; }
+		[Display(Name = "Store Name")]
+		public string? StoreName { get; set; }
 
-        public int? StoreId { get; set; }
+		public int? StoreId { get; set; }
 		[ForeignKey("StoreId")]
 		[ValidateNever]
 		public Store? Store { get; set; }

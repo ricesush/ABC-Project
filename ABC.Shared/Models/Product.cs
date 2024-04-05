@@ -52,7 +52,7 @@ namespace ABC.Shared.Models
 		public int StockQuantity { get; set; }
 		[Required]
 		[DisplayName("Min. Stock Quantity")]
-		public int MinimumStockQuantity { get; set; }
+		public int MinimumStockQuantity { get; set; } = 1;
 		//Warranty
 		[Required]
 		public string Type { get; set; }

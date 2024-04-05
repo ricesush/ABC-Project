@@ -42,6 +42,8 @@ namespace ABC.Shared.Models
 		public int ProductId { get; set; }
 		public Product Product { get; set; }
 
+		public int PurchaseOrderId { get; set; }
+		public PurchaseOrder PurchaseOrder { get; set; }
 		[DisplayName("Cost")]
 		public double Cost { get; set; }
 

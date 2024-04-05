@@ -12,12 +12,10 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using ABC.Shared.Utility;
 using ABC.Client.Components.Pages.ShopWeb.Cart.OrderCheckout;
-
+using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
-
-using System.Linq.Expressions;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace ABC.Client.Components.Pages.POS;
 public partial class POS
@@ -29,14 +27,15 @@ public partial class POS
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     [Inject] UserManager<ApplicationUser> UserManager { get; set; }
     [Inject] CustomerService_SQL CustomerService_SQL { get; set; }
-	[Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-	[Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
+    [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+    [Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
 
-	#endregion
 
-	#region FIELDS
-	public ApplicationUser ApplicationUser { get; set; } = new();
-	private CancellationTokenSource _tokenSource = null;
+    #endregion
+
+    #region FIELDS
+    private ApplicationUser ApplicationUser { get; set; } = new();
+    private CancellationTokenSource _tokenSource = null;
     private List<CustomerBasicInfo> CustomerList { get; set; } = [];
     private List<Product> ProductList { get; set; } = [];
     private List<OrderDetail> ShoppingCart { get; set; } = [];
@@ -50,40 +49,26 @@ public partial class POS
     private int ItemPostRemovalId { get; set; } = 0;
     private bool ShowDropdown { get; set; } = false;
     private bool ShowProductDropdown { get; set; } = false;
-
-	private string? userId;
+    private double AmountTendered { get; set; }
+    private double Change { get; set; }
+    private string? userId;
+	private Toast toastRef;
 
 	#endregion
 	protected override async Task OnInitializedAsync()
-
-    private double AmountTendered { get; set; }
-    private double Change { get; set; }
-    #endregion
-    protected override async Task OnInitializedAsync()
-
     {
-		var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
-		var claimsIdentity = user.Identity as ClaimsIdentity;
-		userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-		ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
+        var claimsIdentity = user.Identity as ClaimsIdentity;
+        userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
 
-		pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+        pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
     }
-
-    private async Task ProcessPurchase()
-    {
-    }
+    
     private async Task ShowDropdownHandler(bool show)
     {
         await Task.Delay(1000);
         ShowDropdown = show;
-        StateHasChanged();
-    }
-
-    private async Task ShowProductDropdownHandler(bool show)
-    {
-        await Task.Delay(1000);
-        ShowProductDropdown = show;
         StateHasChanged();
     }
 
@@ -112,21 +97,6 @@ public partial class POS
         }
         await InvokeAsync(StateHasChanged);
     }
-
-    private async Task GetProductList(ChangeEventArgs e)
-    {
-        ProductSearchInput = e?.Value?.ToString();
-        ProductList.Clear();
-
-        var result = await pOSService_SQL.GetProductList(applicationDbContext);
-        if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(ProductSearchInput))
-        {
-            ProductList = result
-                .Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
-        }
-        await InvokeAsync(StateHasChanged);
-    }
-
     private async Task PopulateFormData(string id)
     {
         var result = await pOSService_SQL.GetCustomerInfo(applicationDbContext, id);
@@ -145,6 +115,28 @@ public partial class POS
             Province = result.Province,
             ZipCode = result.ZipCode,
         };
+    }
+
+
+    private async Task GetProductList(ChangeEventArgs e)
+    {
+        ProductSearchInput = e?.Value?.ToString();
+        ProductList.Clear();
+
+        var result = await pOSService_SQL.GetProductList(applicationDbContext);
+        if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(ProductSearchInput))
+        {
+            ProductList = result
+                .Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase) && x.StockQuantity > 0).ToList();
+        }
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task ShowProductDropdownHandler(bool show)
+    {
+        await Task.Delay(1000);
+        ShowProductDropdown = show;
+        StateHasChanged();
     }
 
     private async Task PopulateProductDetails(int productId)
@@ -197,11 +189,9 @@ public partial class POS
     }
     public void CancelFees()
     {
-        // Reset the service fee and delivery fee to zero
         OrderSummary.ServiceFee = 0;
         OrderSummary.DeliveryFee = 0;
 
-        // Recalculate total fees
         UpdateTotalFees();
     }
 
@@ -291,8 +281,19 @@ public partial class POS
         }
         else
         {
-            Change = 0; // Handle invalid input
+            Change = 0;
         }
+    }
+    private void ClearCashModal()
+    {
+        AmountTendered = 0;
+        Change = 0;
+    }
+
+    private void ClearBankModal()
+    {
+        AmountTendered = 0;
+        Change = 0;
     }
     private void SelectedCustomerTypeChanged(ChangeEventArgs e)
     {
@@ -361,7 +362,25 @@ public partial class POS
             orderDetails.Add(orderDetail);
         }
         bool addedOrderDetail = await OrderHeaderService_SQL.AddOrderDetail(applicationDbContext, orderDetails);
-        await InvokeAsync(StateHasChanged);
+		toastRef.ShowToast("Success", ($"Transaction #{_orderHeader.Id} completed successfully!"));
 
+		await InvokeAsync(StateHasChanged);
+
+    }
+
+    private async Task CancelOrder()
+    {
+        ShoppingCart.Clear();
+        OrderSummary = new OrderHeader();
+        Customer = new CustomerData();
+        TotalFees = 0;
+        ProductSearchInput = string.Empty;
+        discount = new Discount();
+        DiscountTypes = new DiscountModel();
+        AmountTendered = 0;
+        Change = 0;
+        ShowDropdown = false;
+        ShowProductDropdown = false;
+        ItemPostRemovalId = 0;
     }
 }

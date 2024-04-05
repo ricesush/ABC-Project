@@ -44,8 +44,24 @@ public partial class CustomerService_SQL : ComponentBase
         }
     }
 
-    // UPDATE PRODUCT
-    public async Task<bool> UpdateCustomer(dynamic DBContext, Customer customer)
+	// ADD Customer
+	public async Task<bool> AddCustomer(dynamic DBContext, Customer customer)
+	{
+		bool added = false;
+		try
+		{
+			added = await AddCustomerData(DBContext, customer);
+			return added;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return added;
+		}
+	}
+
+	// UPDATE PRODUCT
+	public async Task<bool> UpdateCustomer(dynamic DBContext, Customer customer)
     {
         bool updated = false;
         try

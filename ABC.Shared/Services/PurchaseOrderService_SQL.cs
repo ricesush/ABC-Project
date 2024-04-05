@@ -18,9 +18,21 @@ public partial class PurchaseOrderService_SQL
         {
             var context = DBContext;
             var purchaseOrdersList = context.PurchaseOrders;
+            IEnumerable<PurchaseOrderItem> purchaseOrderItems = context.PurchaseOrderItems;
+            IEnumerable<Product> products = context.Products;
+            //purchaseOrderItems.Where(x => x.);
             foreach (var item in purchaseOrdersList)
             {
                 _purchaseOrdersList.Add(item);
+            }
+
+            foreach(var details in _purchaseOrdersList) {
+                List<PurchaseOrderItem> orderItems = purchaseOrderItems.Where(x => x.PurchaseOrderId == details.Id).ToList();
+                foreach (var orderItem in orderItems)
+                {
+                    orderItem.Product = products.FirstOrDefault(p => p.Id == orderItem.ProductId);
+                }
+                details.PurchasedProducts = orderItems;
             }
             return _purchaseOrdersList;
         }

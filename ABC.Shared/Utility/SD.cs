@@ -29,8 +29,14 @@ namespace ABC.Shared.Utility
         public const string PO_Rejected = "Rejected";
         public const string PO_Completed = "Completed";
 
-        //Payment Status
-        public const string PaymentStatusPending = "Pending"; //default 
+		//Transfer status
+		public const string StatusTransferPending = "Pending";
+		public const string StatusTransferApproved = "Approved";
+		public const string StatusTransferRejected = "Rejected";
+		public const string StatusTransferCompleted = "Transfer Completed";
+
+		//Payment Status
+		public const string PaymentStatusPending = "Pending"; //default 
 		public const string PaymentStatusApproved = "Paid";
 
         //Payment Mode
@@ -41,6 +47,7 @@ namespace ABC.Shared.Utility
         public const string SessionCart = "SessionShoppingCart";
 
 		//product status
+		public const string InStock = "In Stock";
 		public const string LowStock = "Low Stock";
 		public const string OutOfStock = "Out of stock";
 	}

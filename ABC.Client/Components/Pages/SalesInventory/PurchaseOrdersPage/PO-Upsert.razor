@@ -1,4 +1,5 @@
-﻿@using ABC.Shared.Models
+﻿ @using ABC.Shared.Models
+@using ABC.Shared.Utility
 @using Layout
 @page "/PurchaseOrder"
 @layout AdminLayout
@@ -6,7 +7,7 @@
 @rendermode InteractiveServer
 
 <PageTitle>ABC - Purchase Order</PageTitle>
-@if (!String.IsNullOrEmpty(StoreId))
+@if (!String.IsNullOrEmpty(StoreId) || (selectedPurchaseOrder.Id != null && selectedPurchaseOrder.Id > 0))
 {
 	<section class="container">
 		<EditForm Model="selectedPurchaseOrder" OnValidSubmit="SavePurchaseOrder" enctype="multipart/form-data">
@@ -15,7 +16,7 @@
 			<InputNumber @bind-Value="selectedPurchaseOrder.Id" hidden></InputNumber>
 
 			<!--New Product-->
-			<div class="row pt-2 pb-1" id="topbar">
+			<div class="row pt-2 pb-2" id="topbar">
 				<!-- Title -->
 				<div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
 					<h1 style="color: #223442;"><b>@(selectedPurchaseOrder.Id != 0 ? "Update" : "Create") Purchase Order</b></h1>
@@ -26,7 +27,7 @@
 
 					@if (selectedPurchaseOrder.Id != 0)
 					{
-						<button class="btn btn-success" type="button">
+						<button class="btn btn-success" type="submit" >
 							<i class="bi bi-floppy"></i> Update
 						</button>
 						<button class="btn btn-secondary" type="submit">
@@ -46,16 +47,6 @@
 						</button>
 					}
 				</div>
-			</div>
-
-			<!--Breadcrumb-->
-			<div class="row pb-2">
-				<nav aria-label="breadcrumb">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="PurchaseOrdersList">Purchase Orders</a></li>
-						<li class="breadcrumb-item active" aria-current="page">@(selectedPurchaseOrder.Id > 0 ? "Update" : "Create") Purchase Order</li>
-					</ol>
-				</nav>
 			</div>
 
 			<div class="row pb-3">
@@ -100,6 +91,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="row pb-3">
 				<div class="col-12">
 					<div class="border p-3 container shadow">
@@ -108,10 +100,13 @@
 								<div class="input-group mb-3">
 									<label class="input-group-text" for="status">Status</label>
 									<select class="form-select" @bind="selectedPurchaseOrder.Status" id="status">
-										<option disabled selected>Select Status</option>
-										<option>Pending</option>
-										<option disabled>Completed</option>
-										<option disabled>Rejected</option>
+										<option selected>Status of the Purchase Order</option>
+										<option>@SD.PO_Pending</option>
+										@if (isEditMode)
+										{
+											<option>@SD.PO_Completed</option>
+											<option>@SD.PO_Rejected</option>
+										}
 									</select>
 								</div>
 							</div>
@@ -122,17 +117,15 @@
 								<div class="row">
 									<div class="input-group mb-3">
 										<span class="input-group-text" id="paymentTerm">Payment Term</span>
-										<input type="text" class="form-control" placeholder="Payment Term" @bind-value="selectedPurchaseOrder.PaymentTerm">
+										<input type="text" class="form-control" placeholder="Payment Term" @bind-value="selectedPurchaseOrder.PaymentTerm" readonly="@isEditMode">
 									</div>
 								</div>
 							</div>
 							<div class="col-6">
 								<div class="row">
 									<div class="input-group mb-3">
-										<div class="input-group mb-3">
-											<span class="input-group-text" id="deliveryDate">Delivery Date</span>
-											<input type="text" class="form-control" placeholder="Delivery Date" @bind-value="selectedPurchaseOrder.DeliveryDate">
-										</div>
+										<span class="input-group-text" id="deliveryDate">Delivery Date</span>
+										<input type="text" class="form-control" placeholder="Month Day Year" @bind-value="selectedPurchaseOrder.DeliveryDate" id="deliveryDateInput" readonly="@isEditMode">
 									</div>
 								</div>
 							</div>
@@ -146,7 +139,7 @@
 									<div class="col-12">
 										<div class="input-group mb-3">
 											<span class="input-group-text" id="ContactNumber">Contact Number</span>
-											<input type="text" class="form-control" placeholder="Contact Number" @bind-value="selectedPurchaseOrder.ContactNumber">
+											<input type="text" class="form-control" placeholder="Contact Number" @bind-value="selectedPurchaseOrder.ContactNumber" maxlength="11" readonly="@isEditMode">
 										</div>
 									</div>
 								</div>
@@ -154,7 +147,7 @@
 									<div class="col-12">
 										<div class="input-group mb-3">
 											<span class="input-group-text" id="ContactPerson">Contact Person</span>
-											<input type="text" class="form-control" placeholder="Contact Person" @bind-value="selectedPurchaseOrder.ContactPerson">
+											<input type="text" class="form-control" placeholder="Contact Person" @bind-value="selectedPurchaseOrder.ContactPerson" readonly="@isEditMode">
 										</div>
 									</div>
 								</div>
@@ -217,7 +210,7 @@
 							<input type="text" class="form-control" @bind-value="ProductSearchInput" @oninput="GetProductList"
 								   @onfocusin="() => ShowProductDropdownHandler(true)"
 								   @onfocusout="() => ShowProductDropdownHandler(false)" aria-label="Search Product"
-								   aria-describedby="addon-wrapping" />
+								   aria-describedby="addon-wrapping" readonly="@isEditMode" />
 
 						</div>
 						<div class="dropdown">
@@ -272,9 +265,12 @@
 												<td class="text-center"> @product.Product.CostPrice.ToString("#,##0.00") </td>
 												<td class="text-center"> @product.SubTotal.ToString("#,##0.00") </td>
 												<td class="text-center d-flex justify-content-around">
-													<i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
-													   tabindex="0" data-bs-toggle="modal"
-													   data-bs-target="#removeItem" @onclick='() => ItemPostRemoval(product.Product.Id)'></i>
+													@if (!isEditMode)
+													{
+														<i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
+														   tabindex="0" data-bs-toggle="modal"
+														   data-bs-target="#removeItem" @onclick='() => ItemPostRemoval(product.Product.Id)'></i>
+													}
 												</td>
 											</tr>
 										}
@@ -319,8 +315,7 @@
 			</div>
 		</EditForm>
 	</section>
-} else
-{
+} else {
 	<section class="container">
 		<div class="row pt-2 pb-1" id="topbar">
 			<!-- Title -->
@@ -424,27 +419,14 @@
 					<input type="number" class="form-control pt-3" id="quantity" @bind-value="ProductInModal.Quantity"
 						   @bind-value:event="oninput" placeholder="Enter quantity" aria-label="Quantity"
 						   aria-describedby="quan">
-					<div class="text-danger">
-						@if (ProductInModal.Quantity < 1 || ProductInModal.Quantity > ProductInModal.StockQuantity)
-						{
-							<p>Please enter a quantity between 1 and @ProductInModal.StockQuantity</p>
-						}
-					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				@if (ProductInModal.Quantity >= 1 && ProductInModal.Quantity <= ProductInModal.StockQuantity)
-				{
-					<button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-							@onclick="() => AddToCart(ProductInModal.Id, ProductInModal.Quantity)">
-						Confirm
-					</button>
-				}
-				else
-				{
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Confirm</button>
-				}
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+						@onclick="() => AddToCart(ProductInModal.Id, ProductInModal.Quantity)">
+					Confirm
+				</button>
 			</div>
 		</div>
 	</div>

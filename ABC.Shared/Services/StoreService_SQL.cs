@@ -29,7 +29,7 @@ public partial class StoreService_SQL
 		}
 	}
 
-	//* GETS SINGLE CATEGORY BASE ON ID 
+	//* GETS SINGLE STORE BASE ON ID 
 	private async Task<Store> GetStoreData(dynamic DBContext, int id)
 	{
 		Store _store = new();
@@ -50,13 +50,13 @@ public partial class StoreService_SQL
 		}
 	}
 
-	//* ADDS SUPPLIER TO DB
-	private async Task<bool> AddStoreData(dynamic DBContext, Store supplier)
+	//* ADDS STORE TO DB
+	private async Task<bool> AddStoreData(dynamic DBContext, Store store)
 	{
 		try
 		{
 			var context = DBContext;
-			context.Stores.Add(supplier);
+			context.Stores.Add(store);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;
 		}
@@ -67,13 +67,13 @@ public partial class StoreService_SQL
 		}
 	}
 
-	//* UPDATE SUPPLIER ON DB
-	private async Task<bool> UpdateStoreData(dynamic DBContext, Store supplier)
+	//* UPDATE STORE ON DB
+	private async Task<bool> UpdateStoreData(dynamic DBContext, Store store)
 	{
 		try
 		{
 			var context = DBContext;
-			context.Stores.Update(supplier);
+			context.Stores.Update(store);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;
 		}
@@ -84,13 +84,13 @@ public partial class StoreService_SQL
 		}
 	}
 
-	//* REMOVE/ARCHIVE SUPPLIER FROM DB
-	private async Task<bool> RemoveStoreData(dynamic DBContext, Store supplier)
+	//* REMOVE/ARCHIVE STORE FROM DB
+	private async Task<bool> RemoveStoreData(dynamic DBContext, Store store)
 	{
 		try
 		{
 			var context = DBContext;
-			context.Stores.Update(supplier);
+			context.Stores.Update(store);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;
 		}

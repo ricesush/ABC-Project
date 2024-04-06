@@ -43,6 +43,7 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
 
     [SupplyParameterFromQuery(Name = "id")]
 	public int ProductId { get; set; }
+    public int minimumStock = 1; 
     #endregion
 
 
@@ -81,17 +82,18 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
 
         if (SelectedProduct.StockQuantity > SelectedProduct.MinimumStockQuantity)
         {
-            SelectedProduct.status = "Active";
-
-		} else if (SelectedProduct.StockQuantity <= SelectedProduct.MinimumStockQuantity)
-		{
-            SelectedProduct.status = SD.LowStock;
-		} else if (SelectedProduct.StockQuantity == 0)
+            SelectedProduct.status = SD.InStock;
+        }
+        else if (SelectedProduct.StockQuantity <= SelectedProduct.MinimumStockQuantity && SelectedProduct.StockQuantity > 0)
         {
-			SelectedProduct.status = SD.OutOfStock;
-		}
+            SelectedProduct.status = SD.LowStock;
+        }
+        else
+        {
+            SelectedProduct.status = SD.OutOfStock;
+        }
 
-		if (SelectedProduct.Id == 0)
+        if (SelectedProduct.Id == 0)
         {
             // If the Id is 0, it's a new product
             if (selectedFile != null)

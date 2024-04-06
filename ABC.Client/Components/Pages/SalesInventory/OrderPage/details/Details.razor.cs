@@ -33,6 +33,7 @@ public partial class Details
 	private string? province;
 	private string? zipCode;
 	private string? email;
+	private decimal charges;
 
 	#endregion
 
@@ -42,29 +43,30 @@ public partial class Details
 
 		orderDetailsList = await orderHeaderService_SQL.GetOrderDetailsList(applicationDbContext, OrderId);
 		await LoadProducts();
+		StateHasChanged();
 	}
 	private async Task LoadProducts()
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 
-		//firstName = orderHeader.ApplicationUser?.FirstName;
-		//phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
-		//lineAddress = orderHeader.ApplicationUser?.Address;
-		//province = orderHeader.ApplicationUser?.Province;
-		//zipCode = orderHeader.ApplicationUser?.PostalCode;
-		//email = orderHeader.ApplicationUser?.Email;
-
-		firstName = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.FirstName : orderHeader.Customer.FirstName;
-        phoneNumber = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PhoneNumber : orderHeader.Customer.ContactNumber.ToString();
-        lineAddress = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Address : orderHeader.Customer.ApSuUn;
-        province = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Province : orderHeader.Customer.Province;
-        zipCode = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PostalCode : orderHeader.Customer.ZipCode.ToString();
-        email = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Email : orderHeader.Customer.EmailAddress;
-    }
+		//////firstName = orderHeader.ApplicationUser?.FirstName;
+		//////phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
+		//////lineAddress = orderHeader.ApplicationUser?.Address;
+		//////province = orderHeader.ApplicationUser?.Province;
+		//////zipCode = orderHeader.ApplicationUser?.PostalCode;
+		//////email = orderHeader.ApplicationUser?.Email;
+		firstName = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.FirstName : orderHeader.Customer?.FirstName;
+		phoneNumber = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PhoneNumber : orderHeader.Customer?.ContactNumber.ToString();
+		lineAddress = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Address : orderHeader.Customer?.ApSuUn;
+		province = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Province : orderHeader.Customer?.Province;
+		zipCode = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PostalCode : orderHeader.Customer?.ZipCode.ToString();
+		email = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Email : orderHeader.Customer?.EmailAddress;
+		charges = orderHeader.DeliveryFee + orderHeader.ServiceFee;
+	}
 
 	private async Task SaveOrder()
 	{
-		
+
 	}
 
 	private async Task StartProcessing()
@@ -83,8 +85,8 @@ public partial class Details
 
 	private async Task DeliverOrder()
 	{
-        if (string.IsNullOrWhiteSpace(orderHeader.Carrier))
-        {
+		if (string.IsNullOrWhiteSpace(orderHeader.Carrier))
+		{
 			toastRef.ShowToast("Note", "Please enter a delivery personnel");
 			return;
 		}
@@ -123,6 +125,21 @@ public partial class Details
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 		orderHeader.OrderStatus = SD.StatusCancelled;
+
+		// Call service to update OrderHeader
+		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
+
+		if (updated)
+		{
+			//refresh the list
+			StateHasChanged();
+		}
+	}
+
+	private async Task RefundOrder()
+	{
+		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
+		orderHeader.OrderStatus = SD.StatusRefunded;
 
 		// Call service to update OrderHeader
 		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);

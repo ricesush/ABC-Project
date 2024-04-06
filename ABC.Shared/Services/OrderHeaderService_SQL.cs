@@ -137,16 +137,6 @@ public partial class OrderHeaderService_SQL
 		try
 		{
 			var context = DBContext;
-			if (order.Customer != null)
-			{
-				context.Entry(order.Customer).State = EntityState.Unchanged;
-                context.Attach(order.Customer);
-            } else if (order.ApplicationUserId != null)
-			{
-                context.Entry(order.ApplicationUser).State = EntityState.Unchanged;
-                context.Attach(order.ApplicationUser);
-            }
-			
 			context.OrderHeaders.Add(order);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;

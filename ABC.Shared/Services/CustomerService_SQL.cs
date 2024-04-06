@@ -51,8 +51,25 @@ public partial class CustomerService_SQL
         }
     }
 
-    //* UPDATE CUSTOMER ON DB
-    private async Task<bool> UpdateCustomerData(dynamic DBContext, Customer customer)
+	//* ADDS CUSTOMER TO DB
+	private async Task<bool> AddCustomerData(dynamic DBContext, Customer customer)
+	{
+		try
+		{
+			var context = DBContext;
+			context.Customers.Add(customer);
+			var result = context.SaveChanges();
+			return result > 0 ? true : false;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return false;
+		}
+	}
+
+	//* UPDATE CUSTOMER ON DB
+	private async Task<bool> UpdateCustomerData(dynamic DBContext, Customer customer)
     {
         try
         {

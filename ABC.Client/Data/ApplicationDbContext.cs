@@ -13,6 +13,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	public DbSet<Product> Products { get; set; }
 	public DbSet<Supplier> Suppliers { get; set; }
 	public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+	public DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
 	public DbSet<Customer> Customers { get; set; }
 	public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 	public DbSet<ApplicationUser> ApplicationUsers { get; set; }
@@ -47,25 +48,25 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			  Id = adminRoleId,
 			  Name = SD.Role_Admin,
 			  NormalizedName = SD.Role_Admin.ToUpper()
-          },
+		  },
 		  new IdentityRole
 		  {
 			  Id = managerRoleId,
 			  Name = SD.Role_Manager,
 			  NormalizedName = SD.Role_Manager.ToUpper()
-          },
+		  },
 		  new IdentityRole
 		  {
 			  Id = empRoleId,
 			  Name = SD.Role_Employee,
 			  NormalizedName = SD.Role_Employee.ToUpper()
-          },
+		  },
 		  new IdentityRole
 		  {
 			  Id = custRoleId,
 			  Name = SD.Role_Customer,
 			  NormalizedName = SD.Role_Customer.ToUpper()
-          }
+		  }
 		);
 
 		//a hasher to hash the password before seeding the user to the db
@@ -139,10 +140,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
 		////Pushed Data into Category Database
 		modelBuilder.Entity<Category>().HasData(
-			new Category { Id = 1, Name = "CCTV"},
-			new Category { Id = 2, Name = "Printers"},
-			new Category { Id = 3, Name = "Computer Accesories"},
-			new Category { Id = 4, Name = "Cables & Tools"}
+			new Category { Id = 1, Name = "CCTV" },
+			new Category { Id = 2, Name = "Printers" },
+			new Category { Id = 3, Name = "Computer Accesories" },
+			new Category { Id = 4, Name = "Cables & Tools" }
 			);
 
 		// Create GUID for customer
@@ -170,7 +171,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
 		////Pushed Data into Category Database
 		modelBuilder.Entity<Content>().HasData(
-			new Content { Id = 1, About = "About", Privacy = "Privacy Policy", VissionMission = "Vission And Mission" ,returnRefund = "Return and Refund", TermsPolicy="Terms and Conditions" }
+			new Content { Id = 1, About = "About", Privacy = "Privacy Policy", VissionMission = "Vission And Mission", returnRefund = "Return and Refund", TermsPolicy = "Terms and Conditions" }
 			);
 
 		//Pushed Data into Product Database
@@ -195,9 +196,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				addNotes = "Additional Notes is here color touchscreen interface ",
 				SupplierId = 2,
 				ImageUrl = "",
-                status = "Active"
+				status = "Active"
 
-            },
+			},
 			new Product
 			{
 				Id = 2,
@@ -217,8 +218,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Provider = "Manufacturer",
 				SupplierId = 1,
 				ImageUrl = "",
-                status = "Active"
-            },
+				status = "Active"
+			},
 			new Product
 			{
 				Id = 3,
@@ -241,8 +242,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				addNotes = "Backlit keyboard, Windows 10",
 				SupplierId = 2,
 				ImageUrl = "",
-                status = "Active"
-            },
+				status = "Active"
+			},
 			new Product
 			{
 				Id = 4,
@@ -266,8 +267,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
 				SupplierId = 1,
 				ImageUrl = "",
-                status = "Active"
-            },
+				status = "Active"
+			},
 			new Product
 			{
 				Id = 5,
@@ -290,8 +291,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				addNotes = "Bluetooth, 30+ hour battery life",
 				SupplierId = 2,
 				ImageUrl = "",
-                status = "Active"
-            });
+				status = "Active"
+			});
 
 		//Pushed Data into Supplier Database
 		modelBuilder.Entity<Supplier>().HasData(
@@ -318,7 +319,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				supplierContactNumber = 09651232235,
 				supplierEmail = "addvert214@gmail.com",
 				supplierStatus = "Active",
-                supplierUnitNumber = "c4 l5",
+				supplierUnitNumber = "c4 l5",
 				supplierStreetSubdv = "E. Corazon",
 				supplierBarangay = "Maybancal",
 				supplierCity = "Tanay",
@@ -329,29 +330,29 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
 		//Pushed Data into Store Database
 		modelBuilder.Entity<Store>().HasData(
-            new Store
-            {
-                Id = 1,
-                storeName = "Addsome Business Corporation",
-                storeContactNumber = 09651232235,
-                storeEmail = "abiz214@gmail.com",
-                storeStatus = "Active",
-                storeUnitNumber = "c4 l5",
-                storeStreetSubdv = "E. Corazon",
-                storeBarangay = "Maybancal",
-                storeCity = "Tanay",
-                storeProvince = "Rizal",
-                storeZipCode = 1870
-            },
+			new Store
+			{
+				Id = 1,
+				storeName = "Addsome Business Corporation",
+				storeContactNumber = 09651232235,
+				storeEmail = "abiz214@gmail.com",
+				storeStatus = "Active",
+				storeUnitNumber = "c4 l5",
+				storeStreetSubdv = "E. Corazon",
+				storeBarangay = "Maybancal",
+				storeCity = "Tanay",
+				storeProvince = "Rizal",
+				storeZipCode = 1870
+			},
 
-            new Store
+			new Store
 			{
 				Id = 2,
 				storeName = "Ahead Biz Computers",
 				storeContactNumber = 09651232235,
 				storeEmail = "abiz214@gmail.com",
 				storeStatus = "Active",
-                storeUnitNumber = "c4 l5",
+				storeUnitNumber = "c4 l5",
 				storeStreetSubdv = "E. Corazon",
 				storeBarangay = "Maybancal",
 				storeCity = "Tanay",
@@ -359,6 +360,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				storeZipCode = 1870
 			});
 
+		modelBuilder.Entity<PurchaseOrderItem>(b =>
+		{
+			b.HasOne(x => x.PurchaseOrder).WithMany(x => x.PurchasedProducts).OnDelete(DeleteBehavior.NoAction);
+		});
 		//// Seed data for PurchaseOrder
 		//modelBuilder.Entity<PurchaseOrder>().HasData(
 		//	new PurchaseOrder

@@ -22,6 +22,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	public DbSet<AuditLog> AuditLogs { get; set; }
 	public DbSet<Content> Contents { get; set; }
 	public DbSet<Store> Stores { get; set; }
+	public DbSet<Store> StockTransfers { get; set; }
+	public DbSet<Store> StockTransferItemDetails { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -190,10 +192,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				RetailPrice = 1299,
 				StockQuantity = 20,
 				MinimumStockQuantity = 5,
-				Type = "Extended Warranty",
+                WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
-				Provider = "Third-Party Warranty Company",
-				addNotes = "Additional Notes is here color touchscreen interface ",
 				SupplierId = 2,
 				ImageUrl = "",
 				status = "Active"
@@ -213,9 +213,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				RetailPrice = 1999,
 				StockQuantity = 15,
 				MinimumStockQuantity = 4,
-				Type = "Manufacturers Warranty",
+                WarrantyType = "Manufacturers Warranty",
 				Duration = "7 days from date of purchase",
-				Provider = "Manufacturer",
 				SupplierId = 1,
 				ImageUrl = "",
 				status = "Active"
@@ -229,17 +228,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				CategoryId = 4,
 				Brand = "Dell",
 				StoreId = 1,
-
 				Description = "Lightweight 13-inch laptop with SSD and 8GB RAM",
 				CostPrice = 600,
 				RetailPrice = 899,
 				StockQuantity = 8,
 				MinimumStockQuantity = 3,
-				Type = "Extended Warranty",
+                WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
-
-				Provider = "Third-Party Warranty Company",
-				addNotes = "Backlit keyboard, Windows 10",
 				SupplierId = 2,
 				ImageUrl = "",
 				status = "Active"
@@ -248,23 +243,18 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			{
 				Id = 4,
 				Barcode = 123456789014,
-
 				SKU = "phone-smartphone-XYZ101",
 				productName = "XYZ101 Smartphone",
 				CategoryId = 4,
 				Brand = "Apple",
-
 				StoreId = 1,
 				Description = "5.8-inch OLED smartphone with dual camera",
 				CostPrice = 500,
 				RetailPrice = 999,
 				StockQuantity = 12,
 				MinimumStockQuantity = 5,
-				Type = "Extended Warranty",
+                WarrantyType = "Extended Warranty",
 				Duration = "24 months from date of purchase",
-				Provider = "Manufacturer Warranty",
-				addNotes = "Facial recognition, water resistant",
-
 				SupplierId = 1,
 				ImageUrl = "",
 				status = "Active"
@@ -274,21 +264,17 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Id = 5,
 				Barcode = 123456789015,
 				SKU = "headphones-wireless-XYZ222",
-
 				productName = "XYZ222 Wireless Headphones",
 				CategoryId = 4,
 				Brand = "Bose",
 				StoreId = 1,
 				Description = "Noise cancelling wireless over-ear headphones",
 				CostPrice = 150,
-
 				RetailPrice = 249,
 				StockQuantity = 20,
 				MinimumStockQuantity = 5,
-				Type = "Extended Warranty",
+                WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
-				Provider = "Third-Party Warranty Company",
-				addNotes = "Bluetooth, 30+ hour battery life",
 				SupplierId = 2,
 				ImageUrl = "",
 				status = "Active"

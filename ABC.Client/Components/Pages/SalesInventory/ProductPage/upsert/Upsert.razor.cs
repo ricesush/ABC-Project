@@ -121,7 +121,6 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
                 EntityKey = SelectedProduct.Id.ToString(),
                 Changes = $"{SelectedProduct.productName} is added.",
                 Timestamp = pstTime,
-                FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
                 Role = userRole
             };
             await auditService_SQL.AddAudit(applicationDbContext, auditLog);
@@ -165,7 +164,6 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
                     EntityKey = SelectedProduct.Id.ToString(),
                     Changes = $"{SelectedProduct.productName} is updated.",
                     Timestamp = pstTime,
-                    FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
                     Role = userRole
                 };
                 await auditService_SQL.AddAudit(applicationDbContext, auditLog);

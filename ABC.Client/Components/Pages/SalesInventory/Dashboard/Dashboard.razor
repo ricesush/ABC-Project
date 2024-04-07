@@ -176,10 +176,12 @@
                         {
                             foreach (var orderDetail in BestSellingProducts.Take(10))
                             {
-                                <th>@orderDetail.Id</th>
-                                <td>@orderDetail.productName</td>
-                                <td>@orderDetail.RetailPrice</td>
-                                <td></td>
+                                <tr>
+                                    <th>@orderDetail.Id</th>
+                                    <td>@orderDetail.productName</td>
+                                    <td>@orderDetail.RetailPrice</td>
+                                    <td></td>
+                                </tr>
                             }
                         }
                     </tbody>

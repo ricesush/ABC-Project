@@ -1,0 +1,63 @@
+﻿using ABC.Client.Data;
+using ABC.Shared.Models;
+using ABC.Shared.Services;
+using Microsoft.AspNetCore.Components;
+
+namespace ABC.Client.Components.Pages.SalesInventory.StockTransfers;
+
+public partial class StockTransferForm
+{
+	#region Injections
+	[Inject] ApplicationDbContext applicationDbContext { get; set; }
+	[Inject] StockTransferService_SQL stockTransferService_SQL { get; set; }
+	[Inject] StoreService_SQL storeService_SQL { get; set; }
+	[Inject] ProductService_SQL productService_SQL { get; set; }
+	[Inject] NavigationManager navigationManager { get; set; }
+	#endregion
+
+	#region FIELDS
+	private List<Store> StoreList { get; set; }
+
+	[SupplyParameterFromForm]
+	public StockTransfer selectedStockTransfer { get; set; } = new();
+	
+	[SupplyParameterFromQuery(Name = "id")]
+	public int StockTransferID { get; set; }
+	#endregion
+
+	protected override async Task OnInitializedAsync()
+	{
+		selectedStockTransfer ??= new();
+		stockTransferService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+
+		await LoadStockTransfer();
+	}
+	private async Task LoadStockTransfer()
+	{
+		var stockTransferTask = stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, StockTransferID);
+		selectedStockTransfer = await stockTransferTask;
+	}
+
+	private async Task SaveStockTransfer()
+	{
+		if (selectedStockTransfer.Id == 0)
+		{
+			bool added = await stockTransferService_SQL.AddstockTransfer(applicationDbContext, selectedStockTransfer);
+			navigationManager.NavigateTo("/StockTransferList", true);
+		}
+	}
+
+	private async Task CancelAction()
+	{
+		if (selectedStockTransfer.Id != 0)
+		{
+			selectedStockTransfer = await stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, selectedStockTransfer.Id);
+			navigationManager.NavigateTo("/StockTransferList", true);
+		}
+		else
+		{
+			selectedStockTransfer = new StockTransfer();
+			navigationManager.NavigateTo("/StockTransferList", true);
+		}
+	}
+}

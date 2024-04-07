@@ -28,9 +28,11 @@ public partial class OrderHeaderService_SQL : ComponentBase
 			foreach (var order in OrdersList)
 			{
 				order.ApplicationUser = await DBContext.ApplicationUsers.FindAsync(order.ApplicationUserId);
-			}
+                order.Customer = await DBContext.Customers.FindAsync(order.CustomerId);
 
-			return OrdersList;
+            }
+
+            return OrdersList;
 		}
 		catch (Exception ex)
 		{
@@ -86,9 +88,6 @@ public partial class OrderHeaderService_SQL : ComponentBase
 	}
 
 
-
-
-
 	//Collection of OrderDetails based on OrderHeader id
 	public async Task<List<OrderDetail>> GetOrderDetailsList(dynamic DBContext, int id)
 	{
@@ -122,16 +121,20 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		}
 	}
 
-
-
-
 	//ADD OrderHeader
-	public async Task<bool> AddOrderHeader(dynamic DBContext, OrderHeader order)
+	public async Task<bool> AddOrderHeader(dynamic DBContext, OrderHeader order, ProductService_SQL productService_SQL)
 	{
 		bool added = false;
 		try
 		{
-			added = await AddOrderHeaderData(DBContext, order);
+            foreach (var product in order.OrderDetails)
+            {
+				var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
+				result2.StockQuantity -= product.Count;
+				await productService_SQL.UpdateProduct(DBContext, result2);
+            }
+
+            added = await AddOrderHeaderData(DBContext, order);
 			return added;
 		}
 		catch (Exception ex)
@@ -140,8 +143,6 @@ public partial class OrderHeaderService_SQL : ComponentBase
 			return added;
 		}
 	}
-
-
 
 	//ADD OrderDetail
 	public async Task<bool> AddOrderDetail(dynamic DBContext, List<OrderDetail> order)

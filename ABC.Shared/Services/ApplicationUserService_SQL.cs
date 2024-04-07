@@ -11,7 +11,6 @@ namespace ABC.Shared.Services;
 
 public partial class ApplicationUserService_SQL
 {
-
 	#region ApplicationUsers CRUD
 	//* GETS ALL ApplicationUsers
 	public async Task<List<ApplicationUser>> GetApplicationUserListData(DbContext context)
@@ -22,7 +21,7 @@ public partial class ApplicationUserService_SQL
 			var applicationUserList = await context.Set<ApplicationUser>().ToListAsync();
 			var userRoles = await context.Set<IdentityUserRole<string>>().ToListAsync();
 			var roles = await context.Set<IdentityRole>().ToListAsync();
-
+			//IEnumerable<Store> stores = context.Stores;
 			foreach (var item in applicationUserList)
 			{
 				var userRoleIds = userRoles.FirstOrDefault(x => x.UserId == item.Id);
@@ -44,30 +43,6 @@ public partial class ApplicationUserService_SQL
 			return _applicationUser;
 		}
 	}
-
-
-
-	//private async Task<List<ApplicationUser>> GetApplicationUserListData(dynamic DBContext)
-	//{
-	//	List<ApplicationUser> _applicationUser = [];
-	//	try
-	//	{
-	//		var context = DBContext;
-	//		var applicationUserList = context.ApplicationUsers;
-	//		foreach (var item in applicationUserList)
-	//		{
-	//			_applicationUser.Add(item);
-	//		}
-	//		return _applicationUser;
-	//	}
-	//	catch (Exception ex)
-	//	{
-	//		Log.Error(ex.ToString());
-	//		return _applicationUser;
-	//	}
-	//}
-
-
 
 	//* GETS SINGLE ApplicationUsers BASE ON ID 
 	private async Task<ApplicationUser> GetApplicationUserData(dynamic DBContext, string id)

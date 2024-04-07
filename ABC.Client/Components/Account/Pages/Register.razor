@@ -89,7 +89,7 @@
 				<span class="input-group-text" id="basic-addon1">+63 </span>
 
 				<div class="form-floating">
-					<InputText type="text" @bind-Value="Input.PhoneNumber" id="Cnum" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="9XX XXX YYYY" aria-describedby="basic-addon1" @oninput="ValidatePhoneNumber" />
+					<InputText type="text" @bind-Value="Input.PhoneNumber" id="Cnum" class="form-control" autocomplete="contact-number" aria-required="true" placeholder="9XX XXX YYYY" @oninput="ValidatePhoneNumber" />
 					<label for="Cnum">Contact Number</label>
 				</div>
 			</div>

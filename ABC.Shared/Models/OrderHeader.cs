@@ -15,15 +15,9 @@ namespace ABC.Shared.Models
         public int Id { get; set; }
 
         public string? ApplicationUserId { get; set; }
-        [ForeignKey("ApplicationUserId")]//alisin
+        [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser? ApplicationUser { get; set; }
-
-        //public SalesChannel salesChannel { get; set; } 
-        //branch name 
-        //discount 
-        //charge 
-
         public List<OrderDetail> OrderDetails { get; set; } = new();
 
         public DateTime OrderDate { get; set; }
@@ -39,14 +33,12 @@ namespace ABC.Shared.Models
         public decimal DeliveryFee { get; set; } = 0;
         public string? PaymentMode { get; set; }
         public string? OfficialReceipt { get; set; }
-        
         public Guid? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         [ValidateNever]
 
         [DisplayName("Customer")]
         public Customer? Customer { get; set; }
-
     }
 
     public class Discount

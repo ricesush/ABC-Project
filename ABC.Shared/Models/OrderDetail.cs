@@ -12,25 +12,21 @@ namespace ABC.Shared.Models
     public class OrderDetail
     {
         public int Id { get; set; }
-
         [Required]
         public int OrderHeaderId { get; set; }
         [ForeignKey("OrderHeaderId")]
         [ValidateNever]
         public OrderHeader OrderHeader { get; set; }
-
-
         [Required]
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         [ValidateNever]
         public Product Product { get; set; }
-
         public double? Charge { get; set; }
         public double? Discount { get; set; }
-
         public int Count {  get; set; }
-        public double Price {  get; set; } //alisin
+        public double Price {  get; set; } 
+        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
 
         [NotMapped]
         public double TotalPrice { get; set; }

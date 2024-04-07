@@ -12,8 +12,7 @@ namespace ABC.Shared.Models
 		public string EntityName { get; set; }
 		public string EntityKey { get; set; }
 		public string Changes { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string FormattedTime { get; set; }
+		public DateTime Timestamp { get; set; } = DateTime.UtcNow;
 
         public string Role { get; set; }
     }

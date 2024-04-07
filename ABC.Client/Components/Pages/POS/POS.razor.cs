@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using ABC.Shared.Models;
 using ABC.Shared.Services;
 using Serilog;
-
 using Microsoft.AspNetCore.Components;
 using ABC.Client.Data;
 using System.Diagnostics;
@@ -38,6 +37,7 @@ public partial class POS
     private CancellationTokenSource _tokenSource = null;
     private List<CustomerBasicInfo> CustomerList { get; set; } = [];
     private List<Product> ProductList { get; set; } = [];
+    private List<Store> storeList { get; set; } = [];
     private List<OrderDetail> ShoppingCart { get; set; } = [];
     private Product ProductInModal { get; set; } = new();
     private OrderHeader OrderSummary { get; set; } = new();
@@ -116,7 +116,6 @@ public partial class POS
             ZipCode = result.ZipCode,
         };
     }
-
 
     private async Task GetProductList(ChangeEventArgs e)
     {
@@ -326,7 +325,6 @@ public partial class POS
             bool newCustomer = await CustomerService_SQL.AddCustomer(applicationDbContext, customer);
             _customer = await CustomerService_SQL.GetCustomerInfo(applicationDbContext, Customer.Id);
         }
-        
 
         OrderHeader _orderHeader = new()
         {
@@ -345,28 +343,48 @@ public partial class POS
             Customer = _customer
         };
 
-        bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader);
-
         List<OrderDetail> orderDetails = new();
         foreach (var item in ShoppingCart)
         {
             OrderDetail orderDetail = new()
             {
                 ProductId = item.Id,
-                //Id = item.Product.Id,
-                //Product = item.Product,
                 OrderHeaderId = _orderHeader.Id,
                 Price = item.Price,
                 Count = item.Count
             };
             orderDetails.Add(orderDetail);
         }
-        bool addedOrderDetail = await OrderHeaderService_SQL.AddOrderDetail(applicationDbContext, orderDetails);
-		toastRef.ShowToast("Success", ($"Transaction #{_orderHeader.Id} completed successfully!"));
+		_orderHeader.OrderDetails = orderDetails;
+		bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader, ProductService_SQL);
+		
+        if (added)
+        {
+			toastRef.ShowToast("Success", ($"Transaction #{_orderHeader.Id} completed successfully!"));
+		} else
+        {
+			toastRef.ShowToast("Error", ($"Transaction #{_orderHeader.Id} was not saved! Please fill required fields!"));
+		}
 
 		await InvokeAsync(StateHasChanged);
 
     }
+     
+    private async Task NewTransaction()
+    {
+		ShoppingCart.Clear();
+		OrderSummary = new OrderHeader();
+		Customer = new CustomerData();
+		TotalFees = 0;
+		ProductSearchInput = string.Empty;
+		discount = new Discount();
+		DiscountTypes = new DiscountModel();
+		AmountTendered = 0;
+		Change = 0;
+		ShowDropdown = false;
+		ShowProductDropdown = false;
+		ItemPostRemovalId = 0;
+	}
 
     private async Task CancelOrder()
     {

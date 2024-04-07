@@ -114,17 +114,12 @@ public partial class Summary
                 Count = item.Quantity
             };
 
-
-            product = await productService_SQL.GetProductInfo(applicationDbContext, item.ProductId);
-            product.StockQuantity -= item.Quantity;
-            await productService_SQL.UpdateProduct(applicationDbContext, product);
-
             summary.OrderDetailsList.Add(_orderDetail);
         }
         summary.OrderHeader.OrderDetails = summary.OrderDetailsList;
         shoppingCart = summary;
 
-        bool addedOrderHeader = await orderHeaderService_SQL.AddOrderHeader(applicationDbContext, summary.OrderHeader);
+        bool addedOrderHeader = await orderHeaderService_SQL.AddOrderHeader(applicationDbContext, summary.OrderHeader, productService_SQL);
         //bool addedOrderDetail = await orderHeaderService_SQL.AddOrderDetail(applicationDbContext, summary.OrderDetailsList);
 
         foreach (var cartItem in shoppingCartList)

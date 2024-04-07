@@ -51,7 +51,7 @@
 										<label>Contact No.</label>
 									</div>
 									<div class="col-9">
-										<input @bind-value="UserInfo.PhoneNumber" class="form-control" />
+										<input @bind-value="UserInfo.PhoneNumber" class="form-control" maxlength="11"/>
 									</div>
 								</div>
 								<div class="row my-1">
@@ -83,7 +83,7 @@
 										<label>Postal Code</label>
 									</div>
 									<div class="col-9">
-										<input @bind-value="UserInfo.PostalCode" class="form-control" />
+										<input @bind-value="UserInfo.PostalCode" class="form-control" maxlength="4" />
 									</div>
 								</div>
 								<div class="row my-1">

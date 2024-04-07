@@ -47,7 +47,6 @@
 	<div class="offcanvas-body bd-links" id="offcanvasScrolling">
 
 		<ul class="list-unstyled">
-
 			<li>
 				<NavLink class="btn btn-outline-secondary w-100 text-start" type="button" href="/Dashboard" data-enhance-nav="false">
 					<span class="d-flex align-items-center">
@@ -56,8 +55,6 @@
 					</span>
 				</NavLink>
 			</li>
-
-
 
 			<li>
 				<!--Sales-->
@@ -99,17 +96,18 @@
 						<li>
 							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="ProductList">Product list</NavLink>
 							<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="Category">Category list</NavLink>
+							<AuthorizeView Roles="Admin, Manager" Context="innerContext">
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/StockTransferList">Stock Transfers</NavLink>
+							</AuthorizeView>
 							<AuthorizeView Roles="Admin" Context="innerContext">
-								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/StockTransfersList">Stock Transfers</NavLink>
 								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/PurchaseOrdersList">Purchase Orders</NavLink>
 							</AuthorizeView>
 						</li>
 					</ul>
 				</div>
 			</li>
-			
 
-			<AuthorizeView Roles="Admin" Context="innerContext">
+			<AuthorizeView Roles="Admin, Manager" Context="innerContext">
 				<li>
 					<!--People-->
 					<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#people-collapse" aria-expanded="false">
@@ -132,7 +130,8 @@
 						</ul>
 					</div>
 				</li>
-
+			</AuthorizeView>
+			<AuthorizeView Roles="Admin" Context="innerContext">
 				<li>
 					<!--Report & Analytics-->
 					<NavLink class="btn btn-outline-secondary w-100 text-start" data-bs-toggle="collapse" href="#report-collapse" aria-expanded="false">
@@ -149,13 +148,11 @@
 						<ul class="list-unstyled">
 							<li>
 								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/SalesReport" data-enhance-nav="false">Sales Report</NavLink>
-
 								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/InventoryReport" data-enhance-nav="false">Inventory Report</NavLink>
 							</li>
 						</ul>
 					</div>
 				</li>
-
 
 				<li>
 					<!--Security-->
@@ -172,9 +169,8 @@
 					<div class="collapse" id="security-collapse">
 						<ul class="list-unstyled">
 							<li>
-								<a class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/EmployeesList">Employees List</a>
-
-								<a class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/AuditTrail">Audit Log</a>
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/EmployeesList">Employees List</NavLink>
+								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/AuditTrail">Audit Log</NavLink>
 							</li>
 						</ul>
 					</div>
@@ -194,7 +190,6 @@
 					<div class="collapse" id="settings-collapse">
 						<ul class="list-unstyled">
 							<li>
-								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/GeneralSettings">General</NavLink>
 								<NavLink class="btn btn-outline-secondary fw-lighter small w-100 mt-1" href="/WebSettings">Website</NavLink>
 							</li>
 						</ul>

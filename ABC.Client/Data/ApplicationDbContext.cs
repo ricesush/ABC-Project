@@ -22,8 +22,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	public DbSet<AuditLog> AuditLogs { get; set; }
 	public DbSet<Content> Contents { get; set; }
 	public DbSet<Store> Stores { get; set; }
-	public DbSet<Store> StockTransfers { get; set; }
-	public DbSet<Store> StockTransferItemDetails { get; set; }
+	public DbSet<StockTransfer> StockTransfers { get; set; }
+	public DbSet<StockTransferItemDetails> StockTransferItemDetails { get; set; }
+	public DbSet<StockPerStore> StockPerStores { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -186,13 +187,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				productName = "XYZ123 All-in-One Printer",
 				CategoryId = 1,
 				Brand = "HP",
-				StoreId = 1,
 				Description = "Versatile all-in-one printer for printing, copying, and scanning",
 				CostPrice = 800,
 				RetailPrice = 1299,
 				StockQuantity = 20,
 				MinimumStockQuantity = 5,
-                WarrantyType = "Extended Warranty",
+				WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
 				ImageUrl = "",
@@ -207,13 +207,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				productName = "SmartCam 360 Security Camera",
 				CategoryId = 2,
 				Brand = "Samsung",
-				StoreId = 1,
 				Description = "Panoramic view with motion detection",
 				CostPrice = 1200,
 				RetailPrice = 1999,
 				StockQuantity = 15,
 				MinimumStockQuantity = 4,
-                WarrantyType = "Manufacturers Warranty",
+				WarrantyType = "Manufacturers Warranty",
 				Duration = "7 days from date of purchase",
 				SupplierId = 1,
 				ImageUrl = "",
@@ -227,13 +226,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				productName = "ABC789 13-inch Laptop",
 				CategoryId = 4,
 				Brand = "Dell",
-				StoreId = 1,
 				Description = "Lightweight 13-inch laptop with SSD and 8GB RAM",
 				CostPrice = 600,
 				RetailPrice = 899,
 				StockQuantity = 8,
 				MinimumStockQuantity = 3,
-                WarrantyType = "Extended Warranty",
+				WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
 				ImageUrl = "",
@@ -247,13 +245,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				productName = "XYZ101 Smartphone",
 				CategoryId = 4,
 				Brand = "Apple",
-				StoreId = 1,
 				Description = "5.8-inch OLED smartphone with dual camera",
 				CostPrice = 500,
 				RetailPrice = 999,
 				StockQuantity = 12,
 				MinimumStockQuantity = 5,
-                WarrantyType = "Extended Warranty",
+				WarrantyType = "Extended Warranty",
 				Duration = "24 months from date of purchase",
 				SupplierId = 1,
 				ImageUrl = "",
@@ -267,13 +264,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				productName = "XYZ222 Wireless Headphones",
 				CategoryId = 4,
 				Brand = "Bose",
-				StoreId = 1,
 				Description = "Noise cancelling wireless over-ear headphones",
 				CostPrice = 150,
 				RetailPrice = 249,
 				StockQuantity = 20,
 				MinimumStockQuantity = 5,
-                WarrantyType = "Extended Warranty",
+				WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
 				ImageUrl = "",
@@ -346,10 +342,76 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				storeZipCode = 1870
 			});
 
+		modelBuilder.Entity<StockPerStore>(o =>
+		{
+			o.HasData(
+				new StockPerStore
+				{
+					Id = 1,
+					ProductId = 1,
+					Store1StockQty = 15,
+					Store2StockQty = 5,
+					TotalStocks = 20,
+				},
+
+				new StockPerStore
+				{
+					Id = 2,
+					ProductId = 2,
+					Store1StockQty = 7,
+					Store2StockQty = 8,
+					TotalStocks = 15,
+				},
+
+				new StockPerStore
+				{
+					Id = 3,
+					ProductId = 3,
+					Store1StockQty = 5,
+					Store2StockQty = 3,
+					TotalStocks = 8,
+				},
+
+				new StockPerStore
+				{
+					Id = 4,
+					ProductId = 4,
+					Store1StockQty = 6,
+					Store2StockQty = 6,
+					TotalStocks = 12,
+				},
+
+				new StockPerStore
+				{
+					Id = 5,
+					ProductId = 5,
+					Store1StockQty = 17,
+					Store2StockQty = 3,
+					TotalStocks = 20,
+				}
+			);
+			o.HasOne(o => o.Product).WithOne(o => o.StockPerStore).OnDelete(DeleteBehavior.NoAction);
+		});
+
 		modelBuilder.Entity<PurchaseOrderItem>(b =>
 		{
 			b.HasOne(x => x.PurchaseOrder).WithMany(x => x.PurchasedProducts).OnDelete(DeleteBehavior.NoAction);
 		});
+
+		modelBuilder.Entity<StockTransfer>(o =>
+		{
+			o.HasOne(x => x.SourceStore).WithMany(x => x.StockTransfers).OnDelete(DeleteBehavior.NoAction);
+		});
+
+		modelBuilder.Entity<StockTransferItemDetails>(o =>
+		{
+			o.HasOne(x => x.StockTransfer).WithMany(x => x.StockTransferItems).OnDelete(DeleteBehavior.NoAction);
+		});
+
+		// modelBuilder.Entity<StockTransferItemDetails>(o =>
+		// {
+		// 	o.HasOne(x => x.SourceStore).WithMany(x => x.StockTransfers).OnDelete(DeleteBehavior.NoAction);
+		// });
 		//// Seed data for PurchaseOrder
 		//modelBuilder.Entity<PurchaseOrder>().HasData(
 		//	new PurchaseOrder

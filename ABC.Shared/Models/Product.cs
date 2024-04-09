@@ -19,7 +19,7 @@ namespace ABC.Shared.Models
 		//Product Image
 		[DisplayName("For Inventory")]
 		[ValidateNever]
-		public string ImageUrl { get; set; }
+		public string? ImageUrl { get; set; }
 		public long Barcode { get; set; }
 		public string SKU { get; set; }
         public string status { get; set; }
@@ -34,12 +34,10 @@ namespace ABC.Shared.Models
 		public Category Category { get; set; }
 		public string Brand { get; set; }
 		
-		//foreign key store
-		[DisplayName("Store")]
-		public int StoreId { get; set; }
-		[ForeignKey("StoreId")]
-		[ValidateNever]
-		public Store Store { get; set; }
+		
+		// public int StockPerStoreId { get; set; }
+		public StockPerStore StockPerStore { get; set; }
+
         [Required]
         public string? Description { get; set; }
 		

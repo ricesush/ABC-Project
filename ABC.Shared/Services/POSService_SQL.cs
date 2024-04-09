@@ -60,11 +60,11 @@ public partial class POSService_SQL
         {
             var context = DBContext;
             var productsList = context.Products;
-			IEnumerable<Store> stores = context.Stores;
+			IEnumerable<StockPerStore> stockPerStore = context.StockPerStores;
 			foreach (var item in productsList)
 			{
 				_product.Add(item);
-				item.Store = stores.FirstOrDefault(st => st.Id == item.StoreId);
+				item.StockPerStore = stockPerStore.FirstOrDefault(s => s.ProductId == item.Id);
 			}
 			return _product;
         }

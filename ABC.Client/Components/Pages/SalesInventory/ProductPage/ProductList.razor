@@ -21,7 +21,6 @@
 				Add Product
 			</a>
 		</div>
-
 	</div>
 
 	<!--DISPLAY SELECTED ITEMS-->
@@ -55,10 +54,11 @@
 							<img src="@product.ImageUrl" class="rounded w-50" />
 						</td>
 						<td class="text-start">@product.productName</td>
-						<td class="text-center">@product.StockQuantity</td>
+						<td class="text-center">@(product.StockPerStore is not null ? product.StockPerStore.Store1StockQty : "No Data")</td>
 						<td class="text-center">@("\u20B1" + product.CostPrice.ToString("#,##0.00"))</td>
 						<td class="text-center">@("\u20B1" + product.RetailPrice.ToString("#,##0.00"))</td>
-						<td class="text-center">@product.Store.storeName</td>
+						@* <td class="text-center">@product.Store.storeName</td> *@
+						<td class="text-center">Store Name Here</td>
 						<td class="text-center">@product.status</td>
 						<td class="text-center d-flex justify-content-around">
 							<a href="ProductUpsert?id=@product.Id" class="a-style-none">
@@ -66,7 +66,7 @@
 							</a>
 							<i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
 							   tabindex="0" data-bs-toggle="modal"
-							   data-bs-target="#removeItem" @onclick='() => PopulateProductDetails(product.Id)'>
+							   data-bs-target="#removeItem" @onclick='() => PopulateProductDetails(product.Id)'> 
 							</i>
 						</td>
 					</tr>

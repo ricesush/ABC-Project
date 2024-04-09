@@ -1,0 +1,25 @@
+h1[b-bstf8sitbd] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.breadcrumb[b-bstf8sitbd] {
+    margin-bottom: 1rem;
+}
+
+.infoContainer[b-bstf8sitbd] {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+    .infoContainer .subContainer[b-bstf8sitbd] {
+        border: 1px solid lightgrey;
+        padding: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+        .infoContainer .subContainer .tableTable[b-bstf8sitbd] {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }

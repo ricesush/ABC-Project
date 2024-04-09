@@ -3,6 +3,7 @@ using Serilog;
 using ABC.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using ABC.Shared.Utility;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 public partial class StockTransferService_SQL : ComponentBase
@@ -13,12 +14,12 @@ public partial class StockTransferService_SQL : ComponentBase
     #endregion
 
     #region StockTransfer CRUD
-    public async Task<StockTransfer> GetStockTransferInfo(dynamic DBContext, int Id)
+    public async Task<StockTransfer> GetStockTransferInfo(DbContext DBContext, int Id)
     {
         StockTransfer StockTransferInfo = new();
         try
         {
-            StockTransferInfo = await GetStockTransferInfo(DBContext, Id);
+            StockTransferInfo = await GetStockTransferData(DBContext, Id);
             return StockTransferInfo;
         }
         catch (Exception ex)
@@ -28,7 +29,7 @@ public partial class StockTransferService_SQL : ComponentBase
         }
     }
 
-    public async Task<List<StockTransfer>> GetStockTransferList(dynamic DBContext)
+    public async Task<List<StockTransfer>> GetStockTransferList(DbContext DBContext)
     {
         List<StockTransfer> StockTransferList = [];
         try
@@ -43,7 +44,7 @@ public partial class StockTransferService_SQL : ComponentBase
         }
     }
 
-    public async Task<bool> AddstockTransfer(dynamic DBContext, StockTransfer stockTransfer)
+    public async Task<bool> AddstockTransfer(DbContext DBContext, StockTransfer stockTransfer)
     {
         bool added = false;
         try
@@ -58,7 +59,7 @@ public partial class StockTransferService_SQL : ComponentBase
         }
     }
 
-    public async Task<bool> UpdateStockTransfer(dynamic DBContext, StockTransfer stockTransfer, ProductService_SQL productService_SQL)
+    public async Task<bool> UpdateStockTransfer(DbContext DBContext, StockTransfer stockTransfer, ProductService_SQL productService_SQL)
     {
         bool updated = false;
         try

@@ -1,18 +1,24 @@
 @using ABC.Shared.Models
 @using Layout
-@page "/ProductUpsert"
-@layout AdminLayout
+@using ABC.Client.Components.SharedComponents
 
+@page "/ProductUpsert"
+
+@layout AdminLayout
 @rendermode InteractiveServer
 
 <PageTitle>ABC - Product</PageTitle>
+
+@* Notice *@
+<section id="alert" class="@(showNotice ? "" : "d-none")">
+	<NoticeComponent Notice="@Notice" />
+</section>
 
 <section class="container">
 	<EditForm Model="SelectedProduct" OnValidSubmit="SaveProduct" enctype="multipart/form-data">
 		<DataAnnotationsValidator />
 		<ValidationSummary class="text-danger" role="alert" />
 		<InputNumber @bind-Value="SelectedProduct.Id" hidden></InputNumber>
-
 
 		<!--New Product-->
 		<div class="row pt-2 pb-1" id="topbar">
@@ -44,7 +50,8 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="ProductList">Product List</a></li>
-					<li class="breadcrumb-item active" aria-current="page">@(SelectedProduct.Id != 0 ? "Update" : "Create") List</li>
+					<li class="breadcrumb-item active" aria-current="page">@(SelectedProduct.Id != 0 ? "Update" :
+						"Create") List</li>
 				</ol>
 			</nav>
 		</div>
@@ -63,17 +70,20 @@
 
 					<div class="row">
 						<div class="col-4">
-							<label id="formFileone" class="form-label mt-2"><strong>Product Image</strong> <br /> <span class="text-muted">Upload new image to remove the current image</span> </label>
+							<label id="formFileone" class="form-label mt-2"><strong>Product Image</strong> <br /> <span
+									class="text-muted">Upload new image to remove the current image</span> </label>
 							<InputFile OnChange="HandleFileSelected" />
 						</div>
 						<div class="col-8">
 							@if (!string.IsNullOrEmpty(previewImageData))
 							{
-								<img src="@previewImageData" alt="Preview" class="rounded" width="30%" style="border-radius: 5px; border: 1px solid #bbb9b9;">
+								<img src="@previewImageData" alt="Preview" class="rounded" width="30%"
+									style="border-radius: 5px; border: 1px solid #bbb9b9;">
 							}
 							else if (!string.IsNullOrEmpty(SelectedProduct.ImageUrl))
 							{
-								<img src="@SelectedProduct.ImageUrl" alt="Image" class="rounded" width="30%" style="border-radius: 5px; border: 1px solid #bbb9b9;">
+								<img src="@SelectedProduct.ImageUrl" alt="Image" class="rounded" width="30%"
+									style="border-radius: 5px; border: 1px solid #bbb9b9;">
 							}
 							else
 							{
@@ -100,7 +110,8 @@
 					<div class="row">
 						<div class="input-group mb-3">
 							<label class="input-group-text" id="BarcodeLabel">Barcode</label>
-							<input @bind-value="SelectedProduct.Barcode" type="text" class="form-control" id="BarcodeInput" aria-describedby="BarcodeLabel">
+							<input @bind-value="SelectedProduct.Barcode" type="text" class="form-control"
+								id="BarcodeInput" aria-describedby="BarcodeLabel">
 						</div>
 					</div>
 
@@ -108,7 +119,8 @@
 					<div class="row">
 						<div class="input-group mb-3">
 							<label class="input-group-text" id="SKU">SKU</label>
-							<input @bind-value="SelectedProduct.SKU" type="text" class="form-control" aria-describedby="SKU">
+							<input @bind-value="SelectedProduct.SKU" type="text" class="form-control"
+								aria-describedby="SKU">
 						</div>
 					</div>
 
@@ -116,7 +128,8 @@
 					<div class="row">
 						<div class="input-group mb-3">
 							<label class="input-group-text" id="productName">Product Name</label>
-							<input @bind-value="SelectedProduct.productName" type="text" class="form-control" aria-describedby="productName">
+							<input @bind-value="SelectedProduct.productName" type="text" class="form-control"
+								aria-describedby="productName">
 						</div>
 					</div>
 
@@ -125,7 +138,8 @@
 						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="Category">Category </label>
-								<select @bind="SelectedProduct.CategoryId" class="form-select" aria-describedby="Category">
+								<select @bind="SelectedProduct.CategoryId" class="form-select"
+									aria-describedby="Category">
 									<option disabled selected>--Select Category--</option>
 									@foreach (var category in CategoryList)
 									{
@@ -138,7 +152,8 @@
 						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="Category">Brand </label>
-								<input @bind-value="SelectedProduct.Brand" type="text" class="form-control" aria-describedby="productName">
+								<input @bind-value="SelectedProduct.Brand" type="text" class="form-control"
+									aria-describedby="productName">
 
 							</div>
 						</div>
@@ -149,13 +164,15 @@
 						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="productName">Warranty Type:</label>
-								<input @bind-value="SelectedProduct.WarrantyType" class="form-control" aria-describedby="Warranty Type">
+								<input @bind-value="SelectedProduct.WarrantyType" class="form-control"
+									aria-describedby="Warranty Type">
 							</div>
 						</div>
 						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="productName">Duration:</label>
-								<input @bind-value="SelectedProduct.Duration" class="form-control" aria-describedby="Warranty Duration">
+								<input @bind-value="SelectedProduct.Duration" class="form-control"
+									aria-describedby="Warranty Duration">
 							</div>
 						</div>
 					</div>
@@ -165,7 +182,8 @@
 						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="Supplier">Supplier </label>
-								<select @bind="SelectedProduct.SupplierId" class="form-select" aria-describedby="Category">
+								<select @bind="SelectedProduct.SupplierId" class="form-select"
+									aria-describedby="Category">
 									<option disabled selected>--Select Category--</option>
 									@foreach (var supplier in SupplierList)
 									{
@@ -175,18 +193,19 @@
 							</div>
 						</div>
 
-						<div class="col-6">
-							<div class="input-group mb-3">
-								<label class="input-group-text" id="Brand">Store</label>
-								<select @bind="SelectedProduct.StoreId" class="form-select" aria-describedby="Store">
-									<option disabled selected>--Select Store--</option>
-									@foreach (var store in StoreList)
-									{
-										<option value="@store.Id">@store.storeName</option>
-									}
-								</select>
-							</div>
-						</div>
+						@* <div class="col-6">
+						<div class="input-group mb-3">
+						<label class="input-group-text" id="Brand">Store</label>
+						<div>Store Selection Here</div> *@
+						@* <select @bind="StockPerStore.StoreId" class="form-select" aria-describedby="Store">
+						<option disabled selected>--Select Store--</option>
+						@foreach (var store in StoreList)
+						{
+						<option value="@store.Id">@store.storeName</option>
+						}
+						</select> *@
+						@* </div>
+						</div> *@
 					</div>
 
 
@@ -194,7 +213,8 @@
 					<div class="row">
 						<div class="input-group mb-3">
 							<label class="input-group-text">Description</label>
-							<InputTextArea @bind-Value="SelectedProduct.Description" class="form-control" aria-describedby="Description" required></InputTextArea>
+							<InputTextArea @bind-Value="SelectedProduct.Description" class="form-control"
+								aria-describedby="Description" required></InputTextArea>
 							<ValidationMessage For="@(() => SelectedProduct.Description)" />
 						</div>
 					</div>
@@ -218,7 +238,8 @@
 						<span asp-validation-for="Product.CostPrice" class="text-danger"></span>
 						<div class="input-group mb-3">
 							<label class="input-group-text" id="CostPrice">Cost Price</label>
-							<input @bind-value="SelectedProduct.CostPrice" class="form-control" aria-describedby="CostPrice">
+							<input @bind-value="SelectedProduct.CostPrice" class="form-control"
+								aria-describedby="CostPrice">
 
 						</div>
 					</div>
@@ -228,7 +249,8 @@
 						<span asp-validation-for="Product.RetailPrice" class="text-danger"></span>
 						<div class="input-group mb-3">
 							<label class="input-group-text" id="RetailPrice">Retail Price</label>
-							<input @bind-value="SelectedProduct.RetailPrice" class="form-control" aria-describedby="RetailPrice">
+							<input @bind-value="SelectedProduct.RetailPrice" class="form-control"
+								aria-describedby="RetailPrice">
 						</div>
 					</div>
 				</div>
@@ -246,8 +268,14 @@
 					<div class="row">
 						<span asp-validation-for="Product.StockQuantity" class="text-danger"></span>
 						<div class="input-group mb-3">
-							<label class="input-group-text" id="StockQuantity">Stock Quantity</label>
-							<input @bind-value="SelectedProduct.StockQuantity" class="form-control" aria-describedby="StockQuantity">
+							<label class="input-group-text" id="StockQuantity">ABC Stock Qty</label>
+							<input @bind-value="StockPerStoreInput.Store1StockQty" class="form-control"
+								aria-describedby="StockQuantity">
+						</div>
+						<div class="input-group mb-3">
+							<label class="input-group-text" id="StockQuantity">Advert Stock Qty</label>
+							<input @bind-value="StockPerStoreInput.Store2StockQty" class="form-control"
+								aria-describedby="StockQuantity">
 						</div>
 					</div>
 
@@ -255,8 +283,10 @@
 					<div class="row">
 						<span asp-validation-for="Product.MinimumStockQuantity" class="text-danger"></span>
 						<div class="input-group mb-3">
-							<label class="input-group-text" id="inputMinimumStockQuantity">Minimum Stock Quantity</label>
-							<input @bind-value="SelectedProduct.MinimumStockQuantity" class="form-control" aria-describedby="inputMinimumStockQuantity">
+							<label class="input-group-text" id="inputMinimumStockQuantity">Minimum Stock
+								Quantity</label>
+							<input @bind-value="SelectedProduct.MinimumStockQuantity" class="form-control"
+								aria-describedby="inputMinimumStockQuantity">
 						</div>
 					</div>
 				</div>
@@ -270,22 +300,22 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header text-dark">
-				<h5 class="modal-title" id="exampleModalLabel">@(SelectedProduct.Id != 0 ? "Edit" : "Create") Product</h5>
+				<h5 class="modal-title" id="exampleModalLabel">@(SelectedProduct.Id != 0 ? "Edit" : "Create") Product
+				</h5>
 				<button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 
 			<div class="modal-body">
 				<div class="mb-3">
-					<span class="fw-bold">Are you sure you want to @(SelectedProduct.Id != 0 ? "Edit" : "Create") this product?</span>
+					<span class="fw-bold">Are you sure you want to @(SelectedProduct.Id != 0 ? "Edit" : "Create") this
+						product?</span>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button class="btn btn-danger" @onclick="SaveProduct" type="button" data-bs-dismiss="modal">Confirm</button>
+				<button class="btn btn-danger" @onclick="SaveProduct" type="button"
+					data-bs-dismiss="modal">Confirm</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-

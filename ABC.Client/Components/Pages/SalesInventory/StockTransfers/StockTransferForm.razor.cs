@@ -2,6 +2,7 @@
 using ABC.Shared.Models;
 using ABC.Shared.Services;
 using Microsoft.AspNetCore.Components;
+using Serilog;
 
 namespace ABC.Client.Components.Pages.SalesInventory.StockTransfers;
 
@@ -20,44 +21,72 @@ public partial class StockTransferForm
 
 	[SupplyParameterFromForm]
 	public StockTransfer selectedStockTransfer { get; set; } = new();
-	
+
 	[SupplyParameterFromQuery(Name = "id")]
-	public int StockTransferID { get; set; }
+	public int StockTransferID { get; set; } = 0;
 	#endregion
 
 	protected override async Task OnInitializedAsync()
 	{
-		selectedStockTransfer ??= new();
-		stockTransferService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+		try
+		{
+			selectedStockTransfer ??= new();
+			stockTransferService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
+			await LoadStockTransfer();
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+		}
 
-		await LoadStockTransfer();
 	}
 	private async Task LoadStockTransfer()
 	{
-		var stockTransferTask = stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, StockTransferID);
-		selectedStockTransfer = await stockTransferTask;
+		try
+		{
+			var stockTransferTask = stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, StockTransferID);
+			selectedStockTransfer = await stockTransferTask;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+		}
 	}
 
 	private async Task SaveStockTransfer()
 	{
-		if (selectedStockTransfer.Id == 0)
+		try
 		{
-			bool added = await stockTransferService_SQL.AddstockTransfer(applicationDbContext, selectedStockTransfer);
-			navigationManager.NavigateTo("/StockTransferList", true);
+			if (selectedStockTransfer.Id == 0)
+			{
+				bool added = await stockTransferService_SQL.AddstockTransfer(applicationDbContext, selectedStockTransfer);
+				navigationManager.NavigateTo("/StockTransferList", true);
+			}
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
 		}
 	}
 
 	private async Task CancelAction()
 	{
-		if (selectedStockTransfer.Id != 0)
+		try
 		{
-			selectedStockTransfer = await stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, selectedStockTransfer.Id);
-			navigationManager.NavigateTo("/StockTransferList", true);
+			if (selectedStockTransfer.Id != 0)
+			{
+				selectedStockTransfer = await stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, selectedStockTransfer.Id);
+				navigationManager.NavigateTo("/StockTransferList", true);
+			}
+			else
+			{
+				selectedStockTransfer = new StockTransfer();
+				navigationManager.NavigateTo("/StockTransferList", true);
+			}
 		}
-		else
+		catch (Exception ex)
 		{
-			selectedStockTransfer = new StockTransfer();
-			navigationManager.NavigateTo("/StockTransferList", true);
+			Log.Error(ex.ToString());
 		}
 	}
 }

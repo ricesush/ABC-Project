@@ -1,0 +1,8 @@
+.FooterminHeight[b-hrpia9umku] {
+    min-height: calc(130vh - 395px);
+}
+
+h1[b-hrpia9umku] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}

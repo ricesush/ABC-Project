@@ -29,6 +29,7 @@ builder.Services.AddScoped<CustomerService_SQL>();
 builder.Services.AddScoped<ContentService_SQL>();
 builder.Services.AddScoped<AuditService_SQL>();
 builder.Services.AddScoped<PurchaseOrderService_SQL>();
+builder.Services.AddScoped<StockTransferService_SQL>();
 
 
 builder.Services.AddAuthentication(options =>

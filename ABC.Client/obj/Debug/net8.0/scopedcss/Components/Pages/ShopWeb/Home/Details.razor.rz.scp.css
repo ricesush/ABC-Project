@@ -2,6 +2,16 @@
     min-height: calc(100vh - 395px);
 }
 
+.main[b-8h215m78rq] {
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+}
+
+.product[b-8h215m78rq] {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
 h2[b-8h215m78rq], h6[b-8h215m78rq], span[b-8h215m78rq] {
     color: var(--maincolor-darkblue--);
     font-weight: bold;

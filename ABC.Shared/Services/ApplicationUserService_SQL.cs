@@ -15,7 +15,7 @@ public partial class ApplicationUserService_SQL
 	//* GETS ALL ApplicationUsers
 	public async Task<List<ApplicationUser>> GetApplicationUserListData(DbContext context)
 	{
-		List<ApplicationUser> _applicationUser = new List<ApplicationUser>();
+		List<ApplicationUser> _applicationUser = [];
 		try
 		{
 			var applicationUserList = await context.Set<ApplicationUser>().ToListAsync();

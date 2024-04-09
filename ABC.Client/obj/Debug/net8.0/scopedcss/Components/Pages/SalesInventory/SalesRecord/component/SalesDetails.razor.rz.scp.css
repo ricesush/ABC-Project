@@ -1,0 +1,23 @@
+h1[b-6d3qvnedg8] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.title[b-6d3qvnedg8] {
+    text-align: left;
+}
+
+.badgeStatus[b-6d3qvnedg8] {
+    text-align: right;
+}
+
+.container[b-6d3qvnedg8] {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+    .container h3[b-6d3qvnedg8] {
+        color: var(--maincolor-darkblue--);
+        font-weight: bold;
+        margin-bottom: 1em;
+    }

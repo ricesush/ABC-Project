@@ -1,0 +1,23 @@
+h1[b-el5ooadvg4] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.title[b-el5ooadvg4]{
+    text-align: left;
+}
+
+.badgeStatus[b-el5ooadvg4] {
+    text-align: right;
+}
+
+.container[b-el5ooadvg4] {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+    .container h3[b-el5ooadvg4] {
+        color: var(--maincolor-darkblue--);
+        font-weight: bold;
+        margin-bottom: 1em;
+    }

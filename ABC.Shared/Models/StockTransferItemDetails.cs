@@ -8,7 +8,7 @@ namespace ABC.Shared.Models
         [Key]
         public int Id { get; set; }
         public int StockTransferId { get; set; }
-        public StockTransfer stockTransfer { get; set; }
+        public StockTransfer StockTransfer { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public double CostPrice { get; set; }

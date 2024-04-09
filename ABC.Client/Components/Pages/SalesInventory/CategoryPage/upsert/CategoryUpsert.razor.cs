@@ -65,7 +65,7 @@ public partial class CategoryUpsert
                 EntityKey = selectedCategory.Id.ToString(),
                 Changes = $"{selectedCategory.Name} is added.",
                 Timestamp = pstTime,
-                FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                // FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
                 Role = userRole
             };
             await auditService_SQL.AddAudit(applicationDbContext, auditLog);
@@ -87,7 +87,7 @@ public partial class CategoryUpsert
                     EntityKey = selectedCategory.Id.ToString(),
                     Changes = $"{selectedCategory.Name} is updated.",
                     Timestamp = pstTime,
-                    FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                    // FormattedTime = pstTime.ToString("yyyy-MM-dd HH:mm:ss"),
                     Role = userRole
                 };
                 await auditService_SQL.AddAudit(applicationDbContext, auditLog);

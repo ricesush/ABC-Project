@@ -47,12 +47,12 @@ public partial class ProductService_SQL : ComponentBase
 	}
 
 	// ADD PRODUCT
-	public async Task<bool> AddProduct(dynamic DBContext, Product product)
+	public async Task<bool> AddProduct(dynamic DBContext, Product product, StockPerStore stockPerStore)
 	{
 		bool added = false;
 		try
 		{
-			added = await AddProductData(DBContext, product);
+			added = await AddProductData(DBContext, product, stockPerStore);
 			return added;
 		}
 		catch (Exception ex)

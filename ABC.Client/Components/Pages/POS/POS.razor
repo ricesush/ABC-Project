@@ -149,7 +149,8 @@
                                     <div class="">
                                         <div class="text-14px">Product Name: @product.productName</div>
                                         <div class="text-14px">SKU: @product.SKU</div>
-                                        <div class="text-14px">Store: @(product.Store != null ? product.Store.storeName : "Not Available")</div>
+                                        @* <div class="text-14px">Store: @(product.Store != null ? product.Store.storeName : "Not Available") "Not Available"</div> *@
+                                        <div class="text-14px">Store: Not Available</div>
                                     </div>
                                 </div>
                             </li>

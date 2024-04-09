@@ -3,12 +3,17 @@
 }
 
 .banner[b-sykuksvrf0] {
-    background-image: url(/image/temporary-banner.jpg);
+    background-image: url('image/banner.png');
     background-position: bottom;
     background-size: cover;
     position: relative;
+    text-align: center;
+    padding-top: 6rem;
 }
 
+    .banner h1[b-sykuksvrf0], .banner p[b-sykuksvrf0] {
+        color: white;
+    }
 
 .title[b-sykuksvrf0] {
     margin-top: 2rem;
@@ -21,10 +26,28 @@
     text-decoration: none;
 }
 
-h2[b-sykuksvrf0] {
+h1[b-sykuksvrf0], h2[b-sykuksvrf0] {
     color: var(--maincolor-darkblue--);
     font-weight: bold;
 }
+
+h3[b-sykuksvrf0], p[b-sykuksvrf0] {
+    color: var(--maincolor-darkblue--);
+    text-align: center;
+}
+
+.min-height-section[b-sykuksvrf0] {
+    min-height: 300px;
+}
+
+.productcard[b-sykuksvrf0] {
+    width: 100%;
+}
+
+    .productcard:hover[b-sykuksvrf0] {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
 
 .card-title[b-sykuksvrf0] {
     color: var(--maincolor-darkblue--);
@@ -43,4 +66,3 @@ h2[b-sykuksvrf0] {
     font-weight: bold;
     text-decoration: none;
 }
-

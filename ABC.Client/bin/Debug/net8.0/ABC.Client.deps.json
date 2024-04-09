@@ -1275,6 +1275,7 @@
       "ABC.Shared/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.28",
+          "Microsoft.EntityFrameworkCore": "8.0.1",
           "MySql.Data": "8.3.0",
           "Serilog": "3.1.1",
           "Serilog.Sinks.File": "5.0.1-dev-00972"

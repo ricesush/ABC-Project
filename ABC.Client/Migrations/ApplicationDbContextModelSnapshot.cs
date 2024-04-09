@@ -90,6 +90,12 @@ namespace ABC.Client.Migrations
                     b.Property<int?>("StoreId")
                         .HasColumnType("int");
 
+                    b.Property<string>("StoreName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -114,69 +120,73 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7f24ed53-fb08-4add-9d09-c8ef36747db0",
+                            Id = "0d016c50-49a2-4927-8e06-0742a3d59db8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86c89c3a-b0ba-4433-bc57-5ecf6788362d",
+                            ConcurrencyStamp = "76b6e9cb-bc05-4261-874c-844ed50671c8",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Admin",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP43tjxLu1uHqcJDF7HCzdOmQVoQCf97LK4zneXegsVnJegIc8dhKSJYdTyLgxCVlQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEArkI5FT7H3xwYuScGayjZ0pznwWYfZTI9mEZLog8Cn31iXIex4OeDkkRyiGpqrlUQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "61e92534-32fb-4983-9ef6-607f76a1b770",
+                            SecurityStamp = "e577ea9b-63ec-4457-ac44-0b48d1f2a649",
+                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 25, 971, DateTimeKind.Utc).AddTicks(1454),
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         },
                         new
                         {
-                            Id = "7bf0e188-2c97-4276-ba3d-62e9302c7da4",
+                            Id = "3ac9352f-4172-4034-9773-1c37130b92c9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1be0a2e2-759c-4aa2-9b0d-a943df772ed2",
+                            ConcurrencyStamp = "1ab156cf-4cf1-4012-a9a7-1d96f3dd4569",
                             Email = "manager@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Manager",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJjUa0w7nTKbM4Sfuq7757WidVrLG3SYnmwBqat49/LFRc7l+RwbJvosFXZL6+f16g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIMe1GIivwcYS0YA9jk1ibQhEffpk2HiDPm2tMjS7zkvdR30yluGJRN5V7CeQi6HnQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2e0a0202-3e11-46e4-9b76-2cf7af75102e",
+                            SecurityStamp = "8f9a1974-9199-4633-ba6c-54a0e37dedf0",
+                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 26, 37, DateTimeKind.Utc).AddTicks(9165),
                             TwoFactorEnabled = false,
                             UserName = "manager@abc.com"
                         },
                         new
                         {
-                            Id = "bd4f17de-d00c-497b-ba91-3568334e9d13",
+                            Id = "339801ef-839f-4244-9223-bd51dda3c2d6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2d137727-9c75-4c81-925b-8b65c4bfe94a",
+                            ConcurrencyStamp = "0c796c6e-2989-45ea-b47f-2e301596dd68",
                             Email = "emp@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Employee",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "EMP@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMwXJHeSx7I0b7f1cNS9n7gr1uac3A1nsX9VQ5LZX/AidKZ979BmpMsI3RjseMxmEg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOGyTy8ifVunAYKlu3PrHSQeYvqfk+LMEhmJGSMoKZ9wgycxxn8Vd0L/7QlV6b2XdA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7bf076a3-356b-4ac1-a74f-74569fa6e9ea",
+                            SecurityStamp = "e52207cc-5706-4388-9b58-876a6695ff06",
+                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 26, 104, DateTimeKind.Utc).AddTicks(470),
                             TwoFactorEnabled = false,
                             UserName = "emp@abc.com"
                         },
                         new
                         {
-                            Id = "68e95a5e-b855-4b34-81fe-68532c11543d",
+                            Id = "2e37355a-4398-48a4-99fe-afed34c5b5ae",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ea55a40b-fcd5-49ba-8868-ebadfb31b4e6",
+                            ConcurrencyStamp = "22e7d330-47fe-47b2-875a-f8c1f26cdbf6",
                             Email = "cust@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Customer",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "CUST@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAH0/XYcHDMkslaV5/2S+IF0BFG/ewG8xUYL4auPDqPkVQntNfOcG6MD6WbqOdniyw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELP7TtGLYQxWsPddWoC+Llbt/0tED14J5LZIKGIdHJfOQi/PA6+WymwyQbO4SrSKhg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9ba467d0-c875-43f2-b3ea-1e3786f02be5",
+                            SecurityStamp = "e3212d8f-7322-4aa6-8e34-20861901c3d0",
+                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 26, 183, DateTimeKind.Utc).AddTicks(6699),
                             TwoFactorEnabled = false,
                             UserName = "cust@abc.com"
                         });
@@ -203,10 +213,6 @@ namespace ABC.Client.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EntityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FormattedTime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -364,7 +370,7 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2b115604-8538-4080-acca-9bb6b3aea9e1"),
+                            Id = new Guid("d646797c-efcd-485b-9ae5-e2b36d651a87"),
                             ApSuUn = "Unit 1234",
                             Barangay = "Batman",
                             City = "Antipolo",
@@ -404,6 +410,9 @@ namespace ABC.Client.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -503,15 +512,10 @@ namespace ABC.Client.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MinimumStockQuantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("Provider")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("RetailPrice")
                         .HasColumnType("real");
@@ -523,17 +527,17 @@ namespace ABC.Client.Migrations
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("StoreId")
+                    b.Property<int?>("StoreId")
                         .HasColumnType("int");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("addNotes")
+                    b.Property<string>("WarrantyType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("productName")
@@ -566,14 +570,12 @@ namespace ABC.Client.Migrations
                             Duration = "12 months from date of purchase",
                             ImageUrl = "",
                             MinimumStockQuantity = 5,
-                            Provider = "Third-Party Warranty Company",
                             RetailPrice = 1299f,
                             SKU = "printer-AllInOne-XYZ123",
                             StockQuantity = 20,
-                            StoreId = 1,
                             SupplierId = 2,
-                            Type = "Extended Warranty",
-                            addNotes = "Additional Notes is here color touchscreen interface ",
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6318),
+                            WarrantyType = "Extended Warranty",
                             productName = "XYZ123 All-in-One Printer",
                             status = "Active"
                         },
@@ -588,13 +590,12 @@ namespace ABC.Client.Migrations
                             Duration = "7 days from date of purchase",
                             ImageUrl = "",
                             MinimumStockQuantity = 4,
-                            Provider = "Manufacturer",
                             RetailPrice = 1999f,
                             SKU = "cctv-SmartCam-360",
                             StockQuantity = 15,
-                            StoreId = 1,
                             SupplierId = 1,
-                            Type = "Manufacturers Warranty",
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6325),
+                            WarrantyType = "Manufacturers Warranty",
                             productName = "SmartCam 360 Security Camera",
                             status = "Active"
                         },
@@ -609,14 +610,12 @@ namespace ABC.Client.Migrations
                             Duration = "12 months from date of purchase",
                             ImageUrl = "",
                             MinimumStockQuantity = 3,
-                            Provider = "Third-Party Warranty Company",
                             RetailPrice = 899f,
                             SKU = "laptop-ultrabook-ABC789",
                             StockQuantity = 8,
-                            StoreId = 1,
                             SupplierId = 2,
-                            Type = "Extended Warranty",
-                            addNotes = "Backlit keyboard, Windows 10",
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6327),
+                            WarrantyType = "Extended Warranty",
                             productName = "ABC789 13-inch Laptop",
                             status = "Active"
                         },
@@ -631,14 +630,12 @@ namespace ABC.Client.Migrations
                             Duration = "24 months from date of purchase",
                             ImageUrl = "",
                             MinimumStockQuantity = 5,
-                            Provider = "Manufacturer Warranty",
                             RetailPrice = 999f,
                             SKU = "phone-smartphone-XYZ101",
                             StockQuantity = 12,
-                            StoreId = 1,
                             SupplierId = 1,
-                            Type = "Extended Warranty",
-                            addNotes = "Facial recognition, water resistant",
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6330),
+                            WarrantyType = "Extended Warranty",
                             productName = "XYZ101 Smartphone",
                             status = "Active"
                         },
@@ -653,14 +650,12 @@ namespace ABC.Client.Migrations
                             Duration = "12 months from date of purchase",
                             ImageUrl = "",
                             MinimumStockQuantity = 5,
-                            Provider = "Third-Party Warranty Company",
                             RetailPrice = 249f,
                             SKU = "headphones-wireless-XYZ222",
                             StockQuantity = 20,
-                            StoreId = 1,
                             SupplierId = 2,
-                            Type = "Extended Warranty",
-                            addNotes = "Bluetooth, 30+ hour battery life",
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6333),
+                            WarrantyType = "Extended Warranty",
                             productName = "XYZ222 Wireless Headphones",
                             status = "Active"
                         });
@@ -674,54 +669,43 @@ namespace ABC.Client.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AdditionalNote")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<long>("ContactNumber")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("EmployeeName")
+                    b.Property<string>("ContactPerson")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ExpectedDeliveryDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("DeliveryDate")
+                        .HasColumnType("date");
 
-                    b.Property<string>("LocationDelivery")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("OrderTotal")
+                        .HasColumnType("float");
 
                     b.Property<string>("PaymentTerm")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShipmentPreference")
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SupplierName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PurchaseOrders");
+                    b.HasIndex("StoreId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AdditionalNote = "additional note goes in here",
-                            ContactNumber = 9568271611L,
-                            EmployeeName = "Neil",
-                            ExpectedDeliveryDate = new DateTime(2023, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationDelivery = "Pasig",
-                            PaymentTerm = "Cash",
-                            ShipmentPreference = "Cash On Delivery",
-                            SupplierName = "Kurt"
-                        });
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("PurchaseOrders");
                 });
 
             modelBuilder.Entity("ABC.Shared.Models.PurchaseOrderItem", b =>
@@ -735,21 +719,25 @@ namespace ABC.Client.Migrations
                     b.Property<double>("Cost")
                         .HasColumnType("float");
 
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("PurchaseOrderId")
+                    b.Property<int>("PurchaseOrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<double>("SubTotal")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("PurchaseOrderId");
 
-                    b.ToTable("PurchaseOrderItem");
+                    b.ToTable("PurchaseOrderItems");
                 });
 
             modelBuilder.Entity("ABC.Shared.Models.ShoppingCart", b =>
@@ -780,6 +768,154 @@ namespace ABC.Client.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockPerStore", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Store1StockQty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Store2StockQty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalStocks")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId")
+                        .IsUnique();
+
+                    b.ToTable("StockPerStores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ProductId = 1,
+                            Store1StockQty = 15,
+                            Store2StockQty = 5,
+                            TotalStocks = 20
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ProductId = 2,
+                            Store1StockQty = 7,
+                            Store2StockQty = 8,
+                            TotalStocks = 15
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ProductId = 3,
+                            Store1StockQty = 5,
+                            Store2StockQty = 3,
+                            TotalStocks = 8
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ProductId = 4,
+                            Store1StockQty = 6,
+                            Store2StockQty = 6,
+                            TotalStocks = 12
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ProductId = 5,
+                            Store1StockQty = 17,
+                            Store2StockQty = 3,
+                            TotalStocks = 20
+                        });
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockTransfer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DestinationStoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SourceStoreId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TransferCreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TransferDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TransferRemarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TransferTotal")
+                        .HasColumnType("float");
+
+                    b.Property<string>("applicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DestinationStoreId");
+
+                    b.HasIndex("SourceStoreId");
+
+                    b.HasIndex("applicationUserId");
+
+                    b.ToTable("StockTransfers");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockTransferItemDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("CostPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockTransferId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("subTotal")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("StockTransferId");
+
+                    b.ToTable("StockTransferItemDetails");
                 });
 
             modelBuilder.Entity("ABC.Shared.Models.Store", b =>
@@ -874,6 +1010,9 @@ namespace ABC.Client.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("supplierBarangay")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -926,6 +1065,7 @@ namespace ABC.Client.Migrations
                         new
                         {
                             Id = 1,
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6487),
                             supplierBarangay = "Maybancal",
                             supplierCity = "Tanay",
                             supplierCompanyName = "Addvert",
@@ -941,6 +1081,7 @@ namespace ABC.Client.Migrations
                         new
                         {
                             Id = 2,
+                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6491),
                             supplierBarangay = "Maybancal",
                             supplierCity = "Tanay",
                             supplierCompanyName = "Addvert",
@@ -984,25 +1125,25 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "17c1bed5-0b14-482e-b260-878dc8d65d10",
+                            Id = "e0db689f-6b3d-4740-97a8-5a7cf49b4d57",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "dea49970-ba2e-4189-b00b-9413375878a0",
+                            Id = "7414943a-461d-4662-9a96-b4fc6bf5b0b6",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "63a131ae-07bc-42ae-a0e3-f2aa69d593b1",
+                            Id = "32c3390b-1f9e-45a9-b7b2-5fe836977343",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "ad9a7c0a-58d6-4f70-adcc-a691bfea4716",
+                            Id = "6b8d6d41-1379-4718-8a7e-a2256b8f0389",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -1097,23 +1238,23 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "7f24ed53-fb08-4add-9d09-c8ef36747db0",
-                            RoleId = "17c1bed5-0b14-482e-b260-878dc8d65d10"
+                            UserId = "0d016c50-49a2-4927-8e06-0742a3d59db8",
+                            RoleId = "e0db689f-6b3d-4740-97a8-5a7cf49b4d57"
                         },
                         new
                         {
-                            UserId = "7bf0e188-2c97-4276-ba3d-62e9302c7da4",
-                            RoleId = "dea49970-ba2e-4189-b00b-9413375878a0"
+                            UserId = "3ac9352f-4172-4034-9773-1c37130b92c9",
+                            RoleId = "7414943a-461d-4662-9a96-b4fc6bf5b0b6"
                         },
                         new
                         {
-                            UserId = "bd4f17de-d00c-497b-ba91-3568334e9d13",
-                            RoleId = "63a131ae-07bc-42ae-a0e3-f2aa69d593b1"
+                            UserId = "339801ef-839f-4244-9223-bd51dda3c2d6",
+                            RoleId = "32c3390b-1f9e-45a9-b7b2-5fe836977343"
                         },
                         new
                         {
-                            UserId = "68e95a5e-b855-4b34-81fe-68532c11543d",
-                            RoleId = "ad9a7c0a-58d6-4f70-adcc-a691bfea4716"
+                            UserId = "2e37355a-4398-48a4-99fe-afed34c5b5ae",
+                            RoleId = "6b8d6d41-1379-4718-8a7e-a2256b8f0389"
                         });
                 });
 
@@ -1171,7 +1312,7 @@ namespace ABC.Client.Migrations
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("ABC.Shared.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("OrderHeaders")
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("ApplicationUser");
@@ -1187,6 +1328,23 @@ namespace ABC.Client.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ABC.Shared.Models.Store", null)
+                        .WithMany("Products")
+                        .HasForeignKey("StoreId");
+
+                    b.HasOne("ABC.Shared.Models.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.PurchaseOrder", b =>
+                {
                     b.HasOne("ABC.Shared.Models.Store", "Store")
                         .WithMany()
                         .HasForeignKey("StoreId")
@@ -1199,8 +1357,6 @@ namespace ABC.Client.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-
                     b.Navigation("Store");
 
                     b.Navigation("Supplier");
@@ -1208,9 +1364,21 @@ namespace ABC.Client.Migrations
 
             modelBuilder.Entity("ABC.Shared.Models.PurchaseOrderItem", b =>
                 {
-                    b.HasOne("ABC.Shared.Models.PurchaseOrder", null)
+                    b.HasOne("ABC.Shared.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ABC.Shared.Models.PurchaseOrder", "PurchaseOrder")
                         .WithMany("PurchasedProducts")
-                        .HasForeignKey("PurchaseOrderId");
+                        .HasForeignKey("PurchaseOrderId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("PurchaseOrder");
                 });
 
             modelBuilder.Entity("ABC.Shared.Models.ShoppingCart", b =>
@@ -1228,6 +1396,63 @@ namespace ABC.Client.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockPerStore", b =>
+                {
+                    b.HasOne("ABC.Shared.Models.Product", "Product")
+                        .WithOne("StockPerStore")
+                        .HasForeignKey("ABC.Shared.Models.StockPerStore", "ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockTransfer", b =>
+                {
+                    b.HasOne("ABC.Shared.Models.Store", "DestinationStore")
+                        .WithMany()
+                        .HasForeignKey("DestinationStoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ABC.Shared.Models.Store", "SourceStore")
+                        .WithMany("StockTransfers")
+                        .HasForeignKey("SourceStoreId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ABC.Shared.Models.ApplicationUser", "applicationUser")
+                        .WithMany()
+                        .HasForeignKey("applicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DestinationStore");
+
+                    b.Navigation("SourceStore");
+
+                    b.Navigation("applicationUser");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockTransferItemDetails", b =>
+                {
+                    b.HasOne("ABC.Shared.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ABC.Shared.Models.StockTransfer", "StockTransfer")
+                        .WithMany("StockTransferItems")
+                        .HasForeignKey("StockTransferId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("StockTransfer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1281,14 +1506,37 @@ namespace ABC.Client.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ABC.Shared.Models.Customer", b =>
+                {
+                    b.Navigation("OrderHeaders");
+                });
+
             modelBuilder.Entity("ABC.Shared.Models.OrderHeader", b =>
                 {
                     b.Navigation("OrderDetails");
                 });
 
+            modelBuilder.Entity("ABC.Shared.Models.Product", b =>
+                {
+                    b.Navigation("StockPerStore")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ABC.Shared.Models.PurchaseOrder", b =>
                 {
                     b.Navigation("PurchasedProducts");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.StockTransfer", b =>
+                {
+                    b.Navigation("StockTransferItems");
+                });
+
+            modelBuilder.Entity("ABC.Shared.Models.Store", b =>
+                {
+                    b.Navigation("Products");
+
+                    b.Navigation("StockTransfers");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,25 @@
+h1[b-t4f4bu8kf7] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+}
+
+.breadcrumb[b-t4f4bu8kf7] {
+    margin-bottom: 1rem;
+}
+
+.infoContainer[b-t4f4bu8kf7] {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+    .infoContainer .subContainer[b-t4f4bu8kf7] {
+        border: 1px solid lightgrey;
+        padding: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+        .infoContainer .subContainer .tableTable[b-t4f4bu8kf7]{
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }

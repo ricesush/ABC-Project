@@ -1,0 +1,29 @@
+.FooterminHeight[b-9tc73xcj0n] {
+    min-height: calc(100vh - 395px);
+}
+
+h1[b-9tc73xcj0n], h3[b-9tc73xcj0n] {
+    color: #223442;
+    font-weight: bold;
+}
+
+.card[b-9tc73xcj0n] {
+    min-height: 500px;
+    margin-bottom: 4rem;
+}
+
+.Placebtn[b-9tc73xcj0n] {
+    background-color: green;
+    color: #ffff;
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.agreementText[b-9tc73xcj0n] {
+    font-size: 14px;
+    text-align: center;
+}

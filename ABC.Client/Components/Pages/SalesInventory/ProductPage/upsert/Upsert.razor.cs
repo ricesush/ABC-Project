@@ -34,9 +34,12 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
     private List<Category> CategoryList { get; set; } = [];
     private List<Supplier> SupplierList { get; set; } = [];
     private List<Store> StoreList { get; set; } = [];
+    private AddProductNotice Notice { get; set; } = new();
+    private bool showNotice { get; set; } = false;
 
     public ApplicationUser UserInfo { get; set; }
     private Product SelectedProduct { get; set; } 
+    private StockPerStore StockPerStoreInput { get; set; } = new();
 	private string userId;
     private IBrowserFile selectedFile;
     private string previewImageData = null;
@@ -71,6 +74,7 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
 
     private async Task SaveProduct()
     {
+        Notice = new();
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         var userName = user.FindFirst(ClaimTypes.Name)?.Value;
@@ -111,8 +115,31 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
                 SelectedProduct.ImageUrl = $@"\image\product\{fileName}";
             }
 
-            bool added = await productService_SQL.AddProduct(applicationDbContext, SelectedProduct);
-            NavigationManager.NavigateTo("/ProductList", true);
+            StockPerStoreInput.TotalStocks = StockPerStoreInput.Store1StockQty + StockPerStoreInput.Store2StockQty;
+
+            // NOTIFICATION MODAL
+            bool added = await productService_SQL.AddProduct(applicationDbContext, SelectedProduct, StockPerStoreInput);
+            if(added){
+                Notice = added.BuildAddProductNotice(); 
+                showNotice = true;
+
+                // RESETS
+                StockPerStoreInput = new();
+                SelectedProduct = new();
+
+                await Task.Delay(3000).ContinueWith( _ => {
+                    showNotice = false;
+                    NavigationManager.NavigateTo("/ProductList", true);
+                });
+            }else{
+                Notice = added.BuildAddProductNotice();
+                showNotice = true;
+                await Task.Delay(3000).ContinueWith( _ => {
+                    showNotice = false;
+                    StateHasChanged();
+                });
+            }
+
             AuditLog auditLog = new AuditLog
             {
                 UserName = userName,

@@ -17,11 +17,11 @@ public partial class ProductService_SQL
 		{
 			var context = DBContext;
 			var productList = context.Products;
-			IEnumerable<Store> stores = context.Stores;
+			IEnumerable<StockPerStore> stockPerStore = context.StockPerStores;
 			foreach (var item in productList)
 			{
 				_product.Add(item);
-				item.Store = stores.FirstOrDefault(st => st.Id == item.StoreId);
+				item.StockPerStore = stockPerStore.FirstOrDefault(s => s.ProductId == item.Id);
 			}
 			return _product;
 		}
@@ -54,13 +54,18 @@ public partial class ProductService_SQL
 	}
 
 	//* ADDS PRODUCT TO DB
-	private async Task<bool> AddProductData(dynamic DBContext, Product product)
+	private async Task<bool> AddProductData(dynamic DBContext, Product product, StockPerStore stockPerStore)
 	{
 		try
 		{
 			var context = DBContext;
 			context.Products.Add(product);
 			var result = context.SaveChanges();
+			
+			stockPerStore.Product = product;
+			context.StockPerStores.Add(stockPerStore);
+			var result2 = context.SaveChanges();
+
 			return result > 0 ? true : false;
 		}
 		catch (Exception ex)

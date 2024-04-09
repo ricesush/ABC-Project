@@ -1,116 +1,186 @@
 ﻿@using ABC.Shared.Models
 @using ABC.Shared.Utility
-@using Layout
+
 @page "/StockTransfer"
 @layout AdminLayout
+@using Layout
 
 @rendermode InteractiveServer
 
 <PageTitle>ABC - Stock Transfer</PageTitle>
 
-<section class="container">
-	<EditForm Model="selectedStockTransfer" OnValidSubmit="SaveStockTransfer" enctype="multipart/form-data">
-		<!--New Product-->
-		<div class="row pt-2 pb-2" id="topbar">
-			<!-- Title -->
-			<div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
-				<h1 style="color: #223442;"><b>@(selectedStockTransfer.Id != 0 ? $"ST #{selectedStockTransfer.Id}" : "Transfer Stock")</b></h1>
+@if (StockTransferID > 0)
+{
+	<section class="container">
+		<EditForm Model="selectedStockTransfer" OnValidSubmit="SaveStockTransfer" enctype="multipart/form-data">
+			<!--New Product-->
+			<div class="row pt-2 pb-2" id="topbar">
+				<!-- Title -->
+				<div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
+					<h1 style="color: #223442;"><b>@(selectedStockTransfer.Id != 0 ? $"ST #{selectedStockTransfer.Id}" :
+						"Transfer Stock")</b></h1>
+				</div>
+
+				<!-- Save Button -->
+				<div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
+					@if (selectedStockTransfer.Id != 0)
+					{
+						<button class="btn btn-success" type="submit">
+							<i class="bi bi-floppy"></i> Download as PDF
+						</button>
+						<button class="btn btn-danger" type="button" @onclick="() => CancelAction()">
+							<i class="bi bi-floppy"></i> Cancel
+						</button>
+					}
+					else
+					{
+						<button class="btn btn-success" type="submit">
+							<i class="bi bi-floppy"></i> Save
+						</button>
+						<button class="btn btn-danger" type="button" @onclick="() => CancelAction()">
+							<i class="bi bi-floppy"></i> Cancel
+						</button>
+					}
+				</div>
 			</div>
 
-			<!-- Save Button -->
-			<div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
-				@if (selectedStockTransfer.Id != 0)
-				{
-					<button class="btn btn-success" type="submit">
-						<i class="bi bi-floppy"></i> Download as PDF
-					</button>
-					<button class="btn btn-danger" type="button" @onclick="() => CancelAction()">
-						<i class="bi bi-floppy"></i> Cancel
-					</button>
-				}
-				else
-				{
-					<button class="btn btn-success" type="submit">
-						<i class="bi bi-floppy"></i> Save
-					</button>
-					<button class="btn btn-danger" type="button" @onclick="() => CancelAction()">
-						<i class="bi bi-floppy"></i> Cancel
-					</button>
-				}
-			</div>
-		</div>
-
-		<div class="row pb-3">
-			<div class="col-12">
-				<div class="border p-3 container shadow">
-					<div class="row">
-						<div class="col-6">
-							<div class="input-group mb-3">
-								<label class="input-group-text" for="status">Status</label>
-								<input type="text" class="form-control" @bind-value="selectedStockTransfer.Status" disabled>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<div class="col-12">
+			<div class="row pb-3">
+				<div class="col-12">
+					<div class="border p-3 container shadow">
+						<div class="row">
+							<div class="col-6">
 								<div class="input-group mb-3">
-									<label class="input-group-text" for="status">Creation Date</label>
-									<input type="text" class="form-control" @bind-value="selectedStockTransfer.TransferCreationDate" disabled>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="input-group mb-3">
-									<label class="input-group-text" for="sourceStore">Source Store</label>
-									<select class="form-select" @bind="selectedStockTransfer.SourceStore">
-										@* @foreach (var store in StoreList)
-										{
-											<option value="@store.Id">@store.storeName</option>
-										} *@
-									</select>
+									<label class="input-group-text" for="status">Status</label>
+									<InputText class="form-control" @bind-Value="selectedStockTransfer.Status" disabled />
 								</div>
 							</div>
 						</div>
-
-						<div class="col-6">
-							<div class="col-12">
-								<div class="input-group mb-3">
-									<label class="input-group-text" for="status">Transfer Date</label>
-									<input type="text" class="form-control" @bind-value="selectedStockTransfer.TransferDate">
+						<div class="row">
+							<div class="col-6">
+								<div class="col-12">
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="status">Creation Date</label>
+										<InputDate class="form-control"
+											@bind-Value="selectedStockTransfer.TransferCreationDate" disabled />
+									</div>
 								</div>
-							</div>
-							<div class="col-12">
-								<div class="input-group mb-3">
-									<label class="input-group-text" for="destination">Destination Store</label>
-									<select class="form-select" @bind="selectedStockTransfer.DestinationStore">
+								<div class="col-12">
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="sourceStore">Source Store</label>
+										@* <select class="form-select" @bind="selectedStockTransfer.SourceStore"> *@
 										@* @foreach (var store in StoreList)
-										{
-											<option value="@store.Id">@store.storeName</option>
-										} *@
-									</select>
+									{
+									<option value="@store.Id">@store.storeName</option>
+									} *@
+										@* </select> *@
+									</div>
 								</div>
 							</div>
-							<div class="col-12">
-								<div class="form-floating">
-									<textarea class="form-control" placeholder="Remarks" @bind="selectedStockTransfer.TransferRemarks" style="height: 100px" id="Remarks"></textarea>
-									<label for="Remarks">Remarks</label>
+
+							<div class="col-6">
+								<div class="col-12">
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="status">Transfer Date</label>
+										<InputDate class="form-control" @bind-Value="selectedStockTransfer.TransferDate" />
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="destination">Destination Store</label>
+										@* <select class="form-select" @bind="selectedStockTransfer.DestinationStore"> *@
+										@* @foreach (var store in StoreList)
+									{
+									<option value="@store.Id">@store.storeName</option>
+									} *@
+										@* </select> *@
+										<div class="dropdown">
+											<button class="btn border dropdown-toggle" type="button"
+												data-bs-toggle="dropdown" aria-expanded="false">
+												Dropdown button
+											</button>
+											<ul class="dropdown-menu">
+												@if (StoreList != null && StoreList.Any())
+												{
+													@foreach (var store in StoreList)
+													{
+														<li>
+															<div class="dropdown-item" id="@store.Id">@store.storeName</div>
+														</li>
+													}
+												}
+												else
+												{
+													<li>
+														<div class="dropdown-item">No Available Store</div>
+													</li>
+												}
+											</ul>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-12">
+									<div class="form-floating">
+										<InputTextArea class="form-control" placeholder="Remarks"
+											@bind-Value="selectedStockTransfer.TransferRemarks" style="height: 100px"
+											id="Remarks"></InputTextArea>
+										<label for="Remarks">Remarks</label>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="row pb-3">
-			<div class="col-12">
-				<div class="border p-3 container shadow">
-					<div class="row pb-2">
-						<h5>Products to Transfer</h5>
-						<hr />
+			<div class="row pb-3">
+				<div class="col-12">
+					<div class="border p-3 container shadow">
+						<div class="row pb-2">
+							<h5>Products to Transfer</h5>
+							<hr />
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</EditForm>
-</section>
+		</EditForm>
+	</section>
+}
+else
+{
+	<section>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Barcode</th>
+					<th scope="col">SKU</th>
+					<th scope="col">Status</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Category</th>
+					<th scope="col">Brand</th>
+					<th scope="col">Current Store</th>
+					<th scope="col">Cost Price</th>
+					<th scope="col">Retail Price</th>
+					<th scope="col">Stock Quantity</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+			<tbody class=" ">
+				<tr>
+					<th scope="row">1</th>
+					<td>Mark</td>
+					<td>Otto</td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>Jacob</td>
+					<td>Thornton</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td colspan="2">Larry the Bird</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+}

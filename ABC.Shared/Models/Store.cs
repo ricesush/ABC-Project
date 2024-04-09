@@ -57,5 +57,7 @@ namespace ABC.Shared.Models
 		[DisplayName("Zip Code")]
 		[MaxLength(5)]
 		public int storeZipCode { get; set; }
+
+		public List<StockTransfer> StockTransfers { get; set; }
 	}
 }

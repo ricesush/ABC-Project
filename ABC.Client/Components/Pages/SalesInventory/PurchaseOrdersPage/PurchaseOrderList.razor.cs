@@ -10,13 +10,15 @@ public partial class PurchaseOrderList
 {
     #region Injections
     [Inject] PurchaseOrderService_SQL PurchaseOrderService_SQL { get; set; }
+    [Inject] ProductService_SQL productService_SQL { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     #endregion
 
     #region Fields
     private List<PurchaseOrder> purchaseOrders { get; set; } = [];
     private PurchaseOrder selectedPurchaseOrder { get; set; } = new();
-
+    private string newStatus;
+    public int selectedPurchaseOrderId { get; set; }
     #endregion
 
     protected override async Task OnInitializedAsync()
@@ -44,13 +46,19 @@ public partial class PurchaseOrderList
         await InvokeAsync(StateHasChanged);
     }
 
-    private async Task Remove()
+    private void UpdateStatusModalHandler(string status, int purchaseOrderId)
     {
-        bool removed = await PurchaseOrderService_SQL.RemovePurchaseOrder(applicationDbContext, selectedPurchaseOrder);
+        newStatus = status;
+        selectedPurchaseOrderId = purchaseOrderId;
+    }
 
-        if (removed)
+    private async Task UpdateStatusHandler()
+    {
+        PurchaseOrder purchaseOrder = purchaseOrders.FirstOrDefault(p => p.Id == selectedPurchaseOrderId);
+        if (purchaseOrder != null)
         {
-            await LoadPurchaseOrders();
+            purchaseOrder.Status = newStatus;
+            bool updated = await PurchaseOrderService_SQL.UpdatePurchaseOrder(applicationDbContext, purchaseOrder, productService_SQL);
         }
     }
 }

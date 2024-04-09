@@ -60,5 +60,6 @@ namespace ABC.Shared.Models
 
         [DisplayName("Additional Note")]
         public string supplierNote { get; set; }
+        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }
 }

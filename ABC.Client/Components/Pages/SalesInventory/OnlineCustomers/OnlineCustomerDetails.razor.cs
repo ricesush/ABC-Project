@@ -17,6 +17,7 @@ public partial class OnlineCustomerDetails
     #region Fields
     private List<ApplicationUser> OnlineCustomers { get; set; } = [];
     private List<Store> StoreList { get; set; } = [];
+    private List<OrderHeader> OrderHeader { get; set; } = new List<OrderHeader>();
     private ApplicationUser SelectedCustomer { get; set; } = new();
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -34,7 +35,9 @@ public partial class OnlineCustomerDetails
     private async Task LoadOnlineCustomer()
     {
         var customerTask = applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, onlineCustomerId);
-
         SelectedCustomer = await customerTask;
+
+        OrderHeader = await orderHeaderService_SQL.GetOrderHeaderByUserId(applicationDbContext, onlineCustId);
+
     }
 }

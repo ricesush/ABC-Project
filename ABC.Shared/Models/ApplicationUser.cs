@@ -8,7 +8,7 @@ namespace ABC.Shared.Models
 {
     public class ApplicationUser: IdentityUser
     {
-        public DateTime TimeStamp { get; set; }
+        public DateTime TimeStamp { get; set; } = DateTime.UtcNow;
         [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }

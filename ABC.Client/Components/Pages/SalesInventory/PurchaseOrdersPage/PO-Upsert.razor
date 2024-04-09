@@ -19,7 +19,7 @@
 			<div class="row pt-2 pb-2" id="topbar">
 				<!-- Title -->
 				<div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
-					<h1 style="color: #223442;"><b>@(selectedPurchaseOrder.Id != 0 ? "Update" : "Create") Purchase Order</b></h1>
+					<h1 style="color: #223442;"><b>@(selectedPurchaseOrder.Id != 0 ? $"PO#{selectedPurchaseOrder.Id}" : "Create Purchase Order")</b></h1>
 				</div>
 
 				<!-- Save Button -->
@@ -27,11 +27,8 @@
 
 					@if (selectedPurchaseOrder.Id != 0)
 					{
-						<button class="btn btn-success" type="submit" >
-							<i class="bi bi-floppy"></i> Update
-						</button>
-						<button class="btn btn-secondary" type="submit">
-							<i class="bi bi-floppy"></i> Download as PDF
+						<button class="btn btn-secondary" type="button">
+							<i class="bi bi-floppy"></i> Print as PDF
 						</button>
 						<button class="btn btn-danger" type="button" @onclick="() => CancelAction()">
 							<i class="bi bi-floppy"></i> Cancel
@@ -91,7 +88,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row pb-3">
 				<div class="col-12">
 					<div class="border p-3 container shadow">
@@ -99,15 +96,7 @@
 							<div class="col-6">
 								<div class="input-group mb-3">
 									<label class="input-group-text" for="status">Status</label>
-									<select class="form-select" @bind="selectedPurchaseOrder.Status" id="status">
-										<option selected>Status of the Purchase Order</option>
-										<option>@SD.PO_Pending</option>
-										@if (isEditMode)
-										{
-											<option>@SD.PO_Completed</option>
-											<option>@SD.PO_Rejected</option>
-										}
-									</select>
+									<input type="text" class="form-control" @bind-value="selectedPurchaseOrder.Status" disabled>
 								</div>
 							</div>
 						</div>
@@ -158,21 +147,27 @@
 									<div class="col-12">
 										<div class="input-group d-flex mb-3">
 											<label class="input-group-text me-2" for="store">Ship To</label>
-											<div class="flex-grow-1">
-												<div class="dropdown">
-													<button class="btn btn-outline-secondary col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown">
-														@(selectedStore != null ? selectedStore.storeName : "Select a store")
-													</button>
-													<ul class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton1" style="overflow-y: auto; max-height: 200px;">
-														@foreach (var store in StoreList)
-														{
-															<li>
-																<div id="@store.Id" @onclick="() => SelectedStoreHandler(store.Id)" class="dropdown-item">@store.storeName</div>
-															</li>
-														}
-													</ul>
+											@if (selectedPurchaseOrder.Id == 0)
+											{
+												<div class="flex-grow-1">
+													<div class="dropdown">
+														<button class="btn btn-outline-secondary col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+															@(selectedStore != null && !String.IsNullOrEmpty(selectedStore.storeName) ? selectedStore.storeName : "Select a store")
+														</button>
+														<ul class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton1" style="overflow-y: auto; max-height: 200px;">
+															@foreach (var store in StoreList)
+															{
+																<li>
+																	<div id="@store.Id" @onclick="() => SelectedStoreHandler(store.Id)" class="dropdown-item">@store.storeName</div>
+																</li>
+															}
+														</ul>
+													</div>
 												</div>
-											</div>
+											} else
+											{
+												<input type="text" class="form-control" placeholder="Store" @bind-value="selectedPurchaseOrder.Store.storeName" readonly="@isEditMode">
+											}
 										</div>
 									</div>
 								</div>
@@ -233,7 +228,7 @@
 											<div class="">
 												<div class="text-14px">Product Name: @product.productName</div>
 												<div class="text-14px">SKU: @product.SKU</div>
-												<div class="text-14px">Store: @product.Store</div>
+												<div class="text-14px">Store: @product.Store.storeName</div>
 											</div>
 										</div>
 									</li>
@@ -247,6 +242,7 @@
 									<tr>
 										<th scope="col">ID</th>
 										<th scope="col">Product</th>
+										<th scope="col" class="text-center">Stock</th>
 										<th scope="col" class="text-center">Quantity</th>
 										<th scope="col" class="text-center">Price</th>
 										<th scope="col" class="text-center">Sub-Total</th>
@@ -261,6 +257,7 @@
 											<tr>
 												<th scope="row"> @product.Product.Id </th>
 												<td> @product.Product.productName </td>
+												<td class="text-center"> @product.Product.StockQuantity </td>
 												<td class="text-center"> @product.Quantity </td>
 												<td class="text-center"> @product.Product.CostPrice.ToString("#,##0.00") </td>
 												<td class="text-center"> @product.SubTotal.ToString("#,##0.00") </td>
@@ -315,7 +312,9 @@
 			</div>
 		</EditForm>
 	</section>
-} else {
+}
+else
+{
 	<section class="container">
 		<div class="row pt-2 pb-1" id="topbar">
 			<!-- Title -->

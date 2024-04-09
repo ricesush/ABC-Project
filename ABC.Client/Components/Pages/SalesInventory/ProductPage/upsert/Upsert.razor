@@ -146,22 +146,16 @@
 
 					<div class="row">
 						<!--Warranty-->
-						<div class="col-4">
+						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="productName">Warranty Type:</label>
-								<input @bind-value="SelectedProduct.Type" class="form-control" aria-describedby="Warranty Type">
+								<input @bind-value="SelectedProduct.WarrantyType" class="form-control" aria-describedby="Warranty Type">
 							</div>
 						</div>
-						<div class="col-4">
+						<div class="col-6">
 							<div class="input-group mb-3">
 								<label class="input-group-text" id="productName">Duration:</label>
 								<input @bind-value="SelectedProduct.Duration" class="form-control" aria-describedby="Warranty Duration">
-							</div>
-						</div>
-						<div class="col-4">
-							<div class="input-group mb-3">
-								<label class="input-group-text" id="productName">Provided By:</label>
-								<input @bind-value="SelectedProduct.Provider" class="form-control" aria-describedby="Warranty Provider">
 							</div>
 						</div>
 					</div>
@@ -263,27 +257,6 @@
 						<div class="input-group mb-3">
 							<label class="input-group-text" id="inputMinimumStockQuantity">Minimum Stock Quantity</label>
 							<input @bind-value="SelectedProduct.MinimumStockQuantity" class="form-control" aria-describedby="inputMinimumStockQuantity">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!--Additional Notes-->
-		<div class="row pt-3 pb-5">
-			<div class="col-12">
-				<div class="border p-3 container shadow">
-					<!--Title-->
-					<div class="row pb-2">
-						<h4 style="color: #223442;"><b>Additional Notes</b></h4>
-						<hr />
-					</div>
-
-					<!--Description-->
-					<div class="row">
-						<div class="input-group mb-3">
-							<textarea @bind="SelectedProduct.addNotes" class="form-control" style="height: 100px"></textarea>
 						</div>
 					</div>
 				</div>

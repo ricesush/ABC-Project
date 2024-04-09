@@ -102,7 +102,7 @@
                                 <label for="floatingProvince">Province</label>
                             </div>
                             <div class="form-floating col">
-                                <input type="text" class="form-control" id="floatingZipCode" placeholder="Zip Code"
+                                <input type="text" class="form-control" id="floatingZipCode" placeholder="Zip Code" maxlength="4"
                                     @bind-value="Customer.ZipCode">
                                 <label for="floatingZipCode">Zip Code</label>
                             </div>
@@ -225,10 +225,24 @@
                     <p class="fs-5 fw-bold">Transaction Details</p>
                 </div>
 
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping">Store</span>
-                    <input type="text" class="form-control" @bind-value="ApplicationUser.StoreName" aria-label="Store" aria-describedby="addon-wrapping">
-                </div>
+                @if (ApplicationUser.Role != SD.Role_Admin)
+                {
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">Store</span>
+                        <input type="text" class="form-control" @bind-value="ApplicationUser.StoreName" aria-label="Store" aria-describedby="addon-wrapping" disabled>
+                    </div>
+                } else
+                {
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">Store</span>
+                        <select class="form-select" aria-label="Store" aria-describedby="addon-wrapping" @bind="ApplicationUser.StoreName">
+                            @foreach (var store in storeList)
+                            {
+                                <option value="@store.storeName">@store.storeName</option>
+                            }
+                        </select>
+                    </div>
+                }
 
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text border border-end" id="addon-wrapping">Sales</span>
@@ -321,6 +335,11 @@
                         Cancel
                     </button>
                 </div>
+                <div class="row px-2 my-2">
+                    <button type="button" class="btn btn-warning col-12 btn-sm" data-bs-toggle="modal" data-bs-target="#newModal">
+                        New Transaction
+                    </button>
+                </div>
 
                 @* Complete *@
                 <div class="modal fade" id="completeModal" tabindex="-1" aria-labelledby="completeModalLabel" aria-hidden="true">
@@ -357,6 +376,26 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-danger" @onclick="CancelOrder" data-bs-dismiss="modal">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* New Transaction *@
+                <div class="modal fade" id="newModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-md modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="newModalLabel">New Transaction</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <h6>Are you sure you want to start a new transaction?</h6>
+                                <h6 class="alert text-danger">This is an irreversible action!</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger" @onclick="NewTransaction" data-bs-dismiss="modal">Confirm</button>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@ using System;
 using Serilog;
 using ABC.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using ABC.Shared.Utility;
 
 namespace ABC.Shared.Services;
 public partial class PurchaseOrderService_SQL : ComponentBase
@@ -57,14 +58,28 @@ public partial class PurchaseOrderService_SQL : ComponentBase
         }
     }
 
-    public async Task<bool> UpdatePurchaseOrder(dynamic DBContext, PurchaseOrder purchaseOrder)
+    public async Task<bool> UpdatePurchaseOrder(dynamic DBContext, PurchaseOrder purchaseOrder, ProductService_SQL productService_SQL)
     {
         bool updated = false;
         try
         {
-            updated = await UpdatePurchaseOrderData(DBContext, purchaseOrder);
-            return updated;
-        }
+			if (purchaseOrder.Status != SD.PO_Rejected)
+			{
+				foreach (var product in purchaseOrder.PurchasedProducts)
+				{
+					var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
+					result2.StockQuantity += product.Quantity;
+					await productService_SQL.UpdateProduct(DBContext, result2);
+				}
+				updated = await UpdatePurchaseOrderData(DBContext, purchaseOrder);
+				return updated;
+			}
+			else
+			{
+				updated = await UpdatePurchaseOrderData(DBContext, purchaseOrder);
+				return updated;
+			}
+		}
         catch(Exception ex)
         {
             Log.Error(ex.ToString());

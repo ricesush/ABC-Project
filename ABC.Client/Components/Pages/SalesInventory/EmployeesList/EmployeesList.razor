@@ -17,20 +17,28 @@
         <table id="tblData" class="table table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
+                    <th>Timestamp</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
                     <th>Role</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var user in employeeUsers)
                 {
                     <tr>
+                        <td>@user.TimeStamp</td>
                         <td>@($"{user.FirstName} {user.LastName}")</td>
                         <td>@user.Email</td>
                         <td>@user.PhoneNumber</td>
                         <td>@user.Role</td>
+                        <td class="text-center">
+                            <a @* href="StockTransfer?id=@user.Id" *@ class="a-style-none">
+                                <i class="bi bi-eye-fill text-primary cursor-pointer" title="View" tabindex="0"></i>
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>

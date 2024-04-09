@@ -14,7 +14,7 @@ namespace ABC.Shared.Models
     {
         [Key]
         public int Id { get; set; }
-
+		public DateTime Timestamp { get; set; } = DateTime.UtcNow;
 		public int SupplierId { get; set; }
 		public Supplier Supplier { get; set; }
 		public int StoreId { get; set; }

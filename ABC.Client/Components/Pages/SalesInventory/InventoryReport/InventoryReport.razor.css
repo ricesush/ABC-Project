@@ -1,9 +1,17 @@
-﻿.smallbox {
+﻿.first {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.smallbox {
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin: 5px;
     border-radius: 2px;
-    border: 1px solid #E6E6E6;
+    border: 2px solid #E6E6E6;
+    flex: 1 0 0;
 }
 
     .smallbox p {
@@ -11,6 +19,37 @@
         color: grey;
     }
 
+    .smallbox row {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+.second {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: 2px solid #E6E6E6;
+}
+
+
 .minHeight {
     min-height: calc(100vh - 395px);
+}
+
+h1, h6 {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+    text-align: start;
+}
+
+.button {
+    text-align: end;
+}
+
+.date {
+    margin-bottom: 2rem;
+    justify-content: flex-end;
 }

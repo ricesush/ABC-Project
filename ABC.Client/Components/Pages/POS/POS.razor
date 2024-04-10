@@ -162,8 +162,6 @@
                                     <div class="">
                                         <div class="text-14px">Product Name: @product.productName</div>
                                         <div class="text-14px">SKU: @product.SKU</div>
-                                        @* <div class="text-14px">Store: @(product.Store != null ? product.Store.storeName : "Not Available") "Not Available"</div> *@
-                                        <div class="text-14px">Store: Not Available</div>
                                     </div>
                                 </div>
                             </li>
@@ -239,24 +237,15 @@
                     <p class="fs-5 fw-bold">Transaction Details</p>
                 </div>
 
-                @if (ApplicationUser.Role != SD.Role_Admin)
-                {
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text" id="addon-wrapping">Store</span>
-                        <input type="text" class="form-control" @bind-value="ApplicationUser.StoreName" aria-label="Store" aria-describedby="addon-wrapping" disabled>
-                    </div>
-                } else
-                {
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text" id="addon-wrapping">Store</span>
-                        <select class="form-select" aria-label="Store" aria-describedby="addon-wrapping" @bind="ApplicationUser.StoreName">
-                            @foreach (var store in storeList)
-                            {
-                                <option value="@store.storeName">@store.storeName</option>
-                            }
-                        </select>
-                    </div>
-                }
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Store</span>
+                    <select class="form-select" aria-label="Store" aria-describedby="addon-wrapping" @bind="ApplicationUser.StoreName">
+                        @foreach (var store in storeList)
+                        {
+                            <option value="@store.storeName">@store.storeName</option>
+                        }
+                    </select>
+                </div>
 
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text border border-end" id="addon-wrapping">Sales</span>

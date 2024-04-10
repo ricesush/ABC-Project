@@ -99,7 +99,7 @@ public partial class ProductService_SQL
 		try
 		{
 			var context = DBContext;
-			context.Products.Update(product);
+			context.Products.Remove(product);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;
 		}
@@ -109,64 +109,21 @@ public partial class ProductService_SQL
 			return false;
 		}
 	}
-	#endregion
+    #endregion
 
-	#region CATEGORIES CRUD
-	//* GETS ALL CATEGORIES
-	public async Task<List<Category>> GetCategoriesListData(dynamic DBContext)
-	{
-		List<Category> _category = [];
-		try
-		{
-			var context = DBContext;
-			var categoriesList = context.Categories;
-			foreach (var item in categoriesList)
-			{
-				_category.Add(item);
-			}
-			return _category;
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex.ToString());
-			return _category;
-		}
-	}
-
-	//* GETS SINGLE CATEGORY BASE ON ID 
-	private async Task<Category> GetCategoryData(dynamic DBContext, int id)
-	{
-		Category _category = new();
-		try
-		{
-			var context = DBContext;
-			var result = context.Categories.Find(id);
-			if (result is not null)
-			{
-				_category = result;
-			}
-			return _category;
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex.ToString());
-			return _category;
-		}
-	}
-
-	private async Task<bool> UpdateStockPerStore(DbContext DBContext, StockPerStore stockPerStore){
-		bool updatedStockPerStore = false;
-		try
-		{
-			DBContext.Set<StockPerStore>().Update(stockPerStore);
-			var result = await DBContext.SaveChangesAsync();
-			return updatedStockPerStore = result > 0;
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex.ToString());	
-			return updatedStockPerStore;		
-		}
-	}
-	#endregion
+    private async Task<bool> UpdateStockPerStore(DbContext DBContext, StockPerStore stockPerStore)
+    {
+        bool updatedStockPerStore = false;
+        try
+        {
+            DBContext.Set<StockPerStore>().Update(stockPerStore);
+            var result = await DBContext.SaveChangesAsync();
+            return updatedStockPerStore = result > 0;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return updatedStockPerStore;
+        }
+    }
 }

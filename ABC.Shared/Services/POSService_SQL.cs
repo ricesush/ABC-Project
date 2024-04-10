@@ -13,8 +13,7 @@ namespace ABC.Shared.Services;
 
 public partial class POSService_SQL
 { 
-    
-    #region BATCH FETCH OF MARKET DATA: SECURITY INFORMATION AND SECURITY QUOTATION
+    #region
     
     private async Task<List<Customer>> GetCustomerListData(dynamic DBContext)
     {

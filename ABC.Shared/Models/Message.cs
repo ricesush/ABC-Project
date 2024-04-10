@@ -29,6 +29,13 @@ namespace ABC.Shared.Models
 
         public const string Failed = "Failed to add the product";
     }
+
+    public static class StockTransferMessage
+    {
+        public const string Success = "Successfully transferred the stocks.";
+
+        public const string Failed = "Failed to transfer the stocks";
+    }
     
 
 
@@ -49,6 +56,25 @@ namespace ABC.Shared.Models
                 Log.Error(ex.ToString());
                 baseNotification.Failed = true;
                 baseNotification.Message = AddProductMessage.Failed;
+                return baseNotification;
+            }
+        }
+
+        public static AddProductNotice BuildStockTransferNotice(this bool isSuccess)
+        {
+            AddProductNotice baseNotification = new();
+            try
+            {
+                baseNotification.IsSuccess = isSuccess;
+                baseNotification.Failed = !isSuccess;
+                baseNotification.Message = isSuccess ? StockTransferMessage.Success : StockTransferMessage.Failed;
+                return baseNotification;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                baseNotification.Failed = true;
+                baseNotification.Message = StockTransferMessage.Failed;
                 return baseNotification;
             }
         }

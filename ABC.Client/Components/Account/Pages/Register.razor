@@ -10,6 +10,7 @@
 @using ABC.Shared.Utility
 @using ABC.Client.Components.SharedComponents;
 @using ABC.Shared.Services;
+@using System.Security.Claims
 
 @inject UserManager<ApplicationUser> UserManager
 @inject RoleManager<IdentityRole> RoleManager
@@ -228,6 +229,16 @@
 		user.PhoneNumber = Input.PhoneNumber;
 		user.StoreName = Input.StoreName;
 		// user.Role = Input.Role;
+
+		if(user is not null){
+            var userClaims = await UserManager.GetClaimsAsync(user);
+
+            await UserManager.RemoveClaimsAsync(user,
+            userClaims);
+
+            await UserManager.AddClaimAsync(user, new Claim( ClaimTypes.GivenName, user.FirstName));
+			await UserManager.AddClaimAsync(user, new Claim( ClaimTypes.Surname, user.LastName));
+        }
 
 		var result = await UserManager.CreateAsync(user, Input.Password);
 		if (!result.Succeeded)

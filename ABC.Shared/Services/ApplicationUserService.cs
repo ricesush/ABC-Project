@@ -2,6 +2,7 @@
 using Serilog;
 using ABC.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 public partial class ApplicationUserService_SQL : ComponentBase
@@ -91,6 +92,20 @@ public partial class ApplicationUserService_SQL : ComponentBase
 		{
 			Log.Error(ex.ToString());
 			return removed;
+		}
+	}
+
+	public async Task<ApplicationUser> GetCurrentUserInfo(DbContext dbContext, string userId){
+		ApplicationUser currentUser = new();
+		try
+		{
+			currentUser = await GetCurrentUserInfoData(dbContext, userId);
+			return currentUser;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return currentUser;
 		}
 	}
 	#endregion

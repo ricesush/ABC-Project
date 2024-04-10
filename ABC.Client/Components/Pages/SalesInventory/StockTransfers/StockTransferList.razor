@@ -1,102 +1,203 @@
-﻿@using ABC.Shared.Models
-@using ABC.Shared.Utility
-@using Layout
-@using System.Globalization
-
-@page "/StockTransferList"
+﻿@page "/StockTransfer"
 @layout AdminLayout
+@using System.Globalization;
+@using ABC.Client.Components.Pages.POS.Components;
+@using ABC.Shared.Utility
+@using ABC.Client.Components.SharedComponents;
+@using Layout;
+
+@namespace ABC.Client.Components.Pages.StockTransfers
+
 @rendermode InteractiveServer
+<Toast @ref="toastRef" />
 
-<PageTitle>ABC - Stock Transfers</PageTitle>
+<PageTitle>ABC - Stock Transfer</PageTitle>
 
-<section class="container pt-2 pb-5">
-    <div class="row pb-4">
-        <!-- Title -->
-        <div class="col-8">
-            <h1>Stock Transfers</h1>
-        </div>
-        <div class="col-lg-4 col-sm-4 text-end mb-3 mb-sm-0">
-            <a href="/StockTransfer" class="btn btn-primary">
-                Trasfer Stock
-            </a>
-        </div>
-    </div>
-
-
-    <table id="tblstockTransferData" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Timestamp</th>
-                <th>Supplier</th>
-                <th>Deliver to</th>
-                <th>Payment Term</th>
-                <th>Delivery Date</th>
-                <th>Total</th>
-                <th>Created By</th>
-                <th class="text-center">Status</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (stockTransfers.Count > 0 && stockTransfers.Any())
-            {
-                @foreach (var transfer in stockTransfers)
-                {
-                    <tr>
-                        <th scope="row">@transfer.Id</th>
-                        <td>@transfer.TransferCreationDate</td>
-                        <td>@($"{transfer.SourceStore?.storeName ?? "Error"}")</td>
-                        <td>@($"{transfer.DestinationStore?.storeName ?? "Error"}")</td>
-                        <td>@transfer.TransferDate</td>
-                        <td>@transfer.TransferTotal.ToString("C", new CultureInfo("en-PH"))</td>
-                        <td>@($"{transfer.applicationUser.FirstName} {transfer.applicationUser.LastName}")</td>
-                        <td class="text-center">
-                            @if (transfer.Status != SD.PO_Pending)
-                            {
-                                @transfer.Status
-                            }
-                            else
-                            {
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-outline-primary btn-sm">@transfer.Status</button>
-                                    <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="visually-hidden">@transfer.Status</span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" @onclick="() => UpdateStatusModalHandler(SD.StatusTransferCompleted, transfer.Id)">@SD.StatusTransferCompleted</button></li>
-                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" @onclick="() => UpdateStatusModalHandler(SD.StatusTransferRejected, transfer.Id)">@SD.StatusTransferRejected</button></li>
-                                    </ul>
-                                </div>
-                            }
-
-                        </td>
-                        <td>
-                            <a href="StockTransfer?id=@transfer.Id" class="a-style-none">
-                                <i class="bi bi-eye-fill text-primary cursor-pointer" title="View" tabindex="0"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+<section id="alert" class="@(showNotice ? "" : "d-none")">
+	<NoticeComponent Notice="@Notice" />
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<section class="container my-3">
+    @* PRODUCT INFORMATION *@
+    <section class="row g-2 pt-3">
+        <section class="">
+            <div class="border p-3 container shadow">
+                <div class="row border-bottom mb-3">
+                    <p class="fs-5 fw-bold">Product Details</p>
+                </div>
+
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search me-2"></i> Search
+                        Product</span>
+                    <input type="text" class="form-control" @bind-value="ProductSearchInput" @oninput="GetProductList"
+                        @onfocusin="() => ShowProductDropdownHandler(true)"
+                        @onfocusout="() => ShowProductDropdownHandler(false)" aria-label="Search Product"
+                        aria-describedby="addon-wrapping" />
+
+                </div>
+                <div class="dropdown">
+                    <ul class='dropdown-menu col-12 mt-3 @(ProductList.Count > 0 && ShowProductDropdown ? "show" : "")'>
+                        @foreach (var product in ProductList)
+                        {
+                            <li>
+                                <div class="dropdown-item cursor-pointer d-flex" data-bs-toggle="modal"
+                                    data-bs-target="#productModal" @onclick="() => PopulateProductDetails(product.Id)">
+                                    <div class="me-3">
+                                        @if (!String.IsNullOrEmpty(product.ImageUrl))
+                                        {
+                                            <img src="@product.ImageUrl" alt="@product.productName"
+                                                style="max-width: 100px; max-height: 100px;">
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-image fs-2"></i>
+                                        }
+                                    </div>
+                                    <div class="">
+                                        <div class="text-14px">Product Name: @product.productName</div>
+                                        <div class="text-14px">SKU: @product.SKU</div>
+                                        @* <div class="text-14px">Store: @(product.Store != null ? product.Store.storeName :
+                                    "Not Available") "Not Available"</div> *@
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @*
+                <!--DISPLAY SELECTED ITEMS-->
+                <table class="table table-striped table-hover table-sm mt-3">
+                <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Product</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-center">Price</th>
+                <th scope="col" class="text-center">Total</th>
+                <th scope="col" class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>
+                @if (ShoppingCart.Count > 0)
+                {
+                foreach (var product in ShoppingCart)
+                {
+                <tr>
+                <th scope="row"> @product.Product.Id </th>
+                <td> @product.Product.productName </td>
+                <td class="text-center"> @product.Count </td>
+                <td class="text-center"> @product.Product.RetailPrice.ToString("#,##0.00") </td>
+                <td class="text-center"> @product.TotalPrice.ToString("#,##0.00") </td>
+                <td class="text-center d-flex justify-content-around">
+                <i class="bi bi-x-square text-danger cursor-pointer" title="Remove Item"
+                tabindex="0" data-bs-toggle="modal"
+                data-bs-target="#removeItem" @onclick='() => ItemPostRemoval(product.Product.Id)'></i>
+                </td>
+                </tr>
+                }
+                @for (var i = 0; i < 10 - ShoppingCart.Count; i++)
+                {
+                <tr>
+                <th scope="row"> - </th>
+                <td> - </td>
+                <td class="text-center"> - </td>
+                <td class="text-center"> - </td>
+                <td class="text-center"> - </td>
+                <td class="text-center"> - </td>
+                </tr>
+                }
+                }
+                else
+                {
+                @for (var i = 0; i < 10; i++)
+                {
+                <tr>
+                <th scope="row"> - </th>
+                <td> - </td>
+                <td class="text-center"> - </td>
+                <td class="text-center"> - </td>
+                <td class="text-center"> - </td>
+                <td class="text-center"> - </td>
+                </tr>
+                }
+                }
+                </tbody>
+                </table>*@
+            </div>
+        </section>
+    </section>
+
+</section>
+
+@* PRODUCT MODAL *@
+
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="productModalLabel">Product Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Change the status from <b>Pending</b> to <b>@newStatus</b>?
+                <div>
+                    <b>Product Name: </b> @ProductInModal.productName
+                </div>
+                <div>
+                    <b>SKU: </b> @ProductInModal.SKU
+                </div>
+                <div>
+                    <b>Retail Price: </b> @ProductInModal.RetailPrice
+                </div>
+                <div>
+                    <b>Total InStock: </b> @ProductInModal.StockQuantity
+                </div>
+
+                <div class="form-group mt-3" id="quantityInputDiv">
+                    <label for="quantity">Addsome Business Corporation Stock:</label>
+                    <input type="number" class="form-control pt-3" id="quantity"
+                        @bind-value="ProductInModal.StockPerStore.Store1StockQty" @bind-value:event="oninput"
+                        placeholder="Enter quantity" aria-label="Quantity" aria-describedby="quan">
+                </div>
+
+                <div class="form-group" id="quantityInputDiv">
+                    <label for="quantity">Ahead Biz Computers Stock:</label>
+                    <input type="number" class="form-control pt-3" id="quantity"
+                        @bind-value="ProductInModal.StockPerStore.Store2StockQty" @bind-value:event="oninput"
+                        placeholder="Enter quantity" aria-label="Quantity" aria-describedby="quan">
+                </div>
+
+                @if (ProductInModal is not null && ProductInModal.Id > 0)
+                {
+                    <div class="text-danger">
+                        @if ((ProductInModal.StockPerStore.Store1StockQty + ProductInModal.StockPerStore.Store2StockQty) >
+                       ProductInModal.StockQuantity)
+                        {
+                            <p>The total entered stocks are more than @ProductInModal.StockQuantity</p>
+                        }
+                        else if ((ProductInModal.StockPerStore.Store1StockQty +
+                        ProductInModal.StockPerStore.Store2StockQty) < ProductInModal.StockQuantity)
+                        {
+                            <p>The total entered stocks are less than @ProductInModal.StockQuantity</p>
+                        }
+                    </div>
+                }
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @onclick="UpdateStatusHandler" data-bs-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                @if ((ProductInModal.StockPerStore.Store1StockQty + ProductInModal.StockPerStore.Store2StockQty) ==
+                       ProductInModal.StockQuantity)
+                {
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        @onclick="() => TransferStocks(ProductInModal.StockPerStore)">
+                        Confirm
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Confirm</button>
+                }
             </div>
         </div>
     </div>

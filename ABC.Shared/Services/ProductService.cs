@@ -2,6 +2,7 @@ using System;
 using Serilog;
 using ABC.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 public partial class ProductService_SQL : ComponentBase
@@ -124,6 +125,20 @@ public partial class ProductService_SQL : ComponentBase
 		{
 			Log.Error(ex.ToString());
 			return CategoryInfo;
+		}
+	}
+
+	public async Task<bool> TransferStock(DbContext dbContext, StockPerStore stockPerStore){
+		bool stockTransferUpdated = false;
+		try
+		{
+			stockTransferUpdated = await UpdateStockPerStore(dbContext, stockPerStore);
+			return stockTransferUpdated;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());	
+			return stockTransferUpdated;		
 		}
 	}
 	#endregion

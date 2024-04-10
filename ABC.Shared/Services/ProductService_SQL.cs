@@ -3,6 +3,7 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
@@ -150,6 +151,21 @@ public partial class ProductService_SQL
 		{
 			Log.Error(ex.ToString());
 			return _category;
+		}
+	}
+
+	private async Task<bool> UpdateStockPerStore(DbContext DBContext, StockPerStore stockPerStore){
+		bool updatedStockPerStore = false;
+		try
+		{
+			DBContext.Set<StockPerStore>().Update(stockPerStore);
+			var result = await DBContext.SaveChangesAsync();
+			return updatedStockPerStore = result > 0;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());	
+			return updatedStockPerStore;		
 		}
 	}
 	#endregion

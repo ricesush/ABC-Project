@@ -77,6 +77,21 @@ public partial class ApplicationUserService_SQL
 		}
 	}
 
+	//* GETS CURRENT USER INFORMATION
+	private async Task<ApplicationUser> GetCurrentUserInfoData(DbContext DBContext, string userId){
+		ApplicationUser currentUser = new();
+		try
+		{
+			currentUser = DBContext.Set<ApplicationUser>().FirstOrDefault( x => x.Id == userId);
+			return currentUser;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return currentUser;			
+		}
+	}
+
 	//* ADDS ApplicationUsers TO DB
 	private async Task<bool> AddApplicationUserData(dynamic DBContext, ApplicationUser applicationUser)
 	{

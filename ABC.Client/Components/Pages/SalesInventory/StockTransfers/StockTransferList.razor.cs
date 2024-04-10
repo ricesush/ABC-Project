@@ -1,65 +1,122 @@
-﻿using ABC.Client.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ABC.Shared.Models;
-using ABC.Shared.Models.ViewModels;
 using ABC.Shared.Services;
+using Serilog;
 using Microsoft.AspNetCore.Components;
+using ABC.Client.Data;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using ABC.Shared.Utility;
+using ABC.Client.Components.Pages.ShopWeb.Cart.OrderCheckout;
+using System.Linq.Expressions;
+using Microsoft.AspNetCore.Components.Authorization;
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 
-namespace ABC.Client.Components.Pages.SalesInventory.StockTransfers;
-
+namespace ABC.Client.Components.Pages.StockTransfers;
 public partial class StockTransferList
 {
-    #region Injections
+    #region DEPENDENCY INJECTIOn
+    [Inject] POSService_SQL pOSService_SQL { get; set; }
+    [Inject] ProductService_SQL ProductService_SQL { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
-    [Inject] StockTransferService_SQL stockTransferService_SQL { get; set; }
-    [Inject] StoreService_SQL storeService_SQL { get; set; }
-    [Inject] ProductService_SQL productService_SQL { get; set; }
+    [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+    [Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
+
+
+
     #endregion
 
     #region FIELDS
-    private List<StockTransfer> stockTransfers { get; set; } = [];
-    private StockTransfer selectedStockTransfer { get; set; } = new();
-    private string newStatus;
-    public int selectedStockTransferID { get; set; }
+    private ApplicationUser ApplicationUser { get; set; } = new();
+    private List<Product> ProductList { get; set; } = [];
+    private Product ProductInModal { get; set; } = new();
+    private String ProductSearchInput { get; set; } = String.Empty;
+    private bool ShowProductDropdown { get; set; } = false;
+    private string? userId { get; set; } = "";
+    private Toast toastRef { get; set; }
+    private AddProductNotice Notice { get; set; } = new();
+    private bool showNotice { get; set; } = new();
+
     #endregion
 
     protected override async Task OnInitializedAsync()
     {
-        stockTransferService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
-        await LoadPurchaseOrders();
+        ProductInModal.StockPerStore ??= new();
+        var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
+        var claimsIdentity = user.Identity as ClaimsIdentity;
+        userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
+
+        pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
     }
 
-    private async Task LoadPurchaseOrders()
+    private async Task GetProductList(ChangeEventArgs e)
     {
-        stockTransfers = await stockTransferService_SQL.GetStockTransferList(applicationDbContext);
-    }
+        ProductSearchInput = e?.Value?.ToString();
+        ProductList.Clear();
 
-    private async Task PopulatePO_Details(int stockTransferId)
-    {
-        selectedStockTransfer = new();
-
-        var result = await stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, stockTransferId);
-
-        if (result is not null)
+        var result = await pOSService_SQL.GetProductList(applicationDbContext);
+        if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(ProductSearchInput))
         {
-            selectedStockTransfer = result;
+            ProductList = result
+                .Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase) && x.StockQuantity > 0).ToList();
         }
-
         await InvokeAsync(StateHasChanged);
     }
 
-    private void UpdateStatusModalHandler(string status, int stockTransferId)
+    private async Task ShowProductDropdownHandler(bool show)
     {
-        newStatus = status;
-        selectedStockTransferID = stockTransferId;
+        await Task.Delay(1000);
+        ShowProductDropdown = show;
+        StateHasChanged();
     }
 
-    private async Task UpdateStatusHandler()
+    private async Task PopulateProductDetails(int productId)
     {
-        StockTransfer stockTransfer = stockTransfers.FirstOrDefault(p => p.Id == selectedStockTransferID);
-        if (stockTransfer != null)
+        ProductInModal = new();
+        // Find the Item
+        var result = await pOSService_SQL.GetProductInfo(applicationDbContext, productId);
+        if (result is not null)
         {
-            stockTransfer.Status = newStatus;
-            bool updated = await stockTransferService_SQL.UpdateStockTransfer(applicationDbContext, stockTransfer, productService_SQL);
+            ProductInModal = result;
+        }
+    }
+
+    private async Task<bool> TransferStocks(StockPerStore stockPerStore)
+    {
+        bool isSuccess = false;
+        Notice = new();
+        try
+        {
+            isSuccess = await ProductService_SQL.TransferStock(applicationDbContext, stockPerStore);
+            Notice = isSuccess.BuildStockTransferNotice();
+            showNotice = true;
+            await InvokeAsync(StateHasChanged);
+
+            await Task.Delay(3000).ContinueWith(_ =>
+            {
+                showNotice = false;
+                InvokeAsync(StateHasChanged);
+            });
+            return isSuccess;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            Notice = isSuccess.BuildStockTransferNotice();
+            showNotice = true;
+            await InvokeAsync(StateHasChanged);
+
+            await Task.Delay(3000).ContinueWith(_ =>
+            {
+                showNotice = false;
+                InvokeAsync(StateHasChanged);
+            });
+            return isSuccess;
         }
     }
 }

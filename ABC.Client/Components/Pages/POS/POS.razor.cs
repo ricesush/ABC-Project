@@ -30,6 +30,7 @@ public partial class POS
     [Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
 
 
+
     #endregion
 
     #region FIELDS
@@ -51,11 +52,13 @@ public partial class POS
     private bool ShowProductDropdown { get; set; } = false;
     private double AmountTendered { get; set; }
     private double Change { get; set; }
-    private string? userId;
-	private Toast toastRef;
+    private string? userId { get; set; } = "";
+    private Toast toastRef { get; set; }
+    private int StockDeficit { get; set; } = 0;
+    private bool ShowStockTransferAlert { get; set; } = false;
 
-	#endregion
-	protected override async Task OnInitializedAsync()
+    #endregion
+    protected override async Task OnInitializedAsync()
     {
         var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
         var claimsIdentity = user.Identity as ClaimsIdentity;
@@ -64,7 +67,7 @@ public partial class POS
 
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
     }
-    
+
     private async Task ShowDropdownHandler(bool show)
     {
         await Task.Delay(1000);
@@ -168,9 +171,12 @@ public partial class POS
         {
             // Add the new item to the cart
             var result = await pOSService_SQL.GetProductInfo(applicationDbContext, productId);
+
+            OrderDetail newItem = new();
+
             if (result != null)
             {
-                OrderDetail newItem = new()
+                newItem = new()
                 {
                     Id = result.Id,
                     Product = result,
@@ -178,6 +184,25 @@ public partial class POS
                     Price = result.RetailPrice,
                     TotalPrice = quantity * result.RetailPrice
                 };
+            }
+
+            // IDENTIFY THE CURRENT STORE
+            var userResult = await applicationUserService_SQL.GetCurrentUserInfo(applicationDbContext, userId);
+
+            // GET THE CURRENTSTORE QUANTITY
+            int currentStoreStock = userResult.StoreName.Contains("Addsome") ? result.StockPerStore.Store1StockQty : result.StockPerStore.Store2StockQty;
+
+            // LOGIC TO COMPARE THE CLIENT QUANTITY vs THE STORE STOCK
+            if (newItem.Count > currentStoreStock)
+            {
+                ShowStockTransferAlert = true;
+                await Task.Delay(3000).ContinueWith( _ => {
+                    ShowStockTransferAlert = false;
+                    InvokeAsync(StateHasChanged);
+                });
+            }
+            else
+            {
                 ShoppingCart.Add(newItem);
             }
         }
@@ -185,6 +210,21 @@ public partial class POS
         ProductSearchInput = "";
         await UpdateOrderSummary();
         await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task<bool> TransferStocks(StockPerStore stockPerStore)
+    {
+        bool isSuccess = false;
+        try
+        {
+            isSuccess = await ProductService_SQL.TransferStock(applicationDbContext, stockPerStore);
+            return isSuccess;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return isSuccess;
+        }
     }
     public void CancelFees()
     {
@@ -205,11 +245,11 @@ public partial class POS
         if (item != null && item.Count > 0)
         {
             ShoppingCart.Remove(item);
-            await UpdateOrderSummary(); 
+            await UpdateOrderSummary();
             await InvokeAsync(StateHasChanged);
         }
     }
-    
+
     private async Task UpdateTotalFees()
     {
         TotalFees = OrderSummary.ServiceFee + OrderSummary.DeliveryFee;
@@ -261,16 +301,16 @@ public partial class POS
 
     private async Task PaymentMethodHandler(string PaymentMethod)
     {
-		switch (PaymentMethod)
-		{
-			case SD.PaymentModeBank:
+        switch (PaymentMethod)
+        {
+            case SD.PaymentModeBank:
                 OrderSummary.PaymentMode = SD.PaymentModeBank;
-				break;
-			default:
-				OrderSummary.PaymentMode = SD.PaymentModeCash;
-				break;
-		}
-	}
+                break;
+            default:
+                OrderSummary.PaymentMode = SD.PaymentModeCash;
+                break;
+        }
+    }
     private void CalculateChange(ChangeEventArgs e)
     {
         if (double.TryParse(e.Value.ToString(), out double amountTendered))
@@ -304,7 +344,7 @@ public partial class POS
 
     private async Task CompleteOrder()
     {
-		Customer customer = new()
+        Customer customer = new()
         {
             Id = Customer.Id,
             FirstName = Customer.FirstName,
@@ -333,7 +373,7 @@ public partial class POS
             ShippingDate = DateTime.UtcNow.ToLocalTime().AddDays(2),
             OrderTotal = OrderSummary.OrderTotal,
             OrderStatus = SD.StatusCompleted,
-            PaymentStatus = SD.PaymentStatusApproved, 
+            PaymentStatus = SD.PaymentStatusApproved,
             Carrier = OrderSummary.Carrier,
             Discount = OrderSummary.Discount,
             ServiceFee = OrderSummary.ServiceFee,
@@ -355,36 +395,37 @@ public partial class POS
             };
             orderDetails.Add(orderDetail);
         }
-		_orderHeader.OrderDetails = orderDetails;
-		bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader, ProductService_SQL);
-		
+        _orderHeader.OrderDetails = orderDetails;
+        bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader, ProductService_SQL);
+
         if (added)
         {
-			toastRef.ShowToast("Success", ($"Transaction #{_orderHeader.Id} completed successfully!"));
-		} else
+            toastRef.ShowToast("Success", ($"Transaction #{_orderHeader.Id} completed successfully!"));
+        }
+        else
         {
-			toastRef.ShowToast("Error", ($"Transaction #{_orderHeader.Id} was not saved! Please fill required fields!"));
-		}
+            toastRef.ShowToast("Error", ($"Transaction #{_orderHeader.Id} was not saved! Please fill required fields!"));
+        }
 
-		await InvokeAsync(StateHasChanged);
+        await InvokeAsync(StateHasChanged);
 
     }
-     
+
     private async Task NewTransaction()
     {
-		ShoppingCart.Clear();
-		OrderSummary = new OrderHeader();
-		Customer = new CustomerData();
-		TotalFees = 0;
-		ProductSearchInput = string.Empty;
-		discount = new Discount();
-		DiscountTypes = new DiscountModel();
-		AmountTendered = 0;
-		Change = 0;
-		ShowDropdown = false;
-		ShowProductDropdown = false;
-		ItemPostRemovalId = 0;
-	}
+        ShoppingCart.Clear();
+        OrderSummary = new OrderHeader();
+        Customer = new CustomerData();
+        TotalFees = 0;
+        ProductSearchInput = string.Empty;
+        discount = new Discount();
+        DiscountTypes = new DiscountModel();
+        AmountTendered = 0;
+        Change = 0;
+        ShowDropdown = false;
+        ShowProductDropdown = false;
+        ItemPostRemovalId = 0;
+    }
 
     private async Task CancelOrder()
     {

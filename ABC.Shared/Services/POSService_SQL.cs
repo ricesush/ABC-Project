@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
@@ -75,13 +76,14 @@ public partial class POSService_SQL
         }
     }
 
-    private async Task<Product> GetProductData(dynamic DBContext, int id)
+    private async Task<Product> GetProductData(DbContext DBContext, int id)
     {
         Product _product = new();
         try
         {
             var context = DBContext;
-            var result = context.Products.Find(id);
+            var result = context.Set<Product>().Include( x => x.StockPerStore).FirstOrDefault(x => x.Id == id);
+            
             if(result is not null){
                 _product = result;
             }

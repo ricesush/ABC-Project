@@ -60,7 +60,7 @@ public partial class StockTransferForm
 			if (selectedStockTransfer.Id == 0)
 			{
 				bool added = await stockTransferService_SQL.AddstockTransfer(applicationDbContext, selectedStockTransfer);
-				navigationManager.NavigateTo("/StockTransferList", true);
+				navigationManager.NavigateTo("/StockTransfer", true);
 			}
 		}
 		catch (Exception ex)
@@ -76,12 +76,12 @@ public partial class StockTransferForm
 			if (selectedStockTransfer.Id != 0)
 			{
 				selectedStockTransfer = await stockTransferService_SQL.GetStockTransferInfo(applicationDbContext, selectedStockTransfer.Id);
-				navigationManager.NavigateTo("/StockTransferList", true);
+				navigationManager.NavigateTo("/StockTransfer", true);
 			}
 			else
 			{
 				selectedStockTransfer = new StockTransfer();
-				navigationManager.NavigateTo("/StockTransferList", true);
+				navigationManager.NavigateTo("/StockTransfer", true);
 			}
 		}
 		catch (Exception ex)

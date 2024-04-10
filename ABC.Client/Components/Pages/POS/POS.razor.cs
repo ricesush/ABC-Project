@@ -380,10 +380,11 @@ public partial class POS
             DeliveryFee = OrderSummary.DeliveryFee,
             PaymentMode = OrderSummary.PaymentMode,
             OfficialReceipt = OrderSummary.OfficialReceipt,
-            Customer = _customer
+            Customer = _customer,
+            StoreName = ApplicationUser.StoreName!
         };
 
-        List<OrderDetail> orderDetails = new();
+        List<OrderDetail> orderDetails = [];
         foreach (var item in ShoppingCart)
         {
             OrderDetail orderDetail = new()
@@ -395,6 +396,7 @@ public partial class POS
             };
             orderDetails.Add(orderDetail);
         }
+
         _orderHeader.OrderDetails = orderDetails;
         bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader, ProductService_SQL);
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ABC.Client.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240409171827_NulledImgUrl")]
-    partial class NulledImgUrl
+    [Migration("20240410112326_NewMigrationsv2")]
+    partial class NewMigrationsv2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,73 +123,73 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d016c50-49a2-4927-8e06-0742a3d59db8",
+                            Id = "69174cd4-318c-43da-8c3d-4988c7e96d48",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "76b6e9cb-bc05-4261-874c-844ed50671c8",
+                            ConcurrencyStamp = "05ee8de4-9ee5-495f-9ec3-0f32383bf064",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Admin",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEArkI5FT7H3xwYuScGayjZ0pznwWYfZTI9mEZLog8Cn31iXIex4OeDkkRyiGpqrlUQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKOb/nMwEBXJw4rmIH2xhv/cnRA04eKj4QJ/gNUiz8bfgitMG8mRr/43VhO/NzQxmA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e577ea9b-63ec-4457-ac44-0b48d1f2a649",
-                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 25, 971, DateTimeKind.Utc).AddTicks(1454),
+                            SecurityStamp = "64937964-e16b-446b-be53-6d837ef19fee",
+                            TimeStamp = new DateTime(2024, 4, 10, 11, 23, 25, 687, DateTimeKind.Utc).AddTicks(2862),
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         },
                         new
                         {
-                            Id = "3ac9352f-4172-4034-9773-1c37130b92c9",
+                            Id = "a2613f35-7d02-4641-8562-f20e320950c4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ab156cf-4cf1-4012-a9a7-1d96f3dd4569",
+                            ConcurrencyStamp = "00afbcbb-f749-4462-b3bf-c0e429d1f9d1",
                             Email = "manager@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Manager",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "MANAGER@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIMe1GIivwcYS0YA9jk1ibQhEffpk2HiDPm2tMjS7zkvdR30yluGJRN5V7CeQi6HnQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELZGv3ie0PQKa00NENd59yYiI1Fv0qgsQJ8YkEKVdhkFkYW8Gd7uNm77Z/HTvj+GCg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8f9a1974-9199-4633-ba6c-54a0e37dedf0",
-                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 26, 37, DateTimeKind.Utc).AddTicks(9165),
+                            SecurityStamp = "14d595ce-9c52-4893-9f01-bbf91b7076c7",
+                            TimeStamp = new DateTime(2024, 4, 10, 11, 23, 25, 755, DateTimeKind.Utc).AddTicks(333),
                             TwoFactorEnabled = false,
                             UserName = "manager@abc.com"
                         },
                         new
                         {
-                            Id = "339801ef-839f-4244-9223-bd51dda3c2d6",
+                            Id = "6678c76a-f899-483f-abe4-77b050f17299",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c796c6e-2989-45ea-b47f-2e301596dd68",
+                            ConcurrencyStamp = "21f30b95-743b-41d8-8ce4-4cad2e3e0cce",
                             Email = "emp@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Employee",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "EMP@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOGyTy8ifVunAYKlu3PrHSQeYvqfk+LMEhmJGSMoKZ9wgycxxn8Vd0L/7QlV6b2XdA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMfBslFtnHaR24/lYi1yKs0/fVVSRqo4hHI6Rf1cE22gH9bYA87SrI3Er2yyRSmmNA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e52207cc-5706-4388-9b58-876a6695ff06",
-                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 26, 104, DateTimeKind.Utc).AddTicks(470),
+                            SecurityStamp = "4725fcf6-fdb0-4fb1-881b-252983665ca0",
+                            TimeStamp = new DateTime(2024, 4, 10, 11, 23, 25, 860, DateTimeKind.Utc).AddTicks(7247),
                             TwoFactorEnabled = false,
                             UserName = "emp@abc.com"
                         },
                         new
                         {
-                            Id = "2e37355a-4398-48a4-99fe-afed34c5b5ae",
+                            Id = "a1e31d4d-3c35-4f3e-9382-3a2b17171970",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "22e7d330-47fe-47b2-875a-f8c1f26cdbf6",
+                            ConcurrencyStamp = "9ee9f0fd-b5f0-496a-951c-2223e8900ec5",
                             Email = "cust@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Ej Customer",
                             LastName = "Esan",
                             LockoutEnabled = false,
                             NormalizedUserName = "CUST@ABC.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELP7TtGLYQxWsPddWoC+Llbt/0tED14J5LZIKGIdHJfOQi/PA6+WymwyQbO4SrSKhg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOYf74BVW3s56o602r7lNVRQkekSFUmyYVk3DELSwu7aZplVxdEILZkoZ65rx72IUQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e3212d8f-7322-4aa6-8e34-20861901c3d0",
-                            TimeStamp = new DateTime(2024, 4, 9, 17, 18, 26, 183, DateTimeKind.Utc).AddTicks(6699),
+                            SecurityStamp = "ff0601ca-5503-40f0-b951-a65e40aaec0a",
+                            TimeStamp = new DateTime(2024, 4, 10, 11, 23, 25, 947, DateTimeKind.Utc).AddTicks(3858),
                             TwoFactorEnabled = false,
                             UserName = "cust@abc.com"
                         });
@@ -373,7 +373,7 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d646797c-efcd-485b-9ae5-e2b36d651a87"),
+                            Id = new Guid("8e0d8c64-d077-4969-8d0c-ab1ac2446e41"),
                             ApSuUn = "Unit 1234",
                             Barangay = "Batman",
                             City = "Antipolo",
@@ -473,6 +473,9 @@ namespace ABC.Client.Migrations
                     b.Property<DateTime>("ShippingDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TrackingNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -481,6 +484,8 @@ namespace ABC.Client.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("StoreId");
 
                     b.ToTable("OrderHeaders");
                 });
@@ -577,7 +582,7 @@ namespace ABC.Client.Migrations
                             SKU = "printer-AllInOne-XYZ123",
                             StockQuantity = 20,
                             SupplierId = 2,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6318),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1988),
                             WarrantyType = "Extended Warranty",
                             productName = "XYZ123 All-in-One Printer",
                             status = "Active"
@@ -597,7 +602,7 @@ namespace ABC.Client.Migrations
                             SKU = "cctv-SmartCam-360",
                             StockQuantity = 15,
                             SupplierId = 1,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6325),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1994),
                             WarrantyType = "Manufacturers Warranty",
                             productName = "SmartCam 360 Security Camera",
                             status = "Active"
@@ -617,7 +622,7 @@ namespace ABC.Client.Migrations
                             SKU = "laptop-ultrabook-ABC789",
                             StockQuantity = 8,
                             SupplierId = 2,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6327),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1997),
                             WarrantyType = "Extended Warranty",
                             productName = "ABC789 13-inch Laptop",
                             status = "Active"
@@ -637,7 +642,7 @@ namespace ABC.Client.Migrations
                             SKU = "phone-smartphone-XYZ101",
                             StockQuantity = 12,
                             SupplierId = 1,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6330),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1999),
                             WarrantyType = "Extended Warranty",
                             productName = "XYZ101 Smartphone",
                             status = "Active"
@@ -657,7 +662,7 @@ namespace ABC.Client.Migrations
                             SKU = "headphones-wireless-XYZ222",
                             StockQuantity = 20,
                             SupplierId = 2,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6333),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(2001),
                             WarrantyType = "Extended Warranty",
                             productName = "XYZ222 Wireless Headphones",
                             status = "Active"
@@ -1068,7 +1073,7 @@ namespace ABC.Client.Migrations
                         new
                         {
                             Id = 1,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6487),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(2073),
                             supplierBarangay = "Maybancal",
                             supplierCity = "Tanay",
                             supplierCompanyName = "Addvert",
@@ -1084,7 +1089,7 @@ namespace ABC.Client.Migrations
                         new
                         {
                             Id = 2,
-                            Timestamp = new DateTime(2024, 4, 9, 17, 18, 26, 264, DateTimeKind.Utc).AddTicks(6491),
+                            Timestamp = new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(2076),
                             supplierBarangay = "Maybancal",
                             supplierCity = "Tanay",
                             supplierCompanyName = "Addvert",
@@ -1128,25 +1133,25 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e0db689f-6b3d-4740-97a8-5a7cf49b4d57",
+                            Id = "73844e4c-2215-4034-80e3-b65fee77bb97",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "7414943a-461d-4662-9a96-b4fc6bf5b0b6",
+                            Id = "d59318f5-319f-4d6e-8fc6-2d2c45222b0b",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "32c3390b-1f9e-45a9-b7b2-5fe836977343",
+                            Id = "ce323ff2-3735-4806-bd9c-f0d9ed9fb255",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "6b8d6d41-1379-4718-8a7e-a2256b8f0389",
+                            Id = "4f4d31ce-7428-4e34-962f-a62730ab65d1",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -1241,23 +1246,23 @@ namespace ABC.Client.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "0d016c50-49a2-4927-8e06-0742a3d59db8",
-                            RoleId = "e0db689f-6b3d-4740-97a8-5a7cf49b4d57"
+                            UserId = "69174cd4-318c-43da-8c3d-4988c7e96d48",
+                            RoleId = "73844e4c-2215-4034-80e3-b65fee77bb97"
                         },
                         new
                         {
-                            UserId = "3ac9352f-4172-4034-9773-1c37130b92c9",
-                            RoleId = "7414943a-461d-4662-9a96-b4fc6bf5b0b6"
+                            UserId = "a2613f35-7d02-4641-8562-f20e320950c4",
+                            RoleId = "d59318f5-319f-4d6e-8fc6-2d2c45222b0b"
                         },
                         new
                         {
-                            UserId = "339801ef-839f-4244-9223-bd51dda3c2d6",
-                            RoleId = "32c3390b-1f9e-45a9-b7b2-5fe836977343"
+                            UserId = "6678c76a-f899-483f-abe4-77b050f17299",
+                            RoleId = "ce323ff2-3735-4806-bd9c-f0d9ed9fb255"
                         },
                         new
                         {
-                            UserId = "2e37355a-4398-48a4-99fe-afed34c5b5ae",
-                            RoleId = "6b8d6d41-1379-4718-8a7e-a2256b8f0389"
+                            UserId = "a1e31d4d-3c35-4f3e-9382-3a2b17171970",
+                            RoleId = "4f4d31ce-7428-4e34-962f-a62730ab65d1"
                         });
                 });
 
@@ -1318,9 +1323,17 @@ namespace ABC.Client.Migrations
                         .WithMany("OrderHeaders")
                         .HasForeignKey("CustomerId");
 
+                    b.HasOne("ABC.Shared.Models.Store", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("ABC.Shared.Models.Product", b =>

@@ -39,6 +39,8 @@ namespace ABC.Shared.Models
 
         [DisplayName("Customer")]
         public Customer? Customer { get; set; }
+
+        public string StoreName { get; set; }
     }
 
     public class Discount

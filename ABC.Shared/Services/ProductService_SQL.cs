@@ -34,13 +34,13 @@ public partial class ProductService_SQL
 	}
 
 	//* GETS SINGLE PRODUCT BASE ON PRODUCT ID
-	private async Task<Product> GetProductData(dynamic DBContext, int id)
+	private async Task<Product> GetProductData(DbContext DBContext, int id)
 	{
 		Product _product = new();
 		try
 		{
 			var context = DBContext;
-			var result = context.Products.Find(id);
+			var result = context.Set<Product>().Include(x => x.StockPerStore).FirstOrDefault( x => x.Id == id);
 			if (result is not null)
 			{
 				_product = result;

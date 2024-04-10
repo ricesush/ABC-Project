@@ -129,8 +129,18 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		{
             foreach (var product in order.OrderDetails)
             {
+				// GETTING THE PRODUCT INFO
 				var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
-				result2.StockQuantity -= product.Count;
+
+				// IDENTIFY THE REQUESTING STORE
+				// DEDUCT THE QUANTITY FROM THE STOCK QUANTITY OF THE STORE
+				if(order.StoreName.Contains("Addsome")){
+					result2.StockPerStore.Store1StockQty -= product.Count;
+				}else{
+					result2.StockPerStore.Store2StockQty -= product.Count;
+				}
+
+				// UPDATE
 				await productService_SQL.UpdateProduct(DBContext, result2);
             }
 

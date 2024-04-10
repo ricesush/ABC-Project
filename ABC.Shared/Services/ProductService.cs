@@ -17,7 +17,7 @@ public partial class ProductService_SQL : ComponentBase
 	#endregion
 
 	#region PRODUCTS CRUD
-	public async Task<Product> GetProductInfo(dynamic DBContext, int Id)
+	public async Task<Product> GetProductInfo(DbContext DBContext, int Id)
 	{
 		Product ProductInfo = new();
 		try

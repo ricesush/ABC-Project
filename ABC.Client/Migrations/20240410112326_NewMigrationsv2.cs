@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ABC.Client.Migrations
 {
     /// <inheritdoc />
-    public partial class NewMigrations : Migration
+    public partial class NewMigrationsv2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -212,7 +212,7 @@ namespace ABC.Client.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Barcode = table.Column<long>(type: "bigint", nullable: false),
                     SKU = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     status = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -388,7 +388,8 @@ namespace ABC.Client.Migrations
                     DeliveryFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaymentMode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OfficialReceipt = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    StoreId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -403,6 +404,12 @@ namespace ABC.Client.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_OrderHeaders_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -582,10 +589,10 @@ namespace ABC.Client.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "27ee39b9-fd46-4bb1-96a7-60f49e12ba43", null, "Manager", "MANAGER" },
-                    { "862be04d-d784-4009-9231-6a3d3f77103a", null, "Employee", "EMPLOYEE" },
-                    { "efb79371-e4ad-4611-a530-d340eae6dfed", null, "Customer", "CUSTOMER" },
-                    { "f6ac1393-7c52-461b-a5ba-eecae2e6038c", null, "Admin", "ADMIN" }
+                    { "4f4d31ce-7428-4e34-962f-a62730ab65d1", null, "Customer", "CUSTOMER" },
+                    { "73844e4c-2215-4034-80e3-b65fee77bb97", null, "Admin", "ADMIN" },
+                    { "ce323ff2-3735-4806-bd9c-f0d9ed9fb255", null, "Employee", "EMPLOYEE" },
+                    { "d59318f5-319f-4d6e-8fc6-2d2c45222b0b", null, "Manager", "MANAGER" }
                 });
 
             migrationBuilder.InsertData(
@@ -593,10 +600,10 @@ namespace ABC.Client.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "Province", "SecurityStamp", "StoreId", "StoreName", "TimeStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "7cf7f651-1449-4a93-b954-b160a9447e29", 0, null, null, "d78dc893-29a1-41fc-b443-b36c949f03a3", "emp@abc.com", true, "Ej Employee", "Esan", false, null, null, "EMP@ABC.COM", "AQAAAAIAAYagAAAAEL9fA72R/rSGcnZ2Rd7m/OwP7cJ/VYuAtNWH31B96oFlnBhrJfbHXXysQsXADy5PqA==", null, false, null, null, "2cfb3e99-33a5-4426-8b93-4beac2db59bb", null, null, new DateTime(2024, 4, 9, 15, 50, 30, 369, DateTimeKind.Utc).AddTicks(6175), false, "emp@abc.com" },
-                    { "a4ba3abf-4697-44b5-a79f-373c82ffdb96", 0, null, null, "7283291c-b73e-41e3-bdf8-2d13fcda168c", "manager@abc.com", true, "Ej Manager", "Esan", false, null, null, "MANAGER@ABC.COM", "AQAAAAIAAYagAAAAELWIQFJlD0f2BPhx5Dk9oD7IxurMOE9OerYvQCqZVx1klpzgbpid+E1jNxWMJmLmHA==", null, false, null, null, "32f3bf94-be9a-4a96-8220-f79ec5861d7e", null, null, new DateTime(2024, 4, 9, 15, 50, 30, 284, DateTimeKind.Utc).AddTicks(1783), false, "manager@abc.com" },
-                    { "b065dc97-120d-45a2-8edb-8665e29473ce", 0, null, null, "41cfd624-61ef-4b38-a91b-34321d773ccf", "cust@abc.com", true, "Ej Customer", "Esan", false, null, null, "CUST@ABC.COM", "AQAAAAIAAYagAAAAEDMP2dKIxGCCxvmbw0HLxZhJ2bsFXU34L9at6tFlk2I3BHOpYpIcYBPZ1A62CiIpNg==", null, false, null, null, "e745c504-1963-4d94-9666-c94dc0cc4e77", null, null, new DateTime(2024, 4, 9, 15, 50, 30, 448, DateTimeKind.Utc).AddTicks(3868), false, "cust@abc.com" },
-                    { "f639d4a0-e1b7-488b-b99e-aa3d182ebc5f", 0, null, null, "53977480-c94e-4303-89fe-c275b0821e93", "admin@abc.com", true, "Ej Admin", "Esan", false, null, null, "ADMIN@ABC.COM", "AQAAAAIAAYagAAAAEKkNvy66ca6Cd5SDeHovkPwsKKfJRM8sHHBg5mxmDNKoxCHksJmaaLkzhoKSeGDsuA==", null, false, null, null, "05c25c00-eefe-41f6-af38-1059945a1a9d", null, null, new DateTime(2024, 4, 9, 15, 50, 30, 217, DateTimeKind.Utc).AddTicks(8208), false, "admin@abc.com" }
+                    { "6678c76a-f899-483f-abe4-77b050f17299", 0, null, null, "21f30b95-743b-41d8-8ce4-4cad2e3e0cce", "emp@abc.com", true, "Ej Employee", "Esan", false, null, null, "EMP@ABC.COM", "AQAAAAIAAYagAAAAEMfBslFtnHaR24/lYi1yKs0/fVVSRqo4hHI6Rf1cE22gH9bYA87SrI3Er2yyRSmmNA==", null, false, null, null, "4725fcf6-fdb0-4fb1-881b-252983665ca0", null, null, new DateTime(2024, 4, 10, 11, 23, 25, 860, DateTimeKind.Utc).AddTicks(7247), false, "emp@abc.com" },
+                    { "69174cd4-318c-43da-8c3d-4988c7e96d48", 0, null, null, "05ee8de4-9ee5-495f-9ec3-0f32383bf064", "admin@abc.com", true, "Ej Admin", "Esan", false, null, null, "ADMIN@ABC.COM", "AQAAAAIAAYagAAAAEKOb/nMwEBXJw4rmIH2xhv/cnRA04eKj4QJ/gNUiz8bfgitMG8mRr/43VhO/NzQxmA==", null, false, null, null, "64937964-e16b-446b-be53-6d837ef19fee", null, null, new DateTime(2024, 4, 10, 11, 23, 25, 687, DateTimeKind.Utc).AddTicks(2862), false, "admin@abc.com" },
+                    { "a1e31d4d-3c35-4f3e-9382-3a2b17171970", 0, null, null, "9ee9f0fd-b5f0-496a-951c-2223e8900ec5", "cust@abc.com", true, "Ej Customer", "Esan", false, null, null, "CUST@ABC.COM", "AQAAAAIAAYagAAAAEOYf74BVW3s56o602r7lNVRQkekSFUmyYVk3DELSwu7aZplVxdEILZkoZ65rx72IUQ==", null, false, null, null, "ff0601ca-5503-40f0-b951-a65e40aaec0a", null, null, new DateTime(2024, 4, 10, 11, 23, 25, 947, DateTimeKind.Utc).AddTicks(3858), false, "cust@abc.com" },
+                    { "a2613f35-7d02-4641-8562-f20e320950c4", 0, null, null, "00afbcbb-f749-4462-b3bf-c0e429d1f9d1", "manager@abc.com", true, "Ej Manager", "Esan", false, null, null, "MANAGER@ABC.COM", "AQAAAAIAAYagAAAAELZGv3ie0PQKa00NENd59yYiI1Fv0qgsQJ8YkEKVdhkFkYW8Gd7uNm77Z/HTvj+GCg==", null, false, null, null, "14d595ce-9c52-4893-9f01-bbf91b7076c7", null, null, new DateTime(2024, 4, 10, 11, 23, 25, 755, DateTimeKind.Utc).AddTicks(333), false, "manager@abc.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -618,7 +625,7 @@ namespace ABC.Client.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "ApSuUn", "Barangay", "City", "ContactNumber", "EmailAddress", "FirstName", "LastName", "Province", "StreetorSubd", "Type", "ZipCode" },
-                values: new object[] { new Guid("b4179327-a142-416d-b90e-eb2ddb33dc4d"), "Unit 1234", "Batman", "Antipolo", 9568271611L, "neiljejomar@gmail.com", "Kurt", "Betonio", "Rizal", "Jasmine St.", "Walk in", 1870 });
+                values: new object[] { new Guid("8e0d8c64-d077-4969-8d0c-ab1ac2446e41"), "Unit 1234", "Batman", "Antipolo", 9568271611L, "neiljejomar@gmail.com", "Kurt", "Betonio", "Rizal", "Jasmine St.", "Walk in", 1870 });
 
             migrationBuilder.InsertData(
                 table: "Stores",
@@ -634,8 +641,8 @@ namespace ABC.Client.Migrations
                 columns: new[] { "Id", "Timestamp", "supplierBarangay", "supplierCity", "supplierCompanyName", "supplierContactNumber", "supplierEmail", "supplierNote", "supplierProvince", "supplierStatus", "supplierStreetSubdv", "supplierUnitNumber", "supplierZipCode" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4651), "Maybancal", "Tanay", "Addvert", 9651232235L, "addvert214@gmail.com", "My supplier", "Rizal", "Active", "E. Corazon", "c4 l5", 1870 },
-                    { 2, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4655), "Maybancal", "Tanay", "Addvert", 9651232235L, "addvert214@gmail.com", "My supplier", "Rizal", "Active", "E. Corazon", "c4 l5", 1870 }
+                    { 1, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(2073), "Maybancal", "Tanay", "Addvert", 9651232235L, "addvert214@gmail.com", "My supplier", "Rizal", "Active", "E. Corazon", "c4 l5", 1870 },
+                    { 2, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(2076), "Maybancal", "Tanay", "Addvert", 9651232235L, "addvert214@gmail.com", "My supplier", "Rizal", "Active", "E. Corazon", "c4 l5", 1870 }
                 });
 
             migrationBuilder.InsertData(
@@ -643,10 +650,10 @@ namespace ABC.Client.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "862be04d-d784-4009-9231-6a3d3f77103a", "7cf7f651-1449-4a93-b954-b160a9447e29" },
-                    { "27ee39b9-fd46-4bb1-96a7-60f49e12ba43", "a4ba3abf-4697-44b5-a79f-373c82ffdb96" },
-                    { "efb79371-e4ad-4611-a530-d340eae6dfed", "b065dc97-120d-45a2-8edb-8665e29473ce" },
-                    { "f6ac1393-7c52-461b-a5ba-eecae2e6038c", "f639d4a0-e1b7-488b-b99e-aa3d182ebc5f" }
+                    { "ce323ff2-3735-4806-bd9c-f0d9ed9fb255", "6678c76a-f899-483f-abe4-77b050f17299" },
+                    { "73844e4c-2215-4034-80e3-b65fee77bb97", "69174cd4-318c-43da-8c3d-4988c7e96d48" },
+                    { "4f4d31ce-7428-4e34-962f-a62730ab65d1", "a1e31d4d-3c35-4f3e-9382-3a2b17171970" },
+                    { "d59318f5-319f-4d6e-8fc6-2d2c45222b0b", "a2613f35-7d02-4641-8562-f20e320950c4" }
                 });
 
             migrationBuilder.InsertData(
@@ -654,11 +661,11 @@ namespace ABC.Client.Migrations
                 columns: new[] { "Id", "Barcode", "Brand", "CategoryId", "CostPrice", "Description", "Duration", "ImageUrl", "MinimumStockQuantity", "RetailPrice", "SKU", "StockQuantity", "StoreId", "SupplierId", "Timestamp", "WarrantyType", "productName", "status" },
                 values: new object[,]
                 {
-                    { 1, 832175698L, "HP", 1, 800f, "Versatile all-in-one printer for printing, copying, and scanning", "12 months from date of purchase", "", 5, 1299f, "printer-AllInOne-XYZ123", 20, null, 2, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4497), "Extended Warranty", "XYZ123 All-in-One Printer", "Active" },
-                    { 2, 954532414L, "Samsung", 2, 1200f, "Panoramic view with motion detection", "7 days from date of purchase", "", 4, 1999f, "cctv-SmartCam-360", 15, null, 1, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4505), "Manufacturers Warranty", "SmartCam 360 Security Camera", "Active" },
-                    { 3, 123456789013L, "Dell", 4, 600f, "Lightweight 13-inch laptop with SSD and 8GB RAM", "12 months from date of purchase", "", 3, 899f, "laptop-ultrabook-ABC789", 8, null, 2, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4508), "Extended Warranty", "ABC789 13-inch Laptop", "Active" },
-                    { 4, 123456789014L, "Apple", 4, 500f, "5.8-inch OLED smartphone with dual camera", "24 months from date of purchase", "", 5, 999f, "phone-smartphone-XYZ101", 12, null, 1, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4510), "Extended Warranty", "XYZ101 Smartphone", "Active" },
-                    { 5, 123456789015L, "Bose", 4, 150f, "Noise cancelling wireless over-ear headphones", "12 months from date of purchase", "", 5, 249f, "headphones-wireless-XYZ222", 20, null, 2, new DateTime(2024, 4, 9, 15, 50, 30, 524, DateTimeKind.Utc).AddTicks(4513), "Extended Warranty", "XYZ222 Wireless Headphones", "Active" }
+                    { 1, 832175698L, "HP", 1, 800f, "Versatile all-in-one printer for printing, copying, and scanning", "12 months from date of purchase", "", 5, 1299f, "printer-AllInOne-XYZ123", 20, null, 2, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1988), "Extended Warranty", "XYZ123 All-in-One Printer", "Active" },
+                    { 2, 954532414L, "Samsung", 2, 1200f, "Panoramic view with motion detection", "7 days from date of purchase", "", 4, 1999f, "cctv-SmartCam-360", 15, null, 1, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1994), "Manufacturers Warranty", "SmartCam 360 Security Camera", "Active" },
+                    { 3, 123456789013L, "Dell", 4, 600f, "Lightweight 13-inch laptop with SSD and 8GB RAM", "12 months from date of purchase", "", 3, 899f, "laptop-ultrabook-ABC789", 8, null, 2, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1997), "Extended Warranty", "ABC789 13-inch Laptop", "Active" },
+                    { 4, 123456789014L, "Apple", 4, 500f, "5.8-inch OLED smartphone with dual camera", "24 months from date of purchase", "", 5, 999f, "phone-smartphone-XYZ101", 12, null, 1, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(1999), "Extended Warranty", "XYZ101 Smartphone", "Active" },
+                    { 5, 123456789015L, "Bose", 4, 150f, "Noise cancelling wireless over-ear headphones", "12 months from date of purchase", "", 5, 249f, "headphones-wireless-XYZ222", 20, null, 2, new DateTime(2024, 4, 10, 11, 23, 26, 36, DateTimeKind.Utc).AddTicks(2001), "Extended Warranty", "XYZ222 Wireless Headphones", "Active" }
                 });
 
             migrationBuilder.InsertData(
@@ -736,6 +743,11 @@ namespace ABC.Client.Migrations
                 name: "IX_OrderHeaders_CustomerId",
                 table: "OrderHeaders",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderHeaders_StoreId",
+                table: "OrderHeaders",
+                column: "StoreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",

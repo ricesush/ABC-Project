@@ -1,28 +1,31 @@
 /*** LINE CHART  START ***/
 /* Variables */
 const ctx = document.getElementById('myChart');
-var salesRev = parseInt(ctx.getAttribute('salesrevenue'));
-var totalcostprice = parseInt(ctx.getAttribute('costpricetotal'));
 
+var addsomeSales = parseInt(ctx.getAttribute('addSome'));
+var aheadBizSale = parseInt(ctx.getAttribute('aheadBiz'));
 
-new Chart(ctx, {
+// Initialize chart with initial data
+var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [{
-            label: 'Sales Revenue',
-            data: [salesRev],
-            /*data: [12, 19, 3, 5, 2, 3, 9],*/
-            borderColor: 'rgb(75, 192, 192)',
+            label: 'Addsome Business Corporation',
+            data: [addsomeSales], // Initial data, will be updated dynamically
             fill: false,
-            borderWidth: 1
+            borderColor: '#00008B',
+            backgroundColor: '#00008B',
+            borderWidth: 1,
+            tension: 1
         }, {
-            label: 'Purchase Cost',
-            data: [totalcostprice],
-            /*data: [10, 1, 4, 5, 2, 3, 7],*/
-            borderColor: 'rgb(255, 0, 0)',
+            label: 'Ahead Biz Computers',
+            data: [aheadBizSale],
             fill: false,
-            borderWidth: 1
+            borderColor: '#FFFF00',
+            backgroundColor: '#FFFF00',
+            borderWidth: 1,
+            tension: 1
         }]
     },
     options: {
@@ -33,4 +36,10 @@ new Chart(ctx, {
         }
     }
 });
+
+// Function to update chart data dynamically
+function updateChartData(newSalesRev) {
+    myChart.data.datasets[0].data = [newSalesRev];
+    myChart.update();
+}
 /*** LINE CHART END ***/

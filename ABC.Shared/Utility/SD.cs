@@ -49,5 +49,11 @@ namespace ABC.Shared.Utility
 		public const string InStock = "In Stock";
 		public const string LowStock = "Low Stock";
 		public const string OutOfStock = "Out of stock";
-	}
+
+        //sales type
+        public const string WalkIn = "Walk-in";
+        public const string OnCall = "On-call";
+        public const string ChatBased = "Chat-based";
+        public const string ShopWeb = "Shopping Website";
+    }
 }

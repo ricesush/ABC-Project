@@ -2,6 +2,7 @@
 
 @using ABC.Shared.Models
 @using Layout
+@using System.Globalization
 @layout AdminLayout
 
 <PageTitle>ABC - Dashboard</PageTitle>
@@ -45,7 +46,7 @@
             <div class="small-box bg-info">
                 <div class="inner px-3">
                     <h1>
-						<b>@ordersoutfordelivery</b>
+                        <b>@ordersoutfordelivery</b>
                     </h1>
 
                     <p>Orders to Deliver</p>
@@ -79,23 +80,8 @@
                     <hr />
                 </div>
                 <div class="pb-0">
-                    <canvas id="myChart" salesrevenue="@salesRevenue" costpricetotal="@totalCost"></canvas>
+                    <canvas id="myChart" addSome="@AddsomeSales" aheadBiz="@AheadBizSales"></canvas>
                 </div>
-
-                @* <div class="row pt-2 px-3">
-                    <div class="col-6">
-                        <div class="salesbox">
-                            <p>Addsome Business Corporation</p>
-                            <h5 style="color: #223442;"><b></b></h5>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="salesbox">
-                            <p>Ahead Biz Computers</p>
-                            <h5 style="color: #223442;"><b></b></h5>
-                        </div>
-                    </div>
-                </div> *@
             </div>
         </div>
         <div class="col-3">
@@ -160,27 +146,29 @@
                 <!-- Title -->
                 <div class="pb-2">
                     <h4 style="color: #223442;"><b>Best Selling Items</b></h4>
-                    <hr/>
+                    <hr />
                 </div>
                 <table class="table table-hover scrollable-table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>SKU</th>
                             <th>Product Name</th>
-                            <th>Price</th>
+                            <th>Retail Price</th>
+                            <th>Sales Type</th>
                             <th>Sold</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (BestSellingProducts != null && BestSellingProducts.Any())
+                        @if (Products != null && Products.Any())
                         {
-                            foreach (var orderDetail in BestSellingProducts.Take(10))
+                            foreach (var orderDetail in Products.Take(10))
                             {
                                 <tr>
-                                    <th>@orderDetail.Id</th>
-                                    <td>@orderDetail.productName</td>
-                                    <td>@orderDetail.RetailPrice</td>
+                                    <td>@orderDetail.Product.SKU</td>
+                                    <td>@orderDetail.Product.productName</td>
+                                    <td>@orderDetail.Product.RetailPrice.ToString("C", new CultureInfo("en-PH"))</td>
                                     <td></td>
+                                    <td>@orderDetail.Count</td>
                                 </tr>
                             }
                         }
@@ -195,3 +183,4 @@
 <script src="//cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script src="/js/dashboard.js"></script>
+

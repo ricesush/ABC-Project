@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components;
 using System.Reflection.Emit;
 using ABC.Shared.Utility;
+using System.Runtime.InteropServices;
 
 namespace ABC.Client.Components.Pages.SalesInventory.SalesRecord.component;
 
@@ -24,20 +25,21 @@ public partial class SalesDetails
 	[SupplyParameterFromQuery(Name = "id")]
 	public int OrderId { get; set; }
 
-	#endregion
+    #endregion
 
-	#region Variables
-	private string? firstName;
-	private string? phoneNumber;
-	private string? lineAddress;
-	private string? city;
-	private string? province;
-	private string? zipCode;
-	private string? email;
+    #region Variables
+    private string? firstName;
+    private string? phoneNumber;
+    private string? lineAddress;
+    private string? city;
+    private string? province;
+    private string? zipCode;
+    private string? email;
+    private decimal charges;
 
-	#endregion
+    #endregion
 
-	protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
 	{
 		orderHeaderService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
 
@@ -47,13 +49,20 @@ public partial class SalesDetails
 	private async Task LoadProducts()
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
-		firstName = orderHeader.ApplicationUser?.FirstName;
-		phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
-		lineAddress = orderHeader.ApplicationUser?.Address;
-		province = orderHeader.ApplicationUser?.Province;
-		zipCode = orderHeader.ApplicationUser?.PostalCode;
-		email = orderHeader.ApplicationUser?.Email;
-	}
+		//firstName = orderHeader.ApplicationUser?.FirstName;
+		//phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
+		//lineAddress = orderHeader.ApplicationUser?.Address;
+		//province = orderHeader.ApplicationUser?.Province;
+		//zipCode = orderHeader.ApplicationUser?.PostalCode;
+		//email = orderHeader.ApplicationUser?.Email;
+        firstName = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.FirstName : orderHeader.Customer?.FirstName;
+        phoneNumber = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PhoneNumber : orderHeader.Customer?.ContactNumber.ToString();
+        lineAddress = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Address : orderHeader.Customer?.ApSuUn;
+        province = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Province : orderHeader.Customer?.Province;
+        zipCode = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PostalCode : orderHeader.Customer?.ZipCode.ToString();
+        email = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Email : orderHeader.Customer?.EmailAddress;
+        charges = orderHeader.DeliveryFee + orderHeader.ServiceFee;
+    }
 
 	private async Task SaveOrder()
 	{

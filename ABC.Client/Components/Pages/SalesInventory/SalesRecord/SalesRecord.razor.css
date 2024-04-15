@@ -6,3 +6,9 @@
 .title {
     text-align: left;
 }
+
+.fixed-width-table th,
+.fixed-width-table td {
+    width: 5px;
+    white-space: nowrap;
+}

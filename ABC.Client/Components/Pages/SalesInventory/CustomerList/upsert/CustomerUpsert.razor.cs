@@ -19,8 +19,7 @@ public partial class CustomerUpsert
     #endregion
 
     #region FIELDS
-    private List<Customer> Customers { get; set; } = [];
-    private List<Store> StoreList { get; set; } = [];
+    private List<OrderHeader> OrderHeaders { get; set; } = new List<OrderHeader>();
     private Customer SelectedCustomer { get; set; } = new();
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -35,11 +34,10 @@ public partial class CustomerUpsert
         await LoadCustomer();
     }
 
-    private async Task LoadCustomer()
-    {
+	private async Task LoadCustomer()
+	{
 		if (Guid.TryParse(customerId, out Guid guidValue))
 		{
-			// Assign the parsed Guid value to your actual Guid property
 			CustomerId = guidValue;
 		}
 		else
@@ -48,6 +46,6 @@ public partial class CustomerUpsert
 		}
 		var customerTask = customerService_SQL.GetCustomerInfo(applicationDbContext, CustomerId);
 
-        SelectedCustomer = await customerTask;
-    }
+		SelectedCustomer = await customerTask;
+	}
 }

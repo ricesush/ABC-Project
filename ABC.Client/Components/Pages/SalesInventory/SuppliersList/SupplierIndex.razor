@@ -22,8 +22,16 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-4">
+            <div class="input-group flex-nowrap">
+                <input type="text" class="form-control h-100" @bind-value="SupplierSearchInput" @oninput="GetSuppliersList" aria-label="Search Supplier" placeholder="Search a supplier..." />
+            </div>
+        </div>
+    </div>
+
     <!-- Supplier Table -->
-    <table class="table table-striped table-hover table-sm mt-3">
+    <table class="table table-hover table-sm mt-3">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -49,6 +57,7 @@
                             <td>@supplier.supplierContactNumber</td>
                             <td>@supplier.supplierEmail</td>
                             <td>@($"{supplier.supplierUnitNumber ?? ""}, {supplier.supplierStreetSubdv ?? ""}, {supplier.supplierBarangay ?? ""}, {supplier.supplierCity}, {supplier.supplierProvince}, {supplier.supplierZipCode}")</td>
+                            <td>@supplier.supplierStatus</td>
                             <td class="text-center d-flex justify-content-around">
                                 <a href="SupplierUpsert?id=@supplier.Id" class="a-style-none">
                                     <i class="bi bi-pencil-square text-primary cursor-pointer" title="Edit" tabindex="0"></i>

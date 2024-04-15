@@ -11,6 +11,11 @@
         <div class="col-8 text-start mb-3 mb-sm-0">
             <h1>Online Customers</h1>
         </div>
+        <div class="col-4">
+            <div class="input-group flex-nowrap">
+                <input type="text" class="form-control h-100" @bind-value="CustomerSearchInput" @oninput="GetCustomerList" aria-label="Search Customer" placeholder="Search a customer..." />
+            </div>
+        </div>
     </div>
 
     <!-- Customers Table -->

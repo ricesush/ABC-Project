@@ -15,6 +15,7 @@ public partial class SupplierIndex
     #region FIELDS
     private List<Supplier> Suppliers { get; set; } = [];
     private Supplier selectedSupplier { get; set; } = new();
+    private String SupplierSearchInput { get; set; } = String.Empty;
     #endregion
 
     protected override async Task OnInitializedAsync()
@@ -26,6 +27,24 @@ public partial class SupplierIndex
     private async Task LoadSuppliers()
     {
         Suppliers = await supplierService_SQL.GetSupplierList(applicationDbContext);
+    }
+
+    private async Task GetSuppliersList(ChangeEventArgs e)
+    {
+        SupplierSearchInput = e?.Value?.ToString();
+
+        var result = await supplierService_SQL.GetSupplierList(applicationDbContext);
+        if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(SupplierSearchInput))
+        {
+            Suppliers = result.Where(x => x.supplierCompanyName.ToString().Contains(SupplierSearchInput, StringComparison.CurrentCultureIgnoreCase) ||
+            x.supplierEmail.ToString().Contains(SupplierSearchInput, StringComparison.CurrentCultureIgnoreCase) ||
+            x.supplierContactNumber.ToString().Contains(SupplierSearchInput, StringComparison.CurrentCultureIgnoreCase)).ToList();
+        }
+        else
+        {
+            Suppliers = result.ToList();
+        }
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task PopulateSupplierDetails(int supplierId)

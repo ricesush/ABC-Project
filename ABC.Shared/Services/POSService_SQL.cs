@@ -110,5 +110,8 @@ public partial class POSService_SQL
             return false;          
         }
     }
+
+
+    
     #endregion
 }

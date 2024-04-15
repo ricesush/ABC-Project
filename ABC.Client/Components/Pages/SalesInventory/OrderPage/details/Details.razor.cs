@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components;
 using System.Reflection.Emit;
 using ABC.Shared.Utility;
-using Serilog;
 
 namespace ABC.Client.Components.Pages.SalesInventory.OrderPage.details;
 public partial class Details
@@ -46,42 +45,22 @@ public partial class Details
 		await LoadProducts();
 		StateHasChanged();
 	}
-	//private async Task LoadProducts()
-	//{
-	//	orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
-
-	//	firstName = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.FirstName : orderHeader.Customer?.FirstName;
-	//	phoneNumber = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PhoneNumber : orderHeader.Customer?.ContactNumber.ToString();
-	//	lineAddress = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Address : orderHeader.Customer?.ApSuUn;
-	//	province = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Province : orderHeader.Customer?.Province;
-	//	zipCode = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PostalCode : orderHeader.Customer?.ZipCode.ToString();
-	//	email = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Email : orderHeader.Customer?.EmailAddress;
-	//	charges = orderHeader.DeliveryFee + orderHeader.ServiceFee;
-	//}
-
 	private async Task LoadProducts()
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 
-		if (orderHeader.ApplicationUser != null)
-		{
-			firstName = orderHeader.ApplicationUser.FirstName;
-			phoneNumber = orderHeader.ApplicationUser.PhoneNumber;
-			lineAddress = orderHeader.ApplicationUser.Address;
-			province = orderHeader.ApplicationUser.Province;
-			zipCode = orderHeader.ApplicationUser.PostalCode;
-			email = orderHeader.ApplicationUser.Email;
-		}
-		else if (orderHeader.Customer != null)
-		{
-			firstName = orderHeader.Customer.FirstName;
-			phoneNumber = orderHeader.Customer.ContactNumber.ToString();
-			lineAddress = orderHeader.Customer.ApSuUn;
-			province = orderHeader.Customer.Province;
-			zipCode = orderHeader.Customer.ZipCode.ToString();
-			email = orderHeader.Customer.EmailAddress;
-		}
-
+		//////firstName = orderHeader.ApplicationUser?.FirstName;
+		//////phoneNumber = orderHeader.ApplicationUser?.PhoneNumber;
+		//////lineAddress = orderHeader.ApplicationUser?.Address;
+		//////province = orderHeader.ApplicationUser?.Province;
+		//////zipCode = orderHeader.ApplicationUser?.PostalCode;
+		//////email = orderHeader.ApplicationUser?.Email;
+		firstName = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.FirstName : orderHeader.Customer?.FirstName;
+		phoneNumber = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PhoneNumber : orderHeader.Customer?.ContactNumber.ToString();
+		lineAddress = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Address : orderHeader.Customer?.ApSuUn;
+		province = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Province : orderHeader.Customer?.Province;
+		zipCode = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.PostalCode : orderHeader.Customer?.ZipCode.ToString();
+		email = orderHeader.ApplicationUser != null ? orderHeader.ApplicationUser.Email : orderHeader.Customer?.EmailAddress;
 		charges = orderHeader.DeliveryFee + orderHeader.ServiceFee;
 	}
 
@@ -93,10 +72,9 @@ public partial class Details
 	private async Task StartProcessing()
 	{
 		orderHeader.OrderStatus = SD.StatusProcessing;
-		orderHeader.ProcessDate = DateTime.UtcNow;
 
-        // Call service to update OrderHeader
-        bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
+		// Call service to update OrderHeader
+		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
 
 		if (updated)
 		{
@@ -116,7 +94,7 @@ public partial class Details
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 		orderHeader.Carrier = orderHeader.Carrier;
 		orderHeader.OrderStatus = SD.StatusShipped;
-		orderHeader.ShippingDate = DateTime.UtcNow;
+		orderHeader.ShippingDate = DateTime.Now;
 
 		// Call service to update OrderHeader
 		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
@@ -132,8 +110,6 @@ public partial class Details
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 		orderHeader.OrderStatus = SD.StatusCompleted;
 		orderHeader.PaymentStatus = SD.StatusCompleted;
-		orderHeader.CompletionDate = DateTime.UtcNow;
-		//orderHeader.EmployeeName = 
 
 		// Call service to update OrderHeader
 		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
@@ -149,7 +125,6 @@ public partial class Details
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 		orderHeader.OrderStatus = SD.StatusCancelled;
-		orderHeader.CancellationDate = DateTime.UtcNow;
 
 		// Call service to update OrderHeader
 		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
@@ -165,10 +140,9 @@ public partial class Details
 	{
 		orderHeader = await orderHeaderService_SQL.GetOrderHeader(applicationDbContext, OrderId);
 		orderHeader.OrderStatus = SD.StatusRefunded;
-		orderHeader.RefundDate = DateTime.UtcNow;
 
-        // Call service to update OrderHeader
-        bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
+		// Call service to update OrderHeader
+		bool updated = await orderHeaderService_SQL.UpdateOrderHeaderStatus(applicationDbContext, orderHeader);
 
 		if (updated)
 		{

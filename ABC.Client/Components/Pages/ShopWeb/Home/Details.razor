@@ -47,7 +47,7 @@
                             <h4>
                                 Available Stock:
                                 <span>
-                                    @Product.StockPerStore.TotalStocks
+                                    @Product.StockQuantity
                                 </span>
                             </h4>
                         </div>
@@ -64,7 +64,7 @@
                                     {
                                         <p class="text-danger">* Quantity cannot be negative or zero</p>
                                     }
-                                    else if (ShoppingCart.Quantity > Product.StockPerStore.TotalStocks)
+                                    else if (ShoppingCart.Quantity > Product.StockQuantity)
                                     {
                                         <p class="text-danger">* Input quantity exceeds available stock.</p>
                                     }

@@ -72,8 +72,8 @@
     </div>
 
     <div class="row pt-2 pb-2">
-        <div class="col-9">
-            <div class="border p-3 pb-5 container shadow">
+        <div class="col-7">
+            <div class="border p-3 container shadow">
                 <!--Title-->
                 <div class="pb-2">
                     <h4 style="color: #223442;"><b>Sales Overview</b></h4>
@@ -84,55 +84,83 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
-            <div class="border p-3 pb-5 container shadow">
+        <div class="col-5">
+            <div class="border p-3 container shadow">
                 <!--Title-->
                 <div class="pb-2">
                     <h4 class="col-3" style="color: #223442;"><b>Inventory </b> </h4>
                     <hr />
                 </div>
-                <div class="row col-10 mx-auto py-2">
-                    <div class="small-box bg-info">
-                        <div class="inner px-3">
-                            <h2>
-                                @totalProducts
-                            </h2>
-                            <p>Product Count</p>
+
+                <div class="row col-12 mx-auto py-2">
+                    <div class="col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner px-3">
+                                <h2>
+                                    @instockAddsome
+                                </h2>
+                                <p>In Stock (Addsome)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner px-3">
+                                <h2>
+                                    @instockAhead
+                                </h2>
+                                <p>In Stock (Ahead)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row col-10 mx-auto py-2">
-                    <div class="small-box bg-success">
-                        <div class="inner px-3">
-                            <h2>
-                                @instock
-                            </h2>
-                            <p>In Stock Products</p>
+                <div class="row col-12 mx-auto py-2">
+                    <div class="col-6">
+                        <div class="small-box bg-warning ">
+                            <div class="inner px-3">
+                                <h2>
+                                    @lowstockAddsome
+                                </h2>
+
+                                <p>Low Stock (Addsome)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="small-box bg-warning ">
+                            <div class="inner px-3">
+                                <h2>
+                                    @lowstockAhead
+                                </h2>
+
+                                <p>Low Stock (Ahead)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row col-10 mx-auto py-2">
-                    <div class="small-box bg-warning ">
-                        <div class="inner px-3">
-                            <h2>
-                                @lowstock
-                            </h2>
+                <div class="row col-12 mx-auto py-2">
+                    <div class="col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner px-3">
+                                <h2>
+                                    @outofstockAddsome
+                                </h2>
 
-                            <p>Low Stock Products</p>
+                                <p>Out of Stock (Addsome)</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner px-3">
+                                <h2>
+                                    @outofstockAhead
+                                </h2>
 
-                <div class="row col-10 mx-auto py-2">
-                    <div class="small-box bg-danger">
-                        <div class="inner px-3">
-                            <h2>
-                                @outofstock
-                            </h2>
-
-                            <p>Out of Stock Products</p>
+                                <p>Out of Stock (Ahead)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,7 +182,6 @@
                             <th>SKU</th>
                             <th>Product Name</th>
                             <th>Retail Price</th>
-                            <th>Sales Type</th>
                             <th>Sold</th>
                         </tr>
                     </thead>
@@ -167,7 +194,6 @@
                                     <td>@orderDetail.Product.SKU</td>
                                     <td>@orderDetail.Product.productName</td>
                                     <td>@orderDetail.Product.RetailPrice.ToString("C", new CultureInfo("en-PH"))</td>
-                                    <td></td>
                                     <td>@orderDetail.Count</td>
                                 </tr>
                             }

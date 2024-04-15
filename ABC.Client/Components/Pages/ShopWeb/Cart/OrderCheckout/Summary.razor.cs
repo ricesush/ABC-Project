@@ -77,6 +77,7 @@ public partial class Summary
 
     private async Task PlaceOrderHandler()
     {
+
         ShoppingCartVM summary = new()
         {
             OrderHeader = new()
@@ -91,7 +92,10 @@ public partial class Summary
                 ServiceFee = 0,
                 PaymentMode = "Cash On Delivery",
                 OfficialReceipt = "sample Receipt No",
-                ApplicationUserId = userId 
+                SalesChannel = SD.ShopWeb,
+                ApplicationUserId = userId,
+                ApplicationUser = UserInfo,
+                StoreName = " "
             }
         };
 
@@ -110,7 +114,7 @@ public partial class Summary
             {
                 ProductId = item.ProductId,
                 OrderHeaderId = summary.OrderHeader.Id,
-                Price = item.Price,
+                RetailPrice = item.Price,
                 Count = item.Quantity
             };
 

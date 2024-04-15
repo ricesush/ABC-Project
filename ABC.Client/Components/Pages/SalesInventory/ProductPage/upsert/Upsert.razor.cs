@@ -14,8 +14,6 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
     public partial class Upsert
     {
 
-    /*rivate readonly IWebHostEnvironment _webHostEnvironment;*/
-
     #region DEPENDENCY INJECTIOn
     [Inject] ProductService_SQL productService_SQL { get; set; }
     [Inject] CategoryService_SQL categoryService_SQL { get; set; }
@@ -48,7 +46,6 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
 	public int ProductId { get; set; }
     public int minimumStock = 1; 
     #endregion
-
 
     protected override async Task OnInitializedAsync()
     {
@@ -97,6 +94,7 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
             SelectedProduct.status = SD.OutOfStock;
         }
 
+
         if (SelectedProduct.Id == 0)
         {
             // If the Id is 0, it's a new product
@@ -136,7 +134,7 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
                 showNotice = true;
                 await Task.Delay(3000).ContinueWith( _ => {
                     showNotice = false;
-                    StateHasChanged();
+                    InvokeAsync(StateHasChanged);
                 });
             }
 
@@ -195,15 +193,24 @@ namespace ABC.Client.Components.Pages.SalesInventory.ProductPage.upsert;
                 };
                 await auditService_SQL.AddAudit(applicationDbContext, auditLog);
             }
-            else
-            {
-                // Toast
-            }
         }
     }
 
+	private async Task CancelAction()
+	{
+		if (SelectedProduct.Id != 0)
+		{
+			SelectedProduct = await productService_SQL.GetProductInfo(applicationDbContext, SelectedProduct.Id);
+			NavigationManager.NavigateTo("/ProductList", true);
+		}
+		else
+		{
+			SelectedProduct = new Product();
+			NavigationManager.NavigateTo("/ProductList", true);
+		}
+	}
 
-    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+	private async Task HandleFileSelected(InputFileChangeEventArgs e)
     {
         selectedFile = e.File;
 

@@ -55,6 +55,7 @@ public partial class POS
     private Toast toastRef { get; set; }
     private int StockDeficit { get; set; } = 0;
     private bool ShowStockTransferAlert { get; set; } = false;
+    private string SelectedSalesChannel { get; set; }
 
     #endregion
     protected override async Task OnInitializedAsync()
@@ -63,6 +64,7 @@ public partial class POS
         var claimsIdentity = user.Identity as ClaimsIdentity;
         userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
+        storeList = await storeService_SQL.GetStoreList(applicationDbContext);
 
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
     }
@@ -109,7 +111,7 @@ public partial class POS
             LastName = result.LastName,
             EmailAddress = result.EmailAddress,
             ContactNumber = result.ContactNumber.ToString(),
-            Type = result.Type,
+            //Type = result.Type,
             ApSuUn = result.ApSuUn,
             StreetorSubd = result.StreetorSubd,
             Barangay = result.Barangay,
@@ -164,7 +166,7 @@ public partial class POS
         {
             // Update quantity directly to the new input value
             existingItem.Count = quantity;
-            existingItem.TotalPrice = existingItem.Count * existingItem.Price;
+            existingItem.TotalPrice = existingItem.Count * existingItem.RetailPrice;
         }
         else
         {
@@ -180,7 +182,8 @@ public partial class POS
                     Id = result.Id,
                     Product = result,
                     Count = quantity,
-                    Price = result.RetailPrice,
+                    RetailPrice = result.RetailPrice,
+                    CostPrice = result.CostPrice,
                     TotalPrice = quantity * result.RetailPrice
                 };
             }
@@ -327,19 +330,19 @@ public partial class POS
         AmountTendered = 0;
         Change = 0;
     }
-
     private void ClearBankModal()
     {
         AmountTendered = 0;
         Change = 0;
     }
-    private void SelectedCustomerTypeChanged(ChangeEventArgs e)
+    private void SelectedSalesChannelChanged(ChangeEventArgs e)
     {
         if (e.Value is not null)
         {
-            Customer.Type = (string)e.Value;
+            SelectedSalesChannel = (string)e.Value;
         }
     }
+
 
     private async Task CompleteOrder()
     {
@@ -355,8 +358,8 @@ public partial class POS
             Barangay = Customer.Barangay,
             City = Customer.City,
             Province = Customer.Province,
-            ZipCode = Customer.ZipCode,
-            Type = Customer.Type
+            ZipCode = Customer.ZipCode
+            //Type = Customer.Type
         };
         Customer _customer = await CustomerService_SQL.GetCustomerInfo(applicationDbContext, Customer.Id);
         if (_customer.ContactNumber == 0)
@@ -370,6 +373,7 @@ public partial class POS
             //OrderDetails = orderDetails,
             OrderDate = DateTime.UtcNow.ToLocalTime(),
             ShippingDate = DateTime.UtcNow.ToLocalTime().AddDays(2),
+            CompletionDate = DateTime.UtcNow.ToLocalTime(),
             OrderTotal = OrderSummary.OrderTotal,
             OrderStatus = SD.StatusCompleted,
             PaymentStatus = SD.PaymentStatusApproved,
@@ -379,8 +383,9 @@ public partial class POS
             DeliveryFee = OrderSummary.DeliveryFee,
             PaymentMode = OrderSummary.PaymentMode,
             OfficialReceipt = OrderSummary.OfficialReceipt,
+            SalesChannel = SelectedSalesChannel,
             Customer = _customer,
-            StoreName = ApplicationUser.StoreName!
+            StoreName = ApplicationUser.StoreName!,
         };
 
         List<OrderDetail> orderDetails = [];
@@ -390,13 +395,15 @@ public partial class POS
             {
                 ProductId = item.Id,
                 OrderHeaderId = _orderHeader.Id,
-                Price = item.Price,
+                RetailPrice = item.RetailPrice,
+                CostPrice = item.CostPrice,
                 Count = item.Count
             };
             orderDetails.Add(orderDetail);
         }
 
         _orderHeader.OrderDetails = orderDetails;
+
         bool added = await OrderHeaderService_SQL.AddOrderHeader(applicationDbContext, _orderHeader, ProductService_SQL);
 
         if (added)

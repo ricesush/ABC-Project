@@ -41,7 +41,6 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		}
 	}
 
-
 	public async Task<List<OrderHeader>> GetOrderHeaderByUserId(dynamic DBContext, string userId)
 	{
 		List<OrderHeader> orderHeaders = new List<OrderHeader>();
@@ -127,24 +126,43 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		bool added = false;
 		try
 		{
-            foreach (var product in order.OrderDetails)
-            {
+			foreach (var product in order.OrderDetails)
+			{
 				// GETTING THE PRODUCT INFO
-				var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
+				//var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
+				var result2 = await productService_SQL.GetStockperStoreInfo(DBContext, product.ProductId);
 
-				// IDENTIFY THE REQUESTING STORE
-				// DEDUCT THE QUANTITY FROM THE STOCK QUANTITY OF THE STORE
-				if(order.StoreName.Contains("Addsome")){
-					result2.StockPerStore.Store1StockQty -= product.Count;
-				}else{
-					result2.StockPerStore.Store2StockQty -= product.Count;
+				if (result2 != null)
+				{
+					// IDENTIFY THE REQUESTING STORE AND DEDUCT THE QUANTITY
+					if (order.StoreName.Contains("Addsome"))
+					{
+						if (result2.Store1StockQty != null)
+						{
+							result2.Store1StockQty -= product.Count;
+						}
+					}
+					else if (order.StoreName.Contains("Ahead"))
+					{
+						if (result2.Store2StockQty != null)
+						{
+							result2.Store2StockQty -= product.Count;
+						}
+					}
+					else if (order.StoreName == null)
+					{
+						if (result2.TotalStocks != null)
+						{
+							result2.TotalStocks -= product.Count;
+						}
+					}
+
+					// UPDATE
+					await productService_SQL.UpdateStockPerStore(DBContext, result2);
 				}
+			}
 
-				// UPDATE
-				await productService_SQL.UpdateProduct(DBContext, result2);
-            }
-
-            added = await AddOrderHeaderData(DBContext, order);
+			added = await AddOrderHeaderData(DBContext, order);
 			return added;
 		}
 		catch (Exception ex)

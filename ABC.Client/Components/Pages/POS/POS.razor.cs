@@ -25,11 +25,10 @@ public partial class POS
     [Inject] OrderHeaderService_SQL OrderHeaderService_SQL { get; set; }
     [Inject] ApplicationDbContext applicationDbContext { get; set; }
     [Inject] UserManager<ApplicationUser> UserManager { get; set; }
-    [Inject] CustomerService_SQL CustomerService_SQL { get; set; }
+	[Inject] StoreService_SQL storeService_SQL { get; set; }
+	[Inject] CustomerService_SQL CustomerService_SQL { get; set; }
     [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     [Inject] ApplicationUserService_SQL applicationUserService_SQL { get; set; }
-
-
 
     #endregion
 

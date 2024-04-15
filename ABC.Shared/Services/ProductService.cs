@@ -95,7 +95,7 @@ public partial class ProductService_SQL : ComponentBase
 		}
 	}
 
-	#endregion
+    #endregion
 
 	#region CATEGORIES CRUD
 	public async Task<List<Category>> GetCategoryList(dynamic DBContext)

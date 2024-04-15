@@ -9,6 +9,7 @@
     position: relative;
     text-align: center;
     padding-top: 6rem;
+    margin-top: 2rem;
 }
 
     .banner h1, .banner p {
@@ -20,8 +21,9 @@
 }
 
 .button {
-    background-color: var(--maincolor-darkblue--);
-    color: #ffffff;
+    background-image: linear-gradient(to bottom right, red, yellow, blue);
+    color: black;
+    font-size: 18px;
     font-weight: bold;
     text-decoration: none;
 }
@@ -53,6 +55,7 @@ h3, p {
     color: var(--maincolor-darkblue--);
     font-weight: 700;
 }
+
 
 .card-img-overlay {
     background-color: #ffffff;

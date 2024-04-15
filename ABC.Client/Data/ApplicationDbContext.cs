@@ -196,7 +196,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
 				ImageUrl = "",
-				status = "Active"
+				status = SD.InStock
 
 			},
 			new Product
@@ -216,8 +216,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Duration = "7 days from date of purchase",
 				SupplierId = 1,
 				ImageUrl = "",
-				status = "Active"
-			},
+				status = SD.InStock
+            },
 			new Product
 			{
 				Id = 3,
@@ -235,8 +235,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
 				ImageUrl = "",
-				status = "Active"
-			},
+				status = SD.InStock
+            },
 			new Product
 			{
 				Id = 4,
@@ -254,8 +254,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Duration = "24 months from date of purchase",
 				SupplierId = 1,
 				ImageUrl = "",
-				status = "Active"
-			},
+				status = SD.InStock
+            },
 			new Product
 			{
 				Id = 5,
@@ -273,8 +273,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
 				ImageUrl = "",
-				status = "Active"
-			});
+				status = SD.InStock
+            });
 
 		//Pushed Data into Supplier Database
 		modelBuilder.Entity<Supplier>().HasData(

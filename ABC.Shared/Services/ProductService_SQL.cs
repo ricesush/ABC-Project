@@ -102,7 +102,7 @@ public partial class ProductService_SQL
 		try
 		{
 			var context = DBContext;
-			context.Products.Update(product);
+			context.Products.Remove(product);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;
 		}
@@ -112,7 +112,7 @@ public partial class ProductService_SQL
 			return false;
 		}
 	}
-	#endregion
+    #endregion
 
 	#region CATEGORIES CRUD
 	//* GETS ALL CATEGORIES

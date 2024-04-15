@@ -10,9 +10,8 @@
 @inject ShoppingCartService_SQL shoppingCartService_SQL
 @inject ApplicationDbContext applicationDbContext
 
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
-	<div class="container">
+	<div class="container-fluid">
 		<a class="navbar-brand" href="#"><BrandLogo /></a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +53,7 @@
 					<AuthorizeView Roles="Customer" Context="Context">
 						<div class="nav-item px-3 w-10 h-10">
 							<NavLink class="nav-link text-white position-relative" href="CartIndex">
-								<span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> <i class="bi bi-cart2"></i>
+								<span class="bi bi-cart2" aria-hidden="true"></span>
 								<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 									@if (@CartItemCount > 0)
 									{
@@ -66,10 +65,18 @@
 					</AuthorizeView>
 
 					<!-- Admin at Employee -->
-					<AuthorizeView Roles="Admin, Manager, Employee" Context="innerContext">
+					<AuthorizeView Roles="Admin, Manager" Context="innerContext">
 						<div class="nav-item px-3 w-10 h-10">
 							<NavLink class="nav-link text-white" href="Dashboard" data-enhance-nav="false">
-								<span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> <i class="bi bi-person-fill-gear fs-4"></i>
+								<i class="bi bi-person-fill-gear fs-4"></i>
+							</NavLink>
+						</div>
+					</AuthorizeView>
+
+					<AuthorizeView Roles="Employee" Context="innerContext">
+						<div class="nav-item px-3 w-10 h-10">
+							<NavLink class="nav-link text-white" href="POS" data-enhance-nav="false">
+								<i class="bi bi-person-fill-gear fs-4"></i>
 							</NavLink>
 						</div>
 					</AuthorizeView>
@@ -78,7 +85,7 @@
 					<div class="nav-item px-3">
 						<div class="dropdown">
 							<a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span><i class="bi bi-person-circle fs-5"></i> @context.User.Identity?.Name &nbsp;</span>
+								<i class="bi bi-person-circle fs-5"></i> @context.User.Identity?.Name &nbsp;
 							</a>
 							<div class="dropdown-menu" aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="Account/Manage">My Account</a>
@@ -116,6 +123,3 @@
 		</div>
 	</div>
 </nav>
-
-
-

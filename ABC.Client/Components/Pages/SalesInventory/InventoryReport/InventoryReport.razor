@@ -8,106 +8,133 @@
 
 <PageTitle>ABC - Inventory Report</PageTitle>
 
-<div class="container-fluid pt-2 pb-5">
-    <div class="row pb-1">
-        <div class="col-lg-8 col-sm-12 text-start mb-3 mb-sm-0">
-            <h1 style="color: #223442;"><b>Inventory Report</b></h1>
-        </div>
-        <!-- Export Button -->
-        <div class="col-lg-4 col-sm-4 mb-3 mb-sm-0 text-end">
-            <a href="#" class="btn btn-success" id="btngenerate">
-                <i class="bi bi-box-arrow-up"></i> Export
-            </a>
-        </div>
-    </div>
-    <!--Breadcrumb-->
-    <div class="row pb-3">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="SalesReport">Sales Report</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Inventory Report</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="row pt-1 pb-2">
-        <div class="col-3">
-            <div class="smallbox">
-                <p>Inventory Value</p>
-                @*<h2><strong>@ViewBag.TotalProducts</strong></h2>*@
+<AuthorizeView Roles="Admin" Context="innerContext">
+    <section class="container pt-2 pb-5">
+        <!--TITLE-->
+        <div class="row pb-1">
+            <div class="col-8">
+                <h1>Inventory Report</h1>
+            </div>
+            <!-- Export Button -->
+            <div class="col-4 button">
+                <a class="btn btn-success" id="btngenerate">
+                    <i class="bi bi-box-arrow-up"></i> Export
+                </a>
             </div>
         </div>
-        <div class="col-3">
-            <div class="smallbox">
-                <p>Product Count</p>
-                @*<h2><strong>@ViewBag.TotalProducts</strong></h2>*@
+        <!--Breadcrumb-->
+        <div class="row pb-3">
+            <div class="col-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="SalesReport">Sales Report</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Inventory Report</li>
+                    </ol>
+                </nav>
             </div>
-        </div>
-        <div class="col-3">
-            <div class="smallbox">
-                <p>Purchase Order Created</p>
-                @*<h2><strong>@ViewBag.TotalPurOrders</strong></h2>*@
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="smallbox">
-                <p>Transferred Stocks</p>
-                @*<h2><strong>@ViewBag.TotalProducts</strong></h2>*@
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3 pb-2">
-        <div class="col-7">
-            <div class="border p-3 container shadow">
-                <!--Title-->
+            <div class="col-4 ">
                 <div class="row">
-                    <h4 style="color: #223442;">Performance</h4>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" class="form-control" id="startDate" @bind="startDate" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="endDate">End Date:</label>
+                            <input type="date" class="form-control" id="endDate" @bind="endDate" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row first">
+            <div class="smallbox">
+                <div class="row">
+                    <h5>Total Inventory Value</h5>
+                    <h1>@totalInventoryValue.ToString("C", new CultureInfo("en-PH"))</h1>
                     <hr />
                 </div>
-                <div class="chart2">
-                    @*<canvas id="inventoryChart"
-                    data-instock-products="@ViewBag.InstockProducts"
-                    data-low-stock-products="@ViewBag.LowStockProducts"
-                    data-out-of-stock-products="@ViewBag.OutOfStockProducts"></canvas>*@
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Addsome</h6>
+                        <h5>@AddsomeInventoryValue.ToString("C", new CultureInfo("en-PH"))</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>Ahead Biz</h6>
+                        <h5>@AheadBizInventoryValue.ToString("C", new CultureInfo("en-PH"))</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="smallbox">
+                <div class="row">
+                    <h5>Total Available Stock Quantity</h5>
+                    <h1>@totalAvailableQuantity</h1>
+                    <hr />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Addsome</h6>
+                        <h5>@AddsomeAvailableQuantity</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>Ahead Biz</h6>
+                        <h5>@AheadAvailableQuantity</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="smallbox">
+                <div class="row">
+                    <h5>Total Purchase Amount</h5>
+                    <h1>@totalPurchaseAmount.ToString("C", new CultureInfo("en-PH"))</h1>
+                    <hr />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Addsome</h6>
+                        <h5>@AddsomePurchaseAmount.ToString("C", new CultureInfo("en-PH"))</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>Ahead Biz</h6>
+                        <h5>@AheadBizPurchaseAmount.ToString("C", new CultureInfo("en-PH"))</h5>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-5">
-            <div class="border p-3 container shadow">
-                <!-- Title -->
-                <div class="row">
-                    <h4 style="color: #223442;">Fast-Moving Items</h4>
-                    <hr />
-                </div>
-                <table class="table table-hover scrollable-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Product</th>
-                            <th>Quantity Sold</th>
-                        </tr>
-                    </thead>
-                    @* <tbody>
-                    @foreach (var product in Model)
-                    {
-                    var totalSold = (int)orderDetails.Where(detail => detail.ProductId == product.Id).Sum(detail => detail.Count);
-                    var totalPrice = orderDetails
-                    .Where(detail => detail.ProductId == product.Id)
-                    .Sum(detail => detail.Product != null ? (detail.Product.RetailPrice * detail.Count) : 0);
 
+        <div class="row second">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                    <td><img src="@product.ImageUrl" alt="Product Image" width="50" height="50"></td>
-                    <td>@product.productName</td>
-                    <td>@totalSold</td>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Cost Price</th>
+                        <th scope="col">Retail Price</th>
+                        <th scope="col">Quantity Sold</th>
+                        <th scope="col">Total Sale</th>
+                        <th scope="col">Total Cost</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @if (Products != null && Products.Any())
+                    {
+                        foreach (var orderDetail in Products)
+                        {
+                            <tr>
+                                <td>@orderDetail.Product.SKU</td>
+                                <td>@orderDetail.Product.productName</td>
+                                <td>@orderDetail.Product.CostPrice.ToString("C", new CultureInfo("en-PH"))</td>
+                                <td>@orderDetail.Product.RetailPrice.ToString("C", new CultureInfo("en-PH"))</td>
+                                <td>@orderDetail.Count</td>
+                                <td>@FormatCurrency(orderDetail.Count * orderDetail.Product.RetailPrice)</td>
+                                <td>@FormatCurrency(orderDetail.Count * orderDetail.Product.CostPrice)</td>
+                            </tr>
+                        }
                     }
-                    </tbody> *@
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-    </div>
-</div>
-
-<script src="//cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script src="~/js/inventoryreport.js"></script>
+    </section>
+</AuthorizeView>

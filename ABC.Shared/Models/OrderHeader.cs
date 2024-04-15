@@ -18,29 +18,34 @@ namespace ABC.Shared.Models
         [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser? ApplicationUser { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; } = new();
-
-        public DateTime OrderDate { get; set; }
-        public DateTime ShippingDate { get; set; }
-        public double OrderTotal { get; set; }
-
-        public string? OrderStatus { get; set; }
-        public string? PaymentStatus {  get; set; }
-        public string? TrackingNumber { get; set; }
-        public string? Carrier { get; set; }
-        public decimal Discount { get; set; } = 0;
-        public decimal ServiceFee { get; set; } = 0;
-        public decimal DeliveryFee { get; set; } = 0;
-        public string? PaymentMode { get; set; }
-        public string? OfficialReceipt { get; set; }
         public Guid? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         [ValidateNever]
 
         [DisplayName("Customer")]
         public Customer? Customer { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; } = new();
 
-        public string StoreName { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+        public DateTime? ProcessDate { get; set; } = DateTime.UtcNow;
+        public DateTime? ShippingDate { get; set; } = DateTime.UtcNow;
+        public DateTime CompletionDate { get; set; } = DateTime.UtcNow;
+        public DateTime? CancellationDate { get; set; } = DateTime.UtcNow;
+        public DateTime? RefundDate { get; set; } = DateTime.UtcNow;
+
+        public string? OrderStatus { get; set; }
+        public string? PaymentStatus { get; set; }
+        public string? TrackingNumber { get; set; }
+        public string? Carrier { get; set; }
+        public decimal Discount { get; set; } = 0;
+        public decimal ServiceFee { get; set; } = 0;
+        public decimal DeliveryFee { get; set; } = 0;
+        public string? PaymentMode { get; set; }
+        public double OrderTotal { get; set; }
+        public string? OfficialReceipt { get; set; }
+        public string? SalesChannel { get; set; }
+        public string? StoreName { get; set; }
+        public string EmployeeName { get; set; }
     }
 
     public class Discount

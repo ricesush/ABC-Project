@@ -25,7 +25,9 @@ namespace ABC.Shared.Models
         public double? Charge { get; set; }
         public double? Discount { get; set; }
         public int Count {  get; set; }
-        public double Price {  get; set; } 
+        //public double Price {  get; set; }
+        public double RetailPrice {  get; set; }
+        public double CostPrice {  get; set; }
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
 
         [NotMapped]

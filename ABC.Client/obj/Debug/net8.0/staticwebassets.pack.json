@@ -1,219 +1,219 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ABC.Client.bundle.scp.css",
       "PackagePath": "staticwebassets\\ABC.Client.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.png",
       "PackagePath": "staticwebassets\\Image\\ABCLogo.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.webp",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\ABCLogo.webp",
       "PackagePath": "staticwebassets\\Image\\ABCLogo.webp"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Cctv.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Cctv.png",
       "PackagePath": "staticwebassets\\Image\\Cctv.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Computer.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Computer.png",
       "PackagePath": "staticwebassets\\Image\\Computer.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Wires_Cables.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\Wires_Cables.png",
       "PackagePath": "staticwebassets\\Image\\Wires_Cables.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\banner.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\banner.png",
       "PackagePath": "staticwebassets\\Image\\banner.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\footer.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\footer.png",
       "PackagePath": "staticwebassets\\Image\\footer.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\112ea682-3c22-4a35-8a9d-24b28087bdb0.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\112ea682-3c22-4a35-8a9d-24b28087bdb0.png",
       "PackagePath": "staticwebassets\\Image\\product\\112ea682-3c22-4a35-8a9d-24b28087bdb0.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\14241798-df38-4d98-a59c-6865f25e487e.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\14241798-df38-4d98-a59c-6865f25e487e.png",
       "PackagePath": "staticwebassets\\Image\\product\\14241798-df38-4d98-a59c-6865f25e487e.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\2c72918f-1409-4503-aaba-9367233ba9cf.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\2c72918f-1409-4503-aaba-9367233ba9cf.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\2c72918f-1409-4503-aaba-9367233ba9cf.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\37cd9a9e-2e1d-471d-b1c3-35cc553d59fb.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\37cd9a9e-2e1d-471d-b1c3-35cc553d59fb.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\37cd9a9e-2e1d-471d-b1c3-35cc553d59fb.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\39070ae5-6131-415b-a74b-9aae56ff955f.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\39070ae5-6131-415b-a74b-9aae56ff955f.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\39070ae5-6131-415b-a74b-9aae56ff955f.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\3f11cd91-184b-4fa3-8f81-47ed4b548090.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\3f11cd91-184b-4fa3-8f81-47ed4b548090.png",
       "PackagePath": "staticwebassets\\Image\\product\\3f11cd91-184b-4fa3-8f81-47ed4b548090.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\493f5a57-eda9-43ed-91e5-deb27a6cf68d.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\493f5a57-eda9-43ed-91e5-deb27a6cf68d.png",
       "PackagePath": "staticwebassets\\Image\\product\\493f5a57-eda9-43ed-91e5-deb27a6cf68d.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\5862ef5f-85ac-4b24-9c53-173147ec0e73.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\5862ef5f-85ac-4b24-9c53-173147ec0e73.png",
       "PackagePath": "staticwebassets\\Image\\product\\5862ef5f-85ac-4b24-9c53-173147ec0e73.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\602a4943-bab7-499e-af72-b0acb5cad32a.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\602a4943-bab7-499e-af72-b0acb5cad32a.png",
       "PackagePath": "staticwebassets\\Image\\product\\602a4943-bab7-499e-af72-b0acb5cad32a.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\60555622-8698-4871-9369-6e574f0159ea.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\60555622-8698-4871-9369-6e574f0159ea.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\60555622-8698-4871-9369-6e574f0159ea.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\66861758-00ac-49c6-828a-000a48c56c57.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\66861758-00ac-49c6-828a-000a48c56c57.png",
       "PackagePath": "staticwebassets\\Image\\product\\66861758-00ac-49c6-828a-000a48c56c57.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\682ea4bb-0c0e-4f50-9aa3-a1df766eb21c.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\682ea4bb-0c0e-4f50-9aa3-a1df766eb21c.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\682ea4bb-0c0e-4f50-9aa3-a1df766eb21c.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\6b3aaeef-9653-45ab-a83a-bd8798945e92.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\6b3aaeef-9653-45ab-a83a-bd8798945e92.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\6b3aaeef-9653-45ab-a83a-bd8798945e92.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\873faf00-e389-45c6-96f7-a02276c4a9e7.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\873faf00-e389-45c6-96f7-a02276c4a9e7.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\873faf00-e389-45c6-96f7-a02276c4a9e7.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\8a908fa8-741c-4394-992d-1a2b7cc329d6.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\8a908fa8-741c-4394-992d-1a2b7cc329d6.png",
       "PackagePath": "staticwebassets\\Image\\product\\8a908fa8-741c-4394-992d-1a2b7cc329d6.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\b000be95-9c46-4189-bf92-c0fe9ecd1b00.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\b000be95-9c46-4189-bf92-c0fe9ecd1b00.png",
       "PackagePath": "staticwebassets\\Image\\product\\b000be95-9c46-4189-bf92-c0fe9ecd1b00.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\b2187f49-d45c-426a-b02c-6f1bacb69237.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\b2187f49-d45c-426a-b02c-6f1bacb69237.png",
       "PackagePath": "staticwebassets\\Image\\product\\b2187f49-d45c-426a-b02c-6f1bacb69237.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\c01da3c9-1a6d-4a82-9ff0-91bf045d7136.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\c01da3c9-1a6d-4a82-9ff0-91bf045d7136.png",
       "PackagePath": "staticwebassets\\Image\\product\\c01da3c9-1a6d-4a82-9ff0-91bf045d7136.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\c40b2b14-d25d-416c-a383-94a99b3f92a7.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\c40b2b14-d25d-416c-a383-94a99b3f92a7.png",
       "PackagePath": "staticwebassets\\Image\\product\\c40b2b14-d25d-416c-a383-94a99b3f92a7.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\cd737b83-573b-480d-8007-5665974ccbd9.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\cd737b83-573b-480d-8007-5665974ccbd9.png",
       "PackagePath": "staticwebassets\\Image\\product\\cd737b83-573b-480d-8007-5665974ccbd9.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\d567b474-0d4d-4095-958b-f35f17d03561.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\d567b474-0d4d-4095-958b-f35f17d03561.png",
       "PackagePath": "staticwebassets\\Image\\product\\d567b474-0d4d-4095-958b-f35f17d03561.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\d9ccd9d3-cf9e-4023-a35f-00cd550c0685.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\d9ccd9d3-cf9e-4023-a35f-00cd550c0685.png",
       "PackagePath": "staticwebassets\\Image\\product\\d9ccd9d3-cf9e-4023-a35f-00cd550c0685.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\dd63744e-b636-4dbc-a528-a3a98fe5160d.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\dd63744e-b636-4dbc-a528-a3a98fe5160d.png",
       "PackagePath": "staticwebassets\\Image\\product\\dd63744e-b636-4dbc-a528-a3a98fe5160d.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\e05cb2aa-da4f-40f6-81dd-0cfccf5fb535.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\e05cb2aa-da4f-40f6-81dd-0cfccf5fb535.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\e05cb2aa-da4f-40f6-81dd-0cfccf5fb535.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\e19aca41-b8c0-44b0-ba3c-a315e316cc80.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\e19aca41-b8c0-44b0-ba3c-a315e316cc80.png",
       "PackagePath": "staticwebassets\\Image\\product\\e19aca41-b8c0-44b0-ba3c-a315e316cc80.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\f660cedd-6ac1-40d0-820e-5e6b31d32d6b.jpg",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\f660cedd-6ac1-40d0-820e-5e6b31d32d6b.jpg",
       "PackagePath": "staticwebassets\\Image\\product\\f660cedd-6ac1-40d0-820e-5e6b31d32d6b.jpg"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\sample.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\sample.png",
       "PackagePath": "staticwebassets\\Image\\sample.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\app.css",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\favicon.png",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\audit.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\audit.js",
       "PackagePath": "staticwebassets\\js\\audit.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\dashboard.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\dashboard.js",
       "PackagePath": "staticwebassets\\js\\dashboard.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\descriptionbox.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\descriptionbox.js",
       "PackagePath": "staticwebassets\\js\\descriptionbox.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\inventoryreport.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\inventoryreport.js",
       "PackagePath": "staticwebassets\\js\\inventoryreport.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\order.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\order.js",
       "PackagePath": "staticwebassets\\js\\order.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\ordercustomer.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\ordercustomer.js",
       "PackagePath": "staticwebassets\\js\\ordercustomer.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\product.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\product.js",
       "PackagePath": "staticwebassets\\js\\product.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchaseorder.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchaseorder.js",
       "PackagePath": "staticwebassets\\js\\purchaseorder.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchsearch.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\purchsearch.js",
       "PackagePath": "staticwebassets\\js\\purchsearch.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\salesreport.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\salesreport.js",
       "PackagePath": "staticwebassets\\js\\salesreport.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\searchshop.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\searchshop.js",
       "PackagePath": "staticwebassets\\js\\searchshop.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\stocktransfer.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\stocktransfer.js",
       "PackagePath": "staticwebassets\\js\\stocktransfer.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\supplier.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\supplier.js",
       "PackagePath": "staticwebassets\\js\\supplier.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\user.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\user.js",
       "PackagePath": "staticwebassets\\js\\user.js"
     },
     {
-      "Id": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\usermanagement.js",
+      "Id": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\js\\usermanagement.js",
       "PackagePath": "staticwebassets\\js\\usermanagement.js"
     },
     {

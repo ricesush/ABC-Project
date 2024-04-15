@@ -4,6 +4,9 @@ using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace ABC.Shared.Services;
 
@@ -40,7 +43,7 @@ public partial class ProductService_SQL
 		try
 		{
 			var context = DBContext;
-			var result = context.Set<Product>().Include(x => x.StockPerStore).FirstOrDefault( x => x.Id == id);
+			var result = context.Set<Product>().Include(x => x.StockPerStore).FirstOrDefault(x => x.Id == id);
 			if (result is not null)
 			{
 				_product = result;
@@ -62,7 +65,7 @@ public partial class ProductService_SQL
 			var context = DBContext;
 			context.Products.Add(product);
 			var result = context.SaveChanges();
-			
+
 			stockPerStore.Product = product;
 			context.StockPerStores.Add(stockPerStore);
 			var result2 = context.SaveChanges();
@@ -154,18 +157,74 @@ public partial class ProductService_SQL
 		}
 	}
 
-	private async Task<bool> UpdateStockPerStore(DbContext DBContext, StockPerStore stockPerStore){
+	private async Task<bool> UpdateStockPerStore(DbContext DBContext, StockPerStore stockPerStore, string employeeName)
+	{
 		bool updatedStockPerStore = false;
 		try
 		{
+			var stores = DBContext.Set<Store>();
 			DBContext.Set<StockPerStore>().Update(stockPerStore);
-			var result = await DBContext.SaveChangesAsync();
-			return updatedStockPerStore = result > 0;
+			DBContext.ChangeTracker.DetectChanges();
+			var test = DBContext.ChangeTracker.DebugView.LongView;
+			var modifiedEntities = DBContext.ChangeTracker.Entries()
+				.Where(e => e.State == EntityState.Added || e.State == EntityState.Modified || e.State == EntityState.Deleted)
+				.ToList();
+
+			Console.WriteLine(DBContext.ChangeTracker.DebugView.LongView);
+
+            StockTransferAudit audit = new()
+            {
+				Action = AuditActions.TransferStock,
+                EmployeeName = employeeName,
+                Timestamp = DateTime.UtcNow.ToLocalTime(),
+
+				StockPerStoreId = stockPerStore.Id,
+            };
+
+            foreach (var entry in DBContext.ChangeTracker.Entries())
+			{
+				if (entry.State == EntityState.Modified)
+				{
+					var originalValues = entry.OriginalValues;
+					var currentValues = entry.CurrentValues;
+
+					// Iterate through the properties to find modified ones
+					foreach (var property in originalValues.Properties)
+					{
+						var originalValue = originalValues[property];
+						var currentValue = currentValues[property];
+
+
+						// Check if the value of the property has changed
+						if (!Equals(originalValue, currentValue))
+						{
+							var propertyName = property.Name;
+							int storeId = Equals("Store1StockQty") ? 1 : 2;
+							var entityType = entry.Entity.GetType().Name;
+
+							if (Convert.ToInt32(originalValue) > Convert.ToInt32(currentValue))
+							{
+								audit.TransferredStocks = Convert.ToInt32(originalValue) - Convert.ToInt32(currentValue);
+								audit.StoreAssetFrom = stores.FirstOrDefault(x => x.Id == storeId)!;
+								audit.StoreAssetTo = stores.FirstOrDefault(x => x.Id != storeId)!;
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			var result = await DBContext.SaveChangesAsync() > 0;
+			audit.IsSuccess = result;
+			audit.Failed = !result;
+
+			await audit.CreateProductTransferAudit(employeeName, result, audit, DBContext);
+			return updatedStockPerStore = result;
 		}
 		catch (Exception ex)
 		{
-			Log.Error(ex.ToString());	
-			return updatedStockPerStore;		
+			Log.Error(ex.ToString());
+			return updatedStockPerStore;
 		}
 	}
 	#endregion

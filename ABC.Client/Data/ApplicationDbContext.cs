@@ -390,7 +390,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					TotalStocks = 20,
 				}
 			);
-			o.HasOne(o => o.Product).WithOne(o => o.StockPerStore).OnDelete(DeleteBehavior.NoAction);
+			o.HasOne(o => o.Product).WithOne(o => o.StockPerStore).OnDelete(DeleteBehavior.Cascade);
 		});
 
 		modelBuilder.Entity<PurchaseOrderItem>(b =>

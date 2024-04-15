@@ -53,6 +53,7 @@ public partial class POS
     private double AmountTendered { get; set; }
     private double Change { get; set; }
     private string? userId { get; set; } = "";
+    private string? UserEmail { get; set; } = "";
     private Toast toastRef { get; set; }
     private int StockDeficit { get; set; } = 0;
     private bool ShowStockTransferAlert { get; set; } = false;
@@ -63,6 +64,7 @@ public partial class POS
         var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
         var claimsIdentity = user.Identity as ClaimsIdentity;
         userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        UserEmail = claimsIdentity.FindFirst(ClaimTypes.Email)?.Value;
         ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
 
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
@@ -217,7 +219,7 @@ public partial class POS
         bool isSuccess = false;
         try
         {
-            isSuccess = await ProductService_SQL.TransferStock(applicationDbContext, stockPerStore);
+            isSuccess = await ProductService_SQL.TransferStock(applicationDbContext, stockPerStore, UserEmail);
             return isSuccess;
         }
         catch (Exception ex)

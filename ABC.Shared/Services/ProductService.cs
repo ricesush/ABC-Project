@@ -128,11 +128,11 @@ public partial class ProductService_SQL : ComponentBase
 		}
 	}
 
-	public async Task<bool> TransferStock(DbContext dbContext, StockPerStore stockPerStore){
+	public async Task<bool> TransferStock(DbContext dbContext, StockPerStore stockPerStore, string employeeName){
 		bool stockTransferUpdated = false;
 		try
 		{
-			stockTransferUpdated = await UpdateStockPerStore(dbContext, stockPerStore);
+			stockTransferUpdated = await UpdateStockPerStore(dbContext, stockPerStore, employeeName);
 			return stockTransferUpdated;
 		}
 		catch (Exception ex)

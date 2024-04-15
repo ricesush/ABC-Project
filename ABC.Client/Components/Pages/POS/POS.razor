@@ -249,11 +249,12 @@
 
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text border border-end" id="addon-wrapping">Sales</span>
-                    <select class="form-select" id="inputGroupSelect01" @onchange="SelectedCustomerTypeChanged">
+                    <select class="form-select" id="inputGroupSelect01" @onchange="SelectedSalesChannelChanged"
+                            value="@SelectedSalesChannel">
                         <option selected disabled>- Choose Sales Channel -</option>
-                        <option value="Walk In">Walk In</option>
-                        <option value="On-Call">On Call</option>
-                        <option value="Chat Based">Chat Based</option>
+                        <option value="@SD.WalkIn">@SD.WalkIn</option>
+                        <option value="@SD.OnCall">@SD.OnCall</option>
+                        <option value="@SD.ChatBased">@SD.ChatBased</option>
                     </select>
                 </div>
 
@@ -343,71 +344,72 @@
                         New Transaction
                     </button>
                 </div>
-
-                @* Complete *@
-                <div class="modal fade" id="completeModal" tabindex="-1" aria-labelledby="completeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="completeModalLabel">Complete Transaction</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <h6>Are you sure you want to complete the this transaction?</h6>
-                                <h6 class="alert text-danger">This is an irreversible action!</h6>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" @onclick="CompleteOrder" data-bs-dismiss="modal">Confirm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @* Cancel *@
-                <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="cancelModalLabel">Cancel Transaction</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <h6>Are you sure you want to cancel this transaction?</h6>
-                                <h6 class="alert text-danger">This is an irreversible action!</h6>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-danger" @onclick="CancelOrder" data-bs-dismiss="modal">Confirm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @* New Transaction *@
-                <div class="modal fade" id="newModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="newModalLabel">New Transaction</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <h6>Are you sure you want to start a new transaction?</h6>
-                                <h6 class="alert text-danger">This is an irreversible action!</h6>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-danger" @onclick="NewTransaction" data-bs-dismiss="modal">Confirm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     </section>
 
 </section>
+
+
+@* Complete *@
+<div class="modal fade" id="completeModal" tabindex="-1" aria-labelledby="completeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="completeModalLabel">Complete Transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h6>Are you sure you want to complete the this transaction?</h6>
+                <h6 class="alert text-danger">This is an irreversible action!</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" @onclick="CompleteOrder" data-bs-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Cancel *@
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Cancel Transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h6>Are you sure you want to cancel this transaction?</h6>
+                <h6 class="alert text-danger">This is an irreversible action!</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" @onclick="CancelOrder" data-bs-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* New Transaction *@
+<div class="modal fade" id="newModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newModalLabel">New Transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h6>Are you sure you want to start a new transaction?</h6>
+                <h6 class="alert text-danger">This is an irreversible action!</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" @onclick="NewTransaction" data-bs-dismiss="modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @* PRODUCT MODAL *@
 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">

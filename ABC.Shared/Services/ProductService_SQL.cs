@@ -111,12 +111,11 @@ public partial class ProductService_SQL
 	}
     #endregion
 
-    private async Task<bool> UpdateStockPerStoreData(DbContext DBContext, StockPerStore stockPerStore)
+    private async Task<bool> UpdateStockPerStore(DbContext DBContext, StockPerStore stockPerStore)
     {
         bool updatedStockPerStore = false;
         try
         {
-			stockPerStore.TotalStocks = stockPerStore.Store1StockQty + stockPerStore.Store2StockQty;
             DBContext.Set<StockPerStore>().Update(stockPerStore);
             var result = await DBContext.SaveChangesAsync();
             return updatedStockPerStore = result > 0;
@@ -125,27 +124,6 @@ public partial class ProductService_SQL
         {
             Log.Error(ex.ToString());
             return updatedStockPerStore;
-        }
-    }
-
-    //* GETS SINGLE StockperStore BASE ON PRODUCT ID
-    private async Task<StockPerStore> GetStockperStoreInfoData(DbContext DBContext, int id)
-    {
-        StockPerStore _stockPerStore = new();
-        try
-        {
-            var context = DBContext;
-            var result = context.Set<StockPerStore>().FirstOrDefault(x => x.Id == id);
-            if (result is not null)
-            {
-                _stockPerStore = result;
-            }
-            return _stockPerStore;
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return _stockPerStore;
         }
     }
 }

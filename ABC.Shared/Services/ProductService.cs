@@ -102,35 +102,7 @@ public partial class ProductService_SQL : ComponentBase
         bool stockTransferUpdated = false;
         try
         {
-            stockTransferUpdated = await UpdateStockPerStoreData(dbContext, stockPerStore);
-            return stockTransferUpdated;
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return stockTransferUpdated;
-        }
-    }
-    public async Task<StockPerStore> GetStockperStoreInfo(DbContext DBContext, int Id)
-    {
-        StockPerStore StockperStoreInfo = new();
-        try
-        {
-            StockperStoreInfo = await GetStockperStoreInfoData(DBContext, Id);
-            return StockperStoreInfo;
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return StockperStoreInfo;
-        }
-    }
-    public async Task<bool> UpdateStockPerStore(DbContext dbContext, StockPerStore stockPerStore)
-    {
-        bool stockTransferUpdated = false;
-        try
-        {
-            stockTransferUpdated = await UpdateStockPerStoreData(dbContext, stockPerStore);
+            stockTransferUpdated = await UpdateStockPerStore(dbContext, stockPerStore);
             return stockTransferUpdated;
         }
         catch (Exception ex)

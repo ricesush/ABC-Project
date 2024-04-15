@@ -17,7 +17,7 @@
             </div>
             <!-- Export Button -->
             <div class="col-4 button">
-                <a class="btn btn-success" id="btngenerate" @onclick="GeneratePdf">
+                <a class="btn btn-success" id="btngenerate">
                     <i class="bi bi-box-arrow-up"></i> Export
                 </a>
             </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <h6>Addsome Business</h6>
+                        <h6>Addsome</h6>
                         <h5>@AddsomeInventoryValue.ToString("C", new CultureInfo("en-PH"))</h5>
                     </div>
                     <div class="col-6">
@@ -70,18 +70,35 @@
             </div>
             <div class="smallbox">
                 <div class="row">
-                    <h5>Total Available Stock</h5>
+                    <h5>Total Available Stock Quantity</h5>
                     <h1>@totalAvailableQuantity</h1>
                     <hr />
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <h6>Addsome Business</h6>
+                        <h6>Addsome</h6>
                         <h5>@AddsomeAvailableQuantity</h5>
                     </div>
                     <div class="col-6">
                         <h6>Ahead Biz</h6>
                         <h5>@AheadAvailableQuantity</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="smallbox">
+                <div class="row">
+                    <h5>Total Purchase Amount</h5>
+                    <h1>@totalPurchaseAmount.ToString("C", new CultureInfo("en-PH"))</h1>
+                    <hr />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Addsome</h6>
+                        <h5>@AddsomePurchaseAmount.ToString("C", new CultureInfo("en-PH"))</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6>Ahead Biz</h6>
+                        <h5>@AheadBizPurchaseAmount.ToString("C", new CultureInfo("en-PH"))</h5>
                     </div>
                 </div>
             </div>
@@ -91,30 +108,28 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Product ID</th>
+                        <th scope="col">SKU</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Cost Price</th>
                         <th scope="col">Retail Price</th>
-                        <th scope="col" class="text-center">Addsome Stock Qty</th>
-                        <th scope="col" class="text-center">Ahead Stock Qty</th>
-                        <th scope="col" class="text-center">Total Stock</th>
-                        <th scope="col" class="text-center">Total Value</th>
+                        <th scope="col">Quantity Sold</th>
+                        <th scope="col">Total Sale</th>
+                        <th scope="col">Total Cost</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Products != null && Products.Any())
                     {
-                        foreach (var product in Products)
+                        foreach (var orderDetail in Products)
                         {
                             <tr>
-                                <td>@product.Product.Id</td>
-                                <td>@product.Product.productName</td>
-                                <td>@product.Product.CostPrice.ToString("C", new CultureInfo("en-PH"))</td>
-                                <td>@product.Product.RetailPrice.ToString("C", new CultureInfo("en-PH"))</td>
-                                <td class="text-center">@product.Product.StockPerStore.Store1StockQty</td>
-                                <td class="text-center">@product.Product.StockPerStore.Store2StockQty</td>
-                                <td class="text-center">@product.Product.StockPerStore.TotalStocks</td>
-                                <td class="text-center">@FormatCurrency(product.Product.CostPrice * product.Product.StockPerStore.TotalStocks)</td>
+                                <td>@orderDetail.Product.SKU</td>
+                                <td>@orderDetail.Product.productName</td>
+                                <td>@orderDetail.Product.CostPrice.ToString("C", new CultureInfo("en-PH"))</td>
+                                <td>@orderDetail.Product.RetailPrice.ToString("C", new CultureInfo("en-PH"))</td>
+                                <td>@orderDetail.Count</td>
+                                <td>@FormatCurrency(orderDetail.Count * orderDetail.Product.RetailPrice)</td>
+                                <td>@FormatCurrency(orderDetail.Count * orderDetail.Product.CostPrice)</td>
                             </tr>
                         }
                     }
@@ -122,16 +137,4 @@
             </table>
         </div>
     </section>
-
-    <script>
-        window.BlazorDownloadFile = (fileName, content) => {
-            const link = document.createElement('a');
-            link.href = 'data:application/pdf;base64,' + content;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        };
-    </script>
 </AuthorizeView>
-

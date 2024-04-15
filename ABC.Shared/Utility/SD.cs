@@ -48,11 +48,7 @@ namespace ABC.Shared.Utility
 		//product status
 		public const string InStock = "In Stock";
 		public const string LowStock = "Low Stock";
-		public const string AddsomeLowStock = "Low Stock (Addsome)";
-		public const string AheadLowStock = "Low Stock (Ahead)";
 		public const string OutOfStock = "Out of stock";
-		public const string AddsomeOutOfStock = "Out of stock (Addsome)";
-		public const string AheadOutOfStock = "Out of stock (Ahead)";
 
         //sales type
         public const string WalkIn = "Walk-in";

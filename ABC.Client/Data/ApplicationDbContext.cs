@@ -82,9 +82,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			UserName = "admin@abc.com",
 			FirstName = "Ej Admin",
 			LastName = "Esan",
-			StoreId = 1,
-			StoreName = "Addsome Business Corporation",
-            NormalizedUserName = "ADMIN@ABC.COM",
+			NormalizedUserName = "ADMIN@ABC.COM",
 			Email = "admin@abc.com",
 			EmailConfirmed = true,
 			PasswordHash = passwordHasher.HashPassword(null, "Admin123!")
@@ -162,7 +160,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			LastName = "Betonio",
 			EmailAddress = "neiljejomar@gmail.com",
 			ContactNumber = 09568271611,
-			//Type = "Walk in",
+			Type = "Walk in",
 			ApSuUn = "Unit 1234",
 			StreetorSubd = "Jasmine St.",
 			Barangay = "Batman",
@@ -352,9 +350,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 1,
 					ProductId = 1,
 					Store1StockQty = 15,
-					MinStockQty1 = 2,
 					Store2StockQty = 5,
-					MinStockQty2 = 2,
 					TotalStocks = 20,
 				},
 
@@ -363,9 +359,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 2,
 					ProductId = 2,
 					Store1StockQty = 7,
-					MinStockQty1 = 2,
 					Store2StockQty = 8,
-					MinStockQty2 = 2,
 					TotalStocks = 15,
 				},
 
@@ -374,9 +368,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 3,
 					ProductId = 3,
 					Store1StockQty = 5,
-					MinStockQty1 = 2,
 					Store2StockQty = 3,
-					MinStockQty2 = 2,
 					TotalStocks = 8,
 				},
 
@@ -385,9 +377,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 4,
 					ProductId = 4,
 					Store1StockQty = 6,
-					MinStockQty1 = 2,
 					Store2StockQty = 6,
-					MinStockQty2 = 2,
 					TotalStocks = 12,
 				},
 
@@ -396,13 +386,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 5,
 					ProductId = 5,
 					Store1StockQty = 17,
-					MinStockQty1 = 2,
 					Store2StockQty = 3,
-					MinStockQty2 = 2,
 					TotalStocks = 20,
 				}
 			);
-			o.HasOne(o => o.Product).WithOne(o => o.StockPerStore).OnDelete(DeleteBehavior.Cascade);
+			o.HasOne(o => o.Product).WithOne(o => o.StockPerStore).OnDelete(DeleteBehavior.NoAction);
 		});
 
 		modelBuilder.Entity<PurchaseOrderItem>(b =>

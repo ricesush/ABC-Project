@@ -5432,11 +5432,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
+      "projectUniqueName": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
       "projectName": "ABC.Client",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
+      "projectPath": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\ABC.Client.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\",
+      "outputPath": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5451,8 +5451,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj": {
-              "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj"
+            "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj": {
+              "projectPath": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj"
             }
           }
         }

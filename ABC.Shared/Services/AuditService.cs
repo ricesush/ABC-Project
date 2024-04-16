@@ -57,35 +57,18 @@ public partial class AuditService_SQL : ComponentBase
         }
     }
 
-    // UPDATE PRODUCT
-    public async Task<bool> UpdateAudit(dynamic DBContext, AuditLog auditLog)
+    public async Task<bool> AddStockTransferAudit(dynamic DBContext, StockTransferAudit audit)
     {
-        bool updated = false;
+        bool added = false;
         try
         {
-            updated = await UpdateAuditData(DBContext, auditLog);
-            return updated;
+            added = await AddStockTransferAuditData(DBContext, audit);
+            return added;
         }
         catch(Exception ex)
         {
             Log.Error(ex.ToString());
-            return updated;
-        }
-    }
-
-    // REMOVE PRODUCT
-    public async Task<bool> RemoveAudit(dynamic DBContext, AuditLog auditLog)
-    {
-        bool removed = false;
-        try
-        {
-            removed = await RemoveAuditData(DBContext, auditLog);
-            return removed;
-        }
-        catch(Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return removed;
+            return added;
         }
     }
 

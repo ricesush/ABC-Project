@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj": {}
+    "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj": {
+    "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj",
+        "projectUniqueName": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj",
         "projectName": "ABC.Shared",
-        "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj",
+        "projectPath": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\obj\\",
+        "outputPath": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

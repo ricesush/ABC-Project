@@ -376,6 +376,7 @@ li[b-qr389d4se9]{
     position: relative;
     text-align: center;
     padding-top: 6rem;
+    margin-top: 2rem;
 }
 
     .banner h1[b-sykuksvrf0], .banner p[b-sykuksvrf0] {
@@ -387,8 +388,9 @@ li[b-qr389d4se9]{
 }
 
 .button[b-sykuksvrf0] {
-    background-color: var(--maincolor-darkblue--);
-    color: #ffffff;
+    background-image: linear-gradient(to bottom right, red, yellow, blue);
+    color: black;
+    font-size: 18px;
     font-weight: bold;
     text-decoration: none;
 }
@@ -420,6 +422,7 @@ h3[b-sykuksvrf0], p[b-sykuksvrf0] {
     color: var(--maincolor-darkblue--);
     font-weight: 700;
 }
+
 
 .card-img-overlay[b-sykuksvrf0] {
     background-color: #ffffff;
@@ -608,12 +611,20 @@ h1[b-zww930wf4b] {
     margin-bottom: 2rem;
 }
 /* _content/ABC.Client/Components/Pages/SalesInventory/InventoryReport/InventoryReport.razor.rz.scp.css */
+.first[b-fqgc8b3tws] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .smallbox[b-fqgc8b3tws] {
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin: 5px;
     border-radius: 2px;
-    border: 1px solid #E6E6E6;
+    border: 2px solid #E6E6E6;
+    flex: 1 0 0;
 }
 
     .smallbox p[b-fqgc8b3tws] {
@@ -621,8 +632,39 @@ h1[b-zww930wf4b] {
         color: grey;
     }
 
+    .smallbox row[b-fqgc8b3tws] {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+.second[b-fqgc8b3tws] {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: 2px solid #E6E6E6;
+}
+
+
 .minHeight[b-fqgc8b3tws] {
     min-height: calc(100vh - 395px);
+}
+
+h1[b-fqgc8b3tws], h6[b-fqgc8b3tws] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+    text-align: start;
+}
+
+.button[b-fqgc8b3tws] {
+    text-align: end;
+}
+
+.date[b-fqgc8b3tws] {
+    margin-bottom: 2rem;
+    justify-content: flex-end;
 }
 /* _content/ABC.Client/Components/Pages/SalesInventory/OnlineCustomers/OnlineCusstomersList.razor.rz.scp.css */
 h1[b-5nvj9qin1v] {
@@ -803,12 +845,20 @@ h1[b-tn8537sk6m] {
     text-align: left;
 }
 /* _content/ABC.Client/Components/Pages/SalesInventory/SalesReport/SalesReport.razor.rz.scp.css */
+.first[b-1dzgk5o7pc] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .smallbox[b-1dzgk5o7pc] {
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin: 5px;
     border-radius: 2px;
-    border: 1px solid #E6E6E6;
+    border: 2px solid #E6E6E6;
+    flex: 1 0 0;
 }
 
     .smallbox p[b-1dzgk5o7pc] {
@@ -816,8 +866,33 @@ h1[b-tn8537sk6m] {
         color: grey;
     }
 
+.second[b-1dzgk5o7pc] {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: 2px solid #E6E6E6;
+}
+
 .minHeight[b-1dzgk5o7pc] {
     min-height: calc(100vh - 395px);
+}
+
+h1[b-1dzgk5o7pc], h3[b-1dzgk5o7pc] {
+    color: var(--maincolor-darkblue--);
+    font-weight: bold;
+    text-align: start;
+}
+
+.button[b-1dzgk5o7pc] {
+    text-align: end;
+}
+
+.date[b-1dzgk5o7pc] {
+    margin-bottom: 2rem;
+    justify-content: flex-end;
 }
 /* _content/ABC.Client/Components/Pages/SalesInventory/Settings/General/DeliveryFeeUpsert.razor.rz.scp.css */
 body[b-7t1gpzvfdb] {

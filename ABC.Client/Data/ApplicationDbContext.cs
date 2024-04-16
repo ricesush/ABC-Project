@@ -25,6 +25,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	public DbSet<StockTransfer> StockTransfers { get; set; }
 	public DbSet<StockTransferItemDetails> StockTransferItemDetails { get; set; }
 	public DbSet<StockPerStore> StockPerStores { get; set; }
+	public DbSet<StockTransferAudit> StockTransferAudit { get; set; }
+
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -407,6 +409,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 		{
 			o.HasOne(x => x.StockTransfer).WithMany(x => x.StockTransferItems).OnDelete(DeleteBehavior.NoAction);
 		});
+
+		
 
 		// modelBuilder.Entity<StockTransferItemDetails>(o =>
 		// {

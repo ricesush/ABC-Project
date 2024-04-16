@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ABC.Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8473ef1a4d7e0b4f9d77ba0872b05853230b4574")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7fc5aa5f436786cd32eb1d432759ec10ffd44ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("ABC.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ABC.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

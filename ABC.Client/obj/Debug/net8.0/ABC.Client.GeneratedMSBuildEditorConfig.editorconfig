@@ -9,451 +9,451 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ABC.Client
 build_property.RootNamespace = ABC.Client
-build_property.ProjectDir = C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\
+build_property.ProjectDir = c:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client
+build_property.MSBuildProjectDirectory = c:\Users\user\OneDrive\Desktop\ABC Project\ABC.Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/AccessDenied.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/AccessDenied.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEFjY2Vzc0RlbmllZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ConfirmEmailChange.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ConfirmEmailChange.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXENvbmZpcm1FbWFpbENoYW5nZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ExternalLogin.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ExternalLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEV4dGVybmFsTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ForgotPasswordConfirmation.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ForgotPasswordConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEZvcmdvdFBhc3N3b3JkQ29uZmlybWF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/InvalidPasswordReset.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/InvalidPasswordReset.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEludmFsaWRQYXNzd29yZFJlc2V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/InvalidUser.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/InvalidUser.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEludmFsaWRVc2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Lockout.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Lockout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvY2tvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/LoginWith2fa.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/LoginWith2fa.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luV2l0aDJmYS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/LoginWithRecoveryCode.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/LoginWithRecoveryCode.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luV2l0aFJlY292ZXJ5Q29kZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/DeletePersonalData.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/DeletePersonalData.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxEZWxldGVQZXJzb25hbERhdGEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/Disable2fa.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/Disable2fa.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxEaXNhYmxlMmZhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/ExternalLogins.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/ExternalLogins.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxFeHRlcm5hbExvZ2lucy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxHZW5lcmF0ZVJlY292ZXJ5Q29kZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/SetPassword.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/SetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxTZXRQYXNzd29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/_Imports.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ResetPassword.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ResetPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlc2V0UGFzc3dvcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ResetPasswordConfirmation.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ResetPasswordConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlc2V0UGFzc3dvcmRDb25maXJtYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/_Imports.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXF9JbXBvcnRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/AccountLayout.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/AccountLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxBY2NvdW50TGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ExternalLoginPicker.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ExternalLoginPicker.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxFeHRlcm5hbExvZ2luUGlja2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ManageNavMenu.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ManageNavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxNYW5hZ2VOYXZNZW51LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/RedirectToLogin.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/RedirectToLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxSZWRpcmVjdFRvTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ShowRecoveryCodes.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ShowRecoveryCodes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxTaG93UmVjb3ZlcnlDb2Rlcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/StatusMessage.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/StatusMessage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxTdGF0dXNNZXNzYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/App.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/AdminLayout.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/AdminLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcQWRtaW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/NoLayout.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/NoLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTm9MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Auth.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Auth.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdXRoLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Counter.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Error.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/POS/Components/BankModal.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/POS/Components/BankModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcQ29tcG9uZW50c1xCYW5rTW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/POS/Components/DiscountModal.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/POS/Components/DiscountModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcQ29tcG9uZW50c1xEaXNjb3VudE1vZGFsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Archive/ArchiveIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Archive/ArchiveIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxBcmNoaXZlXEFyY2hpdmVJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CategoryPage/CategoryIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CategoryPage/CategoryIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDYXRlZ29yeVBhZ2VcQ2F0ZWdvcnlJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CategoryPage/upsert/CategoryUpsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CategoryPage/upsert/CategoryUpsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDYXRlZ29yeVBhZ2VcdXBzZXJ0XENhdGVnb3J5VXBzZXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/create/Custcreate.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/create/Custcreate.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDdXN0b21lckxpc3RcY3JlYXRlXEN1c3RjcmVhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/delete/CustDelete.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/delete/CustDelete.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDdXN0b21lckxpc3RcZGVsZXRlXEN1c3REZWxldGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/edit/CustEdit.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/edit/CustEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDdXN0b21lckxpc3RcZWRpdFxDdXN0RWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/ProductList.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/ProductList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxQcm9kdWN0UGFnZVxQcm9kdWN0TGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/upsert/EditContext.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/upsert/EditContext.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxQcm9kdWN0UGFnZVx1cHNlcnRcRWRpdENvbnRleHQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/upsert/Upsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/upsert/Upsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxQcm9kdWN0UGFnZVx1cHNlcnRcVXBzZXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Reports/InventoryReport.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Reports/InventoryReport.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxSZXBvcnRzXEludmVudG9yeVJlcG9ydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Reports/SalesReport.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Reports/SalesReport.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxSZXBvcnRzXFNhbGVzUmVwb3J0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/StockTransfers/Test.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/StockTransfers/Test.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTdG9ja1RyYW5zZmVyc1xUZXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/UserManagement/UserMgIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/UserManagement/UserMgIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxVc2VyTWFuYWdlbWVudFxVc2VyTWdJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/OrderConrfirm/OrderConfirmation.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/OrderConrfirm/OrderConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXENhcnRcT3JkZXJDb25yZmlybVxPcmRlckNvbmZpcm1hdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/HomeIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/HomeIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcSG9tZUluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/ManageOrder.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/ManageOrder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcTWFuYWdlT3JkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/ViewOrder.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/ViewOrder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcVmlld09yZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/ManageOrderPage/Components/Details.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/ManageOrderPage/Components/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXE1hbmFnZU9yZGVyUGFnZVxDb21wb25lbnRzXERldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Routes.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/SharedComponents/NoticeComponent.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/SharedComponents/NoticeComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaGFyZWRDb21wb25lbnRzXE5vdGljZUNvbXBvbmVudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Toast.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Toast.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb2FzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/_Imports.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ConfirmEmail.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ConfirmEmail.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXENvbmZpcm1FbWFpbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-1uoin2vwpe
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ForgotPassword.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ForgotPassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXEZvcmdvdFBhc3N3b3JkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-uw7yupx7rn
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Login.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXExvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-ybemycwels
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/ChangePassword.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/ChangePassword.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxDaGFuZ2VQYXNzd29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-lirclbo6uz
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/Email.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/Email.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxFbWFpbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-3iydc077k8
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/EnableAuthenticator.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/EnableAuthenticator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxFbmFibGVBdXRoZW50aWNhdG9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-fbogwf42ix
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/Index.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-omyqmj5joh
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/PersonalData.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/PersonalData.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxQZXJzb25hbERhdGEucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-cyx4ycq763
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/ResetAuthenticator.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/ResetAuthenticator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxSZXNldEF1dGhlbnRpY2F0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-n9bzzmnkku
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/TwoFactorAuthentication.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Manage/TwoFactorAuthentication.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXE1hbmFnZVxUd29GYWN0b3JBdXRoZW50aWNhdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-cz95ova2m6
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Register.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-vl6o3q8rpk
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/RegisterConfirmation.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/RegisterConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlZ2lzdGVyQ29uZmlybWF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-nvhbmpqe2u
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ResendEmailConfirmation.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Pages/ResendEmailConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFBhZ2VzXFJlc2VuZEVtYWlsQ29uZmlybWF0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-bpdz4fwxlk
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ManageLayout.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Account/Shared/ManageLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxNYW5hZ2VMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-xmidenax0r
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/AdminNavMenu.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/AdminNavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcQWRtaW5OYXZNZW51LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-qr389d4se9
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/Footer.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/Footer.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcRm9vdGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-f6umzgygo0
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/MainLayout.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-trt6ranoxo
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/NavMenu.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-yjra6v7av0
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Home/Home.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/Home/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lXEhvbWUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-sykuksvrf0
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/POS/POS.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/POS/POS.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1NcUE9TLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-0328rmcmfi
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Audit_Log/AuditIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Audit_Log/AuditIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxBdWRpdF9Mb2dcQXVkaXRJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-6tf8yogqax
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/CustomerList.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/CustomerList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDdXN0b21lckxpc3RcQ3VzdG9tZXJMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-wkwe3uu1zb
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/pdf/CustPDF.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/pdf/CustPDF.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDdXN0b21lckxpc3RccGRmXEN1c3RQREYucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-qf62biwkvb
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/upsert/CustomerUpsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/CustomerList/upsert/CustomerUpsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxDdXN0b21lckxpc3RcdXBzZXJ0XEN1c3RvbWVyVXBzZXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-t4f4bu8kf7
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Dashboard/Dashboard.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Dashboard/Dashboard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxEYXNoYm9hcmRcRGFzaGJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-pbwuegy2gx
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/EmployeesList/EmployeesList.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/EmployeesList/EmployeesList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxFbXBsb3llZXNMaXN0XEVtcGxveWVlc0xpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-zww930wf4b
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/InventoryReport/InventoryReport.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/InventoryReport/InventoryReport.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxJbnZlbnRvcnlSZXBvcnRcSW52ZW50b3J5UmVwb3J0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-fqgc8b3tws
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OnlineCustomers/OnlineCusstomersList.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OnlineCustomers/OnlineCusstomersList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxPbmxpbmVDdXN0b21lcnNcT25saW5lQ3Vzc3RvbWVyc0xpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-5nvj9qin1v
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OnlineCustomers/OnlineCustomerDetails.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OnlineCustomers/OnlineCustomerDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxPbmxpbmVDdXN0b21lcnNcT25saW5lQ3VzdG9tZXJEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-bstf8sitbd
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OrderPage/details/Details.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OrderPage/details/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxPcmRlclBhZ2VcZGV0YWlsc1xEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-el5ooadvg4
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OrderPage/Order.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/OrderPage/Order.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxPcmRlclBhZ2VcT3JkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-kypp7ura0k
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/pdf/ProductPDF.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/ProductPage/pdf/ProductPDF.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxQcm9kdWN0UGFnZVxwZGZcUHJvZHVjdFBERi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-4k1cqo1vpc
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/PurchaseOrdersPage/PO-Upsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/PurchaseOrdersPage/PO-Upsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxQdXJjaGFzZU9yZGVyc1BhZ2VcUE8tVXBzZXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-wileneyido
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/PurchaseOrdersPage/PurchaseOrderList.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/PurchaseOrdersPage/PurchaseOrderList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxQdXJjaGFzZU9yZGVyc1BhZ2VcUHVyY2hhc2VPcmRlckxpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-fhoqonv8wf
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SalesRecord/component/SalesDetails.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SalesRecord/component/SalesDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTYWxlc1JlY29yZFxjb21wb25lbnRcU2FsZXNEZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-6d3qvnedg8
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SalesRecord/SalesRecord.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SalesRecord/SalesRecord.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTYWxlc1JlY29yZFxTYWxlc1JlY29yZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-tn8537sk6m
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SalesReport/SalesReport.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SalesReport/SalesReport.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTYWxlc1JlcG9ydFxTYWxlc1JlcG9ydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-1dzgk5o7pc
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/General/DeliveryFeeUpsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/General/DeliveryFeeUpsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTZXR0aW5nc1xHZW5lcmFsXERlbGl2ZXJ5RmVlVXBzZXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-7t1gpzvfdb
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/General/GeneralSettings.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/General/GeneralSettings.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTZXR0aW5nc1xHZW5lcmFsXEdlbmVyYWxTZXR0aW5ncy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-6i255bda8o
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/General/StoreUpsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/General/StoreUpsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTZXR0aW5nc1xHZW5lcmFsXFN0b3JlVXBzZXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-beram99j2a
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/WebsiteSettings.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/Settings/WebsiteSettings.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTZXR0aW5nc1xXZWJzaXRlU2V0dGluZ3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-81ggwrfh2p
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/StockTransfers/StockTransferForm.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/StockTransfers/StockTransferForm.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTdG9ja1RyYW5zZmVyc1xTdG9ja1RyYW5zZmVyRm9ybS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-sqk8wqg9bw
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/StockTransfers/StockTransferList.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/StockTransfers/StockTransferList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTdG9ja1RyYW5zZmVyc1xTdG9ja1RyYW5zZmVyTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-1e6rw2hr61
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SuppliersList/SupplierIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SuppliersList/SupplierIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTdXBwbGllcnNMaXN0XFN1cHBsaWVySW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-o0spbmpxeb
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SuppliersList/upsert/SupplierUpsert.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/SalesInventory/SuppliersList/upsert/SupplierUpsert.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlc0ludmVudG9yeVxTdXBwbGllcnNMaXN0XHVwc2VydFxTdXBwbGllclVwc2VydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-rxerx8nhja
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/CartIndex.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/CartIndex.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXENhcnRcQ2FydEluZGV4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-615v452lfm
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/OrderCheckout/Summary.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/OrderCheckout/Summary.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXENhcnRcT3JkZXJDaGVja291dFxTdW1tYXJ5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-9tc73xcj0n
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/OrderConfirmation/OrderConfirmation.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/OrderConfirmation/OrderConfirmation.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXENhcnRcT3JkZXJDb25maXJtYXRpb25cT3JkZXJDb25maXJtYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-eij6qs0eqp
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/Summary/Summary.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Cart/Summary/Summary.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXENhcnRcU3VtbWFyeVxTdW1tYXJ5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-5f6cfgyiqx
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/About.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/About.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcQWJvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-tjnp7by05v
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Details.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Details.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-8h215m78rq
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Privacy.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Privacy.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcUHJpdmFjeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-t3ne54zv1n
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Shop.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Shop.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcU2hvcC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-mzk551kdqx
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Vision.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/Home/Vision.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXEhvbWVcVmlzaW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-lfgpc7akjx
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/ManageOrderPage/ManageOrder.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/Pages/ShopWeb/ManageOrderPage/ManageOrder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaG9wV2ViXE1hbmFnZU9yZGVyUGFnZVxNYW5hZ2VPcmRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-hrpia9umku
 
-[C:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/SharedComponents/BrandLogo.razor]
+[c:/Users/user/OneDrive/Desktop/ABC Project/ABC.Client/Components/SharedComponents/BrandLogo.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaGFyZWRDb21wb25lbnRzXEJyYW5kTG9nby5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-2ct0qe7vr1

@@ -199,14 +199,14 @@ public partial class ProductService_SQL
 						if (!Equals(originalValue, currentValue))
 						{
 							var propertyName = property.Name;
-							int storeId = Equals("Store1StockQty") ? 1 : 2;
+							int storeId = propertyName.Equals("Store1StockQty") ? 1 : 2;
 							var entityType = entry.Entity.GetType().Name;
 
 							if (Convert.ToInt32(originalValue) > Convert.ToInt32(currentValue))
 							{
 								audit.TransferredStocks = Convert.ToInt32(originalValue) - Convert.ToInt32(currentValue);
-								audit.StoreAssetFrom = stores.FirstOrDefault(x => x.Id == storeId)!;
-								audit.StoreAssetTo = stores.FirstOrDefault(x => x.Id != storeId)!;
+								audit.SourceStoreName = stores.FirstOrDefault(x => x.Id == storeId)!.storeName;
+								audit.DescitnationStoreName = stores.FirstOrDefault(x => x.Id != storeId)!.storeName;
 								break;
 							}
 						}

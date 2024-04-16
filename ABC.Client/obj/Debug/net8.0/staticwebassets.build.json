@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ni4tpT5Bfs+AjcFw5QETw6aA43DCk7VuI54698YUOgI=",
+  "Hash": "khEJaMY1CfU+8iP9jFuyasZgssi1J0rzjZrYXlDoGao=",
   "Source": "ABC.Client",
   "BasePath": "_content/ABC.Client",
   "Mode": "Default",
@@ -388,6 +388,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\product\\493f5a57-eda9-43ed-91e5-deb27a6cf68d.png"
+    },
+    {
+      "Identity": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\4c4dc399-5a39-480a-a5db-1d3e327ecdfd.jpg",
+      "SourceId": "ABC.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\",
+      "BasePath": "_content/ABC.Client",
+      "RelativePath": "Image/product/4c4dc399-5a39-480a-a5db-1d3e327ecdfd.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\product\\4c4dc399-5a39-480a-a5db-1d3e327ecdfd.jpg"
     },
     {
       "Identity": "c:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Client\\wwwroot\\Image\\product\\5862ef5f-85ac-4b24-9c53-173147ec0e73.png",

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using ABC.Shared.Services;
 
 namespace ABC.Shared.Models;
 public interface IAudit
@@ -43,10 +44,8 @@ public class StockTransferAudit : IAudit
 
     // STOCK TRANSFER SPECIFIC
     public int StockPerStoreId { get; set; } = 0;
-    public int StoreAssetFromId { get; set; } = 0;
-    public Store StoreAssetFrom { get; set; } = new();
-    public int StoreAssetToId { get; set; } = 0;
-    public Store StoreAssetTo { get; set; } = new();
+    public string SourceStoreName { get; set; } = String.Empty;
+    public string DescitnationStoreName { get; set; } = String.Empty;
     public int TransferredStocks { get; set; }= 0;
 }
 
@@ -87,6 +86,10 @@ public static class AuditLogBuilder
         try
         {
             StockTransferAudit baseAudit = stockPerStore;
+            AuditService_SQL auditService = new();
+            if(baseAudit is not null){
+                bool hasAdded = await auditService.AddStockTransferAudit(DBContext, baseAudit);
+            }
             // POSTING THE AUDIT TO STOCK TRANSFER AUDIT TABLE
         }
         catch (Exception ex)

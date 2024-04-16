@@ -2461,11 +2461,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.shared\\ABC.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj",
       "projectName": "ABC.Shared",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.shared\\ABC.Shared.csproj",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\ABC.Shared.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.shared\\obj\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Desktop\\ABC Project\\ABC.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

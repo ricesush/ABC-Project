@@ -3,12 +3,12 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
 public partial class AuditService_SQL
 {
-    #region Audit CRUD
     //* GET ALL Audit
     private async Task<List<AuditLog>> GetAuditsListData(dynamic DBContext)
     {
@@ -68,15 +68,13 @@ public partial class AuditService_SQL
         }
     }
 
-    //* UPDATE Audit ON DB
-    private async Task<bool> UpdateAuditData(dynamic DBContext, AuditLog auditLog)
+    private async Task<bool> AddStockTransferAuditData(DbContext DBContext, StockTransferAudit auditLog)
     {
         try
-        {
-            var context = DBContext;
-            context.AuditLogs.Update(auditLog);
-            var result = context.SaveChanges();
-            return result > 0 ? true : false;
+        {   
+            DBContext.Set<StockTransferAudit>().Add(auditLog);
+            var result = DBContext.SaveChanges();
+            return result > 0 ;
         }
         catch (Exception ex)
         {
@@ -84,22 +82,4 @@ public partial class AuditService_SQL
             return false;
         }
     }
-
-    //* REMOVE/ARCHIVE Audit FROM DB
-    private async Task<bool> RemoveAuditData(dynamic DBContext, AuditLog auditLog)
-    {
-        try
-        {
-            var context = DBContext;
-            context.Auditlogs.Update(auditLog);
-            var result = context.SaveChanges();
-            return result > 0 ? true : false;
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.ToString());
-            return false;
-        }
-    }
-    #endregion
 }

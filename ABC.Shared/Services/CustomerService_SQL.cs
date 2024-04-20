@@ -3,6 +3,7 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using ABC.Shared.Models;
 using System.Net.Sockets;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
@@ -31,13 +32,12 @@ public partial class CustomerService_SQL
 	}
 
     //* GETS SINGLE Customer BASE ON customer ID
-    private async Task<Customer> GetCustomerData(dynamic DBContext, Guid id)
+    private async Task<Customer> GetCustomerData(DbContext DBContext, Guid id)
     {
         Customer _customer = new();
         try
         {
-            var context = DBContext;
-            var result = context.Customers.Find(id);
+            Customer result = DBContext.Set<Customer>().FirstOrDefault(x => x.Id == id);
             if (result is not null)
             {
                 _customer = result;

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop;
 using System.Globalization;
+using System.Text;
 
 namespace ABC.Client.Components.Pages.SalesInventory.InventoryReport;
 
@@ -20,12 +21,13 @@ public partial class InventoryReport
     [Inject] ApplicationUserService_SQL applicationUserSevice_SQL { get; set; }
     [Inject] CustomerService_SQL customerService_SQL { get; set; }
     [Inject] IJSRuntime JSRuntime { get; set; }
+    [Inject] PdfService pdfService { get; set; }
     #endregion
 
     #region FIELDS
     private List<Product> productsList { get; set; } = new List<Product>();
     private List<PurchaseOrder> purchaseOrders { get; set; } = new List<PurchaseOrder>();
-    private List<(Product Product, int Count)> Products { get; set; } = new List<(Product, int)>();
+    private List<(Product Product, int TotalStock)> Products { get; set; } = new List<(Product, int)>();
 
     private double totalInventoryValue;
     private double AddsomeInventoryValue;
@@ -34,10 +36,6 @@ public partial class InventoryReport
     private int totalAvailableQuantity;
     private int AddsomeAvailableQuantity;
     private int AheadAvailableQuantity;
-
-    private double totalPurchaseAmount;
-    private double AddsomePurchaseAmount;
-    private double AheadBizPurchaseAmount;
 
     private DateTime startDate = DateTime.Today.AddDays(-7);
     private DateTime endDate = DateTime.Today;
@@ -48,57 +46,31 @@ public partial class InventoryReport
         productsList = await productService_SQL.GetProductList(applicationDbContext);
         purchaseOrders = await purchaseOrderService_SQL.GetPurchaseOrderList(applicationDbContext);
 
-        totalAvailableQuantity = productsList.Where(p => p.status == SD.InStock || p.status == SD.LowStock).Sum(p => p.StockQuantity);
-        AddsomeAvailableQuantity = productsList.Where(p => (p.status == SD.InStock || p.status == SD.LowStock) && p.StockPerStore.Store1StockQty == 1).Sum(p => p.StockQuantity);
-        AheadAvailableQuantity = productsList.Where(p => (p.status == SD.InStock || p.status == SD.LowStock) && p.StockPerStore.Store2StockQty == 2).Sum(p => p.StockQuantity);
+        totalAvailableQuantity = productsList.Where(p => p.status == SD.InStock || p.status == SD.LowStock).Sum(p => p.StockPerStore.TotalStocks);
+        AddsomeAvailableQuantity = productsList.Where(p => p.status == SD.InStock || p.status == SD.LowStock).Sum(p => p.StockPerStore.Store1StockQty);
+        AheadAvailableQuantity = productsList.Where(p => p.status == SD.InStock || p.status == SD.LowStock).Sum(p => p.StockPerStore.Store2StockQty);
 
-        totalPurchaseAmount = purchaseOrders.Where(po => po.Status == SD.PO_Completed).Sum(po => po.OrderTotal);
-        AddsomePurchaseAmount = purchaseOrders.Where(po => po.StoreId == 1 && po.Status == SD.PO_Completed).Sum(po => po.OrderTotal);
-        AheadBizPurchaseAmount = purchaseOrders.Where(po => po.StoreId == 2 && po.Status == SD.PO_Completed).Sum(po => po.OrderTotal);
+        totalInventoryValue = productsList.Sum(p => p.CostPrice * p.StockPerStore.TotalStocks);
+        AddsomeInventoryValue = productsList.Sum(p => p.CostPrice * p.StockPerStore.Store1StockQty);
+        AheadBizInventoryValue = productsList.Sum(p => p.CostPrice * p.StockPerStore.Store2StockQty);
 
-        await CalculateInventoryValue();
         await LoadBestSelling();
-    }
-
-    private async Task CalculateInventoryValue()
-    {
-        try
-        {
-            var products = await productService_SQL.GetProductList(applicationDbContext);
-
-            if (products != null && products.Any())
-            {
-                totalInventoryValue = products.Sum(p => p.StockQuantity * p.CostPrice);
-
-                //AddsomeInventoryValue = products
-                //    .Where(p => p.Store != null && p.Store.Id == 1)
-                //    .Sum(p => p.StockQuantity * p.CostPrice);
-
-                //AheadBizInventoryValue = products
-                //    .Where(p => p.Store != null && p.Store.Id == 2)
-                //    .Sum(p => p.StockQuantity * p.CostPrice);
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error calculating inventory value: {ex.Message}");
-        }
     }
 
     private async Task LoadBestSelling()
     {
-        var productGroups = await applicationDbContext.OrderDetails
-                    .Include(detail => detail.Product)
-                    .GroupBy(detail => detail.Product)
-                    .Select(group => new
-                    {
-                        Product = group.Key,
-                        Count = group.Sum(detail => detail.Count)
-                    })
-                    .OrderByDescending(group => group.Count)
-                    .ToListAsync();
+        var productGroups = await applicationDbContext.StockPerStores
+            .Include(stock => stock.Product)
+            .GroupBy(stock => stock.Product)
+            .Select(group => new
+            {
+                Product = group.Key,
+                TotalStock = group.Sum(stock => stock.TotalStocks)
+            })
+            .OrderByDescending(group => group.TotalStock)
+            .ToListAsync();
 
-        Products = productGroups.Select(group => (group.Product, group.Count)).ToList();
+        Products = productGroups.Select(group => (group.Product, group.TotalStock)).ToList();
 
         await InvokeAsync(StateHasChanged);
     }
@@ -106,5 +78,20 @@ public partial class InventoryReport
     public string FormatCurrency(double value)
     {
         return value.ToString("C", new CultureInfo("en-PH"));
+    }
+
+    private async Task GeneratePdf()
+    {
+        string content = GetReportContent();
+        byte[] pdfBytes = pdfService.GeneratePdf(content);
+
+        await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", "InventoryReport.pdf", Convert.ToBase64String(pdfBytes));
+    }
+
+    private string GetReportContent()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("Inventory Report");
+        return sb.ToString();
     }
 }

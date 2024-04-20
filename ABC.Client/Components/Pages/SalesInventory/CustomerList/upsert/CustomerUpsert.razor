@@ -1,4 +1,5 @@
 ﻿@using ABC.Shared.Models
+@using ABC.Shared.Utility
 @using Layout
 @page "/CustomerUpsert"
 @layout AdminLayout
@@ -134,27 +135,41 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Receipt #</th>
+								<th>Order ID</th>
 								<th>Amount Paid</th>
 								<th>Payment Mode</th>
 								<th>Sales Type</th>
 								<th>Sales Person</th>
-								<th>Sales Date</th>
 								<th>Status</th>
+								<th>Date</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row"> - </th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><i class="bi bi-eye-fill text-primary" data-bs-toggle="modal" data-bs-target="#viewModal"></i></td>
-							</tr>
+							@foreach (var orderHeader in Orders)
+							{
+								<tr>
+									<th scope="row">@orderHeader.Id</th>
+									<td>@orderHeader.OrderTotal</td>
+									<td>@orderHeader.PaymentMode</td>
+									<td>@orderHeader.SalesChannel</td>
+									<td>@orderHeader.StoreName</td>
+									<td>@orderHeader.OrderStatus</td>
+									<td>
+										@if(orderHeader.OrderStatus == SD.StatusCompleted)
+										{
+											@orderHeader.CompletionDate
+										} else if(orderHeader.OrderStatus == SD.StatusCancelled)
+										{
+											@orderHeader.CancellationDate
+										} else if (orderHeader.OrderStatus == SD.StatusRefunded)
+										{
+											@orderHeader.RefundDate
+										}
+									</td>
+									<td><i class="bi bi-eye-fill text-primary" data-bs-toggle="modal" data-bs-target="#viewModal"></i></td>
+								</tr>
+							}
 						</tbody>
 					</table>
 				</div>

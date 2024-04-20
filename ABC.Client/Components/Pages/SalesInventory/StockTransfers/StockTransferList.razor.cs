@@ -37,7 +37,6 @@ public partial class StockTransferList
     private String ProductSearchInput { get; set; } = String.Empty;
     private bool ShowProductDropdown { get; set; } = false;
     private string? userId { get; set; } = "";
-    private string UserEmail { get; set; } = String.Empty;
     private Toast toastRef { get; set; }
     private AddProductNotice Notice { get; set; } = new();
     private bool showNotice { get; set; } = new();
@@ -50,7 +49,6 @@ public partial class StockTransferList
         var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User;
         var claimsIdentity = user.Identity as ClaimsIdentity;
         userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        UserEmail = claimsIdentity.FindFirst(ClaimTypes.Email)?.Value;
         ApplicationUser = await applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, userId);
 
         pOSService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
@@ -65,7 +63,7 @@ public partial class StockTransferList
         if (result is not null && result.Count > 0 && !String.IsNullOrEmpty(ProductSearchInput))
         {
             ProductList = result
-                .Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase) && x.StockQuantity > 0).ToList();
+                .Where(x => x.productName.ToString().StartsWith(ProductSearchInput, StringComparison.CurrentCultureIgnoreCase) && x.StockPerStore.TotalStocks > 0).ToList();
         }
         await InvokeAsync(StateHasChanged);
     }
@@ -94,7 +92,7 @@ public partial class StockTransferList
         Notice = new();
         try
         {
-            isSuccess = await ProductService_SQL.TransferStock(applicationDbContext, stockPerStore, UserEmail);
+            isSuccess = await ProductService_SQL.TransferStock(applicationDbContext, stockPerStore);
             Notice = isSuccess.BuildStockTransferNotice();
             showNotice = true;
             await InvokeAsync(StateHasChanged);

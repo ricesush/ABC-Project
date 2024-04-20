@@ -47,7 +47,7 @@
                             <h4>
                                 Available Stock:
                                 <span>
-                                    @Product.StockQuantity
+                                    @Product.StockPerStore.TotalStocks
                                 </span>
                             </h4>
                         </div>
@@ -58,13 +58,13 @@
                                     <span class="input-group-text" id="inputGroup-sizing-default">
                                         Quantity
                                     </span>
-                                    <input @bind-value="@ShoppingCart.Quantity" type="number" class="form-control text-end" />
+                                    <input @bind-value="@ShoppingCart.Quantity" type="number" min="1" max="@Product.StockPerStore.TotalStocks" class="form-control text-end" />
 
                                     @if (ShoppingCart.Quantity <= 0)
                                     {
                                         <p class="text-danger">* Quantity cannot be negative or zero</p>
                                     }
-                                    else if (ShoppingCart.Quantity > Product.StockQuantity)
+                                    else if (ShoppingCart.Quantity > Product.StockPerStore.TotalStocks)
                                     {
                                         <p class="text-danger">* Input quantity exceeds available stock.</p>
                                     }

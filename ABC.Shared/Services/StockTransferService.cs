@@ -69,7 +69,7 @@ public partial class StockTransferService_SQL : ComponentBase
                 foreach (var product in stockTransfer.StockTransferItems)
                 {
                     var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
-                    result2.StockQuantity += product.Quantity;
+                    result2.StockPerStore.TotalStocks += product.Quantity;
                     await productService_SQL.UpdateProduct(DBContext, result2);
                 }
                 updated = await UpdateStockTransferData(DBContext, stockTransfer);

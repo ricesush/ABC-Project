@@ -71,10 +71,10 @@ public partial class AuditService_SQL
     private async Task<bool> AddStockTransferAuditData(DbContext DBContext, StockTransferAudit auditLog)
     {
         try
-        {   
+        {
             DBContext.Set<StockTransferAudit>().Add(auditLog);
             var result = DBContext.SaveChanges();
-            return result > 0 ;
+            return result > 0;
         }
         catch (Exception ex)
         {

@@ -41,260 +41,311 @@
 
 	<EditForm Model="orderHeader" OnValidSubmit="SaveOrder">
 		<DataAnnotationsValidator />
-		<div class="card">
-			<div class="card-body">
-				<div class="container rounded">
-					<div class="row">
-						<div class="col-12 col-lg-6 pb-4">
-							<div class="row my-1">
-								<div class="col-3">Name</div>
-								<div class="col-9">
-									<input readonly type="text" @bind-value="firstName" class="form-control" />
+			<div class="card">
+				<div class="card-body">
+					<div class="container rounded">
+						<div class="row">
+							<div class="col-12 col-lg-6 pb-4">
+								<div class="row my-1">
+									<div class="col-3">Name</div>
+									<div class="col-9">
+										<input readonly type="text" @bind-value="firstName" class="form-control" />
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">Email Address</div>
-								<div class="col-9">
-									<input @bind-value="email" readonly type="text" class="form-control" />
+								<div class="row my-1">
+									<div class="col-3">Email Address</div>
+									<div class="col-9">
+										<input @bind-value="email" readonly type="text" class="form-control" />
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">Phone</div>
-								<div class="col-9">
-									<input readonly @bind-value="phoneNumber" type="text" class="form-control" />
+								<div class="row my-1">
+									<div class="col-3">Phone</div>
+									<div class="col-9">
+										<input readonly @bind-value="phoneNumber" type="text" class="form-control" />
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">Address</div>
-								<div class="col-9">
-									<input readonly @bind-value="lineAddress" type="text" class="form-control" />
+								<div class="row my-1">
+									<div class="col-3">Address</div>
+									<div class="col-9">
+										<input readonly @bind-value="lineAddress" type="text" class="form-control" />
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">Province</div>
-								<div class="col-9">
-									<input readonly @bind-value="province" type="text" class="form-control" />
+								<div class="row my-1">
+									<div class="col-3">Province</div>
+									<div class="col-9">
+										<input readonly @bind-value="province" type="text" class="form-control" />
+									</div>
 								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">Postal Code</div>
-								<div class="col-9">
-									<input readonly @bind-value="zipCode" type="text" class="form-control" />
+								<div class="row my-1">
+									<div class="col-3">Postal Code</div>
+									<div class="col-9">
+										<input readonly @bind-value="zipCode" type="text" class="form-control" />
+									</div>
 								</div>
-							</div>
 
-							<div class="row my-1">
-								<div class="col-3">Order Date</div>
-								<div class="col-9">
-									<input @bind-value="orderHeader.OrderDate" readonly type="text" class="form-control" />
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">Delivery Date</div>
-								<div class="col-9">
-									<input @bind-value="orderHeader.ShippingDate" readonly type="text" class="form-control" />
-								</div>
-							</div>
-							@if(orderHeader.OrderStatus == SD.StatusProcessing)
-							{
 								<div class="row my-1">
-									<div class="col-3">Delivery Personnel</div>
+									<div class="col-3">Order Date</div>
 									<div class="col-9">
-										<input @bind-value="orderHeader.Carrier" id="carrier" required type="text" class="form-control"/>
+										<input @bind-value="orderHeader.OrderDate" readonly type="text" class="form-control" />
 									</div>
 								</div>
-							}
-							else if ((orderHeader.OrderStatus == SD.StatusShipped) || (orderHeader.OrderStatus == SD.StatusCompleted))
-							{
 								<div class="row my-1">
-									<div class="col-3">Delivery Personnel</div>
+									<div class="col-3">Delivery Date</div>
 									<div class="col-9">
-										<input @bind-value="orderHeader.Carrier" id="carrier" readonly type="text" class="form-control" />
+										<input @bind-value="orderHeader.ShippingDate" readonly type="text" class="form-control" />
 									</div>
 								</div>
-							}
-							<div class="row mt-3">
-								<div class="col-6">
-									<label>Mode of Payment</label>
-									<input @bind-value="orderHeader.PaymentMode" readonly type="text" class="form-control" />
-								</div>
-								<div class="col-6">
-									<label>Payment Status</label>
-									<input @bind-value="orderHeader.PaymentStatus" readonly type="text" class="form-control" />
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-5 offset-lg-1">
-							<div class="row">
-								<h3>Orders:</h3>
-							</div>
-							<div>
-								@foreach (var item in orderDetailsList)
+								@if(orderHeader.OrderStatus == SD.StatusProcessing)
 								{
-									<div class="list-group">
-										<li class="list-group-item d-flex justify-content-between align-items-center">
-											<div class="row">
-												<div class="col-3">
-													<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
-												</div>
-												<div class="col-5">
-													<h6 class="my-0">@item.Product.productName</h6>
-													<small class="text-muted">Quantity: @item.Count</small>
-												</div>
-												<div class="col-4 text-end">
-													<span class="text-muted"><b>@("\u20B1" + (item.Product.RetailPrice * item.Count).ToString("#,###.00"))</b></span>
-												</div>
-											</div>
-										</li>
+									<div class="row my-1">
+										<div class="col-3">Delivery Personnel</div>
+										<div class="col-9">
+											<input @bind-value="orderHeader.Carrier" id="carrier" required type="text" class="form-control"/>
+										</div>
 									</div>
 								}
+								else if ((orderHeader.OrderStatus == SD.StatusShipped) || (orderHeader.OrderStatus == SD.StatusCompleted))
+								{
+									<div class="row my-1">
+										<div class="col-3">Delivery Personnel</div>
+										<div class="col-9">
+											<input @bind-value="orderHeader.Carrier" id="carrier" readonly type="text" class="form-control" />
+										</div>
+									</div>
+								}
+								<div class="row mt-3">
+									<div class="col-6">
+										<label>Mode of Payment</label>
+										<input @bind-value="orderHeader.PaymentMode" readonly type="text" class="form-control" />
+									</div>
+									<div class="col-6">
+										<label>Payment Status</label>
+										<input @bind-value="orderHeader.PaymentStatus" readonly type="text" class="form-control" />
+									</div>
+								</div>
 							</div>
-							<div class="row text-end">
-								<p><small>Additional Charges: @charges.ToString("C", new CultureInfo("en-PH"))</small></p>
-								<p><small>Applied Discount: @orderHeader.Discount.ToString("C", new CultureInfo("en-PH"))</small></p>
-								<h4>Total: @orderHeader.OrderTotal.ToString("C", new CultureInfo("en-PH"))</h4>
+							<div class="col-12 col-lg-5 offset-lg-1">
+								<div class="row">
+									<h3>Orders:</h3>
+								</div>
+								<div>
+									@foreach (var item in orderDetailsList)
+									{
+										<div class="list-group">
+											<div class="@(item.Remark != null ? "grayed-out" : "")">
+												<li class="list-group-item">
+													<div class="row">
+														<div class="col-3">
+															<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
+														</div>
+														<div class="col-5">
+															<h6 class="my-0">@item.Product.productName</h6>
+															<small class="text-muted">Quantity: @item.Count</small>
+														</div>
+														<div class="col-4 text-end">
+															<span class="text-muted"><b>@("\u20B1" + (item.Product.RetailPrice * item.Count).ToString("#,###.00"))</b></span><br />
+
+															@if (orderHeader.OrderStatus == SD.StatusCompleted)
+															{
+																<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#refundModal" @onclick='() => PopulateOrder(item.Id)'>Refund</button>
+															}
+														</div>
+													</div>
+												</li>
+											</div>
+											@if (item.Remark != null)
+											{
+												<h6 class="mt-3 text-danger">Reason For Refund</h6>
+												<p>@item.Remark</p>
+											}
+										</div>
+									}
+
+								</div>
+								<div class="row text-end">
+									<p><small>Additional Charges: @charges.ToString("C", new CultureInfo("en-PH"))</small></p>
+									<p><small>Applied Discount: @orderHeader.Discount.ToString("C", new CultureInfo("en-PH"))</small></p>
+									<h4>Total: @orderHeader.OrderTotal.ToString("C", new CultureInfo("en-PH"))</h4>
+								</div>
 							</div>
-							
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="card-footer">
-				@if (orderHeader.OrderStatus == SD.StatusPending)
-				{
-					<!--START RECEIVED-->
-					<button type="button" class="btn btn-warning form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Start Processing</button>
+				<div class="card-footer">
+					@if (orderHeader.OrderStatus == SD.StatusPending)
+					{
+						<!--START RECEIVED-->
+						<button type="button" class="btn btn-warning form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Start Processing</button>
 
-					<!-- Confirmation Modal -->
-					<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="confirmationModal">Process Order</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-					<div class="modal-body text-center">
-									Are you sure you want to start processing this order?
-									<p>This action is irreversible!</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="StartProcessing">Proceed</button>
+						<!-- Confirmation Modal -->
+						<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered draggable">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="confirmationModal">Process Order</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body text-center">
+										Are you sure you want to start processing this order?
+										<p>This action is irreversible!</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="StartProcessing">Proceed</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				}
+					}
 
-				@if (orderHeader.OrderStatus == SD.StatusProcessing)
-				{
-					<!--START RECEIVED-->
-					<button type="button" class="btn btn-primary form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Deliver Order</button>
+					@if (orderHeader.OrderStatus == SD.StatusProcessing)
+					{
+						<!--START RECEIVED-->
+						<button type="button" class="btn btn-primary form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Deliver Order</button>
 					
-					<!-- Confirmation Modal -->
-					<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="confirmationModal">Deliver Order</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body text-center">
-									Are you sure you are ready to deliver this order?
-									<p>This action is irreversible!</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="DeliverOrder">Proceed</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				}
-
-				@if (orderHeader.OrderStatus == SD.StatusShipped)
-				{
-					<!--PAYMENT RECEIVED-->
-					<button type="button"  class="btn btn-success form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Payment Received</button>
-
-					<!-- Confirmation Modal -->
-					<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="confirmationModal">Complete Order</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body text-center">
-									Are you sure you want to tag this order as complete?
-									<p>This action is irreversible!</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary" data-bs-dismiss="modal"  @onclick="OrderPaid">Proceed</button>
+						<!-- Confirmation Modal -->
+						<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered draggable">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="confirmationModal">Deliver Order</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body text-center">
+										Are you sure you are ready to deliver this order?
+										<p>This action is irreversible!</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="DeliverOrder">Proceed</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				}
+					}
 
-				@if (orderHeader.OrderStatus == SD.StatusCompleted)
-				{
-					<!--REFUND-->
-					<button type="button"  class="btn btn-warning form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Refund</button>
+					@if (orderHeader.OrderStatus == SD.StatusShipped)
+					{
+						<!--PAYMENT RECEIVED-->
+						<button type="button"  class="btn btn-success form-control my-1 fw-bold" data-bs-toggle="modal" data-bs-target="#confirmationModal">Payment Received</button>
 
-					<!-- Confirmation Modal -->
-					<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="confirmationModal">Refund Order</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body text-center">
-									Are you sure you want to tag this order as refunded?
-									<p>This action is irreversible!</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary" data-bs-dismiss="modal"  @onclick="RefundOrder">Proceed</button>
+						<!-- Confirmation Modal -->
+						<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered draggable">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="confirmationModal">Complete Order</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body text-center">
+										Are you sure you want to tag this order as complete?
+										<p>This action is irreversible!</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-primary" data-bs-dismiss="modal"  @onclick="OrderPaid">Proceed</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				}
+					}
 
-				@if (orderHeader.OrderStatus != SD.StatusRefunded &&
-					 orderHeader.OrderStatus != SD.StatusCancelled &&
-					 orderHeader.OrderStatus != SD.StatusApproved  &&
-					 orderHeader.OrderStatus != SD.StatusCompleted)
+					@if (orderHeader.OrderStatus != SD.StatusRefunded &&
+						 orderHeader.OrderStatus != SD.StatusCancelled &&
+						 orderHeader.OrderStatus != SD.StatusApproved  &&
+						 orderHeader.OrderStatus != SD.StatusCompleted)
 
-				{
-					<!--CANCEL ORDER-->
-					<button type="button" class="btn btn-danger form-control my-1" data-bs-toggle="modal" data-bs-target="#confirmationModal">Cancel Order</button>
+					{
+						<!--CANCEL ORDER-->
+						<button type="button" class="btn btn-danger form-control my-1" data-bs-toggle="modal" data-bs-target="#confirmationModal">Cancel Order</button>
 
-					<!-- Confirmation Modal -->
-					<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="confirmationModal">Cancel Order</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body text-center">
-									Are you sure you want to cancel this order?
-									<p>This action is irreversible!</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="CancelOrder">Proceed</button>
+						<!-- Confirmation Modal -->
+
+						<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered draggable">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="confirmationModal">Cancel Order</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body text-center">
+										Are you sure you want to cancel this order?
+										<p>This action is irreversible!</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="CancelOrder">Proceed</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				}
+					}
+				</div>
 			</div>
-		</div>
 	</EditForm>
 </div>
+
+<!-- REFUND Modal -->
+<div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered draggable">
+		<div class="modal-content">
+
+			<div class="modal-header bg-primary text-white">
+				<h5 class="modal-title" id="uploadModalLabel">Refund</h5>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="modal-body">
+
+				<label class="form-label h6">Are you sure you want to replace/return this item?</label>
+				<span class="d-block mb-3 h5">@prodName</span>
+
+				<!-- Quantity Selector -->
+				<div class="mb-3">
+					<label for="quantity" class="form-label h6">Quantity:</label>
+					<input type="number" id="quantity" class="form-control" min="1" max="@selectedOrder.Count" @bind="selectedOrder.remarkQty">
+				</div>
+
+				<!-- Reasons for Refund -->
+				<div class="mb-3">
+					<label class="form-label h6">Reasons for Refund:</label>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="reason1" @bind="reason1Selected">
+						<label class="form-check-label" for="reason1">Item not as described</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="reason2" @bind="reason2Selected">
+						<label class="form-check-label" for="reason2">Item damaged during shipment</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="reason3" @bind="reason3Selected">
+						<label class="form-check-label" for="reason3">Wrong item received</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="otherReasonCheckbox" @onclick="ShowOtherReason">
+						<label class="form-check-label" for="otherReasonCheckbox">Other</label>
+					</div>
+					@if (showOtherReason)
+					{
+						<div>
+							<textarea class="form-control mt-2" id="otherReasonText" @bind="otherReason"></textarea>
+						</div>
+					}
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick='() => RefundOrder(selectedOrder.Id)'>Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		$(".draggable").draggable();
+	});
+</script>

@@ -20,7 +20,7 @@ public partial class CustomerUpsert
 
     #region FIELDS
     private List<Customer> Customers { get; set; } = [];
-    private List<Store> StoreList { get; set; } = [];
+    private List<OrderHeader> Orders { get; set; } = [];
     private Customer SelectedCustomer { get; set; } = new();
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -33,21 +33,22 @@ public partial class CustomerUpsert
     {
         customerService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
         await LoadCustomer();
+        await GetOrders(CustomerId);
     }
 
-    private async Task LoadCustomer()
-    {
+	private async Task LoadCustomer()
+	{
 		if (Guid.TryParse(customerId, out Guid guidValue))
 		{
-			// Assign the parsed Guid value to your actual Guid property
 			CustomerId = guidValue;
 		}
-		else
-		{
-			// Handle invalid input (e.g., display error message)
-		}
 		var customerTask = customerService_SQL.GetCustomerInfo(applicationDbContext, CustomerId);
+		SelectedCustomer = await customerTask;
+	}
 
-        SelectedCustomer = await customerTask;
+    private async Task GetOrders(Guid customerId)
+    {
+        Customers = await customerService_SQL.GetCustomersList(applicationDbContext);
+        Orders = await orderHeaderService_SQL.GetOrdersList(applicationDbContext, customerId.ToString());
     }
 }

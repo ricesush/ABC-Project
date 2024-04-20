@@ -3,6 +3,8 @@
 @page "/EmployeesList"
 @layout AdminLayout
 
+@rendermode InteractiveServer
+
 <PageTitle>ABC - User Management</PageTitle>
 
 <AuthorizeView Roles="Admin">
@@ -11,6 +13,11 @@
             <!-- Title -->
             <div class="col-8">
                 <h1><b>Employees</b></h1>
+            </div>
+            <div class="col-4">
+                <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control h-100" @bind-value="EmployeeSearchInput" @oninput="GetEmployeeList" aria-label="Search Employee" placeholder="Search an Employee..." />
+                </div>
             </div>
         </div>
 
@@ -21,8 +28,8 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
+                    <th>Assigned Store</th>
                     <th>Role</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -33,16 +40,11 @@
                         <td>@($"{user.FirstName} {user.LastName}")</td>
                         <td>@user.Email</td>
                         <td>@user.PhoneNumber</td>
+                        <td>@user.StoreName</td>
                         <td>@user.Role</td>
-                        <td class="text-center">
-                            <a @* href="StockTransfer?id=@user.Id" *@ class="a-style-none">
-                                <i class="bi bi-eye-fill text-primary cursor-pointer" title="View" tabindex="0"></i>
-                            </a>
-                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </section>
 </AuthorizeView>
-

@@ -16,28 +16,30 @@ public partial class OnlineCustomerDetails
     #endregion
     #region Fields
     private List<ApplicationUser> OnlineCustomers { get; set; } = [];
-    private List<Store> StoreList { get; set; } = [];
-    private List<OrderHeader> OrderHeader { get; set; } = new List<OrderHeader>();
+    private List<OrderHeader> Orders { get; set; } = [];
     private ApplicationUser SelectedCustomer { get; set; } = new();
 
     [SupplyParameterFromQuery(Name = "id")]
     public string onlineCustomerId { get; set; }
 
-    string onlineCustId;
     #endregion
 
     protected override async Task OnInitializedAsync()
     {
         applicationUserService_SQL.AbcDbConnection = AppSettingsHelper.AbcDbConnection;
         await LoadOnlineCustomer();
+        await GetOrders(onlineCustomerId);
     }
 
     private async Task LoadOnlineCustomer()
     {
         var customerTask = applicationUserService_SQL.GetApplicationUserInfo(applicationDbContext, onlineCustomerId);
         SelectedCustomer = await customerTask;
+    }
 
-        OrderHeader = await orderHeaderService_SQL.GetOrderHeaderByUserId(applicationDbContext, onlineCustId);
-
+    private async Task GetOrders(string onlineCustId)
+    {
+        OnlineCustomers = await applicationUserService_SQL.GetApplicationUserList(applicationDbContext);
+        Orders = await orderHeaderService_SQL.GetOrdersList(applicationDbContext, onlineCustomerId.ToString());
     }
 }

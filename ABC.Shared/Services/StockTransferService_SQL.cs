@@ -91,14 +91,12 @@ public partial class StockTransferService_SQL
     }
 
     //* UPDATE stockTransfer ON DB
-    private async Task<bool> UpdateStockTransferData(DbContext DBContext, StockTransfer stockTransfer)
+    private async Task<bool> UpdateStockTransferData(dynamic DBContext, StockTransfer stockTransfer)
     {
         try
         {
             var context = DBContext;
-            context.Set<StockTransfer>().Update(stockTransfer);
-            DBContext.ChangeTracker.DetectChanges();
-            Console.WriteLine(DBContext.ChangeTracker.DebugView.LongView);
+            context.StockTransfers.Update(stockTransfer);
             var result = context.SaveChanges();
             return result > 0 ? true : false;
         }

@@ -87,7 +87,7 @@ public partial class CartIndex
 
 	private async Task AdjustQuantity(ShoppingCart cartItem, int quantityChange)
 	{
-		if ((cartItem.Quantity < cartItem.Product.StockQuantity || quantityChange < 0) && (cartItem.Quantity > 1 || quantityChange > 0))
+		if ((cartItem.Quantity < cartItem.Product.StockPerStore.TotalStocks || quantityChange < 0) && (cartItem.Quantity > 1 || quantityChange > 0))
 		{
 			cartItem.Quantity += quantityChange;
 			bool updated = await shoppingCartService_SQL.UpdateShoppingCart(applicationDbContext, cartItem);

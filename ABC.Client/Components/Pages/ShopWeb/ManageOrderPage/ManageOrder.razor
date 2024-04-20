@@ -1,6 +1,6 @@
 @using ABC.Shared.Models
 @using System.Globalization
-@page "/ManageOrder"
+@page "/MyOrders"
 @rendermode InteractiveServer
 
 <PageTitle>ABC - My Orders</PageTitle>
@@ -50,7 +50,7 @@
 					<td> @order.OrderTotal.ToString("C", new CultureInfo("en-PH")) </td>
 					<td> @order.OrderStatus </td>
 					<td class="text-center d-flex justify-content-around">
-						<a class="a-style-none" href="ManageOrderDetails?id=@order.Id">
+						<a class="a-style-none" href="MyOrder?id=@order.Id">
 							<i class="bi bi-eye text-primary cursor-pointer" title="View" tabindex="0"></i>
 						</a>
 					</td>

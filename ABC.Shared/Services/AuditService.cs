@@ -50,7 +50,7 @@ public partial class AuditService_SQL : ComponentBase
             added = await AddAuditData(DBContext, auditLog);
             return added;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex.ToString());
             return added;
@@ -65,7 +65,7 @@ public partial class AuditService_SQL : ComponentBase
             added = await AddStockTransferAuditData(DBContext, audit);
             return added;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex.ToString());
             return added;

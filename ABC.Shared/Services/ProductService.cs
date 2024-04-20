@@ -97,49 +97,46 @@ public partial class ProductService_SQL : ComponentBase
 
     #endregion
 
-	#region CATEGORIES CRUD
-	public async Task<List<Category>> GetCategoryList(dynamic DBContext)
-	{
-		List<Category> CategoryList = [];
-		try
-		{
-			CategoryList = await GetCategoriesListData(DBContext);
-			return CategoryList;
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex.ToString());
-			return CategoryList;
-		}
-	}
-
-	public async Task<Category> GetCategoryInfo(dynamic DBContext, int Id)
-	{
-		Category CategoryInfo = new();
-		try
-		{
-			CategoryInfo = await GetCategoryData(DBContext, Id);
-			return CategoryInfo;
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex.ToString());
-			return CategoryInfo;
-		}
-	}
-
-	public async Task<bool> TransferStock(DbContext dbContext, StockPerStore stockPerStore, string employeeName){
-		bool stockTransferUpdated = false;
-		try
-		{
-			stockTransferUpdated = await UpdateStockPerStore(dbContext, stockPerStore, employeeName);
-			return stockTransferUpdated;
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex.ToString());	
-			return stockTransferUpdated;		
-		}
-	}
-	#endregion
+    public async Task<bool> TransferStock(DbContext dbContext, StockPerStore stockPerStore)
+    {
+        bool stockTransferUpdated = false;
+        try
+        {
+            stockTransferUpdated = await UpdateStockPerStoreData(dbContext, stockPerStore);
+            return stockTransferUpdated;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return stockTransferUpdated;
+        }
+    }
+    public async Task<StockPerStore> GetStockperStoreInfo(DbContext DBContext, int Id)
+    {
+        StockPerStore StockperStoreInfo = new();
+        try
+        {
+            StockperStoreInfo = await GetStockperStoreInfoData(DBContext, Id);
+            return StockperStoreInfo;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return StockperStoreInfo;
+        }
+    }
+    public async Task<bool> UpdateStockPerStore(DbContext dbContext, StockPerStore stockPerStore)
+    {
+        bool stockTransferUpdated = false;
+        try
+        {
+            stockTransferUpdated = await UpdateStockPerStoreData(dbContext, stockPerStore);
+            return stockTransferUpdated;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.ToString());
+            return stockTransferUpdated;
+        }
+    }
 }

@@ -119,7 +119,7 @@ public partial class Details
         ShoppingCart.ProductName = Product.productName;
 
 
-        if (ShoppingCart.Quantity > Product.StockQuantity)
+        if (ShoppingCart.Quantity > Product.StockPerStore.TotalStocks)
         {
             toastRef.ShowToast("Warning", "Cannot add more items than available in stock.");
             return;
@@ -135,7 +135,7 @@ public partial class Details
             cart.Quantity += ShoppingCart.Quantity;
 
             //check again the stocks in inventory
-            if (cart.Quantity > Product.StockQuantity)
+            if (cart.Quantity > Product.StockPerStore.TotalStocks)
             {
                 toastRef.ShowToast("Warning", "Cannot add more items than available in stock.");
                 return;

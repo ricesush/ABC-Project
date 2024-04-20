@@ -2,6 +2,7 @@ using System;
 using Serilog;
 using ABC.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 public partial class OrderHeaderService_SQL : ComponentBase
@@ -17,20 +18,12 @@ public partial class OrderHeaderService_SQL : ComponentBase
 
 	#region ORDERHEADER CRUD
 
-	public async Task<List<OrderHeader>> GetOrdersList(dynamic DBContext)
+	public async Task<List<OrderHeader>> GetOrdersList(DbContext DBContext, string userId = "")
 	{
 		List<OrderHeader> OrdersList = new List<OrderHeader>();
 		try
 		{
-			OrdersList = await GetOrdersListData(DBContext);
-
-			// Load ApplicationUser data for each OrderHeader
-			foreach (var order in OrdersList)
-			{
-				order.ApplicationUser = await DBContext.ApplicationUsers.FindAsync(order.ApplicationUserId);
-                order.Customer = await DBContext.Customers.FindAsync(order.CustomerId);
-
-            }
+			OrdersList = await GetOrdersListData(DBContext, userId);
 
             return OrdersList;
 		}
@@ -40,7 +33,6 @@ public partial class OrderHeaderService_SQL : ComponentBase
 			return OrdersList;
 		}
 	}
-
 
 	public async Task<List<OrderHeader>> GetOrderHeaderByUserId(dynamic DBContext, string userId)
 	{
@@ -104,6 +96,22 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		}
 	}
 
+	public async Task<List<OrderDetail>> GetOrderDetailList(dynamic DBContext)
+	{
+		List<OrderDetail> OrdersList = [];
+
+		try
+		{
+			OrdersList = await GetOrderDetailListData(DBContext);
+
+			return OrdersList;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return OrdersList;
+		}
+	}
 
 	//GET SINGLE Order detail based on product id from the list of OrderDetails
 	public async Task<OrderDetail> GetOrderDetail(dynamic DBContext, int productId)
@@ -111,7 +119,9 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		OrderDetail _OrderDetail = new();
 		try
 		{
-			_OrderDetail = await GetOrderHeaderData(DBContext, productId);
+			_OrderDetail = await GetOrderDetailData(DBContext, productId);
+			// Load Product data for the OrderDetail
+			_OrderDetail.Product = await DBContext.Products.FindAsync(_OrderDetail.ProductId);
 			return _OrderDetail;
 		}
 		catch (Exception ex)
@@ -127,24 +137,43 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		bool added = false;
 		try
 		{
-            foreach (var product in order.OrderDetails)
-            {
+			foreach (var product in order.OrderDetails)
+			{
 				// GETTING THE PRODUCT INFO
-				var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
+				//var result2 = await productService_SQL.GetProductInfo(DBContext, product.ProductId);
+				var result2 = await productService_SQL.GetStockperStoreInfo(DBContext, product.ProductId);
 
-				// IDENTIFY THE REQUESTING STORE
-				// DEDUCT THE QUANTITY FROM THE STOCK QUANTITY OF THE STORE
-				if(order.StoreName.Contains("Addsome")){
-					result2.StockPerStore.Store1StockQty -= product.Count;
-				}else{
-					result2.StockPerStore.Store2StockQty -= product.Count;
+				if (result2 != null)
+				{
+					// IDENTIFY THE REQUESTING STORE AND DEDUCT THE QUANTITY
+					if (order.StoreName.Contains("Addsome"))
+					{
+						if (result2.Store1StockQty != null)
+						{
+							result2.Store1StockQty -= product.Count;
+						}
+					}
+					else if (order.StoreName.Contains("Ahead"))
+					{
+						if (result2.Store2StockQty != null)
+						{
+							result2.Store2StockQty -= product.Count;
+						}
+					}
+					else if (String.IsNullOrEmpty(order.StoreName))
+					{
+						if (result2.TotalStocks != null)
+						{
+							result2.TotalStocks -= product.Count;
+						}
+					}
+
+					// UPDATE
+					await productService_SQL.UpdateStockPerStore(DBContext, result2);
 				}
+			}
 
-				// UPDATE
-				await productService_SQL.UpdateProduct(DBContext, result2);
-            }
-
-            added = await AddOrderHeaderData(DBContext, order);
+			added = await AddOrderHeaderData(DBContext, order);
 			return added;
 		}
 		catch (Exception ex)
@@ -186,5 +215,20 @@ public partial class OrderHeaderService_SQL : ComponentBase
 		}
 	}
 
+	// UPDATE Order Details
+	public async Task<bool> UpdateOrderDetailStatus(dynamic DBContext, OrderDetail order)
+	{
+		bool updated = false;
+		try
+		{
+			updated = await UpdateOrderDetailStatusData(DBContext, order);
+			return updated;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return updated;
+		}
+	}
 	#endregion
 }

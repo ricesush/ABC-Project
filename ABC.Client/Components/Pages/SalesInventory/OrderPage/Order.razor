@@ -34,12 +34,15 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Order Date</th>
                 <th>Name</th>
                 <th>Contact Number</th>
                 <th>Address</th>
                 <th class="text-center">Payment Mode</th>
-                <th class="text-center">Status</th>
                 <th class="text-center">Total</th>
+                <th class="text-center">Sales Type</th>
+                <th class="text-center">Store</th>
+                <th class="text-center">Status</th>
                 <th></th>
             </tr>
         </thead>
@@ -50,12 +53,37 @@
             {
                 <tr>
                     <th scope="row"> @order.Id </th>
-                    <td> @(order.ApplicationUser != null ? $"{order.ApplicationUser.FirstName} {order.ApplicationUser.LastName}" : $"{order.Customer.FirstName} {order.Customer.LastName}") </td>
-                    <td> @(order.ApplicationUser != null ? $"{order.ApplicationUser.PhoneNumber}" : $"{order.Customer.ContactNumber.ToString() ?? "---"}") </td>
-                    <td> @(order.ApplicationUser != null ? $"{order.ApplicationUser.Address}, {order.ApplicationUser.City}, {order.ApplicationUser.Province}" : $"{order.Customer.ApSuUn}, {order.Customer.City}, {order.Customer.Province}") </td>
+                    <td>@order.OrderDate.ToShortDateString()</td>
+                    @if (order.ApplicationUser != null)
+                    {
+                        <td> @($"{order.ApplicationUser.FirstName} {order.ApplicationUser.LastName}") </td>
+                        <td> @($"{order.ApplicationUser.PhoneNumber ?? "---"}") </td>
+                        <td> @($"{order.ApplicationUser.Address}, {order.ApplicationUser.City}, {order.ApplicationUser.Province}") </td>
+                    } else if (order.Customer != null)
+                    {
+                        <td> @($"{order.Customer.FirstName} {order.Customer.LastName}") </td>
+                        <td> @($"{order.Customer.ContactNumber.ToString() ?? "---"}") </td>
+                        <td> @($"{order.Customer.ApSuUn}, {order.Customer.City}, {order.Customer.Province}") </td>
+                    }
+                    
                     <td class="text-center"> @order.PaymentMode</td>
-                    <td class="text-center"> @order.OrderStatus </td>
                     <td class="text-center"> @order.OrderTotal.ToString("C", new CultureInfo("en-PH")) </td>
+                    <td class="text-center"> @order.SalesChannel</td>
+                    <td class="text-center">
+                        @if (order.StoreName == "Addsome Business Corporation")
+                        {
+                            <text>Addsome Business</text>
+                        }
+                        else if (order.StoreName == "Ahead Biz Computers")
+                        {
+                            <text>Ahead Biz</text>
+                        }
+                        else
+                        {
+                            @order.StoreName
+                        }
+                    </td>
+                    <td class="text-center"> @order.OrderStatus </td>
                     <td class="text-center d-flex justify-content-around">
                         <a class="a-style-none" href="OrderDetails?id=@order.Id">
                             <i class="bi bi-pencil-square text-primary cursor-pointer" title="Process" tabindex="0"></i>
@@ -75,6 +103,8 @@
                     <td class="text-center"> - </td>
                     <td class="text-center"> - </td>
                     <td class="text-center"> - </td>
+                    <td class="text-center"> - </td>
+                    <td class="text-center"> - </td>
                 </tr>
             }
         }
@@ -87,6 +117,8 @@
                     <td> - </td>
                     <td class="text-start"> - </td>
                     <td class="text-start"> - </td>
+                    <td class="text-center"> - </td>
+                    <td class="text-center"> - </td>
                     <td class="text-center"> - </td>
                     <td class="text-center"> - </td>
                     <td class="text-center"> - </td>

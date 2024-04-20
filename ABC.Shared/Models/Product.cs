@@ -33,8 +33,7 @@ namespace ABC.Shared.Models
 		[ValidateNever]
 		public Category Category { get; set; }
 		public string Brand { get; set; }
-		
-		
+
 		// public int StockPerStoreId { get; set; }
 		public StockPerStore StockPerStore { get; set; }
 
@@ -46,14 +45,6 @@ namespace ABC.Shared.Models
 		[Required]
 		[DisplayName("Retail Price")]
 		public float RetailPrice { get; set; }
-		
-		//Inventory
-		[Required]
-		[DisplayName("Stock Quantity")]
-		public int StockQuantity { get; set; }
-		[Required]
-		[DisplayName("Min. Stock Quantity")]
-		public int MinimumStockQuantity { get; set; } = 1;
 		
 		//Warranty
 		[Required]

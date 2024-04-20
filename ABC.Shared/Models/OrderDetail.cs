@@ -25,10 +25,15 @@ namespace ABC.Shared.Models
         public double? Charge { get; set; }
         public double? Discount { get; set; }
         public int Count {  get; set; }
-        public double Price {  get; set; } 
+        //public double Price {  get; set; }
+        public double RetailPrice {  get; set; }
+        public double CostPrice {  get; set; }
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+		public string? Remark { get; set; }
+		public int? remarkQty { get; set; }
+        public bool? status { get; set; }
 
-        [NotMapped]
+		[NotMapped]
         public double TotalPrice { get; set; }
     }
 }

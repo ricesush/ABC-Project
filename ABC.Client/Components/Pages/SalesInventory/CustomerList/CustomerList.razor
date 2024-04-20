@@ -3,13 +3,20 @@
 @page "/CustomerList"
 @layout AdminLayout
 
+@rendermode InteractiveServer
+
 <PageTitle>ABC - Customers List</PageTitle>
 
 <section class="container pt-2 pb-5">
     <div class="row pb-3">
         <!-- Title -->
         <div class="col-8 text-start mb-3 mb-sm-0">
-			<h1>Customers List</h1>
+            <h1>Customers List</h1>
+        </div>
+        <div class="col-4">
+            <div class="input-group flex-nowrap">
+                <input type="text" class="form-control h-100" @bind-value="CustomerSearchInput" @oninput="GetCustomerList" aria-label="Search Customer" placeholder="Search a customer..." />
+            </div>
         </div>
     </div>
 

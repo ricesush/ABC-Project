@@ -18,7 +18,7 @@ namespace ABC.Shared.Models
 		[DisplayName("Store Name")]
 		public string storeName { get; set; }
 
-		public HashSet<Product> Products { get; set; }
+		//public HashSet<Product> Products { get; set; }
 
 		[Required]
 		[DisplayName("Contact Number")]

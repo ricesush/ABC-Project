@@ -90,7 +90,7 @@
 							<div class="dropdown-menu" aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="Account/Manage">My Account</a>
 								<AuthorizeView Roles="Customer" Context="Context">
-									<a class="dropdown-item" href="ManageOrder">My Orders</a>
+									<a class="dropdown-item" href="/MyOrders">My Orders</a>
 								</AuthorizeView>
 								<AuthorizeView Roles="Admin" Context="innerContext">
 									<a class="dropdown-item" href="/Account/Register">Add Employee</a>

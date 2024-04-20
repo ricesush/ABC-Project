@@ -150,7 +150,7 @@
                     <b>Retail Price: </b> @ProductInModal.RetailPrice
                 </div>
                 <div>
-                    <b>Total InStock: </b> @ProductInModal.StockQuantity
+                    <b>Total InStock: </b> @ProductInModal.StockPerStore.TotalStocks
                 </div>
 
                 <div class="form-group mt-3" id="quantityInputDiv">
@@ -171,14 +171,14 @@
                 {
                     <div class="text-danger">
                         @if ((ProductInModal.StockPerStore.Store1StockQty + ProductInModal.StockPerStore.Store2StockQty) >
-                       ProductInModal.StockQuantity)
+                        ProductInModal.StockPerStore.TotalStocks)
                         {
-                            <p>The total entered stocks are more than @ProductInModal.StockQuantity</p>
+                            <p>The total entered stocks are more than @ProductInModal.StockPerStore.TotalStocks</p>
                         }
                         else if ((ProductInModal.StockPerStore.Store1StockQty +
-                        ProductInModal.StockPerStore.Store2StockQty) < ProductInModal.StockQuantity)
+                        ProductInModal.StockPerStore.Store2StockQty) < ProductInModal.StockPerStore.TotalStocks)
                         {
-                            <p>The total entered stocks are less than @ProductInModal.StockQuantity</p>
+                            <p>The total entered stocks are less than @ProductInModal.StockPerStore.TotalStocks</p>
                         }
                     </div>
                 }
@@ -187,7 +187,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 @if ((ProductInModal.StockPerStore.Store1StockQty + ProductInModal.StockPerStore.Store2StockQty) ==
-                       ProductInModal.StockQuantity)
+                       ProductInModal.StockPerStore.TotalStocks)
                 {
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                         @onclick="() => TransferStocks(ProductInModal.StockPerStore)">

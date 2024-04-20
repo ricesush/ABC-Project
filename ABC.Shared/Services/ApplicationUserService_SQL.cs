@@ -45,28 +45,16 @@ public partial class ApplicationUserService_SQL
 	}
 
 	//* GETS SINGLE ApplicationUsers BASE ON ID 
-	private async Task<ApplicationUser> GetApplicationUserData(dynamic DBContext, string id)
+	private async Task<ApplicationUser> GetApplicationUserData(DbContext DBContext, string id)
 	{
 		ApplicationUser _applicationUser = new();
 		try
 		{
-			var context = DBContext;
-			ApplicationUser result = context.ApplicationUsers.Find(id);
-			ApplicationUser userFilteredInfo = new()
-			{
-				FirstName = result.FirstName,
-				LastName = result.LastName,
-				PhoneNumber = result.PhoneNumber,
-				Address = result.Address,
-				City = result.City,
-				Province = result.Province,
-				PostalCode = result.PostalCode,
-				StoreName = result.StoreName
-			};
+			ApplicationUser result = DBContext.Set<ApplicationUser>().FirstOrDefault(x => x.Id == id);
 
 			if (result is not null)
 			{
-				_applicationUser = userFilteredInfo;
+				_applicationUser = result;
 			}
 			return _applicationUser;
 		}

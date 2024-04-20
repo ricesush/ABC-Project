@@ -5,34 +5,27 @@ using ABC.Shared.Models;
 using System.Net.Sockets;
 using ABC.Shared.Models.ViewModels;
 using MySqlX.XDevAPI.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC.Shared.Services;
 
 public partial class ShoppingCartService_SQL
 {
-
 	#region SHOPPING CART CRUD
 	//* GETS ALL SHOPPING CART
-	public async Task<List<ShoppingCart>> GetShoppingCartListData(dynamic DBContext, string userId)
+	public async Task<List<ShoppingCart>> GetShoppingCartListData(DbContext DBContext, string userId)
 	{
-		List<ShoppingCart> _shoppingcart = new List<ShoppingCart>();
+		List<ShoppingCart> _shoppingcart = [];
 
 		try
 		{
-			List<Product> _product = new List<Product>();
-			var context = DBContext;
-			var shoppingCartList = ((IQueryable<ShoppingCart>)context.ShoppingCarts).Where(sc => sc.ApplicationUserId == userId);
-			var products = context.Products;
+            var products = DBContext.Set<Product>().Include(x => x.StockPerStore);
+			var shoppingCarts = DBContext.Set<ShoppingCart>().Where(x => x.ApplicationUserId == userId);
 
-			foreach (var product in products)
-			{
-				_product.Add(product);
-			}
-
-			foreach (var cartItem in shoppingCartList)
+			foreach (var cartItem in shoppingCarts)
 			{
 				ShoppingCart item = cartItem;
-				item.Product = _product.FirstOrDefault(p => p.Id == cartItem.ProductId);
+				item.Product = products.FirstOrDefault(p => p.Id == cartItem.ProductId)!;
 				_shoppingcart.Add(item);
 			}
 
@@ -44,13 +37,6 @@ public partial class ShoppingCartService_SQL
 			return _shoppingcart;
 		}
 	}
-
-
-
-
-
-
-
 
 	//* GETS SINGLE CATEGORY BASE ON ID 
 	private async Task<ShoppingCart> GetShoppingCartByUserIdAndProductIdData(dynamic DBContext, string userId, int id)

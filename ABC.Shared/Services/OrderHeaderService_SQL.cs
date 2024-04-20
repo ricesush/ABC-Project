@@ -14,13 +14,32 @@ public partial class OrderHeaderService_SQL
 	#region ORDERHEADER CRUD
 
 	//Get List of OrderHeaders
-	private async Task<List<OrderHeader>> GetOrdersListData(dynamic DBContext)
+	private async Task<List<OrderHeader>> GetOrdersListData(DbContext DBContext, string userId = "")
 	{
 		List<OrderHeader> _order = [];
 		try
 		{
 			var context = DBContext;
-			var orderList = context.OrderHeaders;
+			List<OrderHeader> orderList = [];
+			if (!String.IsNullOrEmpty(userId))
+			{
+                orderList = [.. context.Set<OrderHeader>()
+					.Include(x => x.ApplicationUser).Where(x => x.ApplicationUserId == userId)];
+				if (orderList == null || orderList.Count == 0)
+				{
+                    orderList = [.. context.Set<OrderHeader>()
+                   .Include(x => x.Customer).Where(x => x.CustomerId.ToString() == userId)];
+                }
+            } else {
+                orderList = [.. context.Set<OrderHeader>()
+                    .Include(x => x.ApplicationUser)];
+                if (orderList == null || orderList.Count == 0)
+                {
+                    orderList = [.. context.Set<OrderHeader>()
+                   .Include(x => x.Customer)];
+                }
+            }
+			
 			foreach (var item in orderList)
 			{
 				_order.Add(item);
@@ -110,14 +129,47 @@ public partial class OrderHeaderService_SQL
 		}
 	}
 
-    //GET SINGLE Order detail based on product id from the list of OrderDetails
-    private async Task<OrderDetail> GetOrderDetailData(dynamic DBContext, int productId)
+	private async Task<List<OrderDetail>> GetOrderDetailListData(dynamic DBContext)
+	{
+		List<OrderDetail> _order = [];
+
+		try
+		{
+			List<Product> _product = new List<Product>();
+			var context = DBContext;
+			var orderList = context.OrderDetails;
+			var products = context.Products;
+
+			foreach (var product in products)
+			{
+				_product.Add(product);
+			}
+
+			foreach (var order in orderList)
+			{
+				OrderDetail item = order;
+				item.Product = _product.FirstOrDefault(p => p.Id == order.ProductId);
+				_order.Add(order);
+			}
+
+			return _order;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return _order;
+		}
+	}
+
+	//GET SINGLE Order detail based on product id from the list of OrderDetails
+	private async Task<OrderDetail> GetOrderDetailData(dynamic DBContext, int productId)
 	{
 		OrderDetail _orderDetail = new();
 		try
 		{
 			var context = DBContext;
-			var result = context.Products.Find(productId);
+			var result = context.OrderDetails.Find(productId);
+
 			if (result is not null)
 			{
 				_orderDetail = result;
@@ -132,13 +184,22 @@ public partial class OrderHeaderService_SQL
 	}
 
 	//ADD OrderHeader
-	private async Task<bool> AddOrderHeaderData(dynamic DBContext, OrderHeader order)
+	private async Task<bool> AddOrderHeaderData(DbContext DBContext, OrderHeader order)
 	{
 		try
 		{
-			var context = DBContext;
-			context.OrderHeaders.Add(order);
-			var result = context.SaveChanges();
+			if (order.ApplicationUser != null)
+			{
+                var existingUser = DBContext.Set<ApplicationUser>().Find(order.ApplicationUser.Id);
+                DBContext.Entry(order.ApplicationUser).State = EntityState.Unchanged;
+				//DBContext.Entry(order.ApplicationUserId).State = EntityState.Unchanged;
+			} else if (order.Customer != null)
+			{
+                var existingCustomer = DBContext.Set<Customer>().Find(order.Customer.Id);
+                DBContext.Entry(order.Customer).State = EntityState.Unchanged;
+            }
+			DBContext.Set<OrderHeader>().Add(order);
+			var result = DBContext.SaveChanges();
 			return result > 0 ? true : false;
 		}
 		catch (Exception ex)
@@ -171,12 +232,32 @@ public partial class OrderHeaderService_SQL
     }
 
     //* UPDATE Order Header status ON DB
-    private async Task<bool> UpdateOrderHeaderStatusData(dynamic DBContext, OrderHeader order)
+    private async Task<bool> UpdateOrderHeaderStatusData(DbContext DBContext, OrderHeader order)
+	{
+		try
+		{
+			if (order.ApplicationUser != null)
+			{
+				DBContext.Entry(order.ApplicationUser).State = EntityState.Unchanged;
+			}
+			DBContext.Set<OrderHeader>().Update(order);
+			var result = DBContext.SaveChanges();
+			return result > 0 ? true : false;
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex.ToString());
+			return false;
+		}
+	}
+
+	//* UPDATE Order Details
+	private async Task<bool> UpdateOrderDetailStatusData(dynamic DBContext, OrderDetail order)
 	{
 		try
 		{
 			var context = DBContext;
-			context.OrderHeaders.Update(order);
+			context.OrderDetails.Update(order);
 			var result = context.SaveChanges();
 			return result > 0 ? true : false;
 		}

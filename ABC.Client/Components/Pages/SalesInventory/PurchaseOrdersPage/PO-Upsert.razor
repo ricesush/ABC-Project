@@ -228,8 +228,6 @@
 											<div class="">
 												<div class="text-14px">Product Name: @product.productName</div>
 												<div class="text-14px">SKU: @product.SKU</div>
-												@* <div class="text-14px">Store: @product.Store.storeName</div> *@
-												<div class="text-14px">Store: Store Name Here</div>
 											</div>
 										</div>
 									</li>
@@ -258,7 +256,7 @@
 											<tr>
 												<th scope="row"> @product.Product.Id </th>
 												<td> @product.Product.productName </td>
-												<td class="text-center"> @product.Product.StockQuantity </td>
+												<td class="text-center"> @product.Product.StockPerStore.TotalStocks </td>
 												<td class="text-center"> @product.Quantity </td>
 												<td class="text-center"> @product.Product.CostPrice.ToString("#,##0.00") </td>
 												<td class="text-center"> @product.SubTotal.ToString("#,##0.00") </td>

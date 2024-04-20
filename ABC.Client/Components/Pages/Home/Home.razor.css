@@ -10,6 +10,7 @@
     text-align: center;
     padding-top: 6rem;
     margin-top: 2rem;
+    
 }
 
     .banner h1, .banner p {
@@ -21,9 +22,8 @@
 }
 
 .button {
-    background-image: linear-gradient(to bottom right, red, yellow, blue);
-    color: black;
-    font-size: 18px;
+    background-color: var(--maincolor-darkblue--);
+    color: #ffffff;
     font-weight: bold;
     text-decoration: none;
 }

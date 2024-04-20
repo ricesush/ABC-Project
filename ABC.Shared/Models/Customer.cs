@@ -27,8 +27,8 @@ namespace ABC.Shared.Models
         [DisplayName("Contact Number")]
         public long ContactNumber { get; set; }
 
-        [DisplayName("Type")]
-        public string Type { get; set; }
+        //[DisplayName("Type")]
+        //public string Type { get; set; }
 
         [DisplayName("Apt./Suite/Unit No.")]
         public string ApSuUn { get; set; }

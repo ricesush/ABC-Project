@@ -25,10 +25,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 	public DbSet<StockTransfer> StockTransfers { get; set; }
 	public DbSet<StockTransferItemDetails> StockTransferItemDetails { get; set; }
 	public DbSet<StockPerStore> StockPerStores { get; set; }
-	public DbSet<StockTransferAudit> StockTransferAudit { get; set; }
+    public DbSet<StockTransferAudit> StockTransferAudit { get; set; }
 
-
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 
 		base.OnModelCreating(modelBuilder);
@@ -84,11 +83,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			UserName = "admin@abc.com",
 			FirstName = "Ej Admin",
 			LastName = "Esan",
-			NormalizedUserName = "ADMIN@ABC.COM",
+			StoreId = 1,
+			StoreName = "Addsome Business Corporation",
+            NormalizedUserName = "ADMIN@ABC.COM",
 			Email = "admin@abc.com",
 			EmailConfirmed = true,
-			PasswordHash = passwordHasher.HashPassword(null, "Admin123!")
-		};
+			PasswordHash = passwordHasher.HashPassword(null, "Admin123!"),
+            Role = SD.Role_Admin
+        };
 
 		// Create manager user
 		var managerUser = new ApplicationUser
@@ -100,8 +102,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			NormalizedUserName = "MANAGER@ABC.COM",
 			Email = "manager@abc.com",
 			EmailConfirmed = true,
-			PasswordHash = passwordHasher.HashPassword(null, "Manager123!")
-		};
+			PasswordHash = passwordHasher.HashPassword(null, "Manager123!"),
+            Role = SD.Role_Manager
+        };
 
 		// Create employee user
 		var empUser = new ApplicationUser
@@ -113,8 +116,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			NormalizedUserName = "EMP@ABC.COM",
 			Email = "emp@abc.com",
 			EmailConfirmed = true,
-			PasswordHash = passwordHasher.HashPassword(null, "Emp123!")
-		};
+			PasswordHash = passwordHasher.HashPassword(null, "Emp123!"),
+            Role = SD.Role_Employee
+        };
 
 		// Create customer user
 		var custUser = new ApplicationUser
@@ -126,7 +130,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			NormalizedUserName = "CUST@ABC.COM",
 			Email = "cust@abc.com",
 			EmailConfirmed = true,
-			PasswordHash = passwordHasher.HashPassword(null, "Cust123!")
+			PasswordHash = passwordHasher.HashPassword(null, "Cust123!"),
+			Role = SD.Role_Customer
 		};
 
 		// Seed users
@@ -162,7 +167,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 			LastName = "Betonio",
 			EmailAddress = "neiljejomar@gmail.com",
 			ContactNumber = 09568271611,
-			Type = "Walk in",
+			//Type = "Walk in",
 			ApSuUn = "Unit 1234",
 			StreetorSubd = "Jasmine St.",
 			Barangay = "Batman",
@@ -192,8 +197,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Description = "Versatile all-in-one printer for printing, copying, and scanning",
 				CostPrice = 800,
 				RetailPrice = 1299,
-				StockQuantity = 20,
-				MinimumStockQuantity = 5,
 				WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
@@ -212,8 +215,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Description = "Panoramic view with motion detection",
 				CostPrice = 1200,
 				RetailPrice = 1999,
-				StockQuantity = 15,
-				MinimumStockQuantity = 4,
 				WarrantyType = "Manufacturers Warranty",
 				Duration = "7 days from date of purchase",
 				SupplierId = 1,
@@ -231,8 +232,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Description = "Lightweight 13-inch laptop with SSD and 8GB RAM",
 				CostPrice = 600,
 				RetailPrice = 899,
-				StockQuantity = 8,
-				MinimumStockQuantity = 3,
 				WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
@@ -250,8 +249,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Description = "5.8-inch OLED smartphone with dual camera",
 				CostPrice = 500,
 				RetailPrice = 999,
-				StockQuantity = 12,
-				MinimumStockQuantity = 5,
 				WarrantyType = "Extended Warranty",
 				Duration = "24 months from date of purchase",
 				SupplierId = 1,
@@ -269,8 +266,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				Description = "Noise cancelling wireless over-ear headphones",
 				CostPrice = 150,
 				RetailPrice = 249,
-				StockQuantity = 20,
-				MinimumStockQuantity = 5,
 				WarrantyType = "Extended Warranty",
 				Duration = "12 months from date of purchase",
 				SupplierId = 2,
@@ -278,8 +273,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 				status = SD.InStock
             });
 
-		//Pushed Data into Supplier Database
-		modelBuilder.Entity<Supplier>().HasData(
+        //Pushed Data into Supplier Database
+        modelBuilder.Entity<Supplier>().HasData(
 			new Supplier
 			{
 				Id = 1,
@@ -352,7 +347,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 1,
 					ProductId = 1,
 					Store1StockQty = 15,
+					MinimumStore1StockQty = 2,
 					Store2StockQty = 5,
+					MinimumStore2StockQty = 2,
 					TotalStocks = 20,
 				},
 
@@ -361,8 +358,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 2,
 					ProductId = 2,
 					Store1StockQty = 7,
-					Store2StockQty = 8,
-					TotalStocks = 15,
+					MinimumStore1StockQty = 2,
+                    Store2StockQty = 8,
+					MinimumStore2StockQty = 2,
+                    TotalStocks = 15,
 				},
 
 				new StockPerStore
@@ -370,8 +369,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 3,
 					ProductId = 3,
 					Store1StockQty = 5,
-					Store2StockQty = 3,
-					TotalStocks = 8,
+					MinimumStore1StockQty = 2,
+                    Store2StockQty = 3,
+					MinimumStore2StockQty = 2,
+                    TotalStocks = 8,
 				},
 
 				new StockPerStore
@@ -379,8 +380,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 4,
 					ProductId = 4,
 					Store1StockQty = 6,
-					Store2StockQty = 6,
-					TotalStocks = 12,
+					MinimumStore1StockQty = 2,
+                    Store2StockQty = 6,
+					MinimumStore2StockQty = 2,
+                    TotalStocks = 12,
 				},
 
 				new StockPerStore
@@ -388,8 +391,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 					Id = 5,
 					ProductId = 5,
 					Store1StockQty = 17,
-					Store2StockQty = 3,
-					TotalStocks = 20,
+					MinimumStore1StockQty = 2,
+                    Store2StockQty = 3,
+					MinimumStore2StockQty = 2,
+                    TotalStocks = 20,
 				}
 			);
 			o.HasOne(o => o.Product).WithOne(o => o.StockPerStore).OnDelete(DeleteBehavior.Cascade);
@@ -409,8 +414,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 		{
 			o.HasOne(x => x.StockTransfer).WithMany(x => x.StockTransferItems).OnDelete(DeleteBehavior.NoAction);
 		});
-
-		
 
 		// modelBuilder.Entity<StockTransferItemDetails>(o =>
 		// {
